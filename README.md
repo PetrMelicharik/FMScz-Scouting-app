@@ -1,4 +1,4 @@
-# Dosier — skautovací aplikace
+# FM Scouts.cz — skautovací aplikace
 
 Next.js aplikace pro skauting fotbalových hráčů. Databáze hráčů žije jako
 `data/players.xlsx` přímo v repozitáři; při každém nasazení se automaticky
@@ -10,8 +10,10 @@ převede na data, která aplikace zobrazuje.
 2. `scripts/build-data.mjs` — při každém `npm run build` (tedy i při každém
    nasazení na Vercelu) přečte `data/players.xlsx` a vygeneruje
    `public/data/players.json`.
-3. Aplikace (`components/ScoutApp.jsx`) si tento JSON načte při startu a
-   zobrazí filtrování, srovnání a žebříčky hráčů.
+3. Aplikace má dvě stránky:
+   - **Home** (`app/page.jsx`) — úvodní stránka s přehledem (počet hráčů, lig, sezóna).
+   - **Databáze** (`app/databaze/page.jsx` + `components/DatabaseView.jsx`) —
+     filtry a tabulka hráčů, data se načítají z vygenerovaného JSON.
 
 ## Lokální spuštění
 
