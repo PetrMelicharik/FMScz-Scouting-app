@@ -1,0 +1,5 @@
+node_modules/
+.next/
+public/data/players.json
+.env*.local
+.vercel
