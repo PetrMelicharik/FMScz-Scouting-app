@@ -1,0 +1,18 @@
+{
+  "name": "fmscouts-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prebuild": "node scripts/build-data.mjs",
+    "dev": "node scripts/build-data.mjs && next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "recharts": "2.12.7",
+    "xlsx": "0.18.5"
+  }
+}
