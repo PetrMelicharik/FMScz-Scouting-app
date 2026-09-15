@@ -51,6 +51,34 @@ Kdykoliv budeš mít novou verzi dat:
 3. Vercel automaticky spustí nový build a za pár minut je nová databáze
    živá pro celý tým — nikdo nic dalšího dělat nemusí.
 
+## Fotky hráčů, loga klubů a lig (API-Football)
+
+Fotky/loga se stahují a párují s databází automaticky přes GitHub Actions —
+nic se nespouští lokálně a API klíč nikdy neopustí GitHub.
+
+**Jednorázové nastavení:**
+1. V repozitáři na GitHubu: **Settings → Secrets and variables → Actions →
+   New repository secret**.
+2. Název: `API_FOOTBALL_KEY`, hodnota: tvůj klíč z
+   [dashboard.api-football.com](https://dashboard.api-football.com/).
+
+**Odtud už automaticky:**
+- Workflow `.github/workflows/fetch-media.yml` běží každé pondělí, po
+  nahrání nového `data/players.xlsx`, nebo ručně (záložka **Actions** →
+  "Aktualizace fotek a log hráčů" → **Run workflow**).
+- Stáhne loga lig/klubů a fotky hráčů z API-Football, spáruje je s tvou
+  databází a výsledek (`data/media-map.json`) commitne zpátky do repa.
+- Ten commit spustí nový Vercel build, který fotky/loga automaticky
+  zapojí do zobrazených dat (`scripts/build-data.mjs` je při buildu
+  přimíchá k příslušným hráčům/klubům/ligám).
+
+**Když se něco nespáruje:** párování jmen lig a klubů je automatické
+(fuzzy matching), ale u lig se sponzorskými názvy (např. "Hungarian Fizz
+Liga") se nemusí trefit samo. Po doběhnutí workflow zkontroluj v záložce
+Actions log běhu — vypisuje, kolik lig/klubů/hráčů se napárovalo. Chybějící
+páry lze doplnit ručně do `config/media-aliases.mjs` (commitni jako
+běžnou změnu) — příští běh workflow je použije.
+
 ## Poznámka ke sdílení s týmem
 
 Aplikace je čistě statická/read-only — všichni, kdo mají odkaz na
