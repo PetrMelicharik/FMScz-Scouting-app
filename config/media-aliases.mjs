@@ -29,5 +29,13 @@ export const leagueAliases = {
 // Value: the club's numeric API-Football team ID (fastest/most reliable —
 // look it up once on the dashboard and paste the number in).
 export const clubAliases = {
-  // "FC Example": 12345,
+  "OB": 405,
+  "København": 400,
+  "Hillerød": 6026,
+  "Harju Jalgpallikool": 18657,
+  "Puszcza Niepołomice": 3490,
+  "ŁKS Łódź": 3498,
+  "Red Star Belgrade": 598,
+  "Javor Ivanjica": 2653,
+  // "AB": nenalezeno — zůstává nespárované
 };
