@@ -6,10 +6,9 @@
 // After running the script once, check data/unmatched-report.json (committed
 // to the repo by the GitHub Actions workflow — no need to run anything
 // locally) — it lists every league/club it couldn't match with confidence,
-// plus its best (rejected) guess and score. Look the correct name up on
-// https://dashboard.api-football.com and add it below, using the EXACT
-// league_name / Current Club / league_nationality string from your own
-// database as the key (left side).
+// each with its top 5 candidate matches and scores. Pick the right one and
+// add it below, using the EXACT league_name / Current Club / league_nationality
+// string from your own database as the key (left side).
 
 // Value: API-Football's 2-letter country code (ISO 3166-1 alpha-2), e.g. "CZ".
 // Use this when a league_nationality value in your database doesn't
@@ -21,6 +20,8 @@ export const countryCodeAliases = {
 
 // Value: the league's name as it appears in API-Football, OR its numeric ID.
 export const leagueAliases = {
+  "Austrian Bundesliga": "Bundesliga",
+  "Austrian 2. Liga": "2. Liga",
   // "Hungarian Fizz Liga": "NB I",
   // "Serbian Mozzart Bet Superliga": "Super Liga Srbije",
 };
