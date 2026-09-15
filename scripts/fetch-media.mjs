@@ -1,0 +1,406 @@
+// Fetches league logos, club logos, and player photos from API-Football and
+// matches them against data/players.xlsx, writing the result to
+// data/media-map.json (consumed by scripts/build-data.mjs at build time).
+//
+// Run locally (NOT on Vercel — this hits a paid, rate-limited API):
+//   node scripts/fetch-media.mjs                 # full run
+//   node scripts/fetch-media.mjs --skip-squads    # cheap dry run: just leagues+clubs
+//   node scripts/fetch-media.mjs --force          # ignore all caches, refetch everything
+//
+// Requires API_FOOTBALL_KEY in .env.local (see .env.local.example).
+// Optional: API_FOOTBALL_PROVIDER=rapidapi if you access the API through
+// RapidAPI instead of the api-sports.io dashboard (default: "direct").
+
+import fs from "fs";
+import path from "path";
+import XLSX from "xlsx";
+import {
+  normalizeClubName,
+  normalizeLeagueName,
+  normalizePlayerName,
+  playerNameScore,
+  similarity,
+  playerClubKey,
+} from "../lib/normalize.js";
+import { leagueAliases, clubAliases } from "../config/media-aliases.mjs";
+
+const ROOT = process.cwd();
+const CACHE_DIR = path.join(ROOT, "data", "media-cache");
+const OUT_FILE = path.join(ROOT, "data", "media-map.json");
+const REPORT_FILE = path.join(CACHE_DIR, "unmatched-report.json");
+
+const args = process.argv.slice(2);
+const FORCE = args.includes("--force");
+const SKIP_SQUADS = args.includes("--skip-squads");
+
+const RATE_LIMIT_MS = Number(process.env.API_FOOTBALL_RATE_LIMIT_MS || 200);
+const LEAGUE_MATCH_THRESHOLD = 0.55;
+const CLUB_MATCH_THRESHOLD = 0.6;
+const PLAYER_MATCH_THRESHOLD = 0.7;
+
+/* ------------------------------------------------------------------ */
+/* .env.local loader (no dependency — just enough for API_FOOTBALL_*)  */
+/* ------------------------------------------------------------------ */
+
+function loadEnvLocal() {
+  const envPath = path.join(ROOT, ".env.local");
+  if (!fs.existsSync(envPath)) return;
+  const content = fs.readFileSync(envPath, "utf-8");
+  content.split("\n").forEach((line) => {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/i);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+  });
+}
+loadEnvLocal();
+
+const API_KEY = process.env.API_FOOTBALL_KEY;
+const PROVIDER = process.env.API_FOOTBALL_PROVIDER || "direct";
+
+if (!API_KEY) {
+  console.error("\n[fetch-media] Chybí API_FOOTBALL_KEY. Vytvoř .env.local podle .env.local.example.\n");
+  process.exit(1);
+}
+
+const BASE_URL =
+  PROVIDER === "rapidapi"
+    ? "https://api-football-v1.p.rapidapi.com/v3"
+    : "https://v3.football.api-sports.io";
+
+function authHeaders() {
+  if (PROVIDER === "rapidapi") {
+    return {
+      "x-rapidapi-key": API_KEY,
+      "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+    };
+  }
+  return { "x-apisports-key": API_KEY };
+}
+
+/* ------------------------------------------------------------------ */
+/* HTTP helper: rate limiting + retry on 429 / API-level errors        */
+/* ------------------------------------------------------------------ */
+
+function sleep(ms) { return new Promise((res) => setTimeout(res, ms)); }
+
+let requestCount = 0;
+
+async function apiGet(endpoint, params = {}) {
+  const url = new URL(BASE_URL + endpoint);
+  Object.entries(params).forEach(([k, v]) => { if (v !== undefined && v !== null) url.searchParams.set(k, v); });
+
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    await sleep(RATE_LIMIT_MS);
+    requestCount++;
+    let res;
+    try {
+      res = await fetch(url, { headers: authHeaders() });
+    } catch (e) {
+      console.warn(`  [warn] síťová chyba (${e.message}), zkouším znovu…`);
+      await sleep(1000 * attempt);
+      continue;
+    }
+    if (res.status === 429) {
+      console.warn(`  [warn] rate limit (429), čekám ${attempt * 2}s…`);
+      await sleep(2000 * attempt);
+      continue;
+    }
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} pro ${url.pathname}${url.search}`);
+    }
+    const json = await res.json();
+    if (json.errors && Object.keys(json.errors).length) {
+      const msg = JSON.stringify(json.errors);
+      if (msg.toLowerCase().includes("limit")) {
+        console.error(`\n[fetch-media] API hlásí vyčerpaný limit: ${msg}\nKončím — zatím uložený postup zůstává v cache.\n`);
+        await flushAndExit(1);
+      }
+      console.warn(`  [warn] API chyba pro ${url.pathname}${url.search}: ${msg}`);
+      return { response: [] };
+    }
+    return json;
+  }
+  throw new Error(`Opakovaně selhalo volání ${url.pathname}${url.search}`);
+}
+
+/* ------------------------------------------------------------------ */
+/* Disk cache helpers (resumable — safe to Ctrl+C and rerun)           */
+/* ------------------------------------------------------------------ */
+
+function cachePath(name) { return path.join(CACHE_DIR, name); }
+
+function readCache(name) {
+  if (FORCE) return null;
+  const p = cachePath(name);
+  if (!fs.existsSync(p)) return null;
+  try { return JSON.parse(fs.readFileSync(p, "utf-8")); } catch { return null; }
+}
+
+function writeCache(name, data) {
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
+  fs.writeFileSync(cachePath(name), JSON.stringify(data));
+}
+
+function safeFileName(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+}
+
+let interrupted = false;
+process.on("SIGINT", async () => {
+  console.log("\n[fetch-media] Přerušeno — ukládám dosavadní postup…");
+  interrupted = true;
+});
+
+async function flushAndExit(code) {
+  process.exit(code);
+}
+
+/* ------------------------------------------------------------------ */
+/* 1. Read our database                                                */
+/* ------------------------------------------------------------------ */
+
+function readOurDatabase() {
+  const src = path.join(ROOT, "data", "players.xlsx");
+  const wb = XLSX.readFile(src);
+  const sheet = wb.Sheets[wb.SheetNames[0]];
+  const aoa = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: null });
+  const rawHeader = aoa[0];
+  const keepIdx = [];
+  const columns = [];
+  rawHeader.forEach((h, i) => {
+    const name = h === null || h === undefined ? "" : String(h).trim();
+    if (!name || /^unnamed/i.test(name)) return;
+    keepIdx.push(i);
+    columns.push(name);
+  });
+  const idx = Object.fromEntries(columns.map((c, i) => [c, i]));
+  const rows = aoa
+    .slice(1)
+    .filter((row) => row.some((v) => v !== null && v !== undefined && v !== ""))
+    .map((row) => keepIdx.map((i) => (row[i] === undefined ? null : row[i])));
+  return { columns, idx, rows };
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Resolve leagues (by country, then fuzzy-match name)              */
+/* ------------------------------------------------------------------ */
+
+async function resolveLeagues(leagueInfo) {
+  // leagueInfo: Map(league_name -> { country })
+  console.log(`\n[fetch-media] Fáze 1/3: ligy (${leagueInfo.size} lig)…`);
+  const countries = [...new Set([...leagueInfo.values()].map((v) => v.country).filter(Boolean))];
+  const leaguesByCountry = new Map();
+
+  for (const country of countries) {
+    const cacheName = `leagues-${safeFileName(country)}.json`;
+    let data = readCache(cacheName);
+    if (!data) {
+      console.log(`  → GET /leagues?country=${country}`);
+      const json = await apiGet("/leagues", { country });
+      data = json.response || [];
+      writeCache(cacheName, data);
+    }
+    leaguesByCountry.set(country, data);
+  }
+
+  const matches = {};
+  const unmatched = [];
+
+  for (const [ourLeagueName, { country }] of leagueInfo) {
+    if (leagueAliases[ourLeagueName]) {
+      const alias = leagueAliases[ourLeagueName];
+      const candidates = leaguesByCountry.get(country) || [];
+      const found = typeof alias === "number"
+        ? candidates.find((c) => c.league.id === alias)
+        : candidates.find((c) => normalizeLeagueName(c.league.name) === normalizeLeagueName(alias));
+      if (found) {
+        matches[ourLeagueName] = { id: found.league.id, name: found.league.name, logo: found.league.logo };
+        continue;
+      }
+    }
+    const candidates = leaguesByCountry.get(country) || [];
+    const ourNorm = normalizeLeagueName(ourLeagueName);
+    let best = null, bestScore = 0;
+    for (const c of candidates) {
+      const score = similarity(ourNorm, normalizeLeagueName(c.league.name));
+      if (score > bestScore) { bestScore = score; best = c; }
+    }
+    if (best && bestScore >= LEAGUE_MATCH_THRESHOLD) {
+      matches[ourLeagueName] = { id: best.league.id, name: best.league.name, logo: best.league.logo, score: Number(bestScore.toFixed(2)) };
+    } else {
+      unmatched.push({ ourLeagueName, country, bestGuess: best ? best.league.name : null, score: Number(bestScore.toFixed(2)) });
+    }
+  }
+
+  console.log(`  Spárováno ${Object.keys(matches).length}/${leagueInfo.size} lig.`);
+  return { matches, unmatched };
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Resolve clubs (search by name, scoped to country when known)     */
+/* ------------------------------------------------------------------ */
+
+async function resolveClubs(clubInfo) {
+  // clubInfo: Map(clubName -> { country })
+  console.log(`\n[fetch-media] Fáze 2/3: kluby (${clubInfo.size} klubů)…`);
+  const matches = {};
+  const unmatched = [];
+  let i = 0;
+
+  for (const [clubName, { country }] of clubInfo) {
+    i++;
+    if (interrupted) break;
+    const cacheName = `team-${safeFileName(clubName)}.json`;
+    let candidates = readCache(cacheName);
+
+    if (clubAliases[clubName] && typeof clubAliases[clubName] === "number") {
+      if (!candidates) {
+        const json = await apiGet("/teams", { id: clubAliases[clubName] });
+        candidates = json.response || [];
+        writeCache(cacheName, candidates);
+      }
+    } else if (!candidates) {
+      const searchTerm = clubName.replace(/[^a-zA-Z0-9\s]/g, " ").trim();
+      console.log(`  [${i}/${clubInfo.size}] GET /teams?search=${searchTerm}`);
+      const json = await apiGet("/teams", { search: searchTerm });
+      candidates = json.response || [];
+      if (!candidates.length && country) {
+        const json2 = await apiGet("/teams", { search: searchTerm.split(" ")[0] });
+        candidates = json2.response || [];
+      }
+      writeCache(cacheName, candidates);
+    }
+
+    const ourNorm = normalizeClubName(clubName);
+    let best = null, bestScore = 0;
+    for (const c of candidates) {
+      const score = similarity(ourNorm, normalizeClubName(c.team.name));
+      if (score > bestScore) { bestScore = score; best = c; }
+    }
+    if (best && (bestScore >= CLUB_MATCH_THRESHOLD || clubAliases[clubName])) {
+      matches[clubName] = { id: best.team.id, name: best.team.name, logo: best.team.logo, score: Number(bestScore.toFixed(2)) };
+    } else {
+      unmatched.push({ clubName, country, bestGuess: best ? best.team.name : null, score: Number(bestScore.toFixed(2)) });
+    }
+  }
+
+  console.log(`  Spárováno ${Object.keys(matches).length}/${clubInfo.size} klubů.`);
+  return { matches, unmatched };
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Fetch squads for matched clubs, match players against our roster */
+/* ------------------------------------------------------------------ */
+
+async function fetchSquads(clubMatches, rosterByClub) {
+  console.log(`\n[fetch-media] Fáze 3/3: soupisky hráčů (${Object.keys(clubMatches).length} klubů)…`);
+  const playerPhotos = {};
+  const unmatchedPlayers = [];
+  let i = 0;
+  const entries = Object.entries(clubMatches);
+
+  for (const [ourClubName, team] of entries) {
+    i++;
+    if (interrupted) break;
+    const cacheName = `squad-${team.id}.json`;
+    let squadPlayers = readCache(cacheName);
+    if (!squadPlayers) {
+      console.log(`  [${i}/${entries.length}] GET /players/squads?team=${team.id} (${ourClubName})`);
+      const json = await apiGet("/players/squads", { team: team.id });
+      squadPlayers = (json.response && json.response[0] && json.response[0].players) || [];
+      writeCache(cacheName, squadPlayers);
+    }
+
+    const ourRoster = rosterByClub.get(ourClubName) || new Set();
+    const ourRosterList = [...ourRoster];
+
+    for (const sp of squadPlayers) {
+      let best = null, bestScore = 0;
+      for (const ourName of ourRosterList) {
+        const score = playerNameScore(sp.name, ourName);
+        if (score > bestScore) { bestScore = score; best = ourName; }
+      }
+      if (best && bestScore >= PLAYER_MATCH_THRESHOLD) {
+        playerPhotos[playerClubKey(best, ourClubName)] = sp.photo;
+      }
+    }
+  }
+
+  const matchedCount = Object.keys(playerPhotos).length;
+  console.log(`  Napárováno fotek: ${matchedCount}.`);
+  return { playerPhotos, unmatchedPlayers };
+}
+
+/* ------------------------------------------------------------------ */
+/* main                                                                 */
+/* ------------------------------------------------------------------ */
+
+async function main() {
+  console.log(`[fetch-media] Provider: ${PROVIDER}, base URL: ${BASE_URL}`);
+  const { idx, rows } = readOurDatabase();
+
+  const leagueInfo = new Map();
+  const clubInfo = new Map();
+  const rosterByClub = new Map();
+
+  for (const row of rows) {
+    const leagueName = row[idx.league_name];
+    const leagueCountry = row[idx.league_nationality];
+    const club = row[idx["Current Club"]];
+    const playerName = row[idx.player_name];
+
+    if (leagueName && !leagueInfo.has(leagueName)) leagueInfo.set(leagueName, { country: leagueCountry });
+    if (club && !clubInfo.has(club)) clubInfo.set(club, { country: leagueCountry });
+    if (club && playerName) {
+      if (!rosterByClub.has(club)) rosterByClub.set(club, new Set());
+      rosterByClub.get(club).add(playerName);
+    }
+  }
+
+  const { matches: leagueMatches, unmatched: unmatchedLeagues } = await resolveLeagues(leagueInfo);
+  const { matches: clubMatches, unmatched: unmatchedClubs } = await resolveClubs(clubInfo);
+
+  let playerPhotos = {};
+  if (!SKIP_SQUADS && !interrupted) {
+    const result = await fetchSquads(clubMatches, rosterByClub);
+    playerPhotos = result.playerPhotos;
+  } else if (SKIP_SQUADS) {
+    console.log(`\n[fetch-media] --skip-squads: přeskakuji fázi 3 (fotky hráčů). Zkontroluj napárování lig/klubů výše.`);
+  }
+
+  const leagues = Object.fromEntries(Object.entries(leagueMatches).map(([k, v]) => [k, v.logo]));
+  const clubs = Object.fromEntries(Object.entries(clubMatches).map(([k, v]) => [k, v.logo]));
+
+  const mediaMap = {
+    generatedAt: new Date().toISOString(),
+    stats: {
+      leaguesMatched: Object.keys(leagueMatches).length,
+      leaguesTotal: leagueInfo.size,
+      clubsMatched: Object.keys(clubMatches).length,
+      clubsTotal: clubInfo.size,
+      playersMatched: Object.keys(playerPhotos).length,
+      requestsUsed: requestCount,
+    },
+    leagues,
+    clubs,
+    players: playerPhotos,
+  };
+
+  fs.writeFileSync(OUT_FILE, JSON.stringify(mediaMap));
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
+  fs.writeFileSync(REPORT_FILE, JSON.stringify({ unmatchedLeagues, unmatchedClubs }, null, 2));
+
+  console.log(`\n[fetch-media] Hotovo. Použito requestů: ${requestCount}.`);
+  console.log(`  Ligy:  ${mediaMap.stats.leaguesMatched}/${mediaMap.stats.leaguesTotal}`);
+  console.log(`  Kluby: ${mediaMap.stats.clubsMatched}/${mediaMap.stats.clubsTotal}`);
+  console.log(`  Fotky hráčů: ${mediaMap.stats.playersMatched}`);
+  console.log(`\n  -> data/media-map.json (commitni do repa)`);
+  if (unmatchedLeagues.length || unmatchedClubs.length) {
+    console.log(`  -> data/media-cache/unmatched-report.json (${unmatchedLeagues.length} lig, ${unmatchedClubs.length} klubů k ruční kontrole)`);
+    console.log(`     Doplň je do config/media-aliases.mjs a spusť skript znovu.`);
+  }
+}
+
+main().catch((e) => {
+  console.error("\n[fetch-media] Chyba:", e);
+  process.exit(1);
+});
