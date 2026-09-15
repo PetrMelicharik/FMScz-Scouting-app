@@ -225,10 +225,18 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
   gap: 16px;
 }
 .player-card {
+  display: block;
   background: #FFFFFF;
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.player-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(76,184,72,0.14);
+  transform: translateY(-2px);
 }
 .player-avatar {
   width: 52px; height: 52px; border-radius: 50%;
@@ -302,3 +310,54 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
   .site-nav-inner { flex-direction: row; }
   .brand-text { font-size: 16px; }
 }
+
+/* ---------------------------------------------------------------------- */
+/* Player profile page                                                    */
+/* ---------------------------------------------------------------------- */
+
+.profile { padding-top: 28px; max-width: 760px; margin: 0 auto; }
+.profile-back { padding-left: 0; margin-bottom: 18px; display: inline-block; }
+.profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+.profile-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--bg-alt); color: var(--ink-dim);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.profile-name { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; margin: 0 0 4px; }
+.profile-meta { color: var(--ink-dim); font-size: 13.5px; }
+
+.profile-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.profile-highlights .stat-box { text-align: center; padding: 14px 8px; }
+.profile-highlights .stat-box-value { font-size: 18px; }
+
+.profile-group { margin-bottom: 22px; }
+.profile-group-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent-dark);
+  margin-bottom: 10px;
+}
+.profile-stat-grid {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.profile-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--line);
+}
+.profile-stat-row:last-child { border-bottom: none; }
+.profile-stat-row:nth-child(odd) { background: var(--bg-alt); }
+.profile-stat-label { color: var(--ink-dim); }
+.profile-stat-value { font-weight: 700; font-variant-numeric: tabular-nums; }
