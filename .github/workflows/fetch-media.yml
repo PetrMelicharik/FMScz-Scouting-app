@@ -1,0 +1,38 @@
+name: Aktualizace fotek a log hráčů
+
+on:
+  workflow_dispatch: {}          # ruční spuštění tlačítkem v záložce Actions
+  schedule:
+    - cron: "0 3 * * 1"          # každé pondělí 03:00 UTC
+  push:
+    paths:
+      - "data/players.xlsx"      # automaticky i po nahrání nové databáze
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-media:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fetch media from API-Football
+        run: node scripts/fetch-media.mjs
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+
+      - name: Commit media-map.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/media-map.json
+          git diff --cached --quiet && echo "Žádná změna." || git commit -m "chore: aktualizace fotek/log hráčů"
+          git push
