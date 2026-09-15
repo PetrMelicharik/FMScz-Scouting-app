@@ -34,8 +34,8 @@ export const leagueAliases = {
   "Serbian Mozzart Bet Prva Liga": 287,
   "Slovak Niké Liga": 332,
   "Slovenian PrvaLiga": 373,
-  // "Danish Betinia Liga": ? — mezi kandidáty nebyla jasná 2. dánská liga, dohledej ručně
-  // "Romanian SuperLiga": ? — mezi kandidáty chyběla 1. rumunská liga, dohledej ručně
+  "Danish Betinia Liga": 120,
+  "Romanian SuperLiga": 283,
 };
 
 // Value: the club's numeric API-Football team ID (fastest/most reliable —
@@ -58,6 +58,6 @@ export const clubAliases = {
   "Veres": 6501,
   "Zorya": 599,
   "Hirnyk": 3624,
-  // "AB": nenalezeno (jen 2 znaky, hledání jménem to odmítá)
-  // "Blau-Weiß Linz": nenalezeno (všech 5 kandidátů bylo z jiné země)
+  "AB": 24213,
+  "Blau-Weiß Linz": 1394,
 };
