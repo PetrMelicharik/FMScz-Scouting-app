@@ -219,6 +219,13 @@ async function resolveCountries(countryNames) {
   return codeByOurCountry;
 }
 
+function rankCandidates(ourNorm, candidates, getName) {
+  const scored = candidates
+    .map((c) => ({ item: c, score: similarity(ourNorm, getName(c)) }))
+    .sort((a, b) => b.score - a.score);
+  return scored;
+}
+
 /* ------------------------------------------------------------------ */
 /* 2. Resolve leagues (by country code, then fuzzy-match name)         */
 /* ------------------------------------------------------------------ */
@@ -260,15 +267,17 @@ async function resolveLeagues(leagueInfo, codeByOurCountry) {
     }
     const candidates = leaguesByCountry.get(country) || [];
     const ourNorm = normalizeLeagueName(ourLeagueName);
-    let best = null, bestScore = 0;
-    for (const c of candidates) {
-      const score = similarity(ourNorm, normalizeLeagueName(c.league.name));
-      if (score > bestScore) { bestScore = score; best = c; }
-    }
+    const ranked = rankCandidates(ourNorm, candidates, (c) => normalizeLeagueName(c.league.name));
+    const best = ranked[0]?.item;
+    const bestScore = ranked[0]?.score || 0;
     if (best && bestScore >= LEAGUE_MATCH_THRESHOLD) {
       matches[ourLeagueName] = { id: best.league.id, name: best.league.name, logo: best.league.logo, score: Number(bestScore.toFixed(2)) };
     } else {
-      unmatched.push({ ourLeagueName, country, bestGuess: best ? best.league.name : null, score: Number(bestScore.toFixed(2)) });
+      unmatched.push({
+        ourLeagueName,
+        country,
+        candidates: ranked.slice(0, 5).map((r) => ({ name: r.item.league.name, id: r.item.league.id, score: Number(r.score.toFixed(2)) })),
+      });
     }
   }
 
@@ -315,15 +324,17 @@ async function resolveClubs(clubInfo) {
     }
 
     const ourNorm = normalizeClubName(clubName);
-    let best = null, bestScore = 0;
-    for (const c of candidates) {
-      const score = similarity(ourNorm, normalizeClubName(c.team.name));
-      if (score > bestScore) { bestScore = score; best = c; }
-    }
+    const ranked = rankCandidates(ourNorm, candidates, (c) => normalizeClubName(c.team.name));
+    const best = ranked[0]?.item;
+    const bestScore = ranked[0]?.score || 0;
     if (best && (bestScore >= CLUB_MATCH_THRESHOLD || clubAliases[clubName])) {
       matches[clubName] = { id: best.team.id, name: best.team.name, logo: best.team.logo, score: Number(bestScore.toFixed(2)) };
     } else {
-      unmatched.push({ clubName, country, bestGuess: best ? best.team.name : null, score: Number(bestScore.toFixed(2)) });
+      unmatched.push({
+        clubName,
+        country,
+        candidates: ranked.slice(0, 5).map((r) => ({ name: r.item.team.name, id: r.item.team.id, country: r.item.team.country, score: Number(r.score.toFixed(2)) })),
+      });
     }
   }
 
