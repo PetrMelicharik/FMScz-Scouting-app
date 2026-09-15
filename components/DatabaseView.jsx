@@ -43,15 +43,19 @@ function MultiToggle({ label, options, selected, onChange }) {
 function PlayerCard({ p }) {
   return (
     <Link href={`/databaze/${p._id}`} className="player-card">
-      <Avatar src={p.photo_url} />
-      <div className="player-name">{p.player_name}</div>
-      <div className="player-club">
-        {p.club_logo_url && (
-          <img src={p.club_logo_url} alt="" className="mini-logo" onError={(e) => { e.currentTarget.style.display = "none"; }} />
-        )}
-        {p["Current Club"] || "–"}
+      <div className="player-card-head">
+        <Avatar src={p.photo_url} size={60} />
+        <div className="player-card-head-text">
+          <div className="player-name">{p.player_name}</div>
+          <div className="player-club">
+            {p.club_logo_url && (
+              <img src={p.club_logo_url} alt="" className="club-logo-mini" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+            )}
+            {p["Current Club"] || "–"}
+          </div>
+          {p.position && <div className="player-badge">{p.position}</div>}
+        </div>
       </div>
-      {p.position && <div className="player-badge">{p.position}</div>}
       <div className="player-stats">
         <div className="stat-box">
           <div className="stat-box-label">Věk</div>
@@ -76,7 +80,7 @@ function PlayerCard({ p }) {
       </div>
       <div className="player-footer">
         {p.league_logo_url ? (
-          <img src={p.league_logo_url} alt="" className="mini-logo" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+          <img src={p.league_logo_url} alt="" className="league-logo-mini" onError={(e) => { e.currentTarget.style.display = "none"; }} />
         ) : (
           <span className="dot"></span>
         )}
