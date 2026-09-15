@@ -17,10 +17,10 @@ export default function PlayerPage({ params }) {
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
           <div className="profile-meta">
-            {p.club_logo_url && <img src={p.club_logo_url} alt="" className="mini-logo" />}
+            {p.club_logo_url && <img src={p.club_logo_url} alt="" className="club-logo-mini" />}
             {[p.position, p["Current Club"]].filter(Boolean).join(" · ")}
             {" · "}
-            {p.league_logo_url && <img src={p.league_logo_url} alt="" className="mini-logo" />}
+            {p.league_logo_url && <img src={p.league_logo_url} alt="" className="league-logo-mini" />}
             {[p.league_name, p.season].filter(Boolean).join(" ")}
           </div>
         </div>
