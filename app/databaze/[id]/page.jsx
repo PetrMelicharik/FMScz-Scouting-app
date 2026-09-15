@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Avatar from "../../../components/Avatar";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
+import { flagUrl } from "../../../lib/countryFlags";
 import { loadPlayerById } from "../../../lib/playersData";
 
 export default function PlayerPage({ params }) {
@@ -33,7 +34,10 @@ export default function PlayerPage({ params }) {
         </div>
         <div className="stat-box">
           <div className="stat-box-label">Národnost</div>
-          <div className="stat-box-value stat-box-value-sm">{p.nationality || "–"}</div>
+          <div className="stat-box-value stat-box-value-sm stat-box-flag">
+            {flagUrl(p.nationality) && <img src={flagUrl(p.nationality)} alt="" className="flag-mini" />}
+            {p.nationality || "–"}
+          </div>
         </div>
         <div className="stat-box">
           <div className="stat-box-label">Zápasy</div>
