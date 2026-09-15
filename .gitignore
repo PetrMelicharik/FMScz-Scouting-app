@@ -1,5 +1,6 @@
 node_modules/
 .next/
 public/data/players.json
+data/media-cache/
 .env*.local
 .vercel
