@@ -33,6 +33,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/media-map.json
+          git add data/media-map.json data/unmatched-report.json
           git diff --cached --quiet && echo "Žádná změna." || git commit -m "chore: aktualizace fotek/log hráčů"
           git push
