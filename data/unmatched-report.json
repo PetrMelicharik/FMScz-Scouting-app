@@ -1,222 +1,657 @@
 {
   "unmatchedLeagues": [
     {
-      "ourLeagueName": "Austrian Bundesliga",
-      "country": "Austria",
-      "bestGuess": "Bundesliga",
-      "score": 0.53
-    },
-    {
-      "ourLeagueName": "Austrian 2. Liga",
-      "country": "Austria",
-      "bestGuess": "2. Liga",
-      "score": 0.4
-    },
-    {
       "ourLeagueName": "Bosnian WWIN Liga BiH",
       "country": "Bosnia and Herzegovina",
-      "bestGuess": null,
-      "score": 0
+      "candidates": [
+        {
+          "name": "Premijer Liga",
+          "id": 315,
+          "score": 0.29
+        },
+        {
+          "name": "1st League - FBiH",
+          "id": 316,
+          "score": 0.24
+        },
+        {
+          "name": "1st League - RS",
+          "id": 317,
+          "score": 0.14
+        },
+        {
+          "name": "Super Cup",
+          "id": 1221,
+          "score": 0.1
+        },
+        {
+          "name": "Cup",
+          "id": 314,
+          "score": 0
+        }
+      ]
     },
     {
       "ourLeagueName": "Bulgarian Parva Liga",
       "country": "Bulgaria",
-      "bestGuess": "Super Cup",
-      "score": 0.2
+      "candidates": [
+        {
+          "name": "Super Cup",
+          "id": 656,
+          "score": 0.2
+        },
+        {
+          "name": "First League",
+          "id": 172,
+          "score": 0.15
+        },
+        {
+          "name": "Second League",
+          "id": 173,
+          "score": 0.1
+        },
+        {
+          "name": "Cup",
+          "id": 174,
+          "score": 0.1
+        },
+        {
+          "name": "Third League - Northeast",
+          "id": 175,
+          "score": 0.09
+        }
+      ]
     },
     {
       "ourLeagueName": "Croatian HNL",
       "country": "Croatia",
-      "bestGuess": "First NL",
-      "score": 0.33
-    },
-    {
-      "ourLeagueName": "Czech Chance Liga",
-      "country": "Czechia",
-      "bestGuess": null,
-      "score": 0
+      "candidates": [
+        {
+          "name": "First NL",
+          "id": 211,
+          "score": 0.33
+        },
+        {
+          "name": "HNL",
+          "id": 210,
+          "score": 0.25
+        },
+        {
+          "name": "Second NL",
+          "id": 946,
+          "score": 0.25
+        },
+        {
+          "name": "Cup",
+          "id": 212,
+          "score": 0.08
+        },
+        {
+          "name": "Third NL - Jug",
+          "id": 214,
+          "score": 0.08
+        }
+      ]
     },
     {
       "ourLeagueName": "Danish Betinia Liga",
       "country": "Denmark",
-      "bestGuess": "Superliga",
-      "score": 0.32
+      "candidates": [
+        {
+          "name": "Superliga",
+          "id": 119,
+          "score": 0.32
+        },
+        {
+          "name": "Kvindeliga",
+          "id": 638,
+          "score": 0.32
+        },
+        {
+          "name": "Denmark Series - Relegation Round",
+          "id": 983,
+          "score": 0.26
+        },
+        {
+          "name": "Denmark Series - Promotion Round",
+          "id": 982,
+          "score": 0.23
+        },
+        {
+          "name": "Denmark Series - Group 1",
+          "id": 124,
+          "score": 0.23
+        }
+      ]
     },
     {
       "ourLeagueName": "Estonian Premium Liiga",
       "country": "Estonia",
-      "bestGuess": "Meistriliiga",
-      "score": 0.36
+      "candidates": [
+        {
+          "name": "Meistriliiga",
+          "id": 329,
+          "score": 0.36
+        },
+        {
+          "name": "Esiliiga A",
+          "id": 328,
+          "score": 0.27
+        },
+        {
+          "name": "Esiliiga B",
+          "id": 1126,
+          "score": 0.27
+        },
+        {
+          "name": "Cup",
+          "id": 657,
+          "score": 0.05
+        }
+      ]
     },
     {
       "ourLeagueName": "Polish Betclic 1. Liga",
       "country": "Poland",
-      "bestGuess": "I Liga",
-      "score": 0.29
+      "candidates": [
+        {
+          "name": "I Liga",
+          "id": 107,
+          "score": 0.29
+        },
+        {
+          "name": "II Liga - East",
+          "id": 109,
+          "score": 0.24
+        },
+        {
+          "name": "Ekstraklasa",
+          "id": 106,
+          "score": 0.19
+        },
+        {
+          "name": "Super Cup",
+          "id": 727,
+          "score": 0.14
+        },
+        {
+          "name": "III Liga - Group 1",
+          "id": 780,
+          "score": 0.14
+        }
+      ]
     },
     {
       "ourLeagueName": "Hungarian Fizz Liga",
       "country": "Hungary",
-      "bestGuess": "NB II",
-      "score": 0.21
+      "candidates": [
+        {
+          "name": "NB II",
+          "id": 272,
+          "score": 0.21
+        },
+        {
+          "name": "Magyar Kupa",
+          "id": 273,
+          "score": 0.21
+        },
+        {
+          "name": "NB III - Promotion Play-offs",
+          "id": 1111,
+          "score": 0.19
+        },
+        {
+          "name": "NB I",
+          "id": 271,
+          "score": 0.16
+        },
+        {
+          "name": "NB III - Northeast",
+          "id": 633,
+          "score": 0.16
+        }
+      ]
     },
     {
       "ourLeagueName": "Latvian Virsliga",
       "country": "Latvia",
-      "bestGuess": "Virsliga",
-      "score": 0.5
+      "candidates": [
+        {
+          "name": "Virsliga",
+          "id": 365,
+          "score": 0.5
+        },
+        {
+          "name": "1. Liga",
+          "id": 364,
+          "score": 0.31
+        },
+        {
+          "name": "Super Cup",
+          "id": 1176,
+          "score": 0.06
+        },
+        {
+          "name": "Cup",
+          "id": 658,
+          "score": 0
+        }
+      ]
     },
     {
       "ourLeagueName": "Norway First Division",
       "country": "Norway",
-      "bestGuess": "1. Division",
-      "score": 0.43
+      "candidates": [
+        {
+          "name": "1. Division",
+          "id": 104,
+          "score": 0.43
+        },
+        {
+          "name": "Eliteserien",
+          "id": 103,
+          "score": 0.19
+        },
+        {
+          "name": "Toppserien",
+          "id": 725,
+          "score": 0.19
+        },
+        {
+          "name": "Nasjonal U19 Champions League",
+          "id": 823,
+          "score": 0.17
+        },
+        {
+          "name": "NM Cupen",
+          "id": 105,
+          "score": 0.14
+        }
+      ]
     },
     {
       "ourLeagueName": "Romanian SuperLiga",
       "country": "Romania",
-      "bestGuess": "Supercupa",
-      "score": 0.33
+      "candidates": [
+        {
+          "name": "Supercupa",
+          "id": 555,
+          "score": 0.33
+        },
+        {
+          "name": "Liga III - Serie 1",
+          "id": 784,
+          "score": 0.33
+        },
+        {
+          "name": "Liga III - Serie 2",
+          "id": 785,
+          "score": 0.33
+        },
+        {
+          "name": "Liga III - Serie 3",
+          "id": 786,
+          "score": 0.33
+        },
+        {
+          "name": "Liga III - Serie 4",
+          "id": 787,
+          "score": 0.33
+        }
+      ]
     },
     {
       "ourLeagueName": "Serbian Mozzart Bet Superliga",
       "country": "Serbia",
-      "bestGuess": "Super Liga",
-      "score": 0.28
+      "candidates": [
+        {
+          "name": "Super Liga",
+          "id": 286,
+          "score": 0.28
+        },
+        {
+          "name": "Srpska Liga - Belgrade",
+          "id": 572,
+          "score": 0.28
+        },
+        {
+          "name": "Prva Liga",
+          "id": 287,
+          "score": 0.24
+        },
+        {
+          "name": "Srpska Liga - Vojvodina",
+          "id": 573,
+          "score": 0.24
+        },
+        {
+          "name": "Srpska Liga - East",
+          "id": 574,
+          "score": 0.24
+        }
+      ]
     },
     {
       "ourLeagueName": "Serbian Mozzart Bet Prva Liga",
       "country": "Serbia",
-      "bestGuess": "Prva Liga",
-      "score": 0.31
+      "candidates": [
+        {
+          "name": "Prva Liga",
+          "id": 287,
+          "score": 0.31
+        },
+        {
+          "name": "Srpska Liga - Belgrade",
+          "id": 572,
+          "score": 0.31
+        },
+        {
+          "name": "Super Liga",
+          "id": 286,
+          "score": 0.28
+        },
+        {
+          "name": "Srpska Liga - Vojvodina",
+          "id": 573,
+          "score": 0.28
+        },
+        {
+          "name": "Srpska Liga - East",
+          "id": 574,
+          "score": 0.24
+        }
+      ]
     },
     {
       "ourLeagueName": "Slovak Niké Liga",
       "country": "Slovakia",
-      "bestGuess": "Super Liga",
-      "score": 0.38
+      "candidates": [
+        {
+          "name": "Super Liga",
+          "id": 332,
+          "score": 0.38
+        },
+        {
+          "name": "2. liga",
+          "id": 506,
+          "score": 0.31
+        },
+        {
+          "name": "3. liga - Bratislava",
+          "id": 643,
+          "score": 0.24
+        },
+        {
+          "name": "3. liga - West",
+          "id": 644,
+          "score": 0.19
+        },
+        {
+          "name": "3. liga - East",
+          "id": 645,
+          "score": 0.19
+        }
+      ]
     },
     {
       "ourLeagueName": "Slovenian PrvaLiga",
       "country": "Slovenia",
-      "bestGuess": "3. SNL - East",
-      "score": 0.17
+      "candidates": [
+        {
+          "name": "3. SNL - East",
+          "id": 794,
+          "score": 0.17
+        },
+        {
+          "name": "1. SNL",
+          "id": 373,
+          "score": 0.11
+        },
+        {
+          "name": "2. SNL",
+          "id": 374,
+          "score": 0.11
+        },
+        {
+          "name": "3. SNL - West",
+          "id": 795,
+          "score": 0.11
+        },
+        {
+          "name": "Cup",
+          "id": 375,
+          "score": 0.06
+        }
+      ]
     }
   ],
   "unmatchedClubs": [
     {
       "clubName": "Blau-Weiß Linz",
       "country": "Austria",
-      "bestGuess": "Blau Weiss Berolina Mitte W",
-      "score": 0.52
+      "candidates": [
+        {
+          "name": "Blau Weiss Berolina Mitte W",
+          "id": 27893,
+          "country": "Germany",
+          "score": 0.52
+        },
+        {
+          "name": "Blô-Weiss Medernach",
+          "id": 15853,
+          "country": "Luxembourg",
+          "score": 0.47
+        },
+        {
+          "name": "Grün-Weiss Amel",
+          "id": 8459,
+          "country": "Belgium",
+          "score": 0.47
+        },
+        {
+          "name": "Rot Weiss Ahlen",
+          "id": 12839,
+          "country": "Germany",
+          "score": 0.47
+        },
+        {
+          "name": "Rot-Weiss Essen U19",
+          "id": 13957,
+          "country": "Germany",
+          "score": 0.37
+        }
+      ]
     },
     {
       "clubName": "Slaven Koprivnica",
       "country": "Croatia",
-      "bestGuess": "Koprivnica",
-      "score": 0.59
-    },
-    {
-      "clubName": "OB",
-      "country": "Denmark",
-      "bestGuess": null,
-      "score": 0
-    },
-    {
-      "clubName": "København",
-      "country": "Denmark",
-      "bestGuess": null,
-      "score": 0
+      "candidates": [
+        {
+          "name": "Koprivnica",
+          "id": 5710,
+          "country": "Croatia",
+          "score": 0.59
+        }
+      ]
     },
     {
       "clubName": "AB",
       "country": "Denmark",
-      "bestGuess": null,
-      "score": 0
-    },
-    {
-      "clubName": "Hillerød",
-      "country": "Denmark",
-      "bestGuess": null,
-      "score": 0
-    },
-    {
-      "clubName": "Harju Jalgpallikool",
-      "country": "Estonia",
-      "bestGuess": null,
-      "score": 0
+      "candidates": []
     },
     {
       "clubName": "Trans",
       "country": "Estonia",
-      "bestGuess": "Transport United",
-      "score": 0.56
-    },
-    {
-      "clubName": "Puszcza Niepołomice",
-      "country": "Poland",
-      "bestGuess": null,
-      "score": 0
-    },
-    {
-      "clubName": "ŁKS Łódź",
-      "country": "Poland",
-      "bestGuess": null,
-      "score": 0
+      "candidates": [
+        {
+          "name": "Transport United",
+          "id": 5593,
+          "country": "Bhutan",
+          "score": 0.56
+        },
+        {
+          "name": "Transport",
+          "id": 10635,
+          "country": "Tunisia",
+          "score": 0.56
+        },
+        {
+          "name": "Transvaal",
+          "id": 12219,
+          "country": "Suriname",
+          "score": 0.56
+        },
+        {
+          "name": "Trans Narva",
+          "id": 2274,
+          "country": "Estonia",
+          "score": 0.45
+        },
+        {
+          "name": "Beltransgaz",
+          "id": 11265,
+          "country": "Belarus",
+          "score": 0.45
+        }
+      ]
     },
     {
       "clubName": "Nyíregyháza Spartacus",
       "country": "Hungary",
-      "bestGuess": "Nyiregyhaza II",
-      "score": 0.57
+      "candidates": [
+        {
+          "name": "Nyiregyhaza II",
+          "id": 24538,
+          "country": "Hungary",
+          "score": 0.57
+        },
+        {
+          "name": "Nyiregyhaza",
+          "id": 2403,
+          "country": "Hungary",
+          "score": 0.52
+        }
+      ]
     },
     {
       "clubName": "Argeș",
       "country": "Romania",
-      "bestGuess": "Arges Pitesti",
-      "score": 0.38
+      "candidates": [
+        {
+          "name": "Arges Pitesti",
+          "id": 2592,
+          "country": "Romania",
+          "score": 0.38
+        },
+        {
+          "name": "Argeşul Mihăileşti",
+          "id": 6843,
+          "country": "Romania",
+          "score": 0.28
+        }
+      ]
     },
     {
       "clubName": "Mačva Šabac",
       "country": "Serbia",
-      "bestGuess": "Mačva 1929",
-      "score": 0.55
+      "candidates": [
+        {
+          "name": "Mačva 1929",
+          "id": 12324,
+          "country": "Serbia",
+          "score": 0.55
+        },
+        {
+          "name": "Macva",
+          "id": 2637,
+          "country": "Serbia",
+          "score": 0.45
+        }
+      ]
     },
     {
       "clubName": "Radnički Kragujevac",
       "country": "Serbia",
-      "bestGuess": "FK Šumadija 1903 Kragujevac",
-      "score": 0.54
-    },
-    {
-      "clubName": "Red Star Belgrade",
-      "country": "Serbia",
-      "bestGuess": null,
-      "score": 0
-    },
-    {
-      "clubName": "Javor Ivanjica",
-      "country": "Serbia",
-      "bestGuess": null,
-      "score": 0
+      "candidates": [
+        {
+          "name": "FK Šumadija 1903 Kragujevac",
+          "id": 26417,
+          "country": "Serbia",
+          "score": 0.54
+        }
+      ]
     },
     {
       "clubName": "Veres",
       "country": "Ukraine",
-      "bestGuess": "Veres Rivne",
-      "score": 0.45
+      "candidates": [
+        {
+          "name": "Veres Rivne",
+          "id": 6501,
+          "country": "Ukraine",
+          "score": 0.45
+        },
+        {
+          "name": "Veresegyhaz VSK",
+          "id": 11767,
+          "country": "Hungary",
+          "score": 0.33
+        },
+        {
+          "name": "Veres Rivne U19",
+          "id": 23082,
+          "country": "Ukraine",
+          "score": 0.33
+        }
+      ]
     },
     {
       "clubName": "Zorya",
       "country": "Ukraine",
-      "bestGuess": "Zorya Luhansk",
-      "score": 0.38
+      "candidates": [
+        {
+          "name": "Zorya Luhansk",
+          "id": 599,
+          "country": "Ukraine",
+          "score": 0.38
+        },
+        {
+          "name": "Balkany Zorya",
+          "id": 3622,
+          "country": "Ukraine",
+          "score": 0.38
+        },
+        {
+          "name": "Zorya Luhansk U21",
+          "id": 14939,
+          "country": "Ukraine",
+          "score": 0.29
+        },
+        {
+          "name": "Zorya Luhansk U19",
+          "id": 23085,
+          "country": "Ukraine",
+          "score": 0.29
+        }
+      ]
     },
     {
       "clubName": "Hirnyk",
       "country": "Ukraine",
-      "bestGuess": "Hirnyk-Sport",
-      "score": 0.5
+      "candidates": [
+        {
+          "name": "Hirnyk-Sport",
+          "id": 3624,
+          "country": "Ukraine",
+          "score": 0.5
+        },
+        {
+          "name": "Hirnyk Sosnivka",
+          "id": 13229,
+          "country": "Ukraine",
+          "score": 0.4
+        }
+      ]
     }
   ]
 }
