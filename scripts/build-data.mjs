@@ -2,12 +2,18 @@
 // Reads data/players.xlsx from the repo and turns it into public/data/players.json,
 // which the app fetches at runtime. Update the database by replacing the .xlsx file
 // in the repo and pushing — Vercel will re-run this script on every deploy.
+//
+// If data/media-map.json exists (produced by scripts/fetch-media.mjs — see its
+// header comment), photo/logo URLs are merged in as three extra columns:
+// photo_url, club_logo_url, league_logo_url.
 
 import XLSX from "xlsx";
 import fs from "fs";
 import path from "path";
+import { playerClubKey } from "../lib/normalize.js";
 
 const SRC = path.join(process.cwd(), "data", "players.xlsx");
+const MEDIA_MAP_FILE = path.join(process.cwd(), "data", "media-map.json");
 const OUT_DIR = path.join(process.cwd(), "public", "data");
 const OUT_FILE = path.join(OUT_DIR, "players.json");
 
@@ -36,13 +42,36 @@ rawHeader.forEach((h, i) => {
   columns.push(name);
 });
 
-const rows = aoa
+let rows = aoa
   .slice(1)
   .filter((row) => row.some((v) => v !== null && v !== undefined && v !== ""))
   .map((row) => keepIdx.map((i) => (row[i] === undefined ? null : row[i])));
 
 if (!columns.length || !rows.length) {
   fail("Nepodařilo se rozpoznat sloupce nebo řádky v data/players.xlsx.");
+}
+
+let mediaStats = null;
+if (fs.existsSync(MEDIA_MAP_FILE)) {
+  const media = JSON.parse(fs.readFileSync(MEDIA_MAP_FILE, "utf-8"));
+  const nameIdx = columns.indexOf("player_name");
+  const clubIdx = columns.indexOf("Current Club");
+  const leagueIdx = columns.indexOf("league_name");
+
+  columns.push("photo_url", "club_logo_url", "league_logo_url");
+  let photoHits = 0, clubHits = 0, leagueHits = 0;
+  rows = rows.map((row) => {
+    const club = clubIdx >= 0 ? row[clubIdx] : null;
+    const photo = nameIdx >= 0 && club ? media.players?.[playerClubKey(row[nameIdx], club)] : null;
+    const clubLogo = club ? media.clubs?.[club] : null;
+    const league = leagueIdx >= 0 ? row[leagueIdx] : null;
+    const leagueLogo = league ? media.leagues?.[league] : null;
+    if (photo) photoHits++;
+    if (clubLogo) clubHits++;
+    if (leagueLogo) leagueHits++;
+    return [...row, photo || null, clubLogo || null, leagueLogo || null];
+  });
+  mediaStats = { photoHits, clubHits, leagueHits, total: rows.length };
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -57,3 +86,8 @@ fs.writeFileSync(
 );
 
 console.log(`[build-data] OK: ${rows.length} hráčů, ${columns.length} sloupců -> ${path.relative(process.cwd(), OUT_FILE)}`);
+if (mediaStats) {
+  console.log(`[build-data] media-map.json nalezen: fotky ${mediaStats.photoHits}/${mediaStats.total}, loga klubů ${mediaStats.clubHits}/${mediaStats.total}, loga lig ${mediaStats.leagueHits}/${mediaStats.total}`);
+} else {
+  console.log(`[build-data] data/media-map.json nenalezen — fotky/loga se nezobrazí, dokud nespustíš "npm run fetch-media".`);
+}
