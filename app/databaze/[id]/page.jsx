@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import PersonIcon from "../../../components/PersonIcon";
+import Avatar from "../../../components/Avatar";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { loadPlayerById } from "../../../lib/playersData";
 
@@ -13,11 +13,15 @@ export default function PlayerPage({ params }) {
       <Link href="/databaze" className="btn-ghost profile-back">← Zpět na databázi</Link>
 
       <div className="profile-header">
-        <div className="profile-avatar"><PersonIcon size={40} /></div>
+        <Avatar src={p.photo_url} size={72} className="profile-avatar" />
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
           <div className="profile-meta">
-            {[p.position, p["Current Club"], p.league_name, p.season].filter(Boolean).join(" · ")}
+            {p.club_logo_url && <img src={p.club_logo_url} alt="" className="mini-logo" />}
+            {[p.position, p["Current Club"]].filter(Boolean).join(" · ")}
+            {" · "}
+            {p.league_logo_url && <img src={p.league_logo_url} alt="" className="mini-logo" />}
+            {[p.league_name, p.season].filter(Boolean).join(" ")}
           </div>
         </div>
       </div>
