@@ -21,13 +21,14 @@ import {
   playerNameScore,
   similarity,
   playerClubKey,
+  stripDiacritics,
 } from "../lib/normalize.js";
 import { leagueAliases, clubAliases } from "../config/media-aliases.mjs";
 
 const ROOT = process.cwd();
 const CACHE_DIR = path.join(ROOT, "data", "media-cache");
 const OUT_FILE = path.join(ROOT, "data", "media-map.json");
-const REPORT_FILE = path.join(CACHE_DIR, "unmatched-report.json");
+const REPORT_FILE = path.join(ROOT, "data", "unmatched-report.json");
 
 const args = process.argv.slice(2);
 const FORCE = args.includes("--force");
@@ -181,21 +182,57 @@ function readOurDatabase() {
 }
 
 /* ------------------------------------------------------------------ */
-/* 2. Resolve leagues (by country, then fuzzy-match name)              */
+/* 2a. Resolve country names to API-Football 2-letter codes            */
+/*     (the /leagues "country" param rejects values with spaces —      */
+/*     e.g. "Bosnia and Herzegovina" — so we use "code" instead)       */
 /* ------------------------------------------------------------------ */
 
-async function resolveLeagues(leagueInfo) {
+async function resolveCountries(countryNames) {
+  console.log(`\n[fetch-media] Fáze 0/3: země (${countryNames.length})…`);
+  const cacheName = "countries.json";
+  let allCountries = readCache(cacheName);
+  if (!allCountries) {
+    const json = await apiGet("/countries", {});
+    allCountries = json.response || [];
+    writeCache(cacheName, allCountries);
+  }
+
+  const codeByOurCountry = {};
+  for (const ourCountry of countryNames) {
+    const ourNorm = normalizeLeagueName(ourCountry);
+    let best = null, bestScore = 0;
+    for (const c of allCountries) {
+      const score = similarity(ourNorm, normalizeLeagueName(c.name));
+      if (score > bestScore) { bestScore = score; best = c; }
+    }
+    if (best && bestScore >= 0.6) {
+      codeByOurCountry[ourCountry] = best.code;
+    } else {
+      console.warn(`  [warn] země nenalezena: "${ourCountry}" (nejlepší shoda: ${best ? best.name : "žádná"})`);
+    }
+  }
+  console.log(`  Spárováno ${Object.keys(codeByOurCountry).length}/${countryNames.length} zemí.`);
+  return codeByOurCountry;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Resolve leagues (by country code, then fuzzy-match name)         */
+/* ------------------------------------------------------------------ */
+
+async function resolveLeagues(leagueInfo, codeByOurCountry) {
   // leagueInfo: Map(league_name -> { country })
   console.log(`\n[fetch-media] Fáze 1/3: ligy (${leagueInfo.size} lig)…`);
   const countries = [...new Set([...leagueInfo.values()].map((v) => v.country).filter(Boolean))];
   const leaguesByCountry = new Map();
 
   for (const country of countries) {
-    const cacheName = `leagues-${safeFileName(country)}.json`;
+    const code = codeByOurCountry[country];
+    if (!code) { leaguesByCountry.set(country, []); continue; }
+    const cacheName = `leagues-${code}.json`;
     let data = readCache(cacheName);
     if (!data) {
-      console.log(`  → GET /leagues?country=${country}`);
-      const json = await apiGet("/leagues", { country });
+      console.log(`  → GET /leagues?code=${code} (${country})`);
+      const json = await apiGet("/leagues", { code });
       data = json.response || [];
       writeCache(cacheName, data);
     }
@@ -259,13 +296,16 @@ async function resolveClubs(clubInfo) {
         writeCache(cacheName, candidates);
       }
     } else if (!candidates) {
-      const searchTerm = clubName.replace(/[^a-zA-Z0-9\s]/g, " ").trim();
+      const searchTerm = stripDiacritics(clubName).replace(/[^a-zA-Z0-9\s.]/g, " ").replace(/\s+/g, " ").trim();
       console.log(`  [${i}/${clubInfo.size}] GET /teams?search=${searchTerm}`);
       const json = await apiGet("/teams", { search: searchTerm });
       candidates = json.response || [];
-      if (!candidates.length && country) {
-        const json2 = await apiGet("/teams", { search: searchTerm.split(" ")[0] });
-        candidates = json2.response || [];
+      if (!candidates.length) {
+        const tokens = searchTerm.split(" ").filter((t) => t.length >= 3).sort((a, b) => b.length - a.length);
+        if (tokens.length) {
+          const json2 = await apiGet("/teams", { search: tokens[0] });
+          candidates = json2.response || [];
+        }
       }
       writeCache(cacheName, candidates);
     }
@@ -356,7 +396,10 @@ async function main() {
     }
   }
 
-  const { matches: leagueMatches, unmatched: unmatchedLeagues } = await resolveLeagues(leagueInfo);
+  const uniqueCountries = [...new Set([...leagueInfo.values()].map((v) => v.country).filter(Boolean))];
+  const codeByOurCountry = await resolveCountries(uniqueCountries);
+
+  const { matches: leagueMatches, unmatched: unmatchedLeagues } = await resolveLeagues(leagueInfo, codeByOurCountry);
   const { matches: clubMatches, unmatched: unmatchedClubs } = await resolveClubs(clubInfo);
 
   let playerPhotos = {};
@@ -386,7 +429,6 @@ async function main() {
   };
 
   fs.writeFileSync(OUT_FILE, JSON.stringify(mediaMap));
-  fs.mkdirSync(CACHE_DIR, { recursive: true });
   fs.writeFileSync(REPORT_FILE, JSON.stringify({ unmatchedLeagues, unmatchedClubs }, null, 2));
 
   console.log(`\n[fetch-media] Hotovo. Použito requestů: ${requestCount}.`);
@@ -395,7 +437,7 @@ async function main() {
   console.log(`  Fotky hráčů: ${mediaMap.stats.playersMatched}`);
   console.log(`\n  -> data/media-map.json (commitni do repa)`);
   if (unmatchedLeagues.length || unmatchedClubs.length) {
-    console.log(`  -> data/media-cache/unmatched-report.json (${unmatchedLeagues.length} lig, ${unmatchedClubs.length} klubů k ruční kontrole)`);
+    console.log(`  -> data/unmatched-report.json (${unmatchedLeagues.length} lig, ${unmatchedClubs.length} klubů k ruční kontrole)`);
     console.log(`     Doplň je do config/media-aliases.mjs a spusť skript znovu.`);
   }
 }
