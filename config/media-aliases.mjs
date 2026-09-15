@@ -3,11 +3,21 @@
 // sponsor name on one side but not the other, e.g. "Hungarian Fizz Liga" vs
 // API-Football's "NB I").
 //
-// After running the script once, check data/media-cache/unmatched-report.json —
-// it lists every league/club it couldn't match with confidence. Look the
-// correct name (or numeric API-Football ID) up on https://dashboard.api-football.com
-// and add it below, using the EXACT league_name / Current Club string from
-// your own database as the key (left side).
+// After running the script once, check data/unmatched-report.json (committed
+// to the repo by the GitHub Actions workflow — no need to run anything
+// locally) — it lists every league/club it couldn't match with confidence,
+// plus its best (rejected) guess and score. Look the correct name up on
+// https://dashboard.api-football.com and add it below, using the EXACT
+// league_name / Current Club / league_nationality string from your own
+// database as the key (left side).
+
+// Value: API-Football's 2-letter country code (ISO 3166-1 alpha-2), e.g. "CZ".
+// Use this when a league_nationality value in your database doesn't
+// auto-match against API-Football's /countries list.
+export const countryCodeAliases = {
+  "Czechia": "CZ",
+  "Bosnia and Herzegovina": "BA",
+};
 
 // Value: the league's name as it appears in API-Football, OR its numeric ID.
 export const leagueAliases = {
