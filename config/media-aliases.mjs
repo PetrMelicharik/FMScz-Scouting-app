@@ -22,8 +22,20 @@ export const countryCodeAliases = {
 export const leagueAliases = {
   "Austrian Bundesliga": "Bundesliga",
   "Austrian 2. Liga": "2. Liga",
-  // "Hungarian Fizz Liga": "NB I",
-  // "Serbian Mozzart Bet Superliga": "Super Liga Srbije",
+  "Bosnian WWIN Liga BiH": 315,
+  "Bulgarian Parva Liga": 172,
+  "Croatian HNL": 210,
+  "Estonian Premium Liiga": 329,
+  "Polish Betclic 1. Liga": 107,
+  "Hungarian Fizz Liga": 271,
+  "Latvian Virsliga": 365,
+  "Norway First Division": 104,
+  "Serbian Mozzart Bet Superliga": 286,
+  "Serbian Mozzart Bet Prva Liga": 287,
+  "Slovak Niké Liga": 332,
+  "Slovenian PrvaLiga": 373,
+  // "Danish Betinia Liga": ? — mezi kandidáty nebyla jasná 2. dánská liga, dohledej ručně
+  // "Romanian SuperLiga": ? — mezi kandidáty chyběla 1. rumunská liga, dohledej ručně
 };
 
 // Value: the club's numeric API-Football team ID (fastest/most reliable —
@@ -37,5 +49,15 @@ export const clubAliases = {
   "ŁKS Łódź": 3498,
   "Red Star Belgrade": 598,
   "Javor Ivanjica": 2653,
-  // "AB": nenalezeno — zůstává nespárované
+  "Slaven Koprivnica": 5710,
+  "Trans": 2274,
+  "Nyíregyháza Spartacus": 2403,
+  "Argeș": 2592,
+  "Mačva Šabac": 12324,
+  "Radnički Kragujevac": 26417, // nejistá shoda (jiný historický název klubu), zkontroluj logo po nasazení
+  "Veres": 6501,
+  "Zorya": 599,
+  "Hirnyk": 3624,
+  // "AB": nenalezeno (jen 2 znaky, hledání jménem to odmítá)
+  // "Blau-Weiß Linz": nenalezeno (všech 5 kandidátů bylo z jiné země)
 };
