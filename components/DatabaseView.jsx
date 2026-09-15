@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Avatar from "./Avatar";
 import { formatStat } from "../lib/statMeta";
+import { flagUrl } from "../lib/countryFlags";
 
 const PAGE_SIZE = 48;
 
@@ -67,7 +68,12 @@ function PlayerCard({ p }) {
         </div>
         <div className="stat-box stat-box-wide">
           <div className="stat-box-label">Národnost</div>
-          <div className="stat-box-value stat-box-value-sm">{p.nationality || "–"}</div>
+          <div className="stat-box-value stat-box-value-sm stat-box-flag">
+            {flagUrl(p.nationality) && (
+              <img src={flagUrl(p.nationality)} alt="" className="flag-mini" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+            )}
+            {p.nationality || "–"}
+          </div>
         </div>
         <div className="stat-box">
           <div className="stat-box-label">Góly/Ass</div>
