@@ -23,7 +23,7 @@ import {
   playerClubKey,
   stripDiacritics,
 } from "../lib/normalize.js";
-import { leagueAliases, clubAliases } from "../config/media-aliases.mjs";
+import { leagueAliases, clubAliases, countryCodeAliases } from "../config/media-aliases.mjs";
 
 const ROOT = process.cwd();
 const CACHE_DIR = path.join(ROOT, "data", "media-cache");
@@ -199,6 +199,10 @@ async function resolveCountries(countryNames) {
 
   const codeByOurCountry = {};
   for (const ourCountry of countryNames) {
+    if (countryCodeAliases[ourCountry]) {
+      codeByOurCountry[ourCountry] = countryCodeAliases[ourCountry];
+      continue;
+    }
     const ourNorm = normalizeLeagueName(ourCountry);
     let best = null, bestScore = 0;
     for (const c of allCountries) {
@@ -208,7 +212,7 @@ async function resolveCountries(countryNames) {
     if (best && bestScore >= 0.6) {
       codeByOurCountry[ourCountry] = best.code;
     } else {
-      console.warn(`  [warn] země nenalezena: "${ourCountry}" (nejlepší shoda: ${best ? best.name : "žádná"})`);
+      console.warn(`  [warn] země nenalezena: "${ourCountry}" (nejlepší shoda: ${best ? best.name : "žádná"}, skóre ${bestScore.toFixed(2)}) — doplň countryCodeAliases v config/media-aliases.mjs`);
     }
   }
   console.log(`  Spárováno ${Object.keys(codeByOurCountry).length}/${countryNames.length} zemí.`);
