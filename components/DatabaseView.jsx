@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import PersonIcon from "./PersonIcon";
+import Avatar from "./Avatar";
 import { formatStat } from "../lib/statMeta";
 
 const PAGE_SIZE = 48;
@@ -43,9 +43,14 @@ function MultiToggle({ label, options, selected, onChange }) {
 function PlayerCard({ p }) {
   return (
     <Link href={`/databaze/${p._id}`} className="player-card">
-      <div className="player-avatar"><PersonIcon /></div>
+      <Avatar src={p.photo_url} />
       <div className="player-name">{p.player_name}</div>
-      <div className="player-club">{p["Current Club"] || "–"}</div>
+      <div className="player-club">
+        {p.club_logo_url && (
+          <img src={p.club_logo_url} alt="" className="mini-logo" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+        )}
+        {p["Current Club"] || "–"}
+      </div>
       {p.position && <div className="player-badge">{p.position}</div>}
       <div className="player-stats">
         <div className="stat-box">
@@ -70,7 +75,12 @@ function PlayerCard({ p }) {
         </div>
       </div>
       <div className="player-footer">
-        <span className="dot"></span>{p.league_name || "–"} ({p.season})
+        {p.league_logo_url ? (
+          <img src={p.league_logo_url} alt="" className="mini-logo" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+        ) : (
+          <span className="dot"></span>
+        )}
+        {p.league_name || "–"} ({p.season})
       </div>
     </Link>
   );
