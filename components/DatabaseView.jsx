@@ -1,5 +1,8 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
+import PersonIcon from "./PersonIcon";
+import { formatStat } from "../lib/statMeta";
 
 const PAGE_SIZE = 48;
 
@@ -11,15 +14,6 @@ const SORT_OPTIONS = [
   ["minutes_played", "Minuty"],
   ["age", "Věk"],
 ];
-
-function formatStat(col, val) {
-  if (val === null || val === undefined || val === "") return "–";
-  const n = Number(val);
-  if (Number.isNaN(n)) return String(val);
-  if (col.endsWith("_per_90") || col === "avg_rating_") return n.toFixed(2);
-  if (Number.isInteger(n)) return n.toLocaleString("cs-CZ");
-  return n.toFixed(2);
-}
 
 function MultiToggle({ label, options, selected, onChange }) {
   return (
@@ -46,18 +40,9 @@ function MultiToggle({ label, options, selected, onChange }) {
   );
 }
 
-function PersonIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <circle cx="12" cy="8" r="3.6" />
-      <path d="M4.5 20c1.4-3.8 4.2-5.8 7.5-5.8s6.1 2 7.5 5.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function PlayerCard({ p }) {
   return (
-    <div className="player-card">
+    <Link href={`/databaze/${p._id}`} className="player-card">
       <div className="player-avatar"><PersonIcon /></div>
       <div className="player-name">{p.player_name}</div>
       <div className="player-club">{p["Current Club"] || "–"}</div>
@@ -87,7 +72,7 @@ function PlayerCard({ p }) {
       <div className="player-footer">
         <span className="dot"></span>{p.league_name || "–"} ({p.season})
       </div>
-    </div>
+    </Link>
   );
 }
 
