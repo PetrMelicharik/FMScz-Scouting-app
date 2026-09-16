@@ -2023,5 +2023,393 @@
     "contractUntil": "30/06/2027",
     "lastUpdated": "2026-09-16T19:17:04.670462",
     "tmUrl": "https://www.transfermarkt.com/yannick-oberleitner/profil/spieler/515132"
+  },
+  "yerwin antonio sulbaran lopez::salzburg": {
+    "marketValue": "€2.00m",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2031",
+    "lastUpdated": "2026-09-16T19:17:14.107611",
+    "tmUrl": "https://www.transfermarkt.com/yerwin-sulbaran/profil/spieler/1284433"
+  },
+  "yorbe vertessen::salzburg": {
+    "marketValue": "€5.00m",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:17:26.395948",
+    "tmUrl": "https://www.transfermarkt.com/yorbe-vertessen/profil/spieler/409517"
+  },
+  "youba diarra::hartberg": {
+    "marketValue": "€300k",
+    "position": "Central Midfield",
+    "lastUpdated": "2026-09-16T19:17:42.442625",
+    "tmUrl": "https://www.transfermarkt.com/youba-diarra/profil/spieler/564451"
+  },
+  "yussef nasrawe::ried": {
+    "marketValue": "€400k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:17:54.283165",
+    "tmUrl": "https://www.transfermarkt.com/jussef-nasrawe/profil/spieler/1086701"
+  },
+  "yusuf demir::rapid wien": {
+    "marketValue": "€1.00m",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:18:06.994202",
+    "tmUrl": "https://www.transfermarkt.com/yusuf-demir/profil/spieler/548031"
+  },
+  "abdoul karim conte::blau weiss linz": {
+    "marketValue": "€250k",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:18:18.163907",
+    "tmUrl": "https://www.transfermarkt.com/karim-conte/profil/spieler/566943"
+  },
+  "abdulai djabi embalo::kapfenberger sv": {
+    "marketValue": "€25k",
+    "position": "Centre-Forward",
+    "lastUpdated": "2026-09-16T19:18:40.284624",
+    "tmUrl": "https://www.transfermarkt.com/adulai-djabi-embalo/profil/spieler/926287"
+  },
+  "adrian marinovic::kapfenberger sv": {
+    "marketValue": "€125k",
+    "position": "Central Midfield",
+    "lastUpdated": "2026-09-16T19:18:55.325701",
+    "tmUrl": "https://www.transfermarkt.com/adrian-marinovic/profil/spieler/917352"
+  },
+  "aleksandar djordjevic::admira": {
+    "marketValue": "€450k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:19:06.255155",
+    "tmUrl": "https://www.transfermarkt.com/aleksandar-djordjevic/profil/spieler/466116"
+  },
+  "alem pasic::blau weiss linz": {
+    "marketValue": "€500k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:19:19.093474",
+    "tmUrl": "https://www.transfermarkt.com/alem-pasic/profil/spieler/369580"
+  },
+  "alexandar borkovic::st polten": {
+    "marketValue": "€150k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-16T19:19:29.306223",
+    "tmUrl": "https://www.transfermarkt.com/alexandar-borkovic/profil/spieler/321050"
+  },
+  "alexander joppich::wacker innsbruck": {
+    "marketValue": "€150k",
+    "position": "Left-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:19:39.876801",
+    "tmUrl": "https://www.transfermarkt.com/alexander-joppich/profil/spieler/187312"
+  },
+  "alexander schmidt::admira": {
+    "marketValue": "€300k",
+    "position": "Centre-Forward",
+    "lastUpdated": "2026-09-16T19:19:53.340747",
+    "tmUrl": "https://www.transfermarkt.com/alexander-schmidt/profil/spieler/307939"
+  },
+  "alexander turkin::floridsdorfer": {
+    "marketValue": "€150k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:20:07.003215",
+    "tmUrl": "https://www.transfermarkt.com/alexander-turkin/profil/spieler/909849"
+  },
+  "amar hadzimuratovic::rapid wien ii": {
+    "marketValue": "€125k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:20:19.081929",
+    "tmUrl": "https://www.transfermarkt.com/amar-hadzimuratovic/profil/spieler/1167620"
+  },
+  "amin elias groller::rapid wien ii": {
+    "marketValue": "€350k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:20:31.732185",
+    "tmUrl": "https://www.transfermarkt.com/amin-elias-groller/profil/spieler/803046"
+  },
+  "amir abdijanovic::floridsdorfer": {
+    "marketValue": "€125k",
+    "position": "Second Striker",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:20:41.829629",
+    "tmUrl": "https://www.transfermarkt.com/amir-abdijanovic/profil/spieler/404929"
+  },
+  "anderson agustin rodriguez arteaga::wacker innsbruck": {
+    "marketValue": "€175k",
+    "position": "Centre-Forward",
+    "lastUpdated": "2026-09-16T19:20:53.946595",
+    "tmUrl": "https://www.transfermarkt.com/anderson-rodriguez/profil/spieler/1402776"
+  },
+  "andreas radics::voitsberg": {
+    "marketValue": "€150k",
+    "position": "Central Midfield",
+    "contractUntil": "31/05/2027",
+    "lastUpdated": "2026-09-16T19:21:06.131644",
+    "tmUrl": "https://www.transfermarkt.com/andreas-radics/profil/spieler/504485"
+  },
+  "andrej stevanovic::voitsberg": {
+    "marketValue": "€150k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-16T19:21:20.411760",
+    "tmUrl": "https://www.transfermarkt.com/andrej-stevanovic/profil/spieler/687184"
+  },
+  "anteo fetahu::schwarz weiss bregenz": {
+    "marketValue": "€200k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:21:30.979143",
+    "tmUrl": "https://www.transfermarkt.com/anteo-fetahu/profil/spieler/741124"
+  },
+  "anton tsarenko::blau weiss linz": {
+    "marketValue": "€300k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:21:40.423413",
+    "tmUrl": "https://www.transfermarkt.com/anton-tsarenko/profil/spieler/717390"
+  },
+  "antonio luci sokcevic::kapfenberger sv": {
+    "marketValue": "€100k",
+    "position": "Centre-Forward",
+    "lastUpdated": "2026-09-16T19:21:55.139156",
+    "tmUrl": "https://www.transfermarkt.com/antonio-sokcevic/profil/spieler/526039"
+  },
+  "aristot tambwe kasengele::admira": {
+    "marketValue": "€150k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-16T19:22:04.894039",
+    "tmUrl": "https://www.transfermarkt.com/aristot-tambwe-kasengele/profil/spieler/671438"
+  },
+  "armin haider::amstetten": {
+    "marketValue": "€150k",
+    "position": "Attacking Midfield",
+    "lastUpdated": "2026-09-16T19:22:19.656680",
+    "tmUrl": "https://www.transfermarkt.com/armin-haider/profil/spieler/724057"
+  },
+  "atsushi zaizen::schwarz weiss bregenz": {
+    "marketValue": "€150k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:22:32.236433",
+    "tmUrl": "https://www.transfermarkt.com/atsushi-zaizen/profil/spieler/586504"
+  },
+  "barne pernot::sturm graz ii": {
+    "marketValue": "€200k",
+    "position": "Defensive Midfield",
+    "lastUpdated": "2026-09-16T19:22:41.566550",
+    "tmUrl": "https://www.transfermarkt.com/barne-pernot/profil/spieler/423192"
+  },
+  "bastian tim maierhofer::sturm graz ii": {
+    "marketValue": "€250k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-16T19:22:52.145851",
+    "tmUrl": "https://www.transfermarkt.com/bastian-maierhofer/profil/spieler/909866"
+  },
+  "ben heuser::kapfenberger sv": {
+    "marketValue": "€125k",
+    "position": "Left Winger",
+    "lastUpdated": "2026-09-16T19:23:06.558745",
+    "tmUrl": "https://www.transfermarkt.com/ben-heuser/profil/spieler/698672"
+  },
+  "benjamin glitia::admira": {
+    "marketValue": "€125k",
+    "position": "Defensive Midfield",
+    "lastUpdated": "2026-09-16T19:23:18.866992",
+    "tmUrl": "https://www.transfermarkt.com/benjamin-glitia/profil/spieler/905566"
+  },
+  "benjamin goschl::rapid wien ii": {
+    "marketValue": "€200k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:23:28.438982",
+    "tmUrl": "https://www.transfermarkt.com/benjamin-goschl/profil/spieler/692605"
+  },
+  "benjamin nyarko::admira": {
+    "marketValue": "€200k",
+    "position": "Centre-Forward",
+    "contractUntil": "31/05/2028",
+    "lastUpdated": "2026-09-16T19:23:38.803801",
+    "tmUrl": "https://www.transfermarkt.com/benjamin-nyarko/profil/spieler/1016863"
+  },
+  "benjamin ozegovic::liefering": {
+    "marketValue": "€100k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:23:49.087236",
+    "tmUrl": "https://www.transfermarkt.com/benjamin-ozegovic/profil/spieler/319825"
+  },
+  "benjamin rosenberger::first vienna": {
+    "marketValue": "€250k",
+    "position": "Left-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:24:00.035209",
+    "tmUrl": "https://www.transfermarkt.com/benjamin-rosenberger/profil/spieler/197084"
+  },
+  "bernhard luxbacher::first vienna": {
+    "marketValue": "€225k",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:24:12.184078",
+    "tmUrl": "https://www.transfermarkt.com/bernhard-luxbacher/profil/spieler/147406"
+  },
+  "bernhard unger::first vienna": {
+    "marketValue": "€200k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:24:26.587045",
+    "tmUrl": "https://www.transfermarkt.com/bernhard-unger/profil/spieler/341761"
+  },
+  "bernhard zimmermann::first vienna": {
+    "marketValue": "€300k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:24:39.601668",
+    "tmUrl": "https://www.transfermarkt.com/bernhard-zimmermann/profil/spieler/488073"
+  },
+  "brandon pursall::amstetten": {
+    "marketValue": "€150k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-16T19:24:54.430094",
+    "tmUrl": "https://www.transfermarkt.com/brandon-pursall/profil/spieler/811290"
+  },
+  "bright owusu::wacker innsbruck": {
+    "marketValue": "€125k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:25:04.419780",
+    "tmUrl": "https://www.transfermarkt.com/bright-owusu/profil/spieler/809911"
+  },
+  "bruno jerabek::austria wien ii": {
+    "marketValue": "€200k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:25:15.088239",
+    "tmUrl": "https://www.transfermarkt.com/bruno-jerabek/profil/spieler/1263535"
+  },
+  "can danis::austria wien ii": {
+    "position": "Attacking Midfield",
+    "lastUpdated": "2026-09-16T19:25:27.263710",
+    "tmUrl": "https://www.transfermarkt.com/can-danis/profil/spieler/1168458"
+  },
+  "christian gebauer::austria salzburg": {
+    "marketValue": "€175k",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:25:40.137838",
+    "tmUrl": "https://www.transfermarkt.com/christian-gebauer/profil/spieler/275423"
+  },
+  "christian huetz::austria salzburg": {
+    "marketValue": "€150k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:25:54.178272",
+    "tmUrl": "https://www.transfermarkt.com/christian-huetz/profil/spieler/842272"
+  },
+  "christoph gruber::austria salzburg": {
+    "position": "Left-Back",
+    "lastUpdated": "2026-09-16T19:26:06.869498",
+    "tmUrl": "https://www.transfermarkt.com/christoph-gruber/profil/spieler/307768"
+  },
+  "christoph messerer::st polten": {
+    "marketValue": "€250k",
+    "position": "Defensive Midfield",
+    "lastUpdated": "2026-09-16T19:26:21.535425",
+    "tmUrl": "https://www.transfermarkt.com/christoph-messerer/profil/spieler/646845"
+  },
+  "christoph monschein::first vienna": {
+    "marketValue": "€125k",
+    "position": "Centre-Forward",
+    "lastUpdated": "2026-09-16T19:26:35.943775",
+    "tmUrl": "https://www.transfermarkt.com/christoph-monschein/profil/spieler/300095"
+  },
+  "christoph wiener pucher::sturm graz ii": {
+    "marketValue": "€75k",
+    "position": "Goalkeeper",
+    "lastUpdated": "2026-09-16T19:26:49.905203",
+    "tmUrl": "https://www.transfermarkt.com/christoph-wiener-pucher/profil/spieler/905112"
+  },
+  "christopher giuliani::blau weiss linz": {
+    "marketValue": "€100k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:27:04.592506",
+    "tmUrl": "https://www.transfermarkt.com/christopher-giuliani/profil/spieler/307590"
+  },
+  "christopher johannes wolbl::voitsberg": {
+    "marketValue": "€150k",
+    "position": "Right Midfield",
+    "lastUpdated": "2026-09-16T19:27:54.280861",
+    "tmUrl": "https://www.transfermarkt.com/christopher-wolbl/profil/spieler/1113014"
+  },
+  "christopher knett::st polten": {
+    "marketValue": "€125k",
+    "position": "Goalkeeper",
+    "lastUpdated": "2026-09-16T19:28:07.910618",
+    "tmUrl": "https://www.transfermarkt.com/christopher-knett/profil/spieler/70164"
+  },
+  "christopher weinzierl::wacker innsbruck": {
+    "marketValue": "€150k",
+    "position": "Left Winger",
+    "lastUpdated": "2026-09-16T19:28:22.676545",
+    "tmUrl": "https://www.transfermarkt.com/christopher-weinzierl/profil/spieler/1041092"
+  },
+  "christopher wernitznig::wspg wels": {
+    "marketValue": "€100k",
+    "position": "Central Midfield",
+    "lastUpdated": "2026-09-16T19:28:35.798647",
+    "tmUrl": "https://www.transfermarkt.com/christopher-wernitznig/profil/spieler/77117"
+  },
+  "clemens steinbauer::admira": {
+    "marketValue": "€125k",
+    "position": "Goalkeeper",
+    "lastUpdated": "2026-09-16T19:28:47.515047",
+    "tmUrl": "https://www.transfermarkt.com/clemens-steinbauer/profil/spieler/621933"
+  },
+  "daigo araki::schwarz weiss bregenz": {
+    "marketValue": "€100k",
+    "position": "Left Midfield",
+    "lastUpdated": "2026-09-16T19:29:00.330444",
+    "tmUrl": "https://www.transfermarkt.com/daigo-araki/profil/spieler/423113"
+  },
+  "dalibor velimirovic::rapid wien ii": {
+    "marketValue": "€200k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:29:12.475054",
+    "tmUrl": "https://www.transfermarkt.com/dalibor-velimirovic/profil/spieler/437891"
+  },
+  "damian maksimovic::schwarz weiss bregenz": {
+    "marketValue": "€150k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:29:24.007506",
+    "tmUrl": "https://www.transfermarkt.com/damian-maksimovic/profil/spieler/807956"
+  },
+  "daniel au yeong::schwarz weiss bregenz": {
+    "marketValue": "€100k",
+    "position": "Left Winger",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:29:38.005339",
+    "tmUrl": "https://www.transfermarkt.com/daniel-au-yeong/profil/spieler/548033"
+  },
+  "daniel brandl::floridsdorfer": {
+    "lastUpdated": "2026-09-16T19:29:52.076438",
+    "tmUrl": "https://www.transfermarkt.com/daniel-brandle/profil/spieler/166703"
+  },
+  "daniel francis::wacker innsbruck": {
+    "marketValue": "€2.00m",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:30:03.494334",
+    "tmUrl": "https://www.transfermarkt.com/daniel-anyembe/profil/spieler/358422"
+  },
+  "daniel goriupp::voitsberg": {
+    "marketValue": "€150k",
+    "position": "Right Winger",
+    "lastUpdated": "2026-09-16T19:30:15.235300",
+    "tmUrl": "https://www.transfermarkt.com/daniel-goriupp/profil/spieler/693589"
   }
 }
