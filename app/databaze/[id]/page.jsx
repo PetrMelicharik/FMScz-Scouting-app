@@ -19,13 +19,17 @@ export default function PlayerPage({ params }) {
         <Avatar src={p.photo_url} size={72} className="profile-avatar" />
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
-          <div className="profile-meta">
+          <div className="profile-meta-line">
             {p.club_logo_url && <img src={p.club_logo_url} alt="" className="club-logo-mini" />}
-            {[p.tm_position || p.position, p["Current Club"]].filter(Boolean).join(" · ")}
-            {" · "}
+            {p["Current Club"] || "–"}
+          </div>
+          <div className="profile-meta-line">
             {p.league_logo_url && <img src={p.league_logo_url} alt="" className="league-logo-mini" />}
             {[p.league_name, p.season].filter(Boolean).join(" ")}
           </div>
+          {(p.tm_position || p.position) && (
+            <div className="player-badge profile-position-badge">{p.tm_position || p.position}</div>
+          )}
         </div>
       </div>
 
