@@ -6,6 +6,10 @@
 // If data/media-map.json exists (produced by scripts/fetch-media.mjs — see its
 // header comment), photo/logo URLs are merged in as three extra columns:
 // photo_url, club_logo_url, league_logo_url.
+//
+// If data/tm_data.json exists (produced by the local Transfermarkt scraper —
+// see its header comment), it's merged in as four extra columns: tm_position,
+// market_value, contract_until, foot.
 
 import XLSX from "xlsx";
 import fs from "fs";
@@ -14,6 +18,7 @@ import { playerClubKey } from "../lib/normalize.js";
 
 const SRC = path.join(process.cwd(), "data", "db.xlsx");
 const MEDIA_MAP_FILE = path.join(process.cwd(), "data", "media-map.json");
+const TM_DATA_FILE = path.join(process.cwd(), "data", "tm_data.json");
 const OUT_DIR = path.join(process.cwd(), "public", "data");
 const OUT_FILE = path.join(OUT_DIR, "players.json");
 
@@ -87,6 +92,29 @@ if (fs.existsSync(MEDIA_MAP_FILE)) {
   mediaStats = { photoHits, clubHits, leagueHits, total: rows.length };
 }
 
+let tmStats = null;
+if (fs.existsSync(TM_DATA_FILE)) {
+  const tm = JSON.parse(fs.readFileSync(TM_DATA_FILE, "utf-8"));
+  const nameIdx = columns.indexOf("player_name");
+  const clubIdx = columns.indexOf("Current Club");
+
+  columns.push("tm_position", "market_value", "contract_until", "foot");
+  let hits = 0;
+  rows = rows.map((row) => {
+    const club = clubIdx >= 0 ? row[clubIdx] : null;
+    const entry = nameIdx >= 0 && club ? tm[playerClubKey(row[nameIdx], club)] : null;
+    if (entry && !entry.error) hits++;
+    return [
+      ...row,
+      entry?.position || null,
+      entry?.marketValue || null,
+      entry?.contractUntil || null,
+      entry?.foot || null,
+    ];
+  });
+  tmStats = { hits, total: rows.length };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   OUT_FILE,
@@ -106,4 +134,9 @@ if (mediaStats) {
   console.log(`[build-data] media-map.json nalezen: fotky ${mediaStats.photoHits}/${mediaStats.total}, loga klubů ${mediaStats.clubHits}/${mediaStats.total}, loga lig ${mediaStats.leagueHits}/${mediaStats.total}`);
 } else {
   console.log(`[build-data] data/media-map.json nenalezen — fotky/loga se nezobrazí, dokud nespustíš "npm run fetch-media".`);
+}
+if (tmStats) {
+  console.log(`[build-data] tm_data.json nalezen: Transfermarkt data u ${tmStats.hits}/${tmStats.total} hráčů.`);
+} else {
+  console.log(`[build-data] data/tm_data.json nenalezen — pozice/tržní hodnota/smlouva/noha se nezobrazí, dokud nespustíš lokální Transfermarkt scraper.`);
 }
