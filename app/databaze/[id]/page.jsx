@@ -21,7 +21,7 @@ export default function PlayerPage({ params }) {
           <h1 className="profile-name">{p.player_name}</h1>
           <div className="profile-meta">
             {p.club_logo_url && <img src={p.club_logo_url} alt="" className="club-logo-mini" />}
-            {[p.position, p["Current Club"]].filter(Boolean).join(" · ")}
+            {[p.tm_position || p.position, p["Current Club"]].filter(Boolean).join(" · ")}
             {" · "}
             {p.league_logo_url && <img src={p.league_logo_url} alt="" className="league-logo-mini" />}
             {[p.league_name, p.season].filter(Boolean).join(" ")}
@@ -55,16 +55,10 @@ export default function PlayerPage({ params }) {
         </div>
       </div>
 
-      {(p.tm_position || p.market_value || p.contract_until || p.foot) && (
+      {(p.market_value || p.contract_until || p.foot) && (
         <div className="profile-group">
           <div className="profile-group-title">Transfermarkt</div>
           <div className="profile-stat-grid">
-            {p.tm_position && (
-              <div className="profile-stat-row">
-                <span className="profile-stat-label">Přesná pozice</span>
-                <span className="profile-stat-value">{p.tm_position}</span>
-              </div>
-            )}
             {p.market_value && (
               <div className="profile-stat-row">
                 <span className="profile-stat-label">Tržní hodnota</span>
