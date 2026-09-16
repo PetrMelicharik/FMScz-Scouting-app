@@ -65,4 +65,6 @@ export const clubAliases = {
   "ETO": 2402, // opraveno — auto-shoda podle jména byla špatná
   "DAC": 2257, // opraveno — auto-shoda podle jména byla špatná
   "AIK": 377, // opraveno — auto-shoda podle jména byla špatná
+  "Hajduk Split": 608, // opraveno — auto-shoda podle jména byla špatná
+  "Salzburg": 571, // opraveno — auto-shoda podle jména byla špatná
 };
