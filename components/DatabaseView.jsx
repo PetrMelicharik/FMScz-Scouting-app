@@ -54,7 +54,7 @@ function PlayerCard({ p }) {
             )}
             {p["Current Club"] || "–"}
           </div>
-          {p.position && <div className="player-badge">{p.position}</div>}
+          {(p.tm_position || p.position) && <div className="player-badge">{p.tm_position || p.position}</div>}
         </div>
       </div>
       <div className="player-stats">
