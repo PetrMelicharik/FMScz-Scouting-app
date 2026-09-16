@@ -6,7 +6,7 @@ on:
     - cron: "0 3 * * 1"          # každé pondělí 03:00 UTC
   push:
     paths:
-      - "data/players.xlsx"      # automaticky i po nahrání nové databáze
+      - "data/db.xlsx"              # automaticky i po nahrání nové databáze
 
 permissions:
   contents: write
