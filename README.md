@@ -1,14 +1,14 @@
 # FM Scouts.cz — skautovací aplikace
 
 Next.js aplikace pro skauting fotbalových hráčů. Databáze hráčů žije jako
-`data/players.xlsx` přímo v repozitáři; při každém nasazení se automaticky
+`data/db.xlsx` přímo v repozitáři; při každém nasazení se automaticky
 převede na data, která aplikace zobrazuje.
 
 ## Jak to funguje
 
-1. `data/players.xlsx` — Excel databáze hráčů (vygenerovaná tvým Python skriptem).
+1. `data/db.xlsx` — Excel databáze hráčů (vygenerovaná tvým Python skriptem).
 2. `scripts/build-data.mjs` — při každém `npm run build` (tedy i při každém
-   nasazení na Vercelu) přečte `data/players.xlsx` a vygeneruje
+   nasazení na Vercelu) přečte `data/db.xlsx` a vygeneruje
    `public/data/players.json`.
 3. Aplikace má dvě stránky:
    - **Home** (`app/page.jsx`) — úvodní stránka s přehledem (počet hráčů, lig, sezóna).
@@ -27,7 +27,7 @@ Aplikace poběží na http://localhost:3000.
 ## Nasazení na Vercel (propojené s GitHubem)
 
 1. **Vytvoř GitHub repozitář** a nahraj do něj celý obsah této složky
-   (včetně `data/players.xlsx`).
+   (včetně `data/db.xlsx`).
    ```bash
    git init
    git add .
@@ -45,8 +45,8 @@ Aplikace poběží na http://localhost:3000.
 
 Kdykoliv budeš mít novou verzi dat:
 
-1. Vygeneruj nový `players.xlsx` svým Python skriptem.
-2. Nahraď jím soubor `data/players.xlsx` v repozitáři (přes `git push`,
+1. Vygeneruj nový `db.xlsx` svým Python skriptem.
+2. Nahraď jím soubor `data/db.xlsx` v repozitáři (přes `git push`,
    nebo přetažením souboru přímo v GitHub webovém rozhraní — funguje i to).
 3. Vercel automaticky spustí nový build a za pár minut je nová databáze
    živá pro celý tým — nikdo nic dalšího dělat nemusí.
@@ -64,7 +64,7 @@ nic se nespouští lokálně a API klíč nikdy neopustí GitHub.
 
 **Odtud už automaticky:**
 - Workflow `.github/workflows/fetch-media.yml` běží každé pondělí, po
-  nahrání nového `data/players.xlsx`, nebo ručně (záložka **Actions** →
+  nahrání nového `data/db.xlsx`, nebo ručně (záložka **Actions** →
   "Aktualizace fotek a log hráčů" → **Run workflow**).
 - Stáhne loga lig/klubů a fotky hráčů z API-Football, spáruje je s tvou
   databází a výsledek (`data/media-map.json`) commitne zpátky do repa.
