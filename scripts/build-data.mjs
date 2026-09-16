@@ -1,5 +1,5 @@
 // Runs automatically before every `next build` (see package.json "prebuild").
-// Reads data/players.xlsx from the repo and turns it into public/data/players.json,
+// Reads data/db.xlsx from the repo and turns it into public/data/players.json,
 // which the app fetches at runtime. Update the database by replacing the .xlsx file
 // in the repo and pushing — Vercel will re-run this script on every deploy.
 //
@@ -12,7 +12,7 @@ import fs from "fs";
 import path from "path";
 import { playerClubKey } from "../lib/normalize.js";
 
-const SRC = path.join(process.cwd(), "data", "players.xlsx");
+const SRC = path.join(process.cwd(), "data", "db.xlsx");
 const MEDIA_MAP_FILE = path.join(process.cwd(), "data", "media-map.json");
 const OUT_DIR = path.join(process.cwd(), "public", "data");
 const OUT_FILE = path.join(OUT_DIR, "players.json");
@@ -23,14 +23,14 @@ function fail(msg) {
 }
 
 if (!fs.existsSync(SRC)) {
-  fail(`Nenalezen soubor ${SRC}. Nahraj databázi hráčů jako data/players.xlsx.`);
+  fail(`Nenalezen soubor ${SRC}. Nahraj databázi hráčů jako data/db.xlsx.`);
 }
 
 const wb = XLSX.readFile(SRC);
 const sheet = wb.Sheets[wb.SheetNames[0]];
 const aoa = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: null });
 
-if (!aoa.length) fail("Soubor data/players.xlsx je prázdný.");
+if (!aoa.length) fail("Soubor data/db.xlsx je prázdný.");
 
 const rawHeader = aoa[0];
 const keepIdx = [];
@@ -48,8 +48,21 @@ let rows = aoa
   .map((row) => keepIdx.map((i) => (row[i] === undefined ? null : row[i])));
 
 if (!columns.length || !rows.length) {
-  fail("Nepodařilo se rozpoznat sloupce nebo řádky v data/players.xlsx.");
+  fail("Nepodařilo se rozpoznat sloupce nebo řádky v data/db.xlsx.");
 }
+
+// Drop exact-duplicate rows (same player, same season, identical stats across
+// every column) — footystats exports have occasionally contained the same
+// player-season row twice. Keeps the first occurrence, preserves row order.
+const rowCountBeforeDedup = rows.length;
+const seenRows = new Set();
+rows = rows.filter((row) => {
+  const key = JSON.stringify(row);
+  if (seenRows.has(key)) return false;
+  seenRows.add(key);
+  return true;
+});
+const duplicatesRemoved = rowCountBeforeDedup - rows.length;
 
 let mediaStats = null;
 if (fs.existsSync(MEDIA_MAP_FILE)) {
@@ -86,6 +99,9 @@ fs.writeFileSync(
 );
 
 console.log(`[build-data] OK: ${rows.length} hráčů, ${columns.length} sloupců -> ${path.relative(process.cwd(), OUT_FILE)}`);
+if (duplicatesRemoved > 0) {
+  console.log(`[build-data] Odstraněno ${duplicatesRemoved} přesně duplicitních řádků z data/db.xlsx.`);
+}
 if (mediaStats) {
   console.log(`[build-data] media-map.json nalezen: fotky ${mediaStats.photoHits}/${mediaStats.total}, loga klubů ${mediaStats.clubHits}/${mediaStats.total}, loga lig ${mediaStats.leagueHits}/${mediaStats.total}`);
 } else {
