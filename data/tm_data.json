@@ -1751,5 +1751,277 @@
     "contractUntil": "30/06/2027",
     "lastUpdated": "2026-09-16T19:07:29.166573",
     "tmUrl": "https://www.transfermarkt.com/samuel-sahin-radlinger/profil/spieler/77563"
+  },
+  "sanel saljic::austria wien": {
+    "marketValue": "€2.00m",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2030",
+    "lastUpdated": "2026-09-16T19:07:41.632400",
+    "tmUrl": "https://www.transfermarkt.com/sanel-saljic/profil/spieler/803967"
+  },
+  "sankara william karamoko::wolfsberger": {
+    "marketValue": "€1.00m",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:07:54.624652",
+    "tmUrl": "https://www.transfermarkt.com/sankara-karamoko/profil/spieler/1067902"
+  },
+  "sasa kalajdzic::lask linz": {
+    "marketValue": "€4.00m",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:08:09.103267",
+    "tmUrl": "https://www.transfermarkt.com/sasa-kalajdzic/profil/spieler/369567"
+  },
+  "sascha horvath::lask linz": {
+    "marketValue": "€2.00m",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:08:21.534041",
+    "tmUrl": "https://www.transfermarkt.com/sascha-horvath/profil/spieler/186365"
+  },
+  "seedy jatta::sturm graz": {
+    "marketValue": "€1.00m",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:08:33.389278",
+    "tmUrl": "https://www.transfermarkt.com/seedy-jatta/profil/spieler/661206"
+  },
+  "serge philippe raux yao::rapid wien": {
+    "position": "Central Midfield",
+    "lastUpdated": "2026-09-16T19:08:52.221773",
+    "tmUrl": "https://www.transfermarkt.com/serge-nguessan/profil/spieler/263294"
+  },
+  "seydou diarra::austria lustenau": {
+    "marketValue": "€200k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:09:04.376290",
+    "tmUrl": "https://www.transfermarkt.com/seydou-diarra/profil/spieler/1230440"
+  },
+  "simon piesinger::wolfsberger": {
+    "marketValue": "€200k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:09:18.331312",
+    "tmUrl": "https://www.transfermarkt.com/simon-piesinger/profil/spieler/89541"
+  },
+  "simon seidl::sturm graz": {
+    "marketValue": "€1.00m",
+    "position": "Central Midfield",
+    "lastUpdated": "2026-09-16T19:09:31.132069",
+    "tmUrl": "https://www.transfermarkt.com/simon-seidl/profil/spieler/620496"
+  },
+  "simon wieser::wattens": {
+    "marketValue": "€75k",
+    "position": "Midfield",
+    "lastUpdated": "2026-09-16T19:09:42.838862",
+    "tmUrl": "https://www.transfermarkt.com/simon-wieser/profil/spieler/1041094"
+  },
+  "sota kitano::salzburg": {
+    "marketValue": "€6.00m",
+    "position": "Right Midfield",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:09:55.146839",
+    "tmUrl": "https://www.transfermarkt.com/sota-kitano/profil/spieler/671114"
+  },
+  "souleyman mandey::grazer ak": {
+    "marketValue": "€200k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:10:06.591624",
+    "tmUrl": "https://www.transfermarkt.com/souleyman-mandey/profil/spieler/1029654"
+  },
+  "soumaila diabate::salzburg": {
+    "marketValue": "€8.00m",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:10:18.356293",
+    "tmUrl": "https://www.transfermarkt.com/soumaila-diabate/profil/spieler/1089004"
+  },
+  "srdan hrstic::rheindorf altach": {
+    "marketValue": "€500k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:10:41.395049",
+    "tmUrl": "https://www.transfermarkt.com/srdjan-hrstic/profil/spieler/619305"
+  },
+  "stefan lainer::salzburg": {
+    "marketValue": "€800k",
+    "position": "Right-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:10:56.317172",
+    "tmUrl": "https://www.transfermarkt.com/stefan-lainer/profil/spieler/85791"
+  },
+  "stefan schwab::ried": {
+    "marketValue": "€300k",
+    "position": "Central Midfield",
+    "lastUpdated": "2026-09-16T19:11:07.132538",
+    "tmUrl": "https://www.transfermarkt.com/stefan-schwab/profil/spieler/79612"
+  },
+  "szymon wlodarczyk::sturm graz": {
+    "marketValue": "€750k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:11:17.886901",
+    "tmUrl": "https://www.transfermarkt.com/szymon-wlodarczyk/profil/spieler/554282"
+  },
+  "tae seok lee::austria wien": {
+    "marketValue": "€2.00m",
+    "position": "Left-Back",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:11:29.981434",
+    "tmUrl": "https://www.transfermarkt.com/tae-seok-lee/profil/spieler/639027"
+  },
+  "thomas goiginger::wattens": {
+    "marketValue": "€250k",
+    "position": "Left Winger",
+    "lastUpdated": "2026-09-16T19:11:42.932587",
+    "tmUrl": "https://www.transfermarkt.com/thomas-goiginger/profil/spieler/189912"
+  },
+  "thomas sabitzer::wattens": {
+    "marketValue": "€300k",
+    "position": "Left Winger",
+    "lastUpdated": "2026-09-16T19:11:55.390472",
+    "tmUrl": "https://www.transfermarkt.com/thomas-sabitzer/profil/spieler/394032"
+  },
+  "thorsten schriebl::wolfsberger": {
+    "marketValue": "€450k",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:12:05.292502",
+    "tmUrl": "https://www.transfermarkt.com/thorsten-schriebl/profil/spieler/308408"
+  },
+  "tim drexler::salzburg": {
+    "marketValue": "€3.00m",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:12:19.311878",
+    "tmUrl": "https://www.transfermarkt.com/tim-drexler/profil/spieler/822958"
+  },
+  "tino kusanovic::ried": {
+    "marketValue": "€300k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:12:33.026666",
+    "tmUrl": "https://www.transfermarkt.com/tino-kusanovic/profil/spieler/1185190"
+  },
+  "tobias fjeld gulliksen::rapid wien": {
+    "marketValue": "€2.20m",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:12:45.991022",
+    "tmUrl": "https://www.transfermarkt.com/tobias-gulliksen/profil/spieler/619657"
+  },
+  "tobias jensen lund::ried": {
+    "marketValue": "€400k",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:13:03.516797",
+    "tmUrl": "https://www.transfermarkt.com/tobias-lund-jensen/profil/spieler/862989"
+  },
+  "tobias kainz::hartberg": {
+    "marketValue": "€225k",
+    "position": "Left Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:13:15.953701",
+    "tmUrl": "https://www.transfermarkt.com/tobias-kainz/profil/spieler/69741"
+  },
+  "tobias koch::grazer ak": {
+    "marketValue": "€400k",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:13:27.835559",
+    "tmUrl": "https://www.transfermarkt.com/tobias-koch/profil/spieler/434103"
+  },
+  "tobias schutzenauer::lask linz": {
+    "marketValue": "€250k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:13:41.922213",
+    "tmUrl": "https://www.transfermarkt.com/tobias-schutzenauer/profil/spieler/243237"
+  },
+  "tonni adamsen::rapid wien": {
+    "marketValue": "€1.50m",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:13:57.590834",
+    "tmUrl": "https://www.transfermarkt.com/tonni-adamsen/profil/spieler/599215"
+  },
+  "umut tohumcu::salzburg": {
+    "marketValue": "€3.50m",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:14:07.411775",
+    "tmUrl": "https://www.transfermarkt.com/umut-tohumcu/profil/spieler/569031"
+  },
+  "valentin zabransky::salzburg": {
+    "marketValue": "€500k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:14:17.601321",
+    "tmUrl": "https://www.transfermarkt.com/valentin-zabransky/profil/spieler/960455"
+  },
+  "valentino muller::austria wien": {
+    "marketValue": "€900k",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:14:29.978993",
+    "tmUrl": "https://www.transfermarkt.com/valentino-muller/profil/spieler/307817"
+  },
+  "valmir matoshi::sturm graz": {
+    "marketValue": "€1.50m",
+    "position": "Attacking Midfield",
+    "lastUpdated": "2026-09-16T19:14:41.756750",
+    "tmUrl": "https://www.transfermarkt.com/valmir-matoshi/profil/spieler/671806"
+  },
+  "vasilije markovic::austria wien": {
+    "marketValue": "€3.00m",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:14:55.415789",
+    "tmUrl": "https://www.transfermarkt.com/vasilije-markovic/profil/spieler/1113024"
+  },
+  "veljko vukojevic::wolfsberger": {
+    "marketValue": "€250k",
+    "position": "Left Winger",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:15:07.967010",
+    "tmUrl": "https://www.transfermarkt.com/veljko-vukojevic/profil/spieler/940644"
+  },
+  "vesel demaku::rheindorf altach": {
+    "marketValue": "€500k",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:15:22.053364",
+    "tmUrl": "https://www.transfermarkt.com/vesel-demaku/profil/spieler/346846"
+  },
+  "xavier mbuyamba::lask linz": {
+    "marketValue": "€1.50m",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-16T19:15:31.322598",
+    "tmUrl": "https://www.transfermarkt.com/xavier-mbuyamba/profil/spieler/640432"
+  },
+  "yanis eisschill::rheindorf altach": {
+    "marketValue": "€300k",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-16T19:15:43.346072",
+    "tmUrl": "https://www.transfermarkt.com/yanis-eisschill/profil/spieler/993652"
+  },
+  "yann massombo litawumba::rheindorf altach": {
+    "marketValue": "€800k",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:16:54.806000",
+    "tmUrl": "https://www.transfermarkt.com/yann-massombo/profil/spieler/809242"
+  },
+  "yannick oberleitner::grazer ak": {
+    "marketValue": "€175k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-16T19:17:04.670462",
+    "tmUrl": "https://www.transfermarkt.com/yannick-oberleitner/profil/spieler/515132"
   }
 }
