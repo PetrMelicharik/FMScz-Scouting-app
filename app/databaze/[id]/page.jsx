@@ -5,6 +5,8 @@ import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { flagUrl } from "../../../lib/countryFlags";
 import { loadPlayerById } from "../../../lib/playersData";
 
+const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
+
 export default function PlayerPage({ params }) {
   const p = loadPlayerById(params.id);
   if (!p) return notFound();
@@ -52,6 +54,38 @@ export default function PlayerPage({ params }) {
           <div className="stat-box-value">{formatStat("avg_rating_", p.avg_rating_)}</div>
         </div>
       </div>
+
+      {(p.tm_position || p.market_value || p.contract_until || p.foot) && (
+        <div className="profile-group">
+          <div className="profile-group-title">Transfermarkt</div>
+          <div className="profile-stat-grid">
+            {p.tm_position && (
+              <div className="profile-stat-row">
+                <span className="profile-stat-label">Přesná pozice</span>
+                <span className="profile-stat-value">{p.tm_position}</span>
+              </div>
+            )}
+            {p.market_value && (
+              <div className="profile-stat-row">
+                <span className="profile-stat-label">Tržní hodnota</span>
+                <span className="profile-stat-value">{p.market_value}</span>
+              </div>
+            )}
+            {p.contract_until && (
+              <div className="profile-stat-row">
+                <span className="profile-stat-label">Smlouva do</span>
+                <span className="profile-stat-value">{p.contract_until}</span>
+              </div>
+            )}
+            {p.foot && (
+              <div className="profile-stat-row">
+                <span className="profile-stat-label">Preferovaná noha</span>
+                <span className="profile-stat-value">{FOOT_LABELS[p.foot.toLowerCase()] || p.foot}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {Object.entries(STAT_GROUPS).map(([group, keys]) => {
         const visible = keys.filter((k) => p[k] !== null && p[k] !== undefined && p[k] !== "");
