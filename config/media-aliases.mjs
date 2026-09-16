@@ -53,11 +53,16 @@ export const clubAliases = {
   "Trans": 2274,
   "Nyíregyháza Spartacus": 2403,
   "Argeș": 2592,
-  "Mačva Šabac": 12324,
+  "Mačva Šabac": 2637, // opraveno — 12324 bylo špatně
   "Radnički Kragujevac": 26417, // nejistá shoda (jiný historický název klubu), zkontroluj logo po nasazení
   "Veres": 6501,
   "Zorya": 599,
   "Hirnyk": 3624,
   "AB": 24213,
   "Blau-Weiß Linz": 1394,
+  "Young Boys": 565, // opraveno — auto-shoda podle jména byla špatná
+  "Brage": 2175, // opraveno — auto-shoda podle jména byla špatná
+  "ETO": 2402, // opraveno — auto-shoda podle jména byla špatná
+  "DAC": 2257, // opraveno — auto-shoda podle jména byla špatná
+  "AIK": 377, // opraveno — auto-shoda podle jména byla špatná
 };
