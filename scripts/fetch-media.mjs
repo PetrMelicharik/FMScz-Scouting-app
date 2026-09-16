@@ -1,5 +1,5 @@
 // Fetches league logos, club logos, and player photos from API-Football and
-// matches them against data/players.xlsx, writing the result to
+// matches them against data/db.xlsx, writing the result to
 // data/media-map.json (consumed by scripts/build-data.mjs at build time).
 //
 // Run locally (NOT on Vercel — this hits a paid, rate-limited API):
@@ -160,7 +160,7 @@ async function flushAndExit(code) {
 /* ------------------------------------------------------------------ */
 
 function readOurDatabase() {
-  const src = path.join(ROOT, "data", "players.xlsx");
+  const src = path.join(ROOT, "data", "db.xlsx");
   const wb = XLSX.readFile(src);
   const sheet = wb.Sheets[wb.SheetNames[0]];
   const aoa = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: null });
