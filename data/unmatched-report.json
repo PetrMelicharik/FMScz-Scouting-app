@@ -1,4 +1,36 @@
 {
-  "unmatchedLeagues": [],
+  "unmatchedLeagues": [
+    {
+      "ourLeagueName": "Czech Chance Národní Liga",
+      "country": "Czechia",
+      "candidates": [
+        {
+          "name": "Czech Liga",
+          "id": 345,
+          "score": 0.4
+        },
+        {
+          "name": "Tipsport Liga",
+          "id": 1211,
+          "score": 0.24
+        },
+        {
+          "name": "3. liga - CFL A",
+          "id": 348,
+          "score": 0.16
+        },
+        {
+          "name": "4. liga - Divizie A",
+          "id": 350,
+          "score": 0.16
+        },
+        {
+          "name": "Super Cup",
+          "id": 925,
+          "score": 0.12
+        }
+      ]
+    }
+  ],
   "unmatchedClubs": []
 }
