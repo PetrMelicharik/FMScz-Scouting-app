@@ -14,9 +14,9 @@ export default function NavBar() {
     <header className="site-nav">
       <div className="site-nav-inner">
         <Link href="/" className="brand">
-          <img src="/logo.jpg" alt="FM Scouts.cz" className="brand-logo" />
+          <img src="/logo.jpg" alt="FM Scouts cz" className="brand-logo" />
           <span className="brand-text">
-            FM <span className="accent">Scouts</span><span className="brand-cz">.cz</span>
+            FM <span className="accent">Scouts</span> <span className="brand-cz">cz</span>
           </span>
         </Link>
         <nav className="site-links">
