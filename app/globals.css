@@ -210,6 +210,53 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 .btn:hover { border-color: var(--accent); color: var(--accent-dark); }
 .btn-ghost { background: none; border: none; color: var(--ink-dim); text-decoration: underline; padding: 4px 6px; font-family: 'Inter', sans-serif; font-weight: 400; }
 
+.btn-accent {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 9px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #FFFFFF;
+}
+.btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
+.chart-dir-active { border-color: var(--accent); color: var(--accent-dark); background: var(--accent-soft); }
+
+.chart-tabs { display: flex; gap: 8px; margin-bottom: 22px; }
+.chart-tab {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 9px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: #FFFFFF;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+.chart-tab.active { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+
+.chart-box { background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 16px 8px 8px; }
+.chart-note { color: var(--ink-dim); font-size: 12.5px; margin-top: 10px; }
+
+.chart-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--ink-dim); }
+.chart-legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+.chart-tooltip {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+.chart-tooltip-name { font-weight: 700; margin-bottom: 3px; }
+.chart-tooltip-sub { color: var(--ink-dim); margin-bottom: 6px; }
+
 .hairline { border: none; border-top: 1px solid var(--line); margin: 18px 0; }
 
 .pagination { display: flex; align-items: center; gap: 12px; margin-top: 14px; font-size: 13px; color: var(--ink-dim); }
