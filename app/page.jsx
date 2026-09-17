@@ -31,7 +31,7 @@ export default function HomePage() {
   return (
     <div>
       <section className="hero">
-        <img src="/logo.jpg" alt="FM Scouts.cz" className="hero-logo" />
+        <img src="/logo.jpg" alt="FM Scouts cz" className="hero-logo" />
         <h1>
           Najdi příští <span className="accent">hvězdu</span> dřív než ostatní.
         </h1>
