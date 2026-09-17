@@ -20,6 +20,12 @@ export default function PlayerPage({ params }) {
         <Avatar src={p.photo_url} size={72} className="profile-avatar" />
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
+          {flagUrl(p.nationality) && (
+            <div className="profile-meta-line">
+              <img src={flagUrl(p.nationality)} alt="" className="flag-mini" />
+              {p.nationality}
+            </div>
+          )}
           {(p.tm_position || p.position) && (
             <div className="profile-meta-line">
               <PitchIcon className="position-icon-mini" />
@@ -41,13 +47,6 @@ export default function PlayerPage({ params }) {
         <div className="stat-box">
           <div className="stat-box-label">Věk</div>
           <div className="stat-box-value">{p.age ?? "–"}</div>
-        </div>
-        <div className="stat-box">
-          <div className="stat-box-label">Národnost</div>
-          <div className="stat-box-value stat-box-value-sm stat-box-flag">
-            {flagUrl(p.nationality) && <img src={flagUrl(p.nationality)} alt="" className="flag-mini" />}
-            {p.nationality || "–"}
-          </div>
         </div>
         <div className="stat-box">
           <div className="stat-box-label">Zápasy</div>
