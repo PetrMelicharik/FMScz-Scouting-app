@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell,
 } from "recharts";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../lib/statMeta";
@@ -23,6 +23,12 @@ function positionBucket(pos) {
   if (p.includes("midfield")) return "MF";
   if (p.includes("wing") || p.includes("forward") || p.includes("striker") || p.includes("attack")) return "FW";
   return "other";
+}
+
+function ScatterDot(props) {
+  const { cx, cy, fill } = props;
+  if (cx === undefined || cy === undefined) return null;
+  return <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />;
 }
 
 function ScatterTooltip({ active, payload }) {
@@ -48,6 +54,84 @@ function BarTooltip({ active, payload }) {
       <div>{p.statLabel}: <strong>{p.display}</strong></div>
     </div>
   );
+}
+
+async function downloadChartAsImage(containerEl, filename) {
+  if (!containerEl) return;
+  const svgEl = containerEl.querySelector("svg");
+  if (!svgEl) return;
+
+  const rect = svgEl.getBoundingClientRect();
+  const width = Math.round(rect.width);
+  const height = Math.round(rect.height);
+  const footer = 34;
+
+  const clonedSvg = svgEl.cloneNode(true);
+  clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  clonedSvg.setAttribute("width", width);
+  clonedSvg.setAttribute("height", height);
+  const bgRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  bgRect.setAttribute("width", "100%");
+  bgRect.setAttribute("height", "100%");
+  bgRect.setAttribute("fill", "#FFFFFF");
+  clonedSvg.insertBefore(bgRect, clonedSvg.firstChild);
+
+  const svgString = new XMLSerializer().serializeToString(clonedSvg);
+  const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(svgBlob);
+
+  const img = new Image();
+  img.onload = () => {
+    const scale = 2;
+    const canvas = document.createElement("canvas");
+    canvas.width = width * scale;
+    canvas.height = (height + footer) * scale;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(scale, scale);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, width, height + footer);
+    ctx.drawImage(img, 0, 0, width, height);
+
+    ctx.strokeStyle = "#E3E8E2";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, height + 0.5);
+    ctx.lineTo(width, height + 0.5);
+    ctx.stroke();
+
+    ctx.fillStyle = "#4CB848";
+    ctx.font = "700 14px Arial, sans-serif";
+    ctx.textBaseline = "middle";
+    ctx.fillText("FM", 14, height + footer / 2);
+    const fmWidth = ctx.measureText("FM ").width;
+    ctx.fillStyle = "#14171A";
+    ctx.fillText("Scouts.cz", 14 + fmWidth, height + footer / 2);
+
+    URL.revokeObjectURL(url);
+    canvas.toBlob((blob) => {
+      const link = document.createElement("a");
+      link.download = filename;
+      link.href = URL.createObjectURL(blob);
+      link.click();
+    });
+  };
+  img.src = url;
+}
+
+function sanitizeFilename(s) {
+  return String(s).replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
+}
+
+function DownloadButton({ targetRef, filename }) {
+  return (
+    <button className="btn chart-download-btn" onClick={() => downloadChartAsImage(targetRef.current, filename)}>
+      ⬇ Stáhnout graf
+    </button>
+  );
+}
+
+function Watermark() {
+  return <div className="chart-watermark">FM <span className="accent">Scouts</span>.cz</div>;
 }
 
 export default function GrafyView() {
@@ -131,6 +215,7 @@ function ScatterPanel({ rows, leagues, router }) {
   const [xStat, setXStat] = useState("age");
   const [yStat, setYStat] = useState("avg_rating_");
   const [chart, setChart] = useState(null);
+  const chartRef = useRef(null);
 
   function generate() {
     const xLabel = AXIS_OPTIONS.find(([k]) => k === xStat)?.[1] || xStat;
@@ -197,15 +282,29 @@ function ScatterPanel({ rows, leagues, router }) {
         </div>
       ) : (
         <>
-          <div className="chart-box">
+          <div className="chart-toolbar">
+            <span className="chart-toolbar-title">{chart.yLabel} vs. {chart.xLabel}</span>
+            <DownloadButton targetRef={chartRef} filename={`fmscouts-${sanitizeFilename(chart.xLabel)}-${sanitizeFilename(chart.yLabel)}.png`} />
+          </div>
+          <div className="chart-box" ref={chartRef}>
+            <Watermark />
             <ResponsiveContainer width="100%" height={480}>
               <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
-                <CartesianGrid stroke="#E3E8E2" />
-                <XAxis type="number" dataKey="x" name={chart.xLabel} tick={{ fontSize: 12, fill: "#667066" }} label={{ value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12, fill: "#667066" }} />
-                <YAxis type="number" dataKey="y" name={chart.yLabel} tick={{ fontSize: 12, fill: "#667066" }} label={{ value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12, fill: "#667066" }} />
-                <ZAxis range={[50, 51]} />
+                <CartesianGrid stroke="#E3E8E2" strokeDasharray="3 3" />
+                <XAxis
+                  type="number" dataKey="x" name={chart.xLabel}
+                  tick={{ fontSize: 12, fill: "#667066" }}
+                  axisLine={{ stroke: "#D8DED7" }} tickLine={false}
+                  label={{ value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
+                />
+                <YAxis
+                  type="number" dataKey="y" name={chart.yLabel}
+                  tick={{ fontSize: 12, fill: "#667066" }}
+                  axisLine={{ stroke: "#D8DED7" }} tickLine={false}
+                  label={{ value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
+                />
                 <Tooltip content={<ScatterTooltip />} cursor={{ strokeDasharray: "3 3" }} />
-                <Scatter data={chart.points} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer">
+                <Scatter data={chart.points} shape={<ScatterDot />} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer">
                   {chart.points.map((p) => (
                     <Cell key={p._id} fill={POSITION_COLORS[p.bucket]} />
                   ))}
@@ -235,6 +334,7 @@ function TopPanel({ rows, leagues, router }) {
   const [count, setCount] = useState("10");
   const [dir, setDir] = useState("desc");
   const [chart, setChart] = useState(null);
+  const chartRef = useRef(null);
 
   function generate() {
     const statLabel = AXIS_OPTIONS.find(([k]) => k === stat)?.[1] || stat;
@@ -249,7 +349,7 @@ function TopPanel({ rows, leagues, router }) {
       value: Number(r[stat]),
       display: formatStat(stat, r[stat]),
       statLabel,
-      label: `${r.player_name} (${r.season})`,
+      label: r.player_name,
     }));
 
     setChart({ list, statLabel });
@@ -305,17 +405,24 @@ function TopPanel({ rows, leagues, router }) {
           <div className="empty-sub">Zkus snížit min. minuty nebo zvolit jinou ligu.</div>
         </div>
       ) : (
-        <div className="chart-box">
-          <ResponsiveContainer width="100%" height={Math.max(220, chart.list.length * rowHeight + 40)}>
-            <BarChart data={chart.list} layout="vertical" margin={{ top: 10, right: 30, bottom: 10, left: 10 }}>
-              <CartesianGrid stroke="#E3E8E2" horizontal={false} />
-              <XAxis type="number" tick={{ fontSize: 12, fill: "#667066" }} />
-              <YAxis type="category" dataKey="label" width={190} tick={{ fontSize: 12.5, fill: "#14171A" }} interval={0} />
-              <Tooltip content={<BarTooltip />} cursor={{ fill: "rgba(76,184,72,0.08)" }} />
-              <Bar dataKey="value" fill="#4CB848" radius={[0, 6, 6, 0]} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        <>
+          <div className="chart-toolbar">
+            <span className="chart-toolbar-title">Top {chart.list.length} — {chart.statLabel}</span>
+            <DownloadButton targetRef={chartRef} filename={`fmscouts-top-${sanitizeFilename(chart.statLabel)}.png`} />
+          </div>
+          <div className="chart-box" ref={chartRef}>
+            <Watermark />
+            <ResponsiveContainer width="100%" height={Math.max(220, chart.list.length * rowHeight + 40)}>
+              <BarChart data={chart.list} layout="vertical" margin={{ top: 10, right: 30, bottom: 10, left: 10 }}>
+                <CartesianGrid stroke="#E3E8E2" strokeDasharray="3 3" horizontal={false} />
+                <XAxis type="number" tick={{ fontSize: 12, fill: "#667066" }} axisLine={{ stroke: "#D8DED7" }} tickLine={false} />
+                <YAxis type="category" dataKey="label" width={150} tick={{ fontSize: 12.5, fill: "#14171A" }} axisLine={{ stroke: "#D8DED7" }} tickLine={false} interval={0} />
+                <Tooltip content={<BarTooltip />} cursor={{ fill: "rgba(76,184,72,0.08)" }} />
+                <Bar dataKey="value" fill="#4CB848" radius={[0, 6, 6, 0]} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </>
       )}
     </div>
   );
