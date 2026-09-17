@@ -7,10 +7,15 @@ import {
 } from "recharts";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../lib/statMeta";
 
+// Each entry: [key, dropdown label (with group), plain label (for chart/axis/title)]
 const AXIS_OPTIONS = [
-  ["age", "Věk"],
-  ...Object.entries(STAT_GROUPS).flatMap(([g, keys]) => keys.map((k) => [k, `${STAT_LABELS[k] || k} (${g})`])),
+  ["age", "Věk", "Věk"],
+  ...Object.entries(STAT_GROUPS).flatMap(([g, keys]) =>
+    keys.map((k) => [k, `${STAT_LABELS[k] || k} (${g})`, STAT_LABELS[k] || k])
+  ),
 ];
+
+const GK_STAT_KEYS = new Set(STAT_GROUPS["Brankářské"]);
 
 const POSITION_COLORS = { GK: "#D97706", DF: "#2563EB", MF: "#4CB848", FW: "#DC2626", other: "#9AA39A" };
 const POSITION_LABELS = { GK: "Brankář", DF: "Obránce", MF: "Záložník", FW: "Útočník", other: "Ostatní" };
@@ -25,10 +30,23 @@ function positionBucket(pos) {
   return "other";
 }
 
+function axisLabel(key) {
+  return AXIS_OPTIONS.find(([k]) => k === key)?.[2] || key;
+}
+
 function ScatterDot(props) {
-  const { cx, cy, fill } = props;
+  const { cx, cy, fill, payload } = props;
   if (cx === undefined || cy === undefined) return null;
-  return <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />;
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />
+      {payload?.labeled && (
+        <text x={cx + 10} y={cy + 4} fontSize={11} fontWeight={600} fill="#14171A" style={{ pointerEvents: "none" }}>
+          {payload.player_name}
+        </text>
+      )}
+    </g>
+  );
 }
 
 function ScatterTooltip({ active, payload }) {
@@ -56,6 +74,20 @@ function BarTooltip({ active, payload }) {
   );
 }
 
+function sanitizeFilename(s) {
+  return String(s).replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
 async function downloadChartAsImage(containerEl, filename) {
   if (!containerEl) return;
   const svgEl = containerEl.querySelector("svg");
@@ -64,7 +96,7 @@ async function downloadChartAsImage(containerEl, filename) {
   const rect = svgEl.getBoundingClientRect();
   const width = Math.round(rect.width);
   const height = Math.round(rect.height);
-  const footer = 34;
+  const footer = 40;
 
   const clonedSvg = svgEl.cloneNode(true);
   clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -78,10 +110,14 @@ async function downloadChartAsImage(containerEl, filename) {
 
   const svgString = new XMLSerializer().serializeToString(clonedSvg);
   const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-  const url = URL.createObjectURL(svgBlob);
+  const svgUrl = URL.createObjectURL(svgBlob);
 
-  const img = new Image();
-  img.onload = () => {
+  try {
+    const [chartImg, logoImg] = await Promise.all([
+      loadImage(svgUrl),
+      loadImage("/logo.jpg").catch(() => null),
+    ]);
+
     const scale = 2;
     const canvas = document.createElement("canvas");
     canvas.width = width * scale;
@@ -90,7 +126,7 @@ async function downloadChartAsImage(containerEl, filename) {
     ctx.scale(scale, scale);
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0, 0, width, height + footer);
-    ctx.drawImage(img, 0, 0, width, height);
+    ctx.drawImage(chartImg, 0, 0, width, height);
 
     ctx.strokeStyle = "#E3E8E2";
     ctx.lineWidth = 1;
@@ -99,27 +135,39 @@ async function downloadChartAsImage(containerEl, filename) {
     ctx.lineTo(width, height + 0.5);
     ctx.stroke();
 
-    ctx.fillStyle = "#4CB848";
+    const logoSize = 24;
+    const logoY = height + (footer - logoSize) / 2;
+    let textX = 14;
+    if (logoImg) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(14 + logoSize / 2, logoY + logoSize / 2, logoSize / 2, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(logoImg, 14, logoY, logoSize, logoSize);
+      ctx.restore();
+      textX = 14 + logoSize + 8;
+    }
+
     ctx.font = "700 14px Arial, sans-serif";
     ctx.textBaseline = "middle";
-    ctx.fillText("FM", 14, height + footer / 2);
+    ctx.fillStyle = "#4CB848";
+    ctx.fillText("FM", textX, height + footer / 2);
     const fmWidth = ctx.measureText("FM ").width;
     ctx.fillStyle = "#14171A";
-    ctx.fillText("Scouts.cz", 14 + fmWidth, height + footer / 2);
+    ctx.fillText("Scouts", textX + fmWidth, height + footer / 2);
+    const scoutsWidth = ctx.measureText("Scouts ").width;
+    ctx.fillStyle = "#667066";
+    ctx.fillText("cz", textX + fmWidth + scoutsWidth, height + footer / 2);
 
-    URL.revokeObjectURL(url);
     canvas.toBlob((blob) => {
       const link = document.createElement("a");
       link.download = filename;
       link.href = URL.createObjectURL(blob);
       link.click();
     });
-  };
-  img.src = url;
-}
-
-function sanitizeFilename(s) {
-  return String(s).replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
+  } finally {
+    URL.revokeObjectURL(svgUrl);
+  }
 }
 
 function DownloadButton({ targetRef, filename }) {
@@ -131,7 +179,12 @@ function DownloadButton({ targetRef, filename }) {
 }
 
 function Watermark() {
-  return <div className="chart-watermark">FM <span className="accent">Scouts</span>.cz</div>;
+  return (
+    <div className="chart-watermark">
+      <img src="/logo.jpg" alt="" className="chart-watermark-logo" />
+      FM <span className="accent">Scouts</span> cz
+    </div>
+  );
 }
 
 export default function GrafyView() {
@@ -156,6 +209,7 @@ export default function GrafyView() {
           const o = { _id: i };
           cols.forEach((c, ci) => { o[c] = r[ci]; });
           o.season = o.season === null || o.season === undefined ? "" : String(o.season);
+          o.bucket = positionBucket(o.tm_position || o.position);
           return o;
         });
         setDataset({ columns: cols, rows: objRows });
@@ -218,12 +272,14 @@ function ScatterPanel({ rows, leagues, router }) {
   const chartRef = useRef(null);
 
   function generate() {
-    const xLabel = AXIS_OPTIONS.find(([k]) => k === xStat)?.[1] || xStat;
-    const yLabel = AXIS_OPTIONS.find(([k]) => k === yStat)?.[1] || yStat;
+    const xLabel = axisLabel(xStat);
+    const yLabel = axisLabel(yStat);
+    const gkChart = GK_STAT_KEYS.has(xStat) || GK_STAT_KEYS.has(yStat);
 
-    const points = rows
+    let points = rows
       .filter((r) => !league || r.league_name === league)
       .filter((r) => (r.minutes_played ?? 0) >= Number(minMinutes || 0))
+      .filter((r) => (gkChart ? r.bucket === "GK" : r.bucket !== "GK"))
       .filter((r) => r[xStat] !== null && r[xStat] !== undefined && r[yStat] !== null && r[yStat] !== undefined)
       .map((r) => ({
         ...r,
@@ -232,11 +288,13 @@ function ScatterPanel({ rows, leagues, router }) {
         xLabel, yLabel,
         xDisplay: formatStat(xStat, r[xStat]),
         yDisplay: formatStat(yStat, r[yStat]),
-        bucket: positionBucket(r.tm_position || r.position),
       }))
       .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
 
-    setChart({ points, xLabel, yLabel });
+    const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 10).map((p) => p._id));
+    points = points.map((p) => ({ ...p, labeled: topIds.has(p._id) }));
+
+    setChart({ points, xLabel, yLabel, gkChart });
   }
 
   return (
@@ -286,6 +344,7 @@ function ScatterPanel({ rows, leagues, router }) {
             <span className="chart-toolbar-title">{chart.yLabel} vs. {chart.xLabel}</span>
             <DownloadButton targetRef={chartRef} filename={`fmscouts-${sanitizeFilename(chart.xLabel)}-${sanitizeFilename(chart.yLabel)}.png`} />
           </div>
+          {chart.gkChart && <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>Zobrazeni jsou jen brankáři — zvolená statistika je brankářská.</p>}
           <div className="chart-box" ref={chartRef}>
             <Watermark />
             <ResponsiveContainer width="100%" height={480}>
@@ -320,7 +379,7 @@ function ScatterPanel({ rows, leagues, router }) {
               </div>
             ))}
           </div>
-          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu. Klikni na bod pro otevření profilu hráče.</p>
+          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu, jména popsána u 10 s nejvyšší hodnotou na ose Y. Klikni na bod pro otevření profilu hráče.</p>
         </>
       )}
     </div>
@@ -337,10 +396,13 @@ function TopPanel({ rows, leagues, router }) {
   const chartRef = useRef(null);
 
   function generate() {
-    const statLabel = AXIS_OPTIONS.find(([k]) => k === stat)?.[1] || stat;
+    const statLabel = axisLabel(stat);
+    const gkChart = GK_STAT_KEYS.has(stat);
+
     let list = rows
       .filter((r) => !league || r.league_name === league)
       .filter((r) => (r.minutes_played ?? 0) >= Number(minMinutes || 0))
+      .filter((r) => (gkChart ? r.bucket === "GK" : r.bucket !== "GK"))
       .filter((r) => r[stat] !== null && r[stat] !== undefined && !Number.isNaN(Number(r[stat])));
 
     list = [...list].sort((a, b) => dir === "desc" ? b[stat] - a[stat] : a[stat] - b[stat]);
@@ -352,7 +414,7 @@ function TopPanel({ rows, leagues, router }) {
       label: r.player_name,
     }));
 
-    setChart({ list, statLabel });
+    setChart({ list, statLabel, gkChart });
   }
 
   const rowHeight = 34;
@@ -410,6 +472,7 @@ function TopPanel({ rows, leagues, router }) {
             <span className="chart-toolbar-title">Top {chart.list.length} — {chart.statLabel}</span>
             <DownloadButton targetRef={chartRef} filename={`fmscouts-top-${sanitizeFilename(chart.statLabel)}.png`} />
           </div>
+          {chart.gkChart && <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>Zobrazeni jsou jen brankáři — zvolená statistika je brankářská.</p>}
           <div className="chart-box" ref={chartRef}>
             <Watermark />
             <ResponsiveContainer width="100%" height={Math.max(220, chart.list.length * rowHeight + 40)}>
