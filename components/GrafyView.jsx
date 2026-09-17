@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  BarChart, Bar, Cell,
+  BarChart, Bar, Cell, LabelList,
 } from "recharts";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../lib/statMeta";
 
@@ -104,7 +104,7 @@ function loadImage(src) {
   });
 }
 
-async function downloadChartAsImage(containerEl, filename) {
+async function downloadChartAsImage(containerEl, filename, title, subtitle) {
   if (!containerEl) return;
   const svgEl = containerEl.querySelector("svg");
   if (!svgEl) return;
@@ -112,6 +112,7 @@ async function downloadChartAsImage(containerEl, filename) {
   const rect = svgEl.getBoundingClientRect();
   const width = Math.round(rect.width);
   const height = Math.round(rect.height);
+  const header = title ? 58 : 0;
   const footer = 40;
 
   const clonedSvg = svgEl.cloneNode(true);
@@ -137,22 +138,41 @@ async function downloadChartAsImage(containerEl, filename) {
     const scale = 2;
     const canvas = document.createElement("canvas");
     canvas.width = width * scale;
-    canvas.height = (height + footer) * scale;
+    canvas.height = (header + height + footer) * scale;
     const ctx = canvas.getContext("2d");
     ctx.scale(scale, scale);
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0, 0, width, height + footer);
-    ctx.drawImage(chartImg, 0, 0, width, height);
+    ctx.fillRect(0, 0, width, header + height + footer);
+
+    if (title) {
+      ctx.textBaseline = "alphabetic";
+      ctx.fillStyle = "#14171A";
+      ctx.font = "700 17px Arial, sans-serif";
+      ctx.fillText(title, 18, 28);
+      if (subtitle) {
+        ctx.fillStyle = "#667066";
+        ctx.font = "400 13px Arial, sans-serif";
+        ctx.fillText(subtitle, 18, 47);
+      }
+      ctx.strokeStyle = "#E3E8E2";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, header - 0.5);
+      ctx.lineTo(width, header - 0.5);
+      ctx.stroke();
+    }
+
+    ctx.drawImage(chartImg, 0, header, width, height);
 
     ctx.strokeStyle = "#E3E8E2";
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(0, height + 0.5);
-    ctx.lineTo(width, height + 0.5);
+    ctx.moveTo(0, header + height + 0.5);
+    ctx.lineTo(width, header + height + 0.5);
     ctx.stroke();
 
     const logoSize = 24;
-    const logoY = height + (footer - logoSize) / 2;
+    const logoY = header + height + (footer - logoSize) / 2;
     let textX = 14;
     if (logoImg) {
       ctx.save();
@@ -167,13 +187,13 @@ async function downloadChartAsImage(containerEl, filename) {
     ctx.font = "700 14px Arial, sans-serif";
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#4CB848";
-    ctx.fillText("FM", textX, height + footer / 2);
+    ctx.fillText("FM", textX, header + height + footer / 2);
     const fmWidth = ctx.measureText("FM ").width;
     ctx.fillStyle = "#14171A";
-    ctx.fillText("Scouts", textX + fmWidth, height + footer / 2);
+    ctx.fillText("Scouts", textX + fmWidth, header + height + footer / 2);
     const scoutsWidth = ctx.measureText("Scouts ").width;
     ctx.fillStyle = "#667066";
-    ctx.fillText("cz", textX + fmWidth + scoutsWidth, height + footer / 2);
+    ctx.fillText("cz", textX + fmWidth + scoutsWidth, header + height + footer / 2);
 
     canvas.toBlob((blob) => {
       const link = document.createElement("a");
@@ -186,9 +206,9 @@ async function downloadChartAsImage(containerEl, filename) {
   }
 }
 
-function DownloadButton({ targetRef, filename }) {
+function DownloadButton({ targetRef, filename, title, subtitle }) {
   return (
-    <button className="btn chart-download-btn" onClick={() => downloadChartAsImage(targetRef.current, filename)}>
+    <button className="btn chart-download-btn" onClick={() => downloadChartAsImage(targetRef.current, filename, title, subtitle)}>
       ⬇ Stáhnout graf
     </button>
   );
@@ -365,7 +385,12 @@ function ScatterPanel({ rows, leagues, router }) {
         <>
           <div className="chart-toolbar">
             <span className="chart-toolbar-title">{chart.yLabel} vs. {chart.xLabel}</span>
-            <DownloadButton targetRef={chartRef} filename={`fmscouts-${sanitizeFilename(chart.xLabel)}-${sanitizeFilename(chart.yLabel)}.png`} />
+            <DownloadButton
+              targetRef={chartRef}
+              filename={`fmscouts-${sanitizeFilename(chart.xLabel)}-${sanitizeFilename(chart.yLabel)}.png`}
+              title={`${chart.yLabel} vs. ${chart.xLabel}`}
+              subtitle={`${league || "Všechny ligy"} · min. ${minMinutes || 0} minut`}
+            />
           </div>
           {chart.gkChart && <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>Zobrazeni jsou jen brankáři — zvolená statistika je brankářská.</p>}
           <div className="chart-box" ref={chartRef}>
@@ -493,18 +518,25 @@ function TopPanel({ rows, leagues, router }) {
         <>
           <div className="chart-toolbar">
             <span className="chart-toolbar-title">Top {chart.list.length} — {chart.statLabel}</span>
-            <DownloadButton targetRef={chartRef} filename={`fmscouts-top-${sanitizeFilename(chart.statLabel)}.png`} />
+            <DownloadButton
+              targetRef={chartRef}
+              filename={`fmscouts-top-${sanitizeFilename(chart.statLabel)}.png`}
+              title={`Top ${chart.list.length} — ${chart.statLabel}`}
+              subtitle={`${league || "Všechny ligy"} · min. ${minMinutes || 0} minut`}
+            />
           </div>
           {chart.gkChart && <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>Zobrazeni jsou jen brankáři — zvolená statistika je brankářská.</p>}
           <div className="chart-box" ref={chartRef}>
             <Watermark />
             <ResponsiveContainer width="100%" height={Math.max(220, chart.list.length * rowHeight + 40)}>
-              <BarChart data={chart.list} layout="vertical" margin={{ top: 10, right: 30, bottom: 10, left: 10 }}>
+              <BarChart data={chart.list} layout="vertical" margin={{ top: 10, right: 56, bottom: 10, left: 10 }}>
                 <CartesianGrid stroke="#E3E8E2" strokeDasharray="3 3" horizontal={false} />
                 <XAxis type="number" tick={{ fontSize: 12, fill: "#667066" }} axisLine={{ stroke: "#D8DED7" }} tickLine={false} />
                 <YAxis type="category" dataKey="label" width={150} tick={{ fontSize: 12.5, fill: "#14171A" }} axisLine={{ stroke: "#D8DED7" }} tickLine={false} interval={0} />
                 <Tooltip content={<BarTooltip />} cursor={{ fill: "rgba(76,184,72,0.08)" }} />
-                <Bar dataKey="value" fill="#4CB848" radius={[0, 6, 6, 0]} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer" />
+                <Bar dataKey="value" fill="#4CB848" radius={[0, 6, 6, 0]} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer">
+                  <LabelList dataKey="display" position="right" style={{ fontSize: 12, fontWeight: 700, fill: "#14171A" }} />
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
