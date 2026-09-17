@@ -351,7 +351,7 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 .profile-meta-line { display: flex; align-items: center; color: var(--ink-dim); font-size: 15px; margin-bottom: 5px; }
 .profile-header .club-logo-mini,
 .profile-header .league-logo-mini { width: 24px; height: 24px; }
-.profile-position-badge { font-size: 13px; padding: 4px 13px; margin-bottom: 8px; }
+.profile-position-badge { font-size: 13px; padding: 5px 14px; gap: 7px; margin-bottom: 8px; }
 
 .profile-highlights {
   display: grid;
