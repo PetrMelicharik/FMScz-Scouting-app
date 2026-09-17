@@ -37,16 +37,32 @@ function axisLabel(key) {
 function ScatterDot(props) {
   const { cx, cy, fill, payload } = props;
   if (cx === undefined || cy === undefined) return null;
+  const left = payload?.labelSide === "left";
   return (
     <g>
       <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />
       {payload?.labeled && (
-        <text x={cx + 10} y={cy + 4} fontSize={11} fontWeight={600} fill="#14171A" style={{ pointerEvents: "none" }}>
+        <text
+          x={left ? cx - 10 : cx + 10} y={cy + 4}
+          textAnchor={left ? "end" : "start"}
+          fontSize={11} fontWeight={600} fill="#14171A" style={{ pointerEvents: "none" }}
+        >
           {payload.player_name}
         </text>
       )}
     </g>
   );
+}
+
+function computeDomain(values) {
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  if (min === max) {
+    const pad = Math.max(Math.abs(min) * 0.1, 1);
+    return [min - pad, max + pad];
+  }
+  const pad = (max - min) * 0.08;
+  return [min - pad, max + pad];
 }
 
 function ScatterTooltip({ active, payload }) {
@@ -292,9 +308,16 @@ function ScatterPanel({ rows, leagues, router }) {
       .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
 
     const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 10).map((p) => p._id));
-    points = points.map((p) => ({ ...p, labeled: topIds.has(p._id) }));
+    const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
+    const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
+    const xSpan = xDomain[1] - xDomain[0];
+    points = points.map((p) => ({
+      ...p,
+      labeled: topIds.has(p._id),
+      labelSide: (p.x - xDomain[0]) / xSpan > 0.82 ? "left" : "right",
+    }));
 
-    setChart({ points, xLabel, yLabel, gkChart });
+    setChart({ points, xLabel, yLabel, gkChart, xDomain, yDomain });
   }
 
   return (
@@ -348,16 +371,16 @@ function ScatterPanel({ rows, leagues, router }) {
           <div className="chart-box" ref={chartRef}>
             <Watermark />
             <ResponsiveContainer width="100%" height={480}>
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+              <ScatterChart margin={{ top: 20, right: 70, bottom: 20, left: 10 }}>
                 <CartesianGrid stroke="#E3E8E2" strokeDasharray="3 3" />
                 <XAxis
-                  type="number" dataKey="x" name={chart.xLabel}
+                  type="number" dataKey="x" name={chart.xLabel} domain={chart.xDomain}
                   tick={{ fontSize: 12, fill: "#667066" }}
                   axisLine={{ stroke: "#D8DED7" }} tickLine={false}
                   label={{ value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
                 />
                 <YAxis
-                  type="number" dataKey="y" name={chart.yLabel}
+                  type="number" dataKey="y" name={chart.yLabel} domain={chart.yDomain}
                   tick={{ fontSize: 12, fill: "#667066" }}
                   axisLine={{ stroke: "#D8DED7" }} tickLine={false}
                   label={{ value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
