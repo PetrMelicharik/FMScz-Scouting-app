@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Avatar from "../../../components/Avatar";
+import PitchIcon from "../../../components/PitchIcon";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { flagUrl } from "../../../lib/countryFlags";
 import { loadPlayerById } from "../../../lib/playersData";
@@ -20,7 +21,10 @@ export default function PlayerPage({ params }) {
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
           {(p.tm_position || p.position) && (
-            <div className="player-badge profile-position-badge">{p.tm_position || p.position}</div>
+            <div className="player-badge profile-position-badge">
+              <PitchIcon size={12} />
+              {p.tm_position || p.position}
+            </div>
           )}
           <div className="profile-meta-line">
             {p.club_logo_url && <img src={p.club_logo_url} alt="" className="club-logo-mini" />}
