@@ -21,8 +21,8 @@ export default function PlayerPage({ params }) {
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
           {(p.tm_position || p.position) && (
-            <div className="player-badge profile-position-badge">
-              <PitchIcon size={16} />
+            <div className="profile-meta-line">
+              <PitchIcon className="position-icon-mini" />
               {p.tm_position || p.position}
             </div>
           )}
