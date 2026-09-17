@@ -22,7 +22,7 @@ export default function PlayerPage({ params }) {
           <h1 className="profile-name">{p.player_name}</h1>
           {(p.tm_position || p.position) && (
             <div className="player-badge profile-position-badge">
-              <PitchIcon size={12} />
+              <PitchIcon size={16} />
               {p.tm_position || p.position}
             </div>
           )}
