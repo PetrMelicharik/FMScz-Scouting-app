@@ -142,7 +142,7 @@
     "tmUrl": "https://www.transfermarkt.com/angelo-gattermayer/profil/spieler/523870"
   },
   "anilson dourado santiado::austria lustenau": {
-    "lastUpdated": "2026-09-18T13:36:52.498400",
+    "lastUpdated": "2026-09-19T10:38:39.504073",
     "error": "not found"
   },
   "ante bajic::ried": {
@@ -422,8 +422,10 @@
     "tmUrl": "https://www.transfermarkt.com/david-kubatta/profil/spieler/696142"
   },
   "david duric::wolfsberger": {
-    "lastUpdated": "2026-09-18T13:37:20.955609",
-    "error": "not found"
+    "marketValue": "€200k",
+    "position": "Left-Back",
+    "lastUpdated": "2026-09-19T10:38:51.777799",
+    "tmUrl": "https://www.transfermarkt.com/david-djuric/profil/spieler/848656"
   },
   "dejan radonjic::ried": {
     "lastUpdated": "2026-09-16T18:23:38.484596",
@@ -2440,8 +2442,11 @@
     "tmUrl": "https://www.transfermarkt.com/dario-kreiker/profil/spieler/602391"
   },
   "daris dezic::rapid wien ii": {
-    "lastUpdated": "2026-09-18T13:37:40.636998",
-    "error": "not found"
+    "marketValue": "€175k",
+    "position": "Left Winger",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T10:39:10.401085",
+    "tmUrl": "https://www.transfermarkt.com/daris-djezic/profil/spieler/905428"
   },
   "david berger::rapid wien ii": {
     "marketValue": "€150k",
@@ -4841,8 +4846,11 @@
     "tmUrl": "https://www.transfermarkt.com/vinicius-junior/profil/spieler/371998"
   },
   "erik ridan::borac banja luka": {
-    "lastUpdated": "2026-09-18T13:38:12.236421",
-    "error": "not found"
+    "marketValue": "€100k",
+    "position": "Left-Back",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-19T10:39:26.652979",
+    "tmUrl": "https://www.transfermarkt.com/erik-ridjan/profil/spieler/1024189"
   },
   "eugen ciban::siroki brijeg": {
     "position": "Goalkeeper",
@@ -5112,8 +5120,10 @@
     "tmUrl": "https://www.transfermarkt.com/jovan-ivanisevic/profil/spieler/1132953"
   },
   "jovan dalovic::sloga doboj": {
-    "lastUpdated": "2026-09-18T13:38:32.951313",
-    "error": "not found"
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T10:39:40.642207",
+    "tmUrl": "https://www.transfermarkt.com/jovan-djalovic/profil/spieler/1169102"
   },
   "juraj ljubic::bsk banja luka": {
     "marketValue": "€25k",
@@ -5151,8 +5161,11 @@
     "tmUrl": "https://www.transfermarkt.com/kenan-horic/profil/spieler/123750"
   },
   "kenan duliman::velez": {
-    "lastUpdated": "2026-09-18T13:38:54.120410",
-    "error": "not found"
+    "marketValue": "€50k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T10:39:52.124646",
+    "tmUrl": "https://www.transfermarkt.com/kenan-djuliman/profil/spieler/912083"
   },
   "kristijan sesar::siroki brijeg": {
     "marketValue": "€250k",
@@ -5532,8 +5545,11 @@
     "tmUrl": "https://www.transfermarkt.com/nemanja-tomasevic/profil/spieler/376455"
   },
   "neven durasek::zrinjski": {
-    "lastUpdated": "2026-09-18T13:39:19.195808",
-    "error": "not found"
+    "marketValue": "€350k",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T10:40:06.789745",
+    "tmUrl": "https://www.transfermarkt.com/neven-djurasek/profil/spieler/341424"
   },
   "niko gajzler::zrinjski": {
     "marketValue": "€600k",
@@ -5633,8 +5649,11 @@
     "tmUrl": "https://www.transfermarkt.com/patrik-klancir/profil/spieler/949842"
   },
   "pavle dajic::borac banja luka": {
-    "lastUpdated": "2026-09-18T13:39:39.841948",
-    "error": "not found"
+    "marketValue": "€200k",
+    "position": "Right Winger",
+    "contractUntil": "05/01/2027",
+    "lastUpdated": "2026-09-19T10:40:21.795180",
+    "tmUrl": "https://www.transfermarkt.com/pavle-djajic/profil/spieler/933832"
   },
   "pedro torres valero::radnik bijeljina": {
     "marketValue": "€100k",
@@ -7304,7 +7323,7 @@
     "tmUrl": "https://www.transfermarkt.com/kostadin-iliev/profil/spieler/797950"
   },
   "krasimir mloshev::lokomotiv sofia 1929": {
-    "lastUpdated": "2026-09-18T13:40:05.288648",
+    "lastUpdated": "2026-09-19T10:40:43.616593",
     "error": "not found"
   },
   "krasimir stanoev::lokomotiv sofia 1929": {
@@ -8159,7 +8178,7 @@
     "tmUrl": "https://www.transfermarkt.com/teodor-ivanov/profil/spieler/927269"
   },
   "timothy dennis awanyi::botev plovdiv": {
-    "lastUpdated": "2026-09-18T13:40:40.915297",
+    "lastUpdated": "2026-09-19T10:41:15.608369",
     "error": "not found"
   },
   "todor vasilev pavlov::lokomotiv plovdiv": {
@@ -9229,8 +9248,11 @@
     "tmUrl": "https://www.transfermarkt.com/ivan-zutic/profil/spieler/921806"
   },
   "ivan doric::rudes": {
-    "lastUpdated": "2026-09-18T13:41:05.448296",
-    "error": "not found"
+    "marketValue": "€175k",
+    "position": "Defensive Midfield",
+    "contractUntil": "26/06/2026",
+    "lastUpdated": "2026-09-19T10:41:32.541799",
+    "tmUrl": "https://www.transfermarkt.com/ivan-djoric/profil/spieler/380097"
   },
   "ivano kolarik::osijek": {
     "marketValue": "€300k",
@@ -9978,8 +10000,11 @@
     "tmUrl": "https://www.transfermarkt.com/noel-bodetic/profil/spieler/927834"
   },
   "noel durkovic::lokomotiva zagreb": {
-    "lastUpdated": "2026-09-18T13:41:26.385365",
-    "error": "not found"
+    "marketValue": "€300k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-19T10:41:47.524626",
+    "tmUrl": "https://www.transfermarkt.com/noel-djurkovic/profil/spieler/1267443"
   },
   "novak tepsic::varazdin": {
     "marketValue": "€350k",
@@ -10093,7 +10118,7 @@
     "tmUrl": "https://www.transfermarkt.com/roberto-puncec/profil/spieler/92120"
   },
   "rokas puku0161tas::hajduk split": {
-    "lastUpdated": "2026-09-18T13:41:51.477917",
+    "lastUpdated": "2026-09-19T10:42:11.320326",
     "error": "not found"
   },
   "roko gabric::hajduk split": {
@@ -11031,7 +11056,7 @@
     "tmUrl": "https://www.transfermarkt.com/dominik-javorcek/profil/spieler/610608"
   },
   "dominik kudelcik::slovan liberec": {
-    "lastUpdated": "2026-09-18T13:43:03.408770",
+    "lastUpdated": "2026-09-19T10:42:59.462218",
     "error": "not found"
   },
   "dominik mares::mlada boleslav": {
@@ -11502,7 +11527,7 @@
     "tmUrl": "https://www.transfermarkt.com/jan-hanus/profil/spieler/120030"
   },
   "jan harust ak::mlada boleslav": {
-    "lastUpdated": "2026-09-18T13:43:25.385026",
+    "lastUpdated": "2026-09-19T10:43:25.375161",
     "error": "not found"
   },
   "jan kliment::sigma olomouc": {
@@ -12088,7 +12113,7 @@
     "tmUrl": "https://www.transfermarkt.com/martin-reilly/profil/spieler/640272"
   },
   "martin rymarkeno::zbrojovka brno": {
-    "lastUpdated": "2026-09-18T13:43:47.748087",
+    "lastUpdated": "2026-09-19T10:43:48.523302",
     "error": "not found"
   },
   "martin subert::mlada boleslav": {
@@ -14079,7 +14104,7 @@
     "tmUrl": "https://www.transfermarkt.com/filip-zapotocny/profil/spieler/1261831"
   },
   "franck idumbo muzambo::usti nad labem": {
-    "lastUpdated": "2026-09-18T13:44:10.212625",
+    "lastUpdated": "2026-09-19T10:44:10.582218",
     "error": "not found"
   },
   "frantisek herak::slavia praha u21": {
@@ -16368,8 +16393,11 @@
     "tmUrl": "https://www.transfermarkt.com/frederik-emmery/profil/spieler/1004062"
   },
   "frederik gytkjaer::lyngby": {
-    "lastUpdated": "2026-09-18T13:44:38.034492",
-    "error": "not found"
+    "marketValue": "€200k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T10:44:28.659990",
+    "tmUrl": "https://www.transfermarkt.com/frederik-gytkjaer/profil/spieler/72402"
   },
   "frederik lauenborg::randers": {
     "marketValue": "€200k",
@@ -16483,7 +16511,7 @@
     "tmUrl": "https://www.transfermarkt.com/hjalte-boe-rasmussen/profil/spieler/1051640"
   },
   "hunor vajk nemeth::kobenhavn": {
-    "lastUpdated": "2026-09-18T13:45:17.140810",
+    "lastUpdated": "2026-09-19T10:45:07.167200",
     "error": "not found"
   },
   "hyeon seok hong::midtjylland": {
@@ -16538,8 +16566,11 @@
     "tmUrl": "https://www.transfermarkt.com/jacob-andersen/profil/spieler/234206"
   },
   "jacob brochner ambaek::brondby": {
-    "lastUpdated": "2026-09-18T13:46:02.948153",
-    "error": "not found"
+    "marketValue": "€4.00m",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2031",
+    "lastUpdated": "2026-09-19T10:45:29.036053",
+    "tmUrl": "https://www.transfermarkt.com/jacob-ambaek/profil/spieler/1030382"
   },
   "jacob christensen::sonderjyske": {
     "marketValue": "€700k",
@@ -16671,8 +16702,11 @@
     "tmUrl": "https://www.transfermarkt.com/jonas-jensen-abbew/profil/spieler/658530"
   },
   "jonathan risbjerg aegidius::lyngby": {
-    "lastUpdated": "2026-09-18T13:46:35.397263",
-    "error": "not found"
+    "marketValue": "€600k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-19T10:45:53.195331",
+    "tmUrl": "https://www.transfermarkt.com/jonathan-aegidius/profil/spieler/564530"
   },
   "jordan larsson::kobenhavn": {
     "marketValue": "€3.50m",
@@ -16772,7 +16806,7 @@
     "tmUrl": "https://www.transfermarkt.com/kasper-junker/profil/spieler/264576"
   },
   "kelvin ehibhaimha::horsens": {
-    "lastUpdated": "2026-09-18T13:46:56.896800",
+    "lastUpdated": "2026-09-19T10:46:17.227210",
     "error": "not found"
   },
   "kenay myrie reyes::kobenhavn": {
@@ -16925,8 +16959,11 @@
     "tmUrl": "https://www.transfermarkt.com/mads-emil-madsen/profil/spieler/422950"
   },
   "mads frokjaer jensen::brondby": {
-    "lastUpdated": "2026-09-18T13:47:16.844703",
-    "error": "not found"
+    "marketValue": "€2.50m",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-19T10:46:34.596704",
+    "tmUrl": "https://www.transfermarkt.com/mads-frokjaer/profil/spieler/533632"
   },
   "mads larsen::silkeborg": {
     "marketValue": "€1.50m",
@@ -17733,8 +17770,11 @@
     "tmUrl": "https://www.transfermarkt.com/simon-stuker/profil/spieler/1042875"
   },
   "simon sylvest waever::sonderjyske": {
-    "lastUpdated": "2026-09-18T13:47:45.466427",
-    "error": "not found"
+    "marketValue": "€100k",
+    "position": "Right-Back",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-19T10:46:54.302099",
+    "tmUrl": "https://www.transfermarkt.com/simon-waever/profil/spieler/405072"
   },
   "sofus berger brix::silkeborg": {
     "marketValue": "€500k",
@@ -17837,7 +17877,7 @@
     "tmUrl": "https://www.transfermarkt.com/tobias-henriksen-sporaland/profil/spieler/1279701"
   },
   "tobias sahlquist::nordsjaelland": {
-    "lastUpdated": "2026-09-18T13:48:05.394617",
+    "lastUpdated": "2026-09-19T10:47:15.252988",
     "error": "not found"
   },
   "tomas oli kristjansson::agf": {
@@ -17918,8 +17958,10 @@
     "tmUrl": "https://www.transfermarkt.com/viljar-myhra/profil/spieler/291254"
   },
   "villads rutkjaer::nordsjaelland": {
-    "lastUpdated": "2026-09-18T13:48:32.236207",
-    "error": "not found"
+    "marketValue": "€25k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-19T10:47:31.645160",
+    "tmUrl": "https://www.transfermarkt.com/villads-rutkjaer/profil/spieler/1176783"
   },
   "villads westh::silkeborg": {
     "marketValue": "€700k",
@@ -18311,7 +18353,7 @@
     "tmUrl": "https://www.transfermarkt.com/bertram-skovgaard/profil/spieler/1026790"
   },
   "berzan kucukylidiz::hillerod": {
-    "lastUpdated": "2026-09-18T13:48:56.981213",
+    "lastUpdated": "2026-09-19T10:47:50.619086",
     "error": "not found"
   },
   "bilal konteh krubally::vendsyssel": {
@@ -19426,8 +19468,10 @@
     "tmUrl": "https://www.transfermarkt.com/oliver-juul/profil/spieler/555346"
   },
   "oliver kjaergaard::hvidovre": {
-    "lastUpdated": "2026-09-18T13:49:25.046794",
-    "error": "not found"
+    "marketValue": "€450k",
+    "position": "Left Winger",
+    "lastUpdated": "2026-09-19T10:48:10.049537",
+    "tmUrl": "https://www.transfermarkt.com/oliver-kjaergaard/profil/spieler/387742"
   },
   "oliver klitten::hobro": {
     "marketValue": "€750k",
@@ -19555,8 +19599,10 @@
     "tmUrl": "https://www.transfermarkt.com/rezan-corlu/profil/spieler/283193"
   },
   "roberto escribano risnaes::hvidovre": {
-    "lastUpdated": "2026-09-18T13:51:29.366285",
-    "error": "not found"
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-19T10:48:32.372430",
+    "tmUrl": "https://www.transfermarkt.com/roberto-risnaes/profil/spieler/1042880"
   },
   "rody de boer::aab": {
     "marketValue": "€150k",
@@ -19621,7 +19667,7 @@
     "tmUrl": "https://www.transfermarkt.com/silas-hald/profil/spieler/905202"
   },
   "simon baekgard::aarhus fremad": {
-    "lastUpdated": "2026-09-18T13:51:48.620797",
+    "lastUpdated": "2026-09-19T10:50:27.728480",
     "error": "not found"
   },
   "solomon opoku::hillerod": {
@@ -24414,8 +24460,11 @@
     "tmUrl": "https://www.transfermarkt.com/aleksandar-cirkovic/profil/spieler/452218"
   },
   "aleksandar dermanovic::wieczysta krakow": {
-    "lastUpdated": "2026-09-18T13:52:13.930120",
-    "error": "not found"
+    "marketValue": "€500k",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-19T10:50:42.827832",
+    "tmUrl": "https://www.transfermarkt.com/aleksandar-djermanovic/profil/spieler/831597"
   },
   "alessandro pio riccio::pogon szczecin": {
     "marketValue": "€350k",
@@ -25114,7 +25163,7 @@
     "tmUrl": "https://www.transfermarkt.com/eniss-shabani/profil/spieler/663189"
   },
   "erick ouma otieno marcelo::rakow czestochowa": {
-    "lastUpdated": "2026-09-18T13:52:38.055540",
+    "lastUpdated": "2026-09-19T10:51:10.900353",
     "error": "not found"
   },
   "erik janza::gornik zabrze": {
@@ -25662,7 +25711,7 @@
     "tmUrl": "https://www.transfermarkt.com/jean-pierre-nsame/profil/spieler/225055"
   },
   "jehor macenko::slask wroclaw": {
-    "lastUpdated": "2026-09-18T13:53:01.724165",
+    "lastUpdated": "2026-09-19T10:51:32.765940",
     "error": "not found"
   },
   "jeremy bruno guillemenot::wisla krakow": {
@@ -28347,7 +28396,7 @@
     "tmUrl": "https://www.transfermarkt.com/dominik-kun/profil/spieler/201193"
   },
   "dominik paniek::nieciecza": {
-    "lastUpdated": "2026-09-18T13:53:26.353664",
+    "lastUpdated": "2026-09-19T10:51:52.728816",
     "error": "not found"
   },
   "dominik sokol::lks lodz": {
@@ -29855,7 +29904,7 @@
     "tmUrl": "https://www.transfermarkt.com/natan-dziegielewski/profil/spieler/864041"
   },
   "natan niedzdz::stal mielec": {
-    "lastUpdated": "2026-09-18T13:53:50.106467",
+    "lastUpdated": "2026-09-19T10:52:15.187598",
     "error": "not found"
   },
   "nemanja mijuskovic::odra opole": {
@@ -30487,7 +30536,7 @@
     "tmUrl": "https://www.transfermarkt.com/yegor-sharabura/profil/spieler/1065461"
   },
   "yevgeny schikavko::podbeskidzie": {
-    "lastUpdated": "2026-09-18T13:54:16.130535",
+    "lastUpdated": "2026-09-19T10:52:40.517307",
     "error": "not found"
   },
   "yevhen opanasenko::nieciecza": {
@@ -32268,7 +32317,7 @@
     "tmUrl": "https://www.transfermarkt.com/pal-dardai/profil/spieler/336"
   },
   "patrick lyinbor::vasas": {
-    "lastUpdated": "2026-09-18T13:54:35.346692",
+    "lastUpdated": "2026-09-19T10:53:01.575588",
     "error": "not found"
   },
   "patrik demjen::mtk": {
@@ -32581,8 +32630,11 @@
     "tmUrl": "https://www.transfermarkt.com/viktor-petrok/profil/spieler/74333"
   },
   "viktor dukanovic::eto": {
-    "lastUpdated": "2026-09-18T13:54:55.698652",
-    "error": "not found"
+    "marketValue": "€2.30m",
+    "position": "Left Winger",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T10:53:13.343895",
+    "tmUrl": "https://www.transfermarkt.com/viktor-djukanovic/profil/spieler/760493"
   },
   "vilius armalas::mtk": {
     "marketValue": "€600k",
@@ -32896,7 +32948,7 @@
     "tmUrl": "https://www.transfermarkt.com/andris-deklavs/profil/spieler/905798"
   },
   "anthony contreas::riga": {
-    "lastUpdated": "2026-09-18T13:55:15.373328",
+    "lastUpdated": "2026-09-19T10:53:35.482945",
     "error": "not found"
   },
   "anton baidal::grobina": {
@@ -34251,7 +34303,7 @@
     "tmUrl": "https://www.transfermarkt.com/roberts-aditajs/profil/spieler/905654"
   },
   "roberts bocs::auda": {
-    "lastUpdated": "2026-09-18T13:55:55.996385",
+    "lastUpdated": "2026-09-19T10:54:16.231990",
     "error": "not found"
   },
   "roberts melkis::fs jelgava": {
@@ -34576,8 +34628,11 @@
     "tmUrl": "https://www.transfermarkt.com/adrian-pereira/profil/spieler/507310"
   },
   "adrian saether::kristiansund": {
-    "lastUpdated": "2026-09-18T13:56:23.437441",
-    "error": "not found"
+    "marketValue": "€700k",
+    "position": "Goalkeeper",
+    "contractUntil": "31/12/2029",
+    "lastUpdated": "2026-09-19T10:54:31.943277",
+    "tmUrl": "https://www.transfermarkt.com/adrian-saether/profil/spieler/946000"
   },
   "aimar sher::sarpsborg 08": {
     "marketValue": "€1.50m",
@@ -34685,8 +34740,11 @@
     "tmUrl": "https://www.transfermarkt.com/amin-nouri/profil/spieler/89647"
   },
   "anders bloch baertelsen::viking": {
-    "lastUpdated": "2026-09-18T13:56:57.001936",
-    "error": "not found"
+    "marketValue": "€700k",
+    "position": "Centre-Back",
+    "contractUntil": "31/12/2028",
+    "lastUpdated": "2026-09-19T10:54:46.471538",
+    "tmUrl": "https://www.transfermarkt.com/anders-baertelsen/profil/spieler/422947"
   },
   "anders hiim::sarpsborg 08": {
     "marketValue": "€900k",
@@ -35717,7 +35775,7 @@
     "tmUrl": "https://www.transfermarkt.com/hrannar-snaer-magnusson/profil/spieler/1013231"
   },
   "hu00e5kon ru00f8sten::kfum": {
-    "lastUpdated": "2026-09-18T13:57:18.088334",
+    "lastUpdated": "2026-09-19T10:55:11.063868",
     "error": "not found"
   },
   "ian hoffmann::hamkam": {
@@ -36148,8 +36206,11 @@
     "tmUrl": "https://www.transfermarkt.com/julian-gonstad/profil/spieler/923530"
   },
   "julian laegreid::brann": {
-    "lastUpdated": "2026-09-18T13:57:42.482775",
-    "error": "not found"
+    "marketValue": "€800k",
+    "position": "Left Winger",
+    "contractUntil": "31/12/2030",
+    "lastUpdated": "2026-09-19T10:55:26.620992",
+    "tmUrl": "https://www.transfermarkt.com/julian-laegreid/profil/spieler/1069171"
   },
   "julius mar juliusson::kristiansund": {
     "marketValue": "€600k",
@@ -36232,7 +36293,7 @@
     "tmUrl": "https://www.transfermarkt.com/kristian-eriksen/profil/spieler/321644"
   },
   "kristian hemmingsen lonnebu::molde": {
-    "lastUpdated": "2026-09-18T13:58:15.139163",
+    "lastUpdated": "2026-09-19T10:55:53.618014",
     "error": "not found"
   },
   "kristoffer askildsen::viking": {
@@ -36468,8 +36529,11 @@
     "tmUrl": "https://www.transfermarkt.com/magnus-westergaard/profil/spieler/542842"
   },
   "magnus riisnaes::bodo glimt": {
-    "lastUpdated": "2026-09-18T13:58:55.640092",
-    "error": "not found"
+    "marketValue": "€2.00m",
+    "position": "Central Midfield",
+    "contractUntil": "31/07/2029",
+    "lastUpdated": "2026-09-19T10:56:07.677782",
+    "tmUrl": "https://www.transfermarkt.com/magnus-riisnaes/profil/spieler/715508"
   },
   "magnus smelhus sjoeng::valerenga": {
     "marketValue": "€400k",
@@ -36560,8 +36624,11 @@
     "tmUrl": "https://www.transfermarkt.com/mark-mampassi/profil/spieler/712857"
   },
   "markus edner waehler::lillestrom": {
-    "lastUpdated": "2026-09-18T13:59:26.171930",
-    "error": "not found"
+    "marketValue": "€150k",
+    "position": "Centre-Forward",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T10:56:24.887964",
+    "tmUrl": "https://www.transfermarkt.com/markus-waehler/profil/spieler/1253577"
   },
   "markus haaland::brann": {
     "marketValue": "€900k",
@@ -36701,8 +36768,11 @@
     "tmUrl": "https://www.transfermarkt.com/mathias-tonnessen/profil/spieler/1022746"
   },
   "mats moller daehli::molde": {
-    "lastUpdated": "2026-09-18T13:59:50.922398",
-    "error": "not found"
+    "marketValue": "€700k",
+    "position": "Central Midfield",
+    "contractUntil": "31/12/2027",
+    "lastUpdated": "2026-09-19T10:56:40.011234",
+    "tmUrl": "https://www.transfermarkt.com/mats-moller-daehli/profil/spieler/190831"
   },
   "max mattias nilsson::fredrikstad": {
     "marketValue": "€1.00m",
@@ -37023,12 +37093,18 @@
     "tmUrl": "https://www.transfermarkt.com/oscar-hedvall/profil/spieler/325179"
   },
   "oskar spiten nysaeter::molde": {
-    "lastUpdated": "2026-09-18T14:00:14.783819",
-    "error": "not found"
+    "marketValue": "€6.00m",
+    "position": "Left Winger",
+    "contractUntil": "31/12/2031",
+    "lastUpdated": "2026-09-19T10:56:59.254529",
+    "tmUrl": "https://www.transfermarkt.com/oskar-spiten/profil/spieler/1007817"
   },
   "oskar ohlenschlaeger::fredrikstad": {
-    "lastUpdated": "2026-09-18T14:00:38.857286",
-    "error": "not found"
+    "marketValue": "€2.30m",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2031",
+    "lastUpdated": "2026-09-19T10:57:15.774331",
+    "tmUrl": "https://www.transfermarkt.com/oskar-ohlenschlaeger/profil/spieler/926953"
   },
   "ousmane diallo toure::start": {
     "marketValue": "€450k",
@@ -37239,8 +37315,11 @@
     "tmUrl": "https://www.transfermarkt.com/sander-sjokvist/profil/spieler/663257"
   },
   "sander havik innvaer::tromso": {
-    "lastUpdated": "2026-09-18T14:01:25.881980",
-    "error": "not found"
+    "marketValue": "€600k",
+    "position": "Left-Back",
+    "contractUntil": "31/12/2029",
+    "lastUpdated": "2026-09-19T10:57:41.158699",
+    "tmUrl": "https://www.transfermarkt.com/sander-havik-innvaer/profil/spieler/1002038"
   },
   "sander hestetun kilen::molde": {
     "marketValue": "€1.50m",
@@ -37702,8 +37781,11 @@
     "tmUrl": "https://www.transfermarkt.com/vetle-dragsnes/profil/spieler/320046"
   },
   "vetle skjaervik::tromso": {
-    "lastUpdated": "2026-09-18T14:01:42.987717",
-    "error": "not found"
+    "marketValue": "€900k",
+    "position": "Centre-Back",
+    "contractUntil": "31/12/2027",
+    "lastUpdated": "2026-09-19T10:57:57.174792",
+    "tmUrl": "https://www.transfermarkt.com/vetle-skjaervik/profil/spieler/639327"
   },
   "vetle walle egeli::sandefjord": {
     "marketValue": "€1.20m",
@@ -38159,8 +38241,8 @@
     "tmUrl": "https://www.transfermarkt.com/bent-sormo/profil/spieler/268713"
   },
   "bjorn maeland::egersund": {
-    "lastUpdated": "2026-09-18T14:02:04.905177",
-    "error": "not found"
+    "lastUpdated": "2026-09-19T10:58:25.784314",
+    "tmUrl": "https://www.transfermarkt.com/eirik-maeland/profil/spieler/62017"
   },
   "brage tobiassen::stabaek": {
     "marketValue": "€500k",
@@ -38203,7 +38285,7 @@
     "tmUrl": "https://www.transfermarkt.com/casper-glenna/profil/spieler/1017331"
   },
   "charles nduwuisi ondo::hodd": {
-    "lastUpdated": "2026-09-18T14:02:23.778056",
+    "lastUpdated": "2026-09-19T10:58:47.896328",
     "error": "not found"
   },
   "chris sleveland::egersund": {
@@ -38843,7 +38925,7 @@
     "tmUrl": "https://www.transfermarkt.com/hinrik-hardarson/profil/spieler/878181"
   },
   "horenus taddese::egersund": {
-    "lastUpdated": "2026-09-18T14:02:44.635673",
+    "lastUpdated": "2026-09-19T10:59:11.646025",
     "error": "not found"
   },
   "ibrahima diallo::egersund": {
@@ -39121,8 +39203,11 @@
     "tmUrl": "https://www.transfermarkt.com/julian-lerato-gunnerod/profil/spieler/1030102"
   },
   "julian laegreid::moss": {
-    "lastUpdated": "2026-09-18T14:03:06.203167",
-    "error": "not found"
+    "marketValue": "€800k",
+    "position": "Left Winger",
+    "contractUntil": "31/12/2030",
+    "lastUpdated": "2026-09-19T10:59:29.531483",
+    "tmUrl": "https://www.transfermarkt.com/julian-laegreid/profil/spieler/1069171"
   },
   "julian mikalsen kristengard::strommen": {
     "marketValue": "€75k",
@@ -39198,8 +39283,11 @@
     "tmUrl": "https://www.transfermarkt.com/kasper-skaanes/profil/spieler/224457"
   },
   "kasper saetherbo::egersund": {
-    "lastUpdated": "2026-09-18T14:03:26.976012",
-    "error": "not found"
+    "marketValue": "€150k",
+    "position": "Defensive Midfield",
+    "contractUntil": "31/12/2028",
+    "lastUpdated": "2026-09-19T10:59:46.118638",
+    "tmUrl": "https://www.transfermarkt.com/kasper-saetherbo/profil/spieler/1093157"
   },
   "kees sims::haugesund": {
     "marketValue": "€300k",
@@ -39216,8 +39304,10 @@
     "tmUrl": "https://www.transfermarkt.com/kent-are-antonsen/profil/spieler/238342"
   },
   "kevin andre daehlin::stromsgodset": {
-    "lastUpdated": "2026-09-18T14:03:58.800633",
-    "error": "not found"
+    "position": "Left Winger",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T11:00:04.194715",
+    "tmUrl": "https://www.transfermarkt.com/kevin-andre-daehlin/profil/spieler/1259948"
   },
   "kevin egell johnsen::sandnes ulf": {
     "marketValue": "€75k",
@@ -39621,8 +39711,11 @@
     "tmUrl": "https://www.transfermarkt.com/marius-fagerhaug/profil/spieler/1392205"
   },
   "markus edner waehler::strommen": {
-    "lastUpdated": "2026-09-18T14:20:01.578869",
-    "error": "not found"
+    "marketValue": "€150k",
+    "position": "Centre-Forward",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T11:00:21.149848",
+    "tmUrl": "https://www.transfermarkt.com/markus-waehler/profil/spieler/1253577"
   },
   "markus flores::kongsvinger": {
     "marketValue": "€250k",
@@ -39681,7 +39774,7 @@
     "tmUrl": "https://www.transfermarkt.com/mathias-engevik-klausen/profil/spieler/1007801"
   },
   "mathias eriksen ranmark::moss": {
-    "lastUpdated": "2026-09-18T14:23:59.883939",
+    "lastUpdated": "2026-09-19T11:02:12.143363",
     "error": "not found"
   },
   "mathias johansen::lyn": {
@@ -39859,8 +39952,11 @@
     "tmUrl": "https://www.transfermarkt.com/nicolai-fremstad/profil/spieler/429286"
   },
   "nicolai naess::stabaek": {
-    "lastUpdated": "2026-09-18T14:32:44.632487",
-    "error": "not found"
+    "marketValue": "€200k",
+    "position": "Centre-Back",
+    "contractUntil": "31/12/2027",
+    "lastUpdated": "2026-09-19T11:02:25.902811",
+    "tmUrl": "https://www.transfermarkt.com/nicolai-naess/profil/spieler/222275"
   },
   "nicolaj tornvig hansen::egersund": {
     "marketValue": "€450k",
@@ -40014,7 +40110,7 @@
     "tmUrl": "https://www.transfermarkt.com/oscar-kapskarmo/profil/spieler/519293"
   },
   "oscar gadeberg buur::hodd": {
-    "lastUpdated": "2026-09-18T14:39:29.927110",
+    "lastUpdated": "2026-09-19T11:02:53.325952",
     "error": "not found"
   },
   "oscar solnordal::stabaek": {
@@ -40087,8 +40183,11 @@
     "tmUrl": "https://www.transfermarkt.com/peder-brekke/profil/spieler/902485"
   },
   "peder herman jorsett udnaes::kongsvinger": {
-    "lastUpdated": "2026-09-18T14:44:34.266974",
-    "error": "not found"
+    "marketValue": "€100k",
+    "position": "Left-Back",
+    "contractUntil": "31/12/2028",
+    "lastUpdated": "2026-09-19T11:03:17.060389",
+    "tmUrl": "https://www.transfermarkt.com/herman-udnaes/profil/spieler/1128594"
   },
   "peder hoel lervik::asane": {
     "marketValue": "€100k",
@@ -41240,7 +41339,7 @@
     "tmUrl": "https://www.transfermarkt.com/assad-al-hamlawi/profil/spieler/518451"
   },
   "atanas ioan trica balaci::universitatea cluj": {
-    "lastUpdated": "2026-09-18T15:42:49.408032",
+    "lastUpdated": "2026-09-19T11:03:43.735211",
     "error": "not found"
   },
   "attila csuros::csikszereda": {
@@ -41483,8 +41582,10 @@
     "tmUrl": "https://www.transfermarkt.com/badavi-huseynov/profil/spieler/198648"
   },
   "damjan dokovic::cfr cluj": {
-    "lastUpdated": "2026-09-18T15:55:18.872527",
-    "error": "not found"
+    "marketValue": "€125k",
+    "position": "Defensive Midfield",
+    "lastUpdated": "2026-09-19T11:03:58.899104",
+    "tmUrl": "https://www.transfermarkt.com/damjan-djokovic/profil/spieler/143039"
   },
   "dan n lundulu::petrolul 52": {
     "marketValue": "€350k",
@@ -43006,7 +43107,7 @@
     "tmUrl": "https://www.transfermarkt.com/nicusor-bancu/profil/spieler/213195"
   },
   "nikita stoioanov::dinamo bucuresti": {
-    "lastUpdated": "2026-09-18T17:07:58.349712",
+    "lastUpdated": "2026-09-19T11:04:17.967376",
     "error": "not found"
   },
   "nikola stevanovic::cs u craiova": {
@@ -43463,7 +43564,7 @@
     "tmUrl": "https://www.transfermarkt.com/ronny-labonne/profil/spieler/562175"
   },
   "sabahudin alomerovi::uta arad": {
-    "lastUpdated": "2026-09-18T17:28:52.920104",
+    "lastUpdated": "2026-09-19T11:04:39.064829",
     "error": "not found"
   },
   "samuel gueulette::uta arad": {
@@ -43698,7 +43799,7 @@
     "tmUrl": "https://www.transfermarkt.com/timotej-jambor/profil/spieler/582384"
   },
   "tony n jike::ssc farul": {
-    "lastUpdated": "2026-09-18T17:40:30.398216",
+    "lastUpdated": "2026-09-19T11:05:01.477425",
     "error": "not found"
   },
   "tudor baluta::cs u craiova": {
@@ -43714,7 +43815,7 @@
     "tmUrl": "https://www.transfermarkt.com/tudor-cosa/profil/spieler/1179035"
   },
   "vadim kyrycsenko::dinamo bucuresti": {
-    "lastUpdated": "2026-09-18T17:41:33.713672",
+    "lastUpdated": "2026-09-19T11:05:26.359477",
     "error": "not found"
   },
   "vadim rata::arges": {
@@ -44255,8 +44356,10 @@
     "tmUrl": "https://www.transfermarkt.com/david-stojanovic/profil/spieler/702481"
   },
   "david dokic::lfk mladost lucani": {
-    "lastUpdated": "2026-09-18T18:07:47.072148",
-    "error": "not found"
+    "marketValue": "€100k",
+    "position": "Right Winger",
+    "lastUpdated": "2026-09-19T11:05:40.235262",
+    "tmUrl": "https://www.transfermarkt.com/david-djokic/profil/spieler/1243330"
   },
   "davorin tosic::zeleznicar pancevo": {
     "marketValue": "€300k",
@@ -44265,8 +44368,10 @@
     "tmUrl": "https://www.transfermarkt.com/davorin-tosic/profil/spieler/1169430"
   },
   "dejan paradina::zemun": {
-    "lastUpdated": "2026-09-18T18:08:30.564602",
-    "error": "not found"
+    "marketValue": "€150k",
+    "position": "Right-Back",
+    "lastUpdated": "2026-09-19T11:05:58.171953",
+    "tmUrl": "https://www.transfermarkt.com/dejan-paradjina/profil/spieler/548659"
   },
   "dejan stanivukovic::radnicki nis": {
     "marketValue": "€400k",
@@ -44410,7 +44515,7 @@
     "tmUrl": "https://www.transfermarkt.com/erik-kojzek/profil/spieler/922711"
   },
   "ersan mavry::novi pazar": {
-    "lastUpdated": "2026-09-18T18:16:26.032669",
+    "lastUpdated": "2026-09-19T11:06:15.428936",
     "error": "not found"
   },
   "ester sokler::radnicki kragujevac": {
@@ -44517,8 +44622,11 @@
     "tmUrl": "https://www.transfermarkt.com/iddrisu-baba/profil/spieler/442805"
   },
   "ifet dakovac::vojvodina": {
-    "lastUpdated": "2026-09-18T18:21:24.915036",
-    "error": "not found"
+    "marketValue": "€1.50m",
+    "position": "Central Midfield",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-19T11:06:31.063810",
+    "tmUrl": "https://www.transfermarkt.com/ifet-djakovac/profil/spieler/645880"
   },
   "igor ivanovic::radnicki nis": {
     "marketValue": "€50k",
@@ -44620,8 +44728,10 @@
     "tmUrl": "https://www.transfermarkt.com/ivan-ostojic/profil/spieler/223058"
   },
   "jagos durkovic::lfk mladost lucani": {
-    "lastUpdated": "2026-09-18T18:27:04.849905",
-    "error": "not found"
+    "marketValue": "€200k",
+    "position": "Defensive Midfield",
+    "lastUpdated": "2026-09-19T11:06:46.641878",
+    "tmUrl": "https://www.transfermarkt.com/jagos-djurkovic/profil/spieler/1169535"
   },
   "janko jevremovic::zeleznicar pancevo": {
     "marketValue": "€800k",
@@ -44748,7 +44858,7 @@
     "tmUrl": "https://www.transfermarkt.com/karl-fabien/profil/spieler/740425"
   },
   "khamad shahirovich::novi pazar": {
-    "lastUpdated": "2026-09-18T18:34:14.605475",
+    "lastUpdated": "2026-09-19T11:07:19.679787",
     "error": "not found"
   },
   "kornel szucs::vojvodina": {
@@ -44821,8 +44931,11 @@
     "tmUrl": "https://www.transfermarkt.com/lazar-radojicic/profil/spieler/870284"
   },
   "lazar randelovic::vojvodina": {
-    "lastUpdated": "2026-09-18T18:37:25.546416",
-    "error": "not found"
+    "marketValue": "€1.50m",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-19T11:07:34.340315",
+    "tmUrl": "https://www.transfermarkt.com/lazar-randjelovic/profil/spieler/512394"
   },
   "lazar stojanovic::cukaricki": {
     "marketValue": "€100k",
@@ -44907,8 +45020,11 @@
     "tmUrl": "https://www.transfermarkt.com/luka-zoric/profil/spieler/465557"
   },
   "luka dordevic::cukaricki": {
-    "lastUpdated": "2026-09-18T18:42:30.302613",
-    "error": "not found"
+    "marketValue": "€150k",
+    "position": "Centre-Forward",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T11:07:49.031753",
+    "tmUrl": "https://www.transfermarkt.com/luka-djordjevic/profil/spieler/188338"
   },
   "mahmudu bajo::red star belgrade": {
     "marketValue": "€2.00m",
@@ -45196,11 +45312,14 @@
     "tmUrl": "https://www.transfermarkt.com/milan-vukotic/profil/spieler/624353"
   },
   "milan dokovic::cukaricki": {
-    "lastUpdated": "2026-09-18T18:54:45.258971",
-    "error": "not found"
+    "marketValue": "€650k",
+    "position": "Centre-Back",
+    "contractUntil": "31/01/2028",
+    "lastUpdated": "2026-09-19T11:08:08.904237",
+    "tmUrl": "https://www.transfermarkt.com/milan-djokovic/profil/spieler/960109"
   },
   "miljan momcilovic::ofk beograd": {
-    "lastUpdated": "2026-09-18T18:55:09.960604",
+    "lastUpdated": "2026-09-19T11:08:33.627336",
     "error": "not found"
   },
   "miloje prekovic::novi pazar": {
@@ -45569,8 +45688,11 @@
     "tmUrl": "https://www.transfermarkt.com/nikola-zecevic/profil/spieler/854787"
   },
   "nikola duricic::zeleznicar pancevo": {
-    "lastUpdated": "2026-09-18T19:13:44.449723",
-    "error": "not found"
+    "marketValue": "€700k",
+    "position": "Left-Back",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T11:08:51.892733",
+    "tmUrl": "https://www.transfermarkt.com/nikola-djuricic/profil/spieler/697846"
   },
   "niksa delibasic::macva sabac": {
     "marketValue": "€50k",
@@ -45908,8 +46030,11 @@
     "tmUrl": "https://www.transfermarkt.com/stefan-petrovic/profil/spieler/106868"
   },
   "stefan randelovic::radnik surdulica": {
-    "lastUpdated": "2026-09-18T19:30:24.208463",
-    "error": "not found"
+    "marketValue": "€500k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T11:09:05.860184",
+    "tmUrl": "https://www.transfermarkt.com/stefan-randjelovic/profil/spieler/620070"
   },
   "stefan sapic::imt novi beograd": {
     "marketValue": "€300k",
@@ -46071,7 +46196,7 @@
     "tmUrl": "https://www.transfermarkt.com/uros-ilic/profil/spieler/944538"
   },
   "uros lazic::radnik surdulica": {
-    "lastUpdated": "2026-09-18T19:37:43.160089",
+    "lastUpdated": "2026-09-19T11:09:29.310150",
     "error": "not found"
   },
   "uros ljubomirac::zemun": {
@@ -46279,8 +46404,11 @@
     "tmUrl": "https://www.transfermarkt.com/vukasin-markovic/profil/spieler/706241"
   },
   "vukasin durdevic::partizan": {
-    "lastUpdated": "2026-09-18T19:47:47.438130",
-    "error": "not found"
+    "marketValue": "€1.00m",
+    "position": "Centre-Back",
+    "contractUntil": "30/06/2028",
+    "lastUpdated": "2026-09-19T11:09:46.693510",
+    "tmUrl": "https://www.transfermarkt.com/vukasin-djurdjevic/profil/spieler/698537"
   },
   "wendkuuni josue tiendrebeogo::imt novi beograd": {
     "marketValue": "€500k",
@@ -46379,8 +46507,11 @@
     "tmUrl": "https://www.transfermarkt.com/vladimir-brankovic/profil/spieler/40635"
   },
   "dorde dordic::macva sabac": {
-    "lastUpdated": "2026-09-18T19:55:08.210889",
-    "error": "not found"
+    "marketValue": "€350k",
+    "position": "Attacking Midfield",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T11:10:00.734330",
+    "tmUrl": "https://www.transfermarkt.com/djordje-djordjic/profil/spieler/1072887"
   },
   "abdoul rahim sawadogo::semendrija 1924": {
     "marketValue": "€50k",
@@ -46784,8 +46915,11 @@
     "tmUrl": "https://www.transfermarkt.com/damjan-knezevic/profil/spieler/498075"
   },
   "damjan dokanovic::bor": {
-    "lastUpdated": "2026-09-18T20:14:22.527339",
-    "error": "not found"
+    "marketValue": "€450k",
+    "position": "Centre-Forward",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T11:10:17.903508",
+    "tmUrl": "https://www.transfermarkt.com/damjan-djokanovic/profil/spieler/1076521"
   },
   "danilo bacanovic::teleoptik": {
     "position": "Attacking Midfield",
@@ -47497,12 +47631,15 @@
     "tmUrl": "https://www.transfermarkt.com/marko-stojilevski/profil/spieler/944512"
   },
   "marko zivanoviyah::graficar": {
-    "lastUpdated": "2026-09-18T20:51:17.897124",
+    "lastUpdated": "2026-09-19T11:10:39.745316",
     "error": "not found"
   },
   "martin andelkovic::dubocica": {
-    "lastUpdated": "2026-09-18T20:51:54.861529",
-    "error": "not found"
+    "marketValue": "€50k",
+    "position": "Right Winger",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T11:10:57.889893",
+    "tmUrl": "https://www.transfermarkt.com/martin-andjelkovic/profil/spieler/988647"
   },
   "matej strika::graficar": {
     "marketValue": "€750k",
@@ -47850,8 +47987,11 @@
     "tmUrl": "https://www.transfermarkt.com/nemanja-zunic/profil/spieler/706245"
   },
   "nemanja dokic::javor ivanjica": {
-    "lastUpdated": "2026-09-18T21:08:16.558485",
-    "error": "not found"
+    "marketValue": "€350k",
+    "position": "Defensive Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T11:11:14.338891",
+    "tmUrl": "https://www.transfermarkt.com/nemanja-djokic/profil/spieler/708063"
   },
   "nenad grujic::jedinstvo ub": {
     "position": "Right-Back",
@@ -48067,8 +48207,9 @@
     "tmUrl": "https://www.transfermarkt.com/ognjen-matanovic/profil/spieler/1330753"
   },
   "ognjen duric::metalac gm": {
-    "lastUpdated": "2026-09-18T21:19:14.164824",
-    "error": "not found"
+    "position": "Attacking Midfield",
+    "lastUpdated": "2026-09-19T11:11:27.795151",
+    "tmUrl": "https://www.transfermarkt.com/ognjen-djuricin/profil/spieler/409579"
   },
   "oluwadamilare timileyin joseph::semendrija 1924": {
     "marketValue": "€50k",
@@ -48116,12 +48257,18 @@
     "tmUrl": "https://www.transfermarkt.com/petar-milutinovic/profil/spieler/1058224"
   },
   "petar dokovic::javor ivanjica": {
-    "lastUpdated": "2026-09-18T21:23:51.574385",
-    "error": "not found"
+    "marketValue": "€100k",
+    "position": "Centre-Forward",
+    "contractUntil": "04/08/2027",
+    "lastUpdated": "2026-09-19T11:12:26.821203",
+    "tmUrl": "https://www.transfermarkt.com/petar-djokovic/profil/spieler/1304529"
   },
   "petar durickovic::dubocica": {
-    "lastUpdated": "2026-09-18T21:24:13.434424",
-    "error": "not found"
+    "marketValue": "€25k",
+    "position": "Attacking Midfield",
+    "contractUntil": "30/06/2027",
+    "lastUpdated": "2026-09-19T11:12:39.909425",
+    "tmUrl": "https://www.transfermarkt.com/petar-djurickovic/profil/spieler/139729"
   },
   "predrag medic::bor": {
     "marketValue": "€75k",
@@ -48381,8 +48528,8 @@
     "tmUrl": "https://www.transfermarkt.com/stefan-vukasinovic/profil/spieler/1105903"
   },
   "stefan duric::borac cacak": {
-    "lastUpdated": "2026-09-18T21:36:41.773704",
-    "error": "not found"
+    "lastUpdated": "2026-09-19T11:12:57.220107",
+    "tmUrl": "https://www.transfermarkt.com/stefan-djuric/profil/spieler/217671"
   },
   "strahinja carapic::loznica": {
     "marketValue": "€150k",
@@ -48495,8 +48642,9 @@
     "tmUrl": "https://www.transfermarkt.com/vasilije-subotic/profil/spieler/1073634"
   },
   "vasilije derkovic::borac cacak": {
-    "lastUpdated": "2026-09-18T21:42:15.875458",
-    "error": "not found"
+    "position": "Defensive Midfield",
+    "lastUpdated": "2026-09-19T11:13:14.782428",
+    "tmUrl": "https://www.transfermarkt.com/vasilije-djerkovic/profil/spieler/846769"
   },
   "veljko djordjevic::graficar": {
     "position": "Centre-Back",
@@ -48539,12 +48687,15 @@
     "tmUrl": "https://www.transfermarkt.com/veljko-vojvodic/profil/spieler/846218"
   },
   "veljko dokic::vozdovac": {
-    "lastUpdated": "2026-09-18T21:44:21.671803",
-    "error": "not found"
+    "marketValue": "€50k",
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-19T11:13:28.665756",
+    "tmUrl": "https://www.transfermarkt.com/veljko-djokic/profil/spieler/855445"
   },
   "veljko dordevic::metalac gm": {
-    "lastUpdated": "2026-09-18T21:44:45.593740",
-    "error": "not found"
+    "position": "Centre-Back",
+    "lastUpdated": "2026-09-19T11:13:44.397488",
+    "tmUrl": "https://www.transfermarkt.com/veljko-djordjevic/profil/spieler/465571"
   },
   "viktor petrovic::jedinstvo ub": {
     "position": "Attacking Midfield",
@@ -48598,8 +48749,9 @@
     "tmUrl": "https://www.transfermarkt.com/vladimir-petrovic/profil/spieler/37515"
   },
   "vladimir siladi::naftagas": {
-    "lastUpdated": "2026-09-18T21:47:28.520359",
-    "error": "not found"
+    "position": "Centre-Forward",
+    "lastUpdated": "2026-09-19T11:13:57.441576",
+    "tmUrl": "https://www.transfermarkt.com/vladimir-siladji/profil/spieler/186632"
   },
   "vojin marinkovic::teleoptik": {
     "marketValue": "€100k",
@@ -48666,8 +48818,11 @@
     "tmUrl": "https://www.transfermarkt.com/vukasin-topalovic/profil/spieler/1300649"
   },
   "vukasin dordevic::semendrija 1924": {
-    "lastUpdated": "2026-09-18T21:51:09.956054",
-    "error": "not found"
+    "marketValue": "€25k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2026",
+    "lastUpdated": "2026-09-19T11:14:11.483796",
+    "tmUrl": "https://www.transfermarkt.com/vukasin-djordjevic/profil/spieler/882169"
   },
   "vukota zivotic::ofk vrsac": {
     "position": "Defensive Midfield",
@@ -51528,7 +51683,7 @@
     "tmUrl": "https://www.transfermarkt.com/isaac-matondo/profil/spieler/485964"
   },
   "isaac tshipamba mulowati::maribor": {
-    "lastUpdated": "2026-09-19T00:00:47.876141",
+    "lastUpdated": "2026-09-19T11:14:42.343812",
     "error": "not found"
   },
   "ivan borna jelic balta::mura": {
@@ -52720,7 +52875,7 @@
     "tmUrl": "https://www.transfermarkt.com/adam-andersson/profil/spieler/255468"
   },
   "adam bergmark wiberg::ifk goteborg": {
-    "lastUpdated": "2026-09-19T00:53:53.371182",
+    "lastUpdated": "2026-09-19T11:15:09.182763",
     "error": "not found"
   },
   "adam lundqvist::hacken": {
@@ -52971,8 +53126,11 @@
     "tmUrl": "https://www.transfermarkt.com/andrej-zovko/profil/spieler/1519093"
   },
   "andrej duric::malmo ff": {
-    "lastUpdated": "2026-09-19T01:04:44.092274",
-    "error": "not found"
+    "marketValue": "€500k",
+    "position": "Centre-Back",
+    "contractUntil": "31/12/2029",
+    "lastUpdated": "2026-09-19T11:15:22.429839",
+    "tmUrl": "https://www.transfermarkt.com/andrej-djuric/profil/spieler/706560"
   },
   "anes cardaklija::gais": {
     "marketValue": "€1.00m",
@@ -53301,7 +53459,7 @@
     "tmUrl": "https://www.transfermarkt.com/christoffer-styffe/profil/spieler/669445"
   },
   "christos almiras::djurgarden": {
-    "lastUpdated": "2026-09-19T01:19:47.333322",
+    "lastUpdated": "2026-09-19T11:15:43.252272",
     "error": "not found"
   },
   "christos gravius::gais": {
@@ -53899,7 +54057,7 @@
     "tmUrl": "https://www.transfermarkt.com/ibrahima-fofana/profil/spieler/666922"
   },
   "ieva bartkeviciute::aik": {
-    "lastUpdated": "2026-09-19T01:47:01.477467",
+    "lastUpdated": "2026-09-19T11:16:05.699685",
     "error": "not found"
   },
   "isaac assibu::malmo ff": {
@@ -53979,7 +54137,7 @@
     "tmUrl": "https://www.transfermarkt.com/jacob-rinne/profil/spieler/210528"
   },
   "jacob une larsson::djurgarden": {
-    "lastUpdated": "2026-09-19T01:50:14.901133",
+    "lastUpdated": "2026-09-19T11:16:24.613686",
     "error": "not found"
   },
   "jakob kindberg::kalmar": {
@@ -54320,8 +54478,11 @@
     "tmUrl": "https://www.transfermarkt.com/ladji-camara/profil/spieler/1140116"
   },
   "lars saetra::kalmar": {
-    "lastUpdated": "2026-09-19T02:06:46.671566",
-    "error": "not found"
+    "marketValue": "€275k",
+    "position": "Centre-Back",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T11:16:39.664916",
+    "tmUrl": "https://www.transfermarkt.com/lars-saetra/profil/spieler/128041"
   },
   "leo radakovic::ifk goteborg": {
     "position": "Attacking Midfield",
@@ -55262,7 +55423,7 @@
     "tmUrl": "https://www.transfermarkt.com/robbie-ure/profil/spieler/783373"
   },
   "robert frosti orkelsson::gais": {
-    "lastUpdated": "2026-09-19T02:50:38.727825",
+    "lastUpdated": "2026-09-19T11:17:13.172234",
     "error": "not found"
   },
   "robert gojani::kalmar": {
@@ -55452,7 +55613,7 @@
     "tmUrl": "https://www.transfermarkt.com/imam-jagne/profil/spieler/692609"
   },
   "serge junior martinsson ngouali::brommapojkarna": {
-    "lastUpdated": "2026-09-19T02:59:35.709721",
+    "lastUpdated": "2026-09-19T11:17:44.645324",
     "error": "not found"
   },
   "shalom ekong::gais": {
@@ -56611,7 +56772,7 @@
     "tmUrl": "https://www.transfermarkt.com/david-frisk/profil/spieler/787038"
   },
   "david mitov nilsson::norrkoping": {
-    "lastUpdated": "2026-09-19T03:55:33.257088",
+    "lastUpdated": "2026-09-19T11:18:06.064073",
     "error": "not found"
   },
   "david tokpah::nordic": {
@@ -56868,7 +57029,7 @@
     "tmUrl": "https://www.transfermarkt.com/fabian-holst-larsen/profil/spieler/825984"
   },
   "fabian walhstrom::orebro": {
-    "lastUpdated": "2026-09-19T04:09:26.690528",
+    "lastUpdated": "2026-09-19T11:18:28.394835",
     "error": "not found"
   },
   "fahad sinan yaqoob ghazala::nordic": {
@@ -57033,7 +57194,7 @@
     "tmUrl": "https://www.transfermarkt.com/gustav-forssell/profil/spieler/593368"
   },
   "gustav lillenburg::falkenberg": {
-    "lastUpdated": "2026-09-19T04:17:17.570869",
+    "lastUpdated": "2026-09-19T11:18:51.418104",
     "error": "not found"
   },
   "gustav nordh::brage": {
@@ -57290,7 +57451,7 @@
     "tmUrl": "https://www.transfermarkt.com/jakob-romo-skille/profil/spieler/599499"
   },
   "jakob voelkerling persson::helsingborg": {
-    "lastUpdated": "2026-09-19T04:29:17.100288",
+    "lastUpdated": "2026-09-19T11:19:12.040764",
     "error": "not found"
   },
   "jakub ojrzynski::orebro": {
@@ -57315,7 +57476,7 @@
     "tmUrl": "https://www.transfermarkt.com/jeremiah-bjornler/profil/spieler/1164521"
   },
   "jesper merbom adolfsson::oddevold": {
-    "lastUpdated": "2026-09-19T04:30:32.913635",
+    "lastUpdated": "2026-09-19T11:19:30.318719",
     "error": "not found"
   },
   "jetmir haliti::orebro": {
@@ -57995,7 +58156,7 @@
     "tmUrl": "https://www.transfermarkt.com/melker-uppenberg/profil/spieler/967128"
   },
   "michael aduragbemi oluwayemni::ostersunds": {
-    "lastUpdated": "2026-09-19T05:04:08.481861",
+    "lastUpdated": "2026-09-19T11:19:59.084189",
     "error": "not found"
   },
   "michael hartmann::oster": {
@@ -58047,8 +58208,11 @@
     "tmUrl": "https://www.transfermarkt.com/donald-molls/profil/spieler/612634"
   },
   "morten saetra::oddevold": {
-    "lastUpdated": "2026-09-19T05:06:47.964856",
-    "error": "not found"
+    "marketValue": "€450k",
+    "position": "Goalkeeper",
+    "contractUntil": "31/12/2026",
+    "lastUpdated": "2026-09-19T11:20:16.836439",
+    "tmUrl": "https://www.transfermarkt.com/morten-saetra/profil/spieler/326594"
   },
   "moutaz neffati::norrkoping": {
     "marketValue": "€1.20m",
@@ -58255,7 +58419,7 @@
     "tmUrl": "https://www.transfermarkt.com/oscar-ekman/profil/spieler/303899"
   },
   "oscar iglicar berntsson::oddevold": {
-    "lastUpdated": "2026-09-19T05:17:40.304480",
+    "lastUpdated": "2026-09-19T11:20:43.709397",
     "error": "not found"
   },
   "oscar linner::falkenberg": {
@@ -58556,7 +58720,7 @@
     "tmUrl": "https://www.transfermarkt.com/tim-stalheden/profil/spieler/431756"
   },
   "tim svensson lillvik::norrby": {
-    "lastUpdated": "2026-09-19T05:32:10.161526",
+    "lastUpdated": "2026-09-19T11:21:05.009270",
     "error": "not found"
   },
   "timothe rupil::helsingborg": {
@@ -59082,7 +59246,7 @@
     "tmUrl": "https://www.transfermarkt.com/betim-fazliji/profil/spieler/410636"
   },
   "beyatt lekweiry::lausanne sport": {
-    "lastUpdated": "2026-09-19T05:55:55.243202",
+    "lastUpdated": "2026-09-19T11:21:30.619953",
     "error": "not found"
   },
   "bledian krasniqi::zurich": {
@@ -60628,7 +60792,7 @@
     "tmUrl": "https://www.transfermarkt.com/renato-steffen/profil/spieler/194638"
   },
   "renato widmer d autilia::basel": {
-    "lastUpdated": "2026-09-19T07:04:59.240074",
+    "lastUpdated": "2026-09-19T11:22:16.435695",
     "error": "not found"
   },
   "rhodri smith::young boys": {
@@ -61252,7 +61416,7 @@
     "tmUrl": "https://www.transfermarkt.com/artem-chelyadinskiy/profil/spieler/26175"
   },
   "artem chornyy::obolon brovar": {
-    "lastUpdated": "2026-09-19T07:34:25.221874",
+    "lastUpdated": "2026-09-19T11:22:37.667052",
     "error": "not found"
   },
   "artem kozak::epitsentr dunayivtsi": {
@@ -61321,7 +61485,7 @@
     "tmUrl": "https://www.transfermarkt.com/artem-smolyakov/profil/spieler/962090"
   },
   "artur avagimian::chornomorets": {
-    "lastUpdated": "2026-09-19T07:37:24.830056",
+    "lastUpdated": "2026-09-19T11:23:49.786820",
     "error": "not found"
   },
   "artur drobot::polessya": {
@@ -62248,7 +62412,7 @@
     "tmUrl": "https://www.transfermarkt.com/joaquinete/profil/spieler/1007020"
   },
   "jon ceberio amonarriz::epitsentr dunayivtsi": {
-    "lastUpdated": "2026-09-19T08:24:53.241687",
+    "lastUpdated": "2026-09-19T11:24:23.625319",
     "error": "not found"
   },
   "joseph jones::hirnyk": {
@@ -62703,7 +62867,7 @@
     "tmUrl": "https://www.transfermarkt.com/mykyta-aleksandrov/profil/spieler/1122007"
   },
   "mykyta bezuglyy::bukovyna": {
-    "lastUpdated": "2026-09-19T08:48:12.091415",
+    "lastUpdated": "2026-09-19T11:24:41.589456",
     "error": "not found"
   },
   "mykyta burda::kolos kovalivka": {
@@ -63260,7 +63424,7 @@
     "tmUrl": "https://www.transfermarkt.com/roman-vantukh/profil/spieler/396536"
   },
   "roman volokhatiy::obolon brovar": {
-    "lastUpdated": "2026-09-19T09:16:29.862394",
+    "lastUpdated": "2026-09-19T11:25:09.188097",
     "error": "not found"
   },
   "roman zhmurko::livyi bereh": {
@@ -63603,11 +63767,11 @@
     "tmUrl": "https://www.transfermarkt.com/igor-tyshchenko/profil/spieler/97727"
   },
   "vitaliy buyalskyy::dynamo kyiv": {
-    "lastUpdated": "2026-09-19T09:38:52.128214",
+    "lastUpdated": "2026-09-19T11:25:33.850231",
     "error": "not found"
   },
   "vitaliy dakhnovskiy::bukovyna": {
-    "lastUpdated": "2026-09-19T09:39:11.451175",
+    "lastUpdated": "2026-09-19T11:25:56.644959",
     "error": "not found"
   },
   "vitaliy ermakov::obolon brovar": {
@@ -63682,7 +63846,7 @@
     "tmUrl": "https://www.transfermarkt.com/vladyslav-gerych/profil/spieler/1141487"
   },
   "vladyslav kabaiev::dynamo kyiv": {
-    "lastUpdated": "2026-09-19T09:43:47.882358",
+    "lastUpdated": "2026-09-19T11:26:17.685003",
     "error": "not found"
   },
   "vladyslav reznik::karpaty": {
@@ -63889,5 +64053,12 @@
     "contractUntil": "30/06/2028",
     "lastUpdated": "2026-09-19T09:54:18.871394",
     "tmUrl": "https://www.transfermarkt.com/zurab-rukhadze/profil/spieler/916226"
+  },
+  "david von ballmoos::lugano": {
+    "marketValue": "€600k",
+    "position": "Goalkeeper",
+    "contractUntil": "30/06/2029",
+    "lastUpdated": "2026-09-19T11:21:47.498887",
+    "tmUrl": "https://www.transfermarkt.com/david-von-ballmoos/profil/spieler/203124"
   }
 }
