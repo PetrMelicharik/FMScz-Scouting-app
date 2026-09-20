@@ -1,10 +1,12 @@
-// Fetches league logos, club logos, and player photos from API-Football and
-// matches them against data/db.xlsx, writing the result to
-// data/media-map.json (consumed by scripts/build-data.mjs at build time).
+// Fetches league logos, club logos, player photos, AND recent-match ratings
+// (last 6 games per player, for a "form" view) from API-Football and matches
+// them against data/db.xlsx, writing the result to data/media-map.json and
+// data/form-map.json (both consumed by scripts/build-data.mjs at build time).
 //
 // Run locally (NOT on Vercel — this hits a paid, rate-limited API):
 //   node scripts/fetch-media.mjs                 # full run
 //   node scripts/fetch-media.mjs --skip-squads    # cheap dry run: just leagues+clubs
+//   node scripts/fetch-media.mjs --skip-form      # skip the recent-form phase only
 //   node scripts/fetch-media.mjs --force          # ignore all caches, refetch everything
 //
 // Requires API_FOOTBALL_KEY in .env.local (see .env.local.example).
@@ -28,16 +30,19 @@ import { leagueAliases, clubAliases, countryCodeAliases } from "../config/media-
 const ROOT = process.cwd();
 const CACHE_DIR = path.join(ROOT, "data", "media-cache");
 const OUT_FILE = path.join(ROOT, "data", "media-map.json");
+const FORM_OUT_FILE = path.join(ROOT, "data", "form-map.json");
 const REPORT_FILE = path.join(ROOT, "data", "unmatched-report.json");
 
 const args = process.argv.slice(2);
 const FORCE = args.includes("--force");
 const SKIP_SQUADS = args.includes("--skip-squads");
+const SKIP_FORM = args.includes("--skip-form") || SKIP_SQUADS;
 
 const RATE_LIMIT_MS = Number(process.env.API_FOOTBALL_RATE_LIMIT_MS || 200);
 const LEAGUE_MATCH_THRESHOLD = 0.55;
 const CLUB_MATCH_THRESHOLD = 0.6;
 const PLAYER_MATCH_THRESHOLD = 0.7;
+const FORM_LAST_N = 6;
 
 /* ------------------------------------------------------------------ */
 /* .env.local loader (no dependency — just enough for API_FOOTBALL_*)  */
@@ -188,7 +193,7 @@ function readOurDatabase() {
 /* ------------------------------------------------------------------ */
 
 async function resolveCountries(countryNames) {
-  console.log(`\n[fetch-media] Fáze 0/3: země (${countryNames.length})…`);
+  console.log(`\n[fetch-media] Fáze 0/4: země (${countryNames.length})…`);
   const cacheName = "countries.json";
   let allCountries = readCache(cacheName);
   if (!allCountries) {
@@ -232,7 +237,7 @@ function rankCandidates(ourNorm, candidates, getName) {
 
 async function resolveLeagues(leagueInfo, codeByOurCountry) {
   // leagueInfo: Map(league_name -> { country })
-  console.log(`\n[fetch-media] Fáze 1/3: ligy (${leagueInfo.size} lig)…`);
+  console.log(`\n[fetch-media] Fáze 1/4: ligy (${leagueInfo.size} lig)…`);
   const countries = [...new Set([...leagueInfo.values()].map((v) => v.country).filter(Boolean))];
   const leaguesByCountry = new Map();
 
@@ -291,7 +296,7 @@ async function resolveLeagues(leagueInfo, codeByOurCountry) {
 
 async function resolveClubs(clubInfo) {
   // clubInfo: Map(clubName -> { country })
-  console.log(`\n[fetch-media] Fáze 2/3: kluby (${clubInfo.size} klubů)…`);
+  console.log(`\n[fetch-media] Fáze 2/4: kluby (${clubInfo.size} klubů)…`);
   const matches = {};
   const unmatched = [];
   let i = 0;
@@ -347,7 +352,7 @@ async function resolveClubs(clubInfo) {
 /* ------------------------------------------------------------------ */
 
 async function fetchSquads(clubMatches, rosterByClub) {
-  console.log(`\n[fetch-media] Fáze 3/3: soupisky hráčů (${Object.keys(clubMatches).length} klubů)…`);
+  console.log(`\n[fetch-media] Fáze 3/4: soupisky hráčů (${Object.keys(clubMatches).length} klubů)…`);
   const playerPhotos = {};
   const unmatchedPlayers = [];
   let i = 0;
@@ -383,6 +388,84 @@ async function fetchSquads(clubMatches, rosterByClub) {
   const matchedCount = Object.keys(playerPhotos).length;
   console.log(`  Napárováno fotek: ${matchedCount}.`);
   return { playerPhotos, unmatchedPlayers };
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Fetch last-N-matches ratings ("form") for matched clubs          */
+/* ------------------------------------------------------------------ */
+
+async function fetchForm(clubMatches, rosterByClub) {
+  console.log(`\n[fetch-media] Fáze 4/4: forma z posledních ${FORM_LAST_N} zápasů (${Object.keys(clubMatches).length} klubů)…`);
+  const formMap = {};
+  const fixturePlayersCache = new Map(); // fixtureId -> response, shared across clubs (two clubs can share a fixture)
+  let i = 0;
+  const entries = Object.entries(clubMatches);
+
+  for (const [ourClubName, team] of entries) {
+    i++;
+    if (interrupted) break;
+
+    const fixCacheName = `fixtures-team-${team.id}.json`;
+    let fixtures = readCache(fixCacheName);
+    if (!fixtures) {
+      console.log(`  [${i}/${entries.length}] GET /fixtures?team=${team.id}&last=${FORM_LAST_N} (${ourClubName})`);
+      const json = await apiGet("/fixtures", { team: team.id, last: FORM_LAST_N });
+      fixtures = json.response || [];
+      writeCache(fixCacheName, fixtures);
+    }
+    fixtures = [...fixtures].sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date));
+
+    const ourRoster = rosterByClub.get(ourClubName) || new Set();
+    const ourRosterList = [...ourRoster];
+    const perPlayer = new Map(); // ourName -> [{date, rating}], newest first
+
+    for (const fx of fixtures) {
+      const fid = fx.fixture.id;
+      let fpBlocks = fixturePlayersCache.get(fid);
+      if (!fpBlocks) {
+        const cacheName = `fixture-players-${fid}.json`;
+        let cached = readCache(cacheName);
+        if (!cached) {
+          const json = await apiGet("/fixtures/players", { fixture: fid });
+          cached = json.response || [];
+          writeCache(cacheName, cached);
+        }
+        fixturePlayersCache.set(fid, cached);
+        fpBlocks = cached;
+      }
+
+      const teamBlock = fpBlocks.find((tb) => tb.team.id === team.id);
+      if (!teamBlock) continue;
+
+      for (const p of teamBlock.players || []) {
+        const stat = p.statistics?.[0];
+        const rating = stat?.games?.rating ? Number(stat.games.rating) : null;
+        if (rating === null) continue;
+
+        let best = null, bestScore = 0;
+        for (const ourName of ourRosterList) {
+          const score = playerNameScore(p.player.name, ourName);
+          if (score > bestScore) { bestScore = score; best = ourName; }
+        }
+        if (best && bestScore >= PLAYER_MATCH_THRESHOLD) {
+          if (!perPlayer.has(best)) perPlayer.set(best, []);
+          perPlayer.get(best).push({ date: fx.fixture.date, rating });
+        }
+      }
+    }
+
+    for (const [ourName, ratings] of perPlayer) {
+      const capped = ratings.slice(0, FORM_LAST_N);
+      const avg = capped.reduce((a, b) => a + b.rating, 0) / capped.length;
+      formMap[playerClubKey(ourName, ourClubName)] = {
+        ratings: capped,
+        avg: Number(avg.toFixed(2)),
+      };
+    }
+  }
+
+  console.log(`  Forma napárována u ${Object.keys(formMap).length} hráčů.`);
+  return formMap;
 }
 
 /* ------------------------------------------------------------------ */
@@ -425,6 +508,13 @@ async function main() {
     console.log(`\n[fetch-media] --skip-squads: přeskakuji fázi 3 (fotky hráčů). Zkontroluj napárování lig/klubů výše.`);
   }
 
+  let formMap = {};
+  if (!SKIP_FORM && !interrupted) {
+    formMap = await fetchForm(clubMatches, rosterByClub);
+  } else if (SKIP_FORM && !SKIP_SQUADS) {
+    console.log(`\n[fetch-media] --skip-form: přeskakuji fázi 4 (forma z posledních zápasů).`);
+  }
+
   const leagues = Object.fromEntries(Object.entries(leagueMatches).map(([k, v]) => [k, v.logo]));
   const clubs = Object.fromEntries(Object.entries(clubMatches).map(([k, v]) => [k, v.logo]));
 
@@ -444,13 +534,16 @@ async function main() {
   };
 
   fs.writeFileSync(OUT_FILE, JSON.stringify(mediaMap));
+  fs.writeFileSync(FORM_OUT_FILE, JSON.stringify(formMap));
   fs.writeFileSync(REPORT_FILE, JSON.stringify({ unmatchedLeagues, unmatchedClubs }, null, 2));
 
   console.log(`\n[fetch-media] Hotovo. Použito requestů: ${requestCount}.`);
   console.log(`  Ligy:  ${mediaMap.stats.leaguesMatched}/${mediaMap.stats.leaguesTotal}`);
   console.log(`  Kluby: ${mediaMap.stats.clubsMatched}/${mediaMap.stats.clubsTotal}`);
   console.log(`  Fotky hráčů: ${mediaMap.stats.playersMatched}`);
+  console.log(`  Forma hráčů: ${Object.keys(formMap).length}`);
   console.log(`\n  -> data/media-map.json (commitni do repa)`);
+  console.log(`  -> data/form-map.json (commitni do repa)`);
   if (unmatchedLeagues.length || unmatchedClubs.length) {
     console.log(`  -> data/unmatched-report.json (${unmatchedLeagues.length} lig, ${unmatchedClubs.length} klubů k ruční kontrole)`);
     console.log(`     Doplň je do config/media-aliases.mjs a spusť skript znovu.`);
