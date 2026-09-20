@@ -15,6 +15,55 @@ function formatShortDate(iso) {
   return `${d.getDate()}.${d.getMonth() + 1}.`;
 }
 
+function formColor(r) {
+  return r >= 7 ? "#4CB848" : r >= 6 ? "#D97706" : "#DC2626";
+}
+
+function FormLineChart({ ratings, dates }) {
+  const w = 480;
+  const h = 100;
+  const padX = 22;
+  const padTop = 22;
+  const padBottom = 18;
+  const domainMin = 4, domainMax = 9;
+  const plotH = h - padTop - padBottom;
+  const n = ratings.length;
+  const stepX = n > 1 ? (w - padX * 2) / (n - 1) : 0;
+  const baseY = padTop + plotH;
+
+  const points = ratings.map((r, i) => {
+    const x = padX + stepX * i;
+    const clamped = Math.max(domainMin, Math.min(domainMax, r));
+    const y = padTop + plotH - ((clamped - domainMin) / (domainMax - domainMin)) * plotH;
+    return { x, y, r, date: dates?.[i] };
+  });
+
+  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
+  const areaPath = points.length > 1
+    ? `${linePath} L ${points[points.length - 1].x.toFixed(1)} ${baseY} L ${points[0].x.toFixed(1)} ${baseY} Z`
+    : "";
+
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className="form-line-svg" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="formAreaGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#4CB848" stopOpacity="0.16" />
+          <stop offset="100%" stopColor="#4CB848" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {areaPath && <path d={areaPath} fill="url(#formAreaGradient)" stroke="none" />}
+      <path d={linePath} fill="none" stroke="#4CB848" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+      {points.map((p, i) => (
+        <g key={i}>
+          <circle cx={p.x} cy={p.y} r="5" fill={formColor(p.r)} stroke="#FFFFFF" strokeWidth="1.5" />
+          <text x={p.x} y={p.y - 11} textAnchor="middle" fontSize="12" fontWeight="700" fill="#14171A">{p.r.toFixed(1)}</text>
+          <text x={p.x} y={h - 3} textAnchor="middle" fontSize="10" fill="#667066">{formatShortDate(p.date)}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 export default function PlayerPage({ params }) {
   const p = loadPlayerById(params.id);
   if (!p) return notFound();
@@ -72,23 +121,8 @@ export default function PlayerPage({ params }) {
       {p.form_ratings && p.form_ratings.length > 0 && (
         <div className="profile-group">
           <div className="profile-group-title">Forma (posledních {p.form_ratings.length} zápasů)</div>
-          <div className="form-chart">
-            {p.form_ratings
-              .map((r, idx) => ({ rating: r, date: p.form_dates?.[idx] }))
-              .reverse()
-              .map((entry, i) => {
-                const pct = Math.max(4, Math.min(100, ((entry.rating - 4) / (9 - 4)) * 100));
-                const color = entry.rating >= 7 ? "#4CB848" : entry.rating >= 6 ? "#D97706" : "#DC2626";
-                return (
-                  <div key={i} className="form-bar-col">
-                    <div className="form-bar-value">{entry.rating.toFixed(1)}</div>
-                    <div className="form-bar-track">
-                      <div className="form-bar-fill" style={{ height: `${pct}%`, background: color }} />
-                    </div>
-                    <div className="form-bar-date">{formatShortDate(entry.date)}</div>
-                  </div>
-                );
-              })}
+          <div className="form-chart-panel">
+            <FormLineChart ratings={[...p.form_ratings].reverse()} dates={[...(p.form_dates || [])].reverse()} />
           </div>
           {p.form_avg != null && <p className="form-avg-note">Průměr z posledních zápasů: <strong>{p.form_avg}</strong></p>}
         </div>
