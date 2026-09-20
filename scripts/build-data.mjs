@@ -126,7 +126,7 @@ if (fs.existsSync(FORM_MAP_FILE)) {
   const nameIdx = columns.indexOf("player_name");
   const clubIdx = columns.indexOf("Current Club");
 
-  columns.push("form_ratings", "form_avg");
+  columns.push("form_ratings", "form_dates", "form_last_date", "form_avg");
   let hits = 0;
   rows = rows.map((row) => {
     const club = clubIdx >= 0 ? row[clubIdx] : null;
@@ -135,6 +135,8 @@ if (fs.existsSync(FORM_MAP_FILE)) {
     return [
       ...row,
       entry?.ratings ? entry.ratings.map((r) => r.rating) : null,
+      entry?.ratings ? entry.ratings.map((r) => r.date) : null,
+      entry?.ratings?.[0]?.date ?? null,
       entry?.avg ?? null,
     ];
   });

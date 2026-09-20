@@ -43,6 +43,7 @@ const LEAGUE_MATCH_THRESHOLD = 0.55;
 const CLUB_MATCH_THRESHOLD = 0.6;
 const PLAYER_MATCH_THRESHOLD = 0.7;
 const FORM_LAST_N = 6;
+const SEASON = 2026;
 
 /* ------------------------------------------------------------------ */
 /* .env.local loader (no dependency — just enough for API_FOOTBALL_*)  */
@@ -394,7 +395,7 @@ async function fetchSquads(clubMatches, rosterByClub) {
 /* 5. Fetch last-N-matches ratings ("form") for matched clubs          */
 /* ------------------------------------------------------------------ */
 
-async function fetchForm(clubMatches, rosterByClub) {
+async function fetchForm(clubMatches, rosterByClub, clubToLeagueId) {
   console.log(`\n[fetch-media] Fáze 4/4: forma z posledních ${FORM_LAST_N} zápasů (${Object.keys(clubMatches).length} klubů)…`);
   const formMap = {};
   const fixturePlayersCache = new Map(); // fixtureId -> response, shared across clubs (two clubs can share a fixture)
@@ -405,11 +406,14 @@ async function fetchForm(clubMatches, rosterByClub) {
     i++;
     if (interrupted) break;
 
-    const fixCacheName = `fixtures-team-${team.id}.json`;
+    const leagueId = clubToLeagueId.get(ourClubName) || null;
+    const fixCacheName = `fixtures-team-${team.id}${leagueId ? `-l${leagueId}` : ""}.json`;
     let fixtures = readCache(fixCacheName);
     if (!fixtures) {
-      console.log(`  [${i}/${entries.length}] GET /fixtures?team=${team.id}&last=${FORM_LAST_N} (${ourClubName})`);
-      const json = await apiGet("/fixtures", { team: team.id, last: FORM_LAST_N });
+      const params = { team: team.id, last: FORM_LAST_N };
+      if (leagueId) { params.league = leagueId; params.season = SEASON; }
+      console.log(`  [${i}/${entries.length}] GET /fixtures?team=${team.id}&last=${FORM_LAST_N}${leagueId ? `&league=${leagueId}` : ""} (${ourClubName})`);
+      const json = await apiGet("/fixtures", params);
       fixtures = json.response || [];
       writeCache(fixCacheName, fixtures);
     }
@@ -479,6 +483,7 @@ async function main() {
   const leagueInfo = new Map();
   const clubInfo = new Map();
   const rosterByClub = new Map();
+  const clubToLeagueName = new Map();
 
   for (const row of rows) {
     const leagueName = row[idx.league_name];
@@ -488,6 +493,7 @@ async function main() {
 
     if (leagueName && !leagueInfo.has(leagueName)) leagueInfo.set(leagueName, { country: leagueCountry });
     if (club && !clubInfo.has(club)) clubInfo.set(club, { country: leagueCountry });
+    if (club && leagueName && !clubToLeagueName.has(club)) clubToLeagueName.set(club, leagueName);
     if (club && playerName) {
       if (!rosterByClub.has(club)) rosterByClub.set(club, new Set());
       rosterByClub.get(club).add(playerName);
@@ -510,7 +516,12 @@ async function main() {
 
   let formMap = {};
   if (!SKIP_FORM && !interrupted) {
-    formMap = await fetchForm(clubMatches, rosterByClub);
+    const clubToLeagueId = new Map();
+    for (const [club, leagueName] of clubToLeagueName) {
+      const leagueId = leagueMatches[leagueName]?.id;
+      if (leagueId) clubToLeagueId.set(club, leagueId);
+    }
+    formMap = await fetchForm(clubMatches, rosterByClub, clubToLeagueId);
   } else if (SKIP_FORM && !SKIP_SQUADS) {
     console.log(`\n[fetch-media] --skip-form: přeskakuji fázi 4 (forma z posledních zápasů).`);
   }
