@@ -62,6 +62,27 @@ export default function PlayerPage({ params }) {
         </div>
       </div>
 
+      {p.form_ratings && p.form_ratings.length > 0 && (
+        <div className="profile-group">
+          <div className="profile-group-title">Forma (posledních {p.form_ratings.length} zápasů)</div>
+          <div className="form-chart">
+            {[...p.form_ratings].reverse().map((r, i) => {
+              const pct = Math.max(4, Math.min(100, ((r - 4) / (9 - 4)) * 100));
+              const color = r >= 7 ? "#4CB848" : r >= 6 ? "#D97706" : "#DC2626";
+              return (
+                <div key={i} className="form-bar-col">
+                  <div className="form-bar-value">{r.toFixed(1)}</div>
+                  <div className="form-bar-track">
+                    <div className="form-bar-fill" style={{ height: `${pct}%`, background: color }} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          {p.form_avg != null && <p className="form-avg-note">Průměr z posledních zápasů: <strong>{p.form_avg}</strong></p>}
+        </div>
+      )}
+
       {(p.market_value || p.contract_until || p.foot) && (
         <div className="profile-group">
           <div className="profile-group-title">Transfermarkt</div>
