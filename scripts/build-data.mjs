@@ -10,6 +10,10 @@
 // If data/tm_data.json exists (produced by the local Transfermarkt scraper —
 // see its header comment), it's merged in as four extra columns: tm_position,
 // market_value, contract_until, foot.
+//
+// If data/form-map.json exists (produced by scripts/fetch-media.mjs, phase 4),
+// it's merged in as two extra columns: form_ratings (array of the last few
+// match ratings, newest first) and form_avg (their average).
 
 import XLSX from "xlsx";
 import fs from "fs";
@@ -19,6 +23,7 @@ import { playerClubKey } from "../lib/normalize.js";
 const SRC = path.join(process.cwd(), "data", "db.xlsx");
 const MEDIA_MAP_FILE = path.join(process.cwd(), "data", "media-map.json");
 const TM_DATA_FILE = path.join(process.cwd(), "data", "tm_data.json");
+const FORM_MAP_FILE = path.join(process.cwd(), "data", "form-map.json");
 const OUT_DIR = path.join(process.cwd(), "public", "data");
 const OUT_FILE = path.join(OUT_DIR, "players.json");
 
@@ -115,6 +120,27 @@ if (fs.existsSync(TM_DATA_FILE)) {
   tmStats = { hits, total: rows.length };
 }
 
+let formStats = null;
+if (fs.existsSync(FORM_MAP_FILE)) {
+  const form = JSON.parse(fs.readFileSync(FORM_MAP_FILE, "utf-8"));
+  const nameIdx = columns.indexOf("player_name");
+  const clubIdx = columns.indexOf("Current Club");
+
+  columns.push("form_ratings", "form_avg");
+  let hits = 0;
+  rows = rows.map((row) => {
+    const club = clubIdx >= 0 ? row[clubIdx] : null;
+    const entry = nameIdx >= 0 && club ? form[playerClubKey(row[nameIdx], club)] : null;
+    if (entry) hits++;
+    return [
+      ...row,
+      entry?.ratings ? entry.ratings.map((r) => r.rating) : null,
+      entry?.avg ?? null,
+    ];
+  });
+  formStats = { hits, total: rows.length };
+}
+
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(
   OUT_FILE,
@@ -139,4 +165,9 @@ if (tmStats) {
   console.log(`[build-data] tm_data.json nalezen: Transfermarkt data u ${tmStats.hits}/${tmStats.total} hráčů.`);
 } else {
   console.log(`[build-data] data/tm_data.json nenalezen — pozice/tržní hodnota/smlouva/noha se nezobrazí, dokud nespustíš lokální Transfermarkt scraper.`);
+}
+if (formStats) {
+  console.log(`[build-data] form-map.json nalezen: forma u ${formStats.hits}/${formStats.total} hráčů.`);
+} else {
+  console.log(`[build-data] data/form-map.json nenalezen — forma z posledních zápasů se nezobrazí, dokud nespustíš "npm run fetch-media".`);
 }
