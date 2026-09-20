@@ -36,6 +36,7 @@ export const leagueAliases = {
   "Slovenian PrvaLiga": 373,
   "Danish Betinia Liga": 120,
   "Romanian SuperLiga": 283,
+  "Czech Chance Národní Liga": 346,
 };
 
 // Value: the club's numeric API-Football team ID (fastest/most reliable —
