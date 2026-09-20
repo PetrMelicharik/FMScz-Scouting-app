@@ -29,10 +29,10 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
 
-      - name: Commit media-map.json if changed
+      - name: Commit media-map.json / form-map.json if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/media-map.json data/unmatched-report.json
-          git diff --cached --quiet && echo "Žádná změna." || git commit -m "chore: aktualizace fotek/log hráčů"
+          git add data/media-map.json data/form-map.json data/unmatched-report.json
+          git diff --cached --quiet && echo "Žádná změna." || git commit -m "chore: aktualizace fotek/log/formy hráčů"
           git push
