@@ -44,7 +44,7 @@ function FormLineChart({ ratings, dates }) {
     : "";
 
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="form-line-svg" preserveAspectRatio="none">
+    <svg viewBox={`0 0 ${w} ${h}`} className="form-line-svg">
       <defs>
         <linearGradient id="formAreaGradient" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#4CB848" stopOpacity="0.16" />
