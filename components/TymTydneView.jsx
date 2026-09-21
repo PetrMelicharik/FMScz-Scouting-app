@@ -272,23 +272,44 @@ function XISlotCard({ layout, player }) {
   );
 }
 
+function PitchMarkings() {
+  return (
+    <svg viewBox="0 0 300 400" className="pitch-markings" preserveAspectRatio="none">
+      <rect x="8" y="8" width="284" height="384" fill="none" stroke="white" strokeWidth="2" />
+      <line x1="8" y1="200" x2="292" y2="200" stroke="white" strokeWidth="2" />
+      <circle cx="150" cy="200" r="45" fill="none" stroke="white" strokeWidth="2" />
+      <circle cx="150" cy="200" r="2.5" fill="white" />
+
+      {/* Top penalty area */}
+      <rect x="60" y="8" width="180" height="70" fill="none" stroke="white" strokeWidth="2" />
+      <rect x="110" y="8" width="80" height="25" fill="none" stroke="white" strokeWidth="2" />
+      <path d="M 116 78 A 40 40 0 0 1 184 78" fill="none" stroke="white" strokeWidth="2" />
+      <circle cx="150" cy="62" r="2.2" fill="white" />
+
+      {/* Bottom penalty area */}
+      <rect x="60" y="322" width="180" height="70" fill="none" stroke="white" strokeWidth="2" />
+      <rect x="110" y="367" width="80" height="25" fill="none" stroke="white" strokeWidth="2" />
+      <path d="M 116 322 A 40 40 0 0 0 184 322" fill="none" stroke="white" strokeWidth="2" />
+      <circle cx="150" cy="338" r="2.2" fill="white" />
+
+      {/* Corner arcs */}
+      <path d="M 8 20 A 12 12 0 0 0 20 8" fill="none" stroke="white" strokeWidth="2" />
+      <path d="M 280 8 A 12 12 0 0 0 292 20" fill="none" stroke="white" strokeWidth="2" />
+      <path d="M 292 380 A 12 12 0 0 0 280 392" fill="none" stroke="white" strokeWidth="2" />
+      <path d="M 20 392 A 12 12 0 0 0 8 380" fill="none" stroke="white" strokeWidth="2" />
+    </svg>
+  );
+}
+
 function TeamOfWeek({ players }) {
   const xi = useMemo(() => buildXI(players), [players]);
-  const filledCount = SLOT_LAYOUT.filter((s) => xi[s.key]).length;
 
   return (
-    <div>
-      <div className="pitch">
-        <div className="pitch-line pitch-halfway" />
-        <div className="pitch-circle" />
-        <div className="pitch-box" />
-        {SLOT_LAYOUT.map((layout) => (
-          <XISlotCard key={layout.key} layout={layout} player={xi[layout.key]} />
-        ))}
-      </div>
-      <p className="chart-note" style={{ textAlign: "center" }}>
-        {filledCount}/11 pozic obsazeno · rozestavba 1-4-5-1 (LW/RW/CAM jako ofenzivní záložníci)
-      </p>
+    <div className="pitch">
+      <PitchMarkings />
+      {SLOT_LAYOUT.map((layout) => (
+        <XISlotCard key={layout.key} layout={layout} player={xi[layout.key]} />
+      ))}
     </div>
   );
 }
