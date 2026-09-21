@@ -62,7 +62,7 @@ export const clubAliases = {
   "ŁKS Łódź": 3498,
   "Red Star Belgrade": 598,
   "Javor Ivanjica": 2653,
-  "Slaven Koprivnica": 5710,
+  "Slaven Koprivnica": 1018, // opraveno — 5710 byl špatný klub, správně je to Slaven Belupo
   "Trans": 2274,
   "Nyíregyháza Spartacus": 2403,
   "Argeș": 2592,
@@ -80,4 +80,6 @@ export const clubAliases = {
   "AIK": 377, // opraveno — auto-shoda podle jména byla špatná
   "Hajduk Split": 608, // opraveno — auto-shoda podle jména byla špatná
   "Salzburg": 571, // opraveno — auto-shoda podle jména byla špatná
+  "Gorica": 1068, // opraveno — trefilo se do slovinského klubu se stejným názvem
+  "Osijek": 616, // opraveno — auto-shoda podle jména byla špatná
 };
