@@ -238,7 +238,9 @@ function XISlotCard({ layout, player }) {
   if (!player) {
     return (
       <div className="xi-slot" style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
-        <div className="xi-avatar xi-avatar-empty"><PersonIcon size={18} /></div>
+        <div className="xi-avatar-wrap">
+          <div className="xi-avatar xi-avatar-empty"><PersonIcon size={22} /></div>
+        </div>
         <div className="xi-slot-label">{layout.label}</div>
       </div>
     );
@@ -246,7 +248,10 @@ function XISlotCard({ layout, player }) {
   const rating = player.form_ratings[0];
   return (
     <Link href={`/databaze/${player._id}`} className="xi-slot" style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
-      <Avatar src={player.photo_url} size={44} className="xi-avatar" />
+      <div className="xi-avatar-wrap">
+        <Avatar src={player.photo_url} size={60} className="xi-avatar" />
+        {player.club_logo_url && <img src={player.club_logo_url} alt="" className="xi-club-badge" />}
+      </div>
       <div className="xi-rating" style={{ background: formColor(rating) }}>{rating.toFixed(1)}</div>
       <div className="xi-name">{player.player_name}</div>
     </Link>
