@@ -375,6 +375,7 @@ async function fetchSquads(clubMatches, rosterByClub) {
 
     const ourRoster = rosterByClub.get(ourClubName) || new Set();
     const ourRosterList = [...ourRoster];
+    const matchedOurNames = new Set();
 
     for (const sp of squadPlayers) {
       let best = null, bestScore = 0;
@@ -384,6 +385,28 @@ async function fetchSquads(clubMatches, rosterByClub) {
       }
       if (best && bestScore >= PLAYER_MATCH_THRESHOLD) {
         playerPhotos[playerClubKey(best, ourClubName)] = sp.photo;
+        matchedOurNames.add(best);
+      }
+    }
+
+    // Diagnostic only: for our roster players who got no photo, record the
+    // closest API squad name and score — but only "near misses" (score high
+    // enough to suggest a naming quirk, not just "not in this API's data at
+    // all", which is the far more common and less interesting case).
+    for (const ourName of ourRosterList) {
+      if (matchedOurNames.has(ourName)) continue;
+      let best = null, bestScore = 0;
+      for (const sp of squadPlayers) {
+        const score = playerNameScore(sp.name, ourName);
+        if (score > bestScore) { bestScore = score; best = sp.name; }
+      }
+      if (bestScore >= 0.45) {
+        unmatchedPlayers.push({
+          club: ourClubName,
+          ourPlayer: ourName,
+          bestApiCandidate: best,
+          bestScore: Number(bestScore.toFixed(2)),
+        });
       }
     }
   }
@@ -509,9 +532,11 @@ async function main() {
   const { matches: clubMatches, unmatched: unmatchedClubs } = await resolveClubs(clubInfo);
 
   let playerPhotos = {};
+  let unmatchedPlayers = [];
   if (!SKIP_SQUADS && !interrupted) {
     const result = await fetchSquads(clubMatches, rosterByClub);
     playerPhotos = result.playerPhotos;
+    unmatchedPlayers = result.unmatchedPlayers;
   } else if (SKIP_SQUADS) {
     console.log(`\n[fetch-media] --skip-squads: přeskakuji fázi 3 (fotky hráčů). Zkontroluj napárování lig/klubů výše.`);
   }
@@ -553,7 +578,7 @@ async function main() {
     apiName: m.name,
     apiId: m.id,
   }));
-  fs.writeFileSync(REPORT_FILE, JSON.stringify({ matchedLeagues, unmatchedLeagues, unmatchedClubs }, null, 2));
+  fs.writeFileSync(REPORT_FILE, JSON.stringify({ matchedLeagues, unmatchedLeagues, unmatchedClubs, unmatchedPlayers }, null, 2));
 
   console.log(`\n[fetch-media] Hotovo. Použito requestů: ${requestCount}.`);
   console.log(`  Ligy:  ${mediaMap.stats.leaguesMatched}/${mediaMap.stats.leaguesTotal}`);
@@ -565,6 +590,9 @@ async function main() {
   if (unmatchedLeagues.length || unmatchedClubs.length) {
     console.log(`  -> data/unmatched-report.json (${unmatchedLeagues.length} lig, ${unmatchedClubs.length} klubů k ruční kontrole)`);
     console.log(`     Doplň je do config/media-aliases.mjs a spusť skript znovu.`);
+  }
+  if (unmatchedPlayers.length) {
+    console.log(`  -> data/unmatched-report.json obsahuje i ${unmatchedPlayers.length} hráčů s "blízkou shodou" bez fotky (pravděpodobně chyba v párování jména, ne že by API hráče nemělo).`);
   }
 }
 
