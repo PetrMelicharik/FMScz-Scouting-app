@@ -6,6 +6,7 @@ const LINKS = [
   { href: "/", label: "Home" },
   { href: "/databaze", label: "Databáze" },
   { href: "/grafy", label: "Grafy" },
+  { href: "/tym-tydne", label: "Tým týdne" },
 ];
 
 export default function NavBar() {
