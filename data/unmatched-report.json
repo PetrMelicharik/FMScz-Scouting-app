@@ -1,4 +1,3228 @@
 {
+  "matchedLeagues": [
+    {
+      "ourLeagueName": "Austrian Bundesliga",
+      "apiName": "Bundesliga",
+      "apiId": 218
+    },
+    {
+      "ourLeagueName": "Austrian 2. Liga",
+      "apiName": "2. Liga",
+      "apiId": 219
+    },
+    {
+      "ourLeagueName": "Bosnian WWIN Liga BiH",
+      "apiName": "Premijer Liga",
+      "apiId": 315
+    },
+    {
+      "ourLeagueName": "Bulgarian Parva Liga",
+      "apiName": "First League",
+      "apiId": 172
+    },
+    {
+      "ourLeagueName": "Croatian HNL",
+      "apiName": "HNL",
+      "apiId": 210
+    },
+    {
+      "ourLeagueName": "Czech Chance Liga",
+      "apiName": "Czech Liga",
+      "apiId": 345
+    },
+    {
+      "ourLeagueName": "Czech Chance Národní Liga",
+      "apiName": "FNL",
+      "apiId": 346
+    },
+    {
+      "ourLeagueName": "Danish Superliga",
+      "apiName": "Superliga",
+      "apiId": 119
+    },
+    {
+      "ourLeagueName": "Danish Betinia Liga",
+      "apiName": "1. Division",
+      "apiId": 120
+    },
+    {
+      "ourLeagueName": "Estonian Premium Liiga",
+      "apiName": "Meistriliiga",
+      "apiId": 329
+    },
+    {
+      "ourLeagueName": "Finland Veikkausliiga",
+      "apiName": "Veikkausliiga",
+      "apiId": 244
+    },
+    {
+      "ourLeagueName": "Polish Ekstraklasa",
+      "apiName": "Ekstraklasa",
+      "apiId": 106
+    },
+    {
+      "ourLeagueName": "Polish Betclic 1. Liga",
+      "apiName": "I Liga",
+      "apiId": 107
+    },
+    {
+      "ourLeagueName": "Hungarian Fizz Liga",
+      "apiName": "NB I",
+      "apiId": 271
+    },
+    {
+      "ourLeagueName": "Latvian Virsliga",
+      "apiName": "Virsliga",
+      "apiId": 365
+    },
+    {
+      "ourLeagueName": "Eliteserien",
+      "apiName": "Eliteserien",
+      "apiId": 103
+    },
+    {
+      "ourLeagueName": "Norway First Division",
+      "apiName": "1. Division",
+      "apiId": 104
+    },
+    {
+      "ourLeagueName": "Romanian SuperLiga",
+      "apiName": "Liga I",
+      "apiId": 283
+    },
+    {
+      "ourLeagueName": "Serbian Mozzart Bet Superliga",
+      "apiName": "Super Liga",
+      "apiId": 286
+    },
+    {
+      "ourLeagueName": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Prva Liga",
+      "apiId": 287
+    },
+    {
+      "ourLeagueName": "Slovak Niké Liga",
+      "apiName": "Super Liga",
+      "apiId": 332
+    },
+    {
+      "ourLeagueName": "Slovenian PrvaLiga",
+      "apiName": "1. SNL",
+      "apiId": 373
+    },
+    {
+      "ourLeagueName": "Sweden Allsvenskan",
+      "apiName": "Allsvenskan",
+      "apiId": 113
+    },
+    {
+      "ourLeagueName": "Sweden Superettan",
+      "apiName": "Superettan",
+      "apiId": 114
+    },
+    {
+      "ourLeagueName": "Swiss Super League",
+      "apiName": "Super League",
+      "apiId": 207
+    },
+    {
+      "ourLeagueName": "Ukraine Premier League",
+      "apiName": "Premier League",
+      "apiId": 333
+    }
+  ],
   "unmatchedLeagues": [],
-  "unmatchedClubs": []
+  "unmatchedClubs": [],
+  "unmatchedPlayers": [
+    {
+      "club": "Wolfsberger AC",
+      "ourPlayer": "Nikolas Polster",
+      "bestApiCandidate": "N. Wimmer",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Austria Wien",
+      "ourPlayer": "Florian Wustinger",
+      "bestApiCandidate": "C. Wenninger",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Austria Wien",
+      "ourPlayer": "Johannes Handl",
+      "bestApiCandidate": "J. Pal",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Austria Wien",
+      "ourPlayer": "Vasilije Markovic",
+      "bestApiCandidate": "V. Buric",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Rheindorf Altach",
+      "ourPlayer": "Elias Scherf",
+      "bestApiCandidate": "E. Purtscher",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Rheindorf Altach",
+      "ourPlayer": "Jakob Brandtner",
+      "bestApiCandidate": "J. Meister",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Rheindorf Altach",
+      "ourPlayer": "Lukas Jäger",
+      "bestApiCandidate": "L. Reisinger",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Rheindorf Altach",
+      "ourPlayer": "Mike-Steven Bähre",
+      "bestApiCandidate": "M. Friedel",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Sturm Graz",
+      "ourPlayer": "Jeyland Mitchell",
+      "bestApiCandidate": "J. Heil",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Austria Lustenau",
+      "ourPlayer": "Anilson Dourado Santiado",
+      "bestApiCandidate": "Anilson",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Grazer AK",
+      "ourPlayer": "Anderson dos Santos Gomes",
+      "bestApiCandidate": "A. Smits",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Amane Romeo",
+      "bestApiCandidate": "A. Riegel",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Eaden Roka",
+      "bestApiCandidate": "E. Rahmani",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Ercan Kara",
+      "bestApiCandidate": "E. Rahmani",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Jakob Maximilian Schöller",
+      "bestApiCandidate": "J. Marcelin",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Marco Tilio",
+      "bestApiCandidate": "M. Tazi",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Nenad Cvetković",
+      "bestApiCandidate": "N. Jozepovic",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Rapid Wien",
+      "ourPlayer": "Paul Gartler",
+      "bestApiCandidate": "P. Ertl",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Blau-Weiß Linz",
+      "ourPlayer": "Ronivaldo Bernardo Sales",
+      "bestApiCandidate": "Ronivaldo",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Admira",
+      "ourPlayer": "Fabian Feiner",
+      "bestApiCandidate": "F. Limmer",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Admira",
+      "ourPlayer": "Felix Holzhacker",
+      "bestApiCandidate": "F. Limmer",
+      "bestScore": 0.48
+    },
+    {
+      "club": "St. Pölten",
+      "ourPlayer": "Jonathan Amon",
+      "bestApiCandidate": "J. Tabotta",
+      "bestScore": 0.46
+    },
+    {
+      "club": "St. Pölten",
+      "ourPlayer": "Leomend Krasniqi",
+      "bestApiCandidate": "L. Hermsmeier",
+      "bestScore": 0.48
+    },
+    {
+      "club": "St. Pölten",
+      "ourPlayer": "Luis Hartwig",
+      "bestApiCandidate": "L. Hermsmeier",
+      "bestScore": 0.48
+    },
+    {
+      "club": "St. Pölten",
+      "ourPlayer": "Sondre Skogen",
+      "bestApiCandidate": "S. Makovec",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Schwarz-Weiß Bregenz",
+      "ourPlayer": "Gabryel Monteiro de Andrade",
+      "bestApiCandidate": "G. Omotehara",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Schwarz-Weiß Bregenz",
+      "ourPlayer": "Lucas Soares Dantas",
+      "bestApiCandidate": "L. Sealey",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Schwarz-Weiß Bregenz",
+      "ourPlayer": "Nicolas Rossi Santos",
+      "bestApiCandidate": "K. Saito",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Schwarz-Weiß Bregenz",
+      "ourPlayer": "Thalison de Sousa Oliveira",
+      "bestApiCandidate": "Rodrigo Souza",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Austria Wien II",
+      "ourPlayer": "Lars Stöckl",
+      "bestApiCandidate": "L. Schöffel",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Austria Salzburg",
+      "ourPlayer": "Philipp Bauer",
+      "bestApiCandidate": "C. Gebauer",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Velež",
+      "ourPlayer": "Abdallah Ali Mohamed",
+      "bestApiCandidate": "A. Bajrić",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Velež",
+      "ourPlayer": "Armin Spahić",
+      "bestApiCandidate": "A. Bešagić",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Zrinjski",
+      "ourPlayer": "Adi Nalic",
+      "bestApiCandidate": "A. Ilic",
+      "bestScore": 0.7
+    },
+    {
+      "club": "Zrinjski",
+      "ourPlayer": "Matej Šakota",
+      "bestApiCandidate": "M. Vranjković",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Radnik Bijeljina",
+      "ourPlayer": "Meyepya Fongain",
+      "bestApiCandidate": "M. Andacic",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Lokomotiv Sofia 1929",
+      "ourPlayer": "Mitko Mitkov",
+      "bestApiCandidate": "M. Yankov",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Levski Sofia",
+      "ourPlayer": "Armstrong Okoflex",
+      "bestApiCandidate": "A. Oko-Flex",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Levski Sofia",
+      "ourPlayer": "Maicon Araújo dos Santos",
+      "bestApiCandidate": "Hevertton Santos",
+      "bestScore": 0.81
+    },
+    {
+      "club": "Ludogorets",
+      "ourPlayer": "Emerson Rivaldo Rodríguez Valois",
+      "bestApiCandidate": "E. Bille",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Ludogorets",
+      "ourPlayer": "Francisco Javier Hidalgo Gómez",
+      "bestApiCandidate": "Caio Vidal",
+      "bestScore": 0.51
+    },
+    {
+      "club": "Ludogorets",
+      "ourPlayer": "Yves Erick Bile",
+      "bestApiCandidate": "E. Bille",
+      "bestScore": 0.6
+    },
+    {
+      "club": "Spartak Varna",
+      "ourPlayer": "Damyan Ivanov Yordanov",
+      "bestApiCandidate": "B. Ivanov",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Spartak Varna",
+      "ourPlayer": "Edson Martinho Silva",
+      "bestApiCandidate": "Tomás Silva",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Spartak Varna",
+      "ourPlayer": "Georg Stojanovski",
+      "bestApiCandidate": "G. Trifonov",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Spartak Varna",
+      "ourPlayer": "Jose Alves da Silva Neto",
+      "bestApiCandidate": "Tomás Silva",
+      "bestScore": 0.8
+    },
+    {
+      "club": "CSKA Sofia",
+      "ourPlayer": "Alejandro Piedrahita Díaz",
+      "bestApiCandidate": "Léo Pereira",
+      "bestScore": 0.46
+    },
+    {
+      "club": "CSKA Sofia",
+      "ourPlayer": "David Samuel Custódio Lima",
+      "bestApiCandidate": "D. Evtimov",
+      "bestScore": 0.46
+    },
+    {
+      "club": "CSKA 1948 Sofia",
+      "ourPlayer": "José Martínez",
+      "bestApiCandidate": "P. Marinov",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Septemvri Sofia",
+      "ourPlayer": "Viktor Kristiyanov Dobrev",
+      "bestApiCandidate": "Viktor Dobrev",
+      "bestScore": 1
+    },
+    {
+      "club": "Dunav 2010",
+      "ourPlayer": "Kristian Kristianov Boytchev",
+      "bestApiCandidate": "K. Boychev",
+      "bestScore": 0.91
+    },
+    {
+      "club": "Slavia Sofia",
+      "ourPlayer": "Ilian Stefanov",
+      "bestApiCandidate": "K. Stoyanov",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Slavia Sofia",
+      "ourPlayer": "Marko Miletić",
+      "bestApiCandidate": "V. Miletić",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Slavia Sofia",
+      "ourPlayer": "Roberto Iliev",
+      "bestApiCandidate": "R. Raychev",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Hajduk Split",
+      "ourPlayer": "Dalisson de Almeida Leite",
+      "bestApiCandidate": "D. Stipica",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Osijek",
+      "ourPlayer": "Arnel Jakupovic",
+      "bestApiCandidate": "A. Matkovic",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Osijek",
+      "ourPlayer": "Miguel Ângelo Bastos Melo",
+      "bestApiCandidate": "M. Heister",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Istra 1961",
+      "ourPlayer": "Demirel Hodzic",
+      "bestApiCandidate": "V. Rozić",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Istra 1961",
+      "ourPlayer": "Mamadou Saydou Bangura",
+      "bestApiCandidate": "M. Nasraoui",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Rudeš",
+      "ourPlayer": "Filip Taraba",
+      "bestApiCandidate": "F. Barbic",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Rudeš",
+      "ourPlayer": "Ivan Djoric",
+      "bestApiCandidate": "I. Đorić",
+      "bestScore": 0.88
+    },
+    {
+      "club": "Rudeš",
+      "ourPlayer": "Nikica Peranović",
+      "bestApiCandidate": "Luka Popovic",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Rudeš",
+      "ourPlayer": "Xavier Cabrita Fernandes",
+      "bestApiCandidate": "J. Fernandes",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Lokomotiva Zagreb",
+      "ourPlayer": "Kayke Rodrigo Souza de Abreu",
+      "bestApiCandidate": "K. Čabrajić",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Lokomotiva Zagreb",
+      "ourPlayer": "Mirko Šušak",
+      "bestApiCandidate": "M. Subotić",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Sigma Olomouc",
+      "ourPlayer": "Matěj Mikulenka",
+      "bestApiCandidate": "M. Hruška",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Pardubice",
+      "ourPlayer": "Jiří Hamza",
+      "bestApiCandidate": "J. Zima",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Pardubice",
+      "ourPlayer": "Stepan Misek",
+      "bestApiCandidate": "S. Šimek",
+      "bestScore": 0.7
+    },
+    {
+      "club": "Hradec Králové",
+      "ourPlayer": "Marko Regža",
+      "bestApiCandidate": "M. Valenta",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Líšeň",
+      "ourPlayer": "Daniel Toula",
+      "bestApiCandidate": "D. Kolarić",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Mladá Boleslav",
+      "ourPlayer": "Matousek Filip",
+      "bestApiCandidate": "M. Králik",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Sparta Praha",
+      "ourPlayer": "Asger Sørensen",
+      "bestApiCandidate": "A. Ševínský",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Slovácko",
+      "ourPlayer": "Martin Koscelník",
+      "bestApiCandidate": "M. Havlík",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Slavia Praha",
+      "ourPlayer": "David Barcot",
+      "bestApiCandidate": "Pavel Kacor",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Slavia Praha",
+      "ourPlayer": "El Hadji Youssoupha Mbodji",
+      "bestApiCandidate": "E. Ayaosi",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Slavia Praha",
+      "ourPlayer": "Jindřich Staněk",
+      "bestApiCandidate": "J. Kolísek",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Slovan Liberec",
+      "ourPlayer": "Dominik Kúdelčík",
+      "bestApiCandidate": "D. Kúdelčík",
+      "bestScore": 1
+    },
+    {
+      "club": "Slavia Praha U21",
+      "ourPlayer": "Jáchym Palivec",
+      "bestApiCandidate": "J. Kolísek",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Slavia Praha U21",
+      "ourPlayer": "Matěj Kotrba",
+      "bestApiCandidate": "M. Srb",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Slavia Praha U21",
+      "ourPlayer": "Miguel Solarte",
+      "bestApiCandidate": "M. Srb",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Prostějov",
+      "ourPlayer": "Martin Vaňák",
+      "bestApiCandidate": "M. Černák",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Opava",
+      "ourPlayer": "Adam Sochor",
+      "bestApiCandidate": "A. Buchta",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Arsenal Ceska Lipa",
+      "ourPlayer": "John Patrick Edeh",
+      "bestApiCandidate": "J. Šťovíček",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Viktoria Žižkov",
+      "ourPlayer": "Adel Kadi",
+      "bestApiCandidate": "A. Batioja",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Viktoria Žižkov",
+      "ourPlayer": "David Klusák",
+      "bestApiCandidate": "D. Kosek",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Viktoria Žižkov",
+      "ourPlayer": "Mustapha Badjie",
+      "bestApiCandidate": "M. Baafi",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Vysočina Jihlava",
+      "ourPlayer": "Jakub Lopatář",
+      "bestApiCandidate": "J. Masat",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Vysočina Jihlava",
+      "ourPlayer": "Ousmane Sambou",
+      "bestApiCandidate": "D. Jambor",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Baník Ostrava U21",
+      "ourPlayer": "David Řeháček",
+      "bestApiCandidate": "D. Zajac",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Baník Ostrava U21",
+      "ourPlayer": "Josef Struhař",
+      "bestApiCandidate": "J. Pira",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Baník Ostrava U21",
+      "ourPlayer": "Tadeáš Frýdl",
+      "bestApiCandidate": "T. FrÃ½dl",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Vlašim",
+      "ourPlayer": "Basit Lanre Ahmed",
+      "bestApiCandidate": "B. Ahmed",
+      "bestScore": 1
+    },
+    {
+      "club": "Vlašim",
+      "ourPlayer": "David Beránek",
+      "bestApiCandidate": "D. Koran",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Midtjylland",
+      "ourPlayer": "Adam Gabriel",
+      "bestApiCandidate": "A. Djabi",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Midtjylland",
+      "ourPlayer": "Franculino Gluda Djú",
+      "bestApiCandidate": "B. Dje Bi Dje",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Midtjylland",
+      "ourPlayer": "Valdemar Andreasen",
+      "bestApiCandidate": "V. Bak Jensen",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Viborg",
+      "ourPlayer": "Giulio Gabriel da Silva",
+      "bestApiCandidate": "Giulio",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Viborg",
+      "ourPlayer": "Mees Hoedemakers",
+      "bestApiCandidate": "M. Søndergaard",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Viborg",
+      "ourPlayer": "Oliver Kristensen",
+      "bestApiCandidate": "Adam Kleis-Kristoffersen",
+      "bestScore": 0.52
+    },
+    {
+      "club": "København",
+      "ourPlayer": "Gabriel Pereira Magalhães dos Santos",
+      "bestApiCandidate": "G. Vianney",
+      "bestScore": 0.46
+    },
+    {
+      "club": "København",
+      "ourPlayer": "Jordan Larsson",
+      "bestApiCandidate": "R. Rúnarsson",
+      "bestScore": 0.5
+    },
+    {
+      "club": "København",
+      "ourPlayer": "Mustapha Nyassi",
+      "bestApiCandidate": "M. Elyounoussi",
+      "bestScore": 0.52
+    },
+    {
+      "club": "SønderjyskE",
+      "ourPlayer": "David Frimpong",
+      "bestApiCandidate": "D. Boison",
+      "bestScore": 0.53
+    },
+    {
+      "club": "SønderjyskE",
+      "ourPlayer": "Simon Sylvest Wæver",
+      "bestApiCandidate": "G. Wagner",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Nordsjælland",
+      "ourPlayer": "Hjalte Boe Kling Rasmussen",
+      "bestApiCandidate": "M. Rasmussen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Randers",
+      "ourPlayer": "Amin Al-Hamawi",
+      "bestApiCandidate": "A. Camara",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Lyngby",
+      "ourPlayer": "Mathias Kaarsbo Winther",
+      "bestApiCandidate": "M. Fischer",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Brøndby",
+      "ourPlayer": "Mathias Jensen",
+      "bestApiCandidate": "M. Frøkjær-Jensen",
+      "bestScore": 1
+    },
+    {
+      "club": "AGF",
+      "ourPlayer": "Jesper Hansen",
+      "bestApiCandidate": "J. Mathiasen",
+      "bestScore": 0.58
+    },
+    {
+      "club": "AGF",
+      "ourPlayer": "Jonas Jensen-Abbew",
+      "bestApiCandidate": "Sofie Jorgensen",
+      "bestScore": 0.55
+    },
+    {
+      "club": "AGF",
+      "ourPlayer": "Magnus Knudsen",
+      "bestApiCandidate": "M. Gade",
+      "bestScore": 0.46
+    },
+    {
+      "club": "AGF",
+      "ourPlayer": "Mikael Anderson",
+      "bestApiCandidate": "Signe Andersen",
+      "bestScore": 0.74
+    },
+    {
+      "club": "AGF",
+      "ourPlayer": "Tobias Bech Kristensen",
+      "bestApiCandidate": "Sofie Jorgensen",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Vejle",
+      "ourPlayer": "Christian Gammelgaard",
+      "bestApiCandidate": "N. Gammelgaard",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Vejle",
+      "ourPlayer": "Max Jensen",
+      "bestApiCandidate": "M. Jensen",
+      "bestScore": 1
+    },
+    {
+      "club": "Vejle",
+      "ourPlayer": "Tobias Lauritsen",
+      "bestApiCandidate": "N. Larsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Hvidovre",
+      "ourPlayer": "Marius Kolind",
+      "bestApiCandidate": "M. Kiilerich",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Hvidovre",
+      "ourPlayer": "Oliver Juul Jensen",
+      "bestApiCandidate": "O. Juul Jensen",
+      "bestScore": 1
+    },
+    {
+      "club": "Kolding IF",
+      "ourPlayer": "Jeffrey Papayaw Adjei-Broni",
+      "bestApiCandidate": "J. Hansen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Kolding IF",
+      "ourPlayer": "Nicolai Bossen",
+      "bestApiCandidate": "N. Morberg",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Fredericia",
+      "ourPlayer": "Eskild Munk Dall",
+      "bestApiCandidate": "A. Dahl",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Hillerød",
+      "ourPlayer": "Jakob Gunnar Sigurðsson",
+      "bestApiCandidate": "Jakob Sigurdsson",
+      "bestScore": 0.63
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Alexander Lien Håpnes",
+      "bestApiCandidate": "A. Kitchen",
+      "bestScore": 0.57
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Andreas Maarup Hansen",
+      "bestApiCandidate": "A. Jakobsen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Andres Jasson",
+      "bestApiCandidate": "A. Jakobsen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Benjamin Hansen",
+      "bestApiCandidate": "L. SÃ¸rensen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Bertram Peter Skovgaard",
+      "bestApiCandidate": "K. Petersen",
+      "bestScore": 0.47
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Cornelius Axel Olsson",
+      "bestApiCandidate": "C. Holst",
+      "bestScore": 0.5
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Elison Makolli",
+      "bestApiCandidate": "E. Skall",
+      "bestScore": 0.57
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Kornelius Normann Hansen",
+      "bestApiCandidate": "K. Harvey",
+      "bestScore": 0.63
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Markus Andreas Kaasa",
+      "bestApiCandidate": "M. Dayes",
+      "bestScore": 0.46
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Mathijs Tielemans",
+      "bestApiCandidate": "M. Roelfsema",
+      "bestScore": 0.5
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Philip Berendt Søndergaard",
+      "bestApiCandidate": "P. Pedersen",
+      "bestScore": 0.45
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Tibo Persyn",
+      "bestApiCandidate": "K. Petersen",
+      "bestScore": 0.47
+    },
+    {
+      "club": "AaB",
+      "ourPlayer": "Valdemar Møller Damgaard",
+      "bestApiCandidate": "J. Haugaard",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Aarhus Fremad",
+      "ourPlayer": "Marcus Løvenbalk Kirchheiner",
+      "bestApiCandidate": "M. Kirchheiner",
+      "bestScore": 1
+    },
+    {
+      "club": "Paide",
+      "ourPlayer": "Henri Lehtmaa",
+      "bestApiCandidate": "H. Ojamaa",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Paide",
+      "ourPlayer": "Hindrek Ojamaa",
+      "bestApiCandidate": "H. Ojamaa",
+      "bestScore": 1
+    },
+    {
+      "club": "Paide",
+      "ourPlayer": "Willian Gabriel Lins de Sá",
+      "bestApiCandidate": "Victor Hugo dos Santos de Sá",
+      "bestScore": 0.79
+    },
+    {
+      "club": "Harju Jalgpallikool",
+      "ourPlayer": "Ramol Sillamaa",
+      "bestApiCandidate": "R. Reimaa",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Trans",
+      "ourPlayer": "Artur Timoska",
+      "bestApiCandidate": "A. Besigirskis",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Trans",
+      "ourPlayer": "Irié Bi Séhi Elysée",
+      "bestApiCandidate": "I. Rebrik",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Tallinna FC Flora",
+      "ourPlayer": "Karl-Tristan Lorenz",
+      "bestApiCandidate": "Mark-Rene Valjas",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Tallinna FC Flora",
+      "ourPlayer": "Mark Hendrik Kukk",
+      "bestApiCandidate": "Oskar Pukk",
+      "bestScore": 0.61
+    },
+    {
+      "club": "Tallinna FC Flora",
+      "ourPlayer": "Nikita Kalmõkov",
+      "bestApiCandidate": "Nikita Balanenkov",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Tallinna FC Flora",
+      "ourPlayer": "Robert Veering",
+      "bestApiCandidate": "Robert Herman Hans",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Tallinna FC Flora",
+      "ourPlayer": "Tristan Toomas Teeväli",
+      "bestApiCandidate": "Johan Tougjas",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Nõmme Kalju",
+      "ourPlayer": "Alex Boronilštšikov",
+      "bestApiCandidate": "A. Butenko",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Nõmme Kalju",
+      "ourPlayer": "Kristjan Kask",
+      "bestApiCandidate": "K. Kasela",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Nõmme Kalju",
+      "ourPlayer": "Maksim Podholjuzin",
+      "bestApiCandidate": "M. Artjunin",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Kuressaare",
+      "ourPlayer": "Joonas Vahermägi",
+      "bestApiCandidate": "J. Vahermägi",
+      "bestScore": 1
+    },
+    {
+      "club": "Kuressaare",
+      "ourPlayer": "Rasmus Lõhmus",
+      "bestApiCandidate": "R. Lukas",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Tammeka",
+      "ourPlayer": "German Jürgenthal",
+      "bestApiCandidate": "G. Uggeri",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Tammeka",
+      "ourPlayer": "Jaanus Vainjärv",
+      "bestApiCandidate": "C. Kiidjärv",
+      "bestScore": 0.47
+    },
+    {
+      "club": "SJK",
+      "ourPlayer": "Kasper Paananen",
+      "bestApiCandidate": "K. Nwanege",
+      "bestScore": 0.53
+    },
+    {
+      "club": "SJK",
+      "ourPlayer": "Samuel Johansen Chukwudi",
+      "bestApiCandidate": "S. F. James",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Lahti",
+      "ourPlayer": "Luis Montiel Rodriguez",
+      "bestApiCandidate": "Tòfol Montiel",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Lahti",
+      "ourPlayer": "Nicolas Gianini Dantas",
+      "bestApiCandidate": "Nícolas",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Oulu",
+      "ourPlayer": "Julius Körkkö",
+      "bestApiCandidate": "J. Korhonen",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Inter Turku",
+      "ourPlayer": "Antoin Loic Essomba Bikoula",
+      "bestApiCandidate": "A. Salonen",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Inter Turku",
+      "ourPlayer": "Ilari Kangasniemi",
+      "bestApiCandidate": "I. Järvinen",
+      "bestScore": 0.45
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Alfie Cicale",
+      "bestApiCandidate": "A. Laihanen",
+      "bestScore": 0.53
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Brooklyn Lyons-Foster",
+      "bestApiCandidate": "Alma Forsten",
+      "bestScore": 0.57
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Jasper Samooja",
+      "bestApiCandidate": "J. Topra",
+      "bestScore": 0.46
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Jere Kallinen",
+      "bestApiCandidate": "N. Karvonen",
+      "bestScore": 0.47
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Lassi Lappalainen",
+      "bestApiCandidate": "A. Lahikainen",
+      "bestScore": 0.48
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Liam Möller",
+      "bestApiCandidate": "L. Hillberg",
+      "bestScore": 0.63
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Martin Kirilov",
+      "bestApiCandidate": "M. Kiviranta",
+      "bestScore": 0.5
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Mitja Haapanen",
+      "bestApiCandidate": "A. Laihanen",
+      "bestScore": 0.47
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Mustafa Abdulmuttaleb Abdulrasoul",
+      "bestApiCandidate": "M. Lassas",
+      "bestScore": 0.45
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Nikolai Alho",
+      "bestApiCandidate": "N. Kalske",
+      "bestScore": 0.5
+    },
+    {
+      "club": "HJK",
+      "ourPlayer": "Santeri Haarala",
+      "bestApiCandidate": "S. Eranka",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Ilves",
+      "ourPlayer": "Oskari Tapio Paavola",
+      "bestApiCandidate": "O. Multala",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Ilves",
+      "ourPlayer": "Otto Tiitinen",
+      "bestApiCandidate": "E. Tamminen",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Radomiak Radom",
+      "ourPlayer": "Conrado Buchanelli Holz",
+      "bestApiCandidate": "C. Nunnely",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Wisła Płock",
+      "ourPlayer": "Jorge Jiménez Rodríguez",
+      "bestApiCandidate": "Jime",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Wisła Płock",
+      "ourPlayer": "Marin Karamarko",
+      "bestApiCandidate": "M. Kamiński",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Śląsk Wrocław",
+      "ourPlayer": "Jehor Macenko",
+      "bestApiCandidate": "E. Matsenko",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Śląsk Wrocław",
+      "ourPlayer": "Michal Rosiak",
+      "bestApiCandidate": "M. Szromnik",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Wisła Kraków",
+      "ourPlayer": "Oliwier Pławiński",
+      "bestApiCandidate": "O. Sukiennicki",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Zagłębie Lubin",
+      "ourPlayer": "Szymon Karasiński",
+      "bestApiCandidate": "S. Kerk",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Jagiellonia Białystok",
+      "ourPlayer": "Bartłomiej Krasiewicz",
+      "bestApiCandidate": "A. Damasiewicz",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Jagiellonia Białystok",
+      "ourPlayer": "Szymon Pankiewicz",
+      "bestApiCandidate": "A. Damasiewicz",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Jagiellonia Białystok",
+      "ourPlayer": "Zachary Zalewski",
+      "bestApiCandidate": "Eryk Kozlowski",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Wieczysta Kraków",
+      "ourPlayer": "Paulo Rafael Pereira Araújo",
+      "bestApiCandidate": "P. Pušić",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Pogoń Szczecin",
+      "ourPlayer": "Axel Holewinski",
+      "bestApiCandidate": "A. Ossowski",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Pogoń Szczecin",
+      "ourPlayer": "Leonardo Borges da Silva",
+      "bestApiCandidate": "L. Willen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Motor Lublin",
+      "ourPlayer": "Franciszek Lewandowski",
+      "bestApiCandidate": "M. Łęgowski",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Motor Lublin",
+      "ourPlayer": "Kacper Szymanek",
+      "bestApiCandidate": "K. Czubak",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Motor Lublin",
+      "ourPlayer": "Krystian Brzozowski",
+      "bestApiCandidate": "K. Kraska",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Lech Poznań",
+      "ourPlayer": "Gísli Gottskalk Thórdarson",
+      "bestApiCandidate": "G. Berggren",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Piast Gliwice",
+      "ourPlayer": "Igor Drapiński",
+      "bestApiCandidate": "S. Gapinski",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Piast Gliwice",
+      "ourPlayer": "Maciej Kucharski",
+      "bestApiCandidate": "Marcel Mendes-Dudziński",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Widzew Łódź",
+      "ourPlayer": "Kamil Cybulski",
+      "bestApiCandidate": "K. Świderski",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Korona Kielce",
+      "ourPlayer": "Costas Soteriou",
+      "bestApiCandidate": "K. Sotiriou",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Korona Kielce",
+      "ourPlayer": "David González Plata",
+      "bestApiCandidate": "D. Błanik",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Legia Warszawa",
+      "ourPlayer": "Artur Jędrzejczyk",
+      "bestApiCandidate": "A. Reca",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Legia Warszawa",
+      "ourPlayer": "Bogdan V'Yunnik",
+      "bestApiCandidate": "B. Viunnyk",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Górnik Zabrze",
+      "ourPlayer": "Kacper Urbanski",
+      "bestApiCandidate": "K. UrbaÅski",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Górnik Zabrze",
+      "ourPlayer": "Ksawery Semik",
+      "bestApiCandidate": "K. UrbaÅski",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Górnik Zabrze",
+      "ourPlayer": "Michał Rakoczy",
+      "bestApiCandidate": "M. Sáček",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Górnik Zabrze",
+      "ourPlayer": "Peter Federico Gonzalez Carmona",
+      "bestApiCandidate": "Peter",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Chrobry Głogów",
+      "ourPlayer": "Antoni Klimek",
+      "bestApiCandidate": "M. Ozimek",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Odra Opole",
+      "ourPlayer": "Cássio Santiago de Almeida",
+      "bestApiCandidate": "Cassio",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Odra Opole",
+      "ourPlayer": "Szymon Mida",
+      "bestApiCandidate": "S. Gieroba",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Stal Rzeszów",
+      "ourPlayer": "Emanuel Wiśniowski",
+      "bestApiCandidate": "M. Listkowski",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Stal Rzeszów",
+      "ourPlayer": "Vladislav Krasovskiy",
+      "bestApiCandidate": "U. Krasouski",
+      "bestScore": 0.6
+    },
+    {
+      "club": "Podbeskidzie",
+      "ourPlayer": "Yevgeny Schikavko",
+      "bestApiCandidate": "E. Shikavka",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Lechia Gdańsk",
+      "ourPlayer": "Camilo Andrés Mena Márquez",
+      "bestApiCandidate": "J. Mena",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Újpest",
+      "ourPlayer": "Ákos Markgráf",
+      "bestApiCandidate": "A. Maier",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Újpest",
+      "ourPlayer": "Heitor Marinho dos Santos",
+      "bestApiCandidate": "Heitor",
+      "bestScore": 0.5
+    },
+    {
+      "club": "ETO",
+      "ourPlayer": "Milán Vitális",
+      "bestApiCandidate": "M. Lamin Mass",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Ádám Gyula Bagi",
+      "bestApiCandidate": "A. Garcia",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Ádám Varga",
+      "bestApiCandidate": "A. Garcia",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Aleksandar Ćirković",
+      "bestApiCandidate": "A. Frajtovic",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Attila Osváth",
+      "bestApiCandidate": "A. Nemeth",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Carlos Eduardo Lopes Cruz",
+      "bestApiCandidate": "J. Edwards",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Elton Acolatse",
+      "bestApiCandidate": "E. Kovacs",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Endre Botka",
+      "bestApiCandidate": "E. Ott",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Levente Őri",
+      "bestApiCandidate": "L. Bozsik",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Olivér Zoltán Nagy",
+      "bestApiCandidate": "V. Nagy",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Ferencváros",
+      "ourPlayer": "Philippe Rommens",
+      "bestApiCandidate": "P. Kovacs",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Paksi SE",
+      "ourPlayer": "Hunor Álmos Kuzma",
+      "bestApiCandidate": "J. Galambos",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Paksi SE",
+      "ourPlayer": "János Szabó",
+      "bestApiCandidate": "J. Galambos",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Paksi SE",
+      "ourPlayer": "Márk Gyetván",
+      "bestApiCandidate": "M. Győrfi",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Debrecen",
+      "ourPlayer": "Benedek Miklós Erdélyi",
+      "bestApiCandidate": "B. Nyikos",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Debrecen",
+      "ourPlayer": "Dániel Póser",
+      "bestApiCandidate": "D. Kocsis",
+      "bestScore": 0.5
+    },
+    {
+      "club": "MTK",
+      "ourPlayer": "Gábor Jurek",
+      "bestApiCandidate": "G. Durso",
+      "bestScore": 0.55
+    },
+    {
+      "club": "MTK",
+      "ourPlayer": "István Bognár",
+      "bestApiCandidate": "Tamas Molnar",
+      "bestScore": 0.54
+    },
+    {
+      "club": "MTK",
+      "ourPlayer": "Kristóf Hinora",
+      "bestApiCandidate": "Kristof Kutsera",
+      "bestScore": 0.46
+    },
+    {
+      "club": "MTK",
+      "ourPlayer": "Mihály Kata",
+      "bestApiCandidate": "M. Kovacs",
+      "bestScore": 0.5
+    },
+    {
+      "club": "MTK",
+      "ourPlayer": "Milán Gábor Klausz",
+      "bestApiCandidate": "M. Kovacs",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Zalaegerszegi TE",
+      "ourPlayer": "Alen Martin Skribek",
+      "bestApiCandidate": "Marlon",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Zalaegerszegi TE",
+      "ourPlayer": "Marlon Santos Teodoro",
+      "bestApiCandidate": "Marlon",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Zalaegerszegi TE",
+      "ourPlayer": "Maxsuel Alexandre Alves Soares",
+      "bestApiCandidate": "M. Richards",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Várda SE",
+      "ourPlayer": "Anatoliy Nuriev",
+      "bestApiCandidate": "A. Nuredinovski",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Puskás",
+      "ourPlayer": "Brandon Ormonde-Ottewill",
+      "bestApiCandidate": "B. Vekony",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Puskás",
+      "ourPlayer": "Daniel Lukacs",
+      "bestApiCandidate": "David Lakatos",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Puskás",
+      "ourPlayer": "Michael Okeke",
+      "bestApiCandidate": "M. Kern",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Puskás",
+      "ourPlayer": "Mikael Soisalo",
+      "bestApiCandidate": "M. Semel",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Puskás",
+      "ourPlayer": "Roland Szolnoki",
+      "bestApiCandidate": "R. Szabari",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Puskás",
+      "ourPlayer": "Zsolt Nagy",
+      "bestApiCandidate": "Z. Nagy",
+      "bestScore": 1
+    },
+    {
+      "club": "Vasas",
+      "ourPlayer": "Viktor Mar Heidarsson",
+      "bestApiCandidate": "Viktor Hei",
+      "bestScore": 0.48
+    },
+    {
+      "club": "BFC Daugavpils",
+      "ourPlayer": "Alims Saveljevs",
+      "bestApiCandidate": "J. Saveljevs",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Liepāja",
+      "ourPlayer": "Amadou Traore",
+      "bestApiCandidate": "A. HaÃ¯dara",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Liepāja",
+      "ourPlayer": "Amar Haïdara",
+      "bestApiCandidate": "A. HaÃ¯dara",
+      "bestScore": 0.68
+    },
+    {
+      "club": "FS Jelgava",
+      "ourPlayer": "Mārtiņš Veļika",
+      "bestApiCandidate": "M. Semeško",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Super Nova",
+      "ourPlayer": "Ge Ismael Sylla",
+      "bestApiCandidate": "G. Bombans",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Super Nova",
+      "ourPlayer": "Kristaps Maksimovs",
+      "bestApiCandidate": "K. Romanovs",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Rīgas FS",
+      "ourPlayer": "Mor Talla Gaye",
+      "bestApiCandidate": "M. Sylla",
+      "bestScore": 0.7
+    },
+    {
+      "club": "Grobiņa",
+      "ourPlayer": "Maksims Fjodorovs",
+      "bestApiCandidate": "M. Sidorovs",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Tukums",
+      "ourPlayer": "Kristaps Kārlis Krieviņš",
+      "bestApiCandidate": "Kristaps Klavins",
+      "bestScore": 0.72
+    },
+    {
+      "club": "Tukums",
+      "ourPlayer": "Rems Gastons Dzeguze",
+      "bestApiCandidate": "R. Deružinskis",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Tukums",
+      "ourPlayer": "Renē Baumanis",
+      "bestApiCandidate": "K. Anmanis",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Auda",
+      "ourPlayer": "Deniss Melniks",
+      "bestApiCandidate": "D. Balodis",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Vålerenga",
+      "ourPlayer": "Stian Sjøvold Thorstensen",
+      "bestApiCandidate": "S. Jarl",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Tromsø",
+      "ourPlayer": "Johan Solstad-Nøis",
+      "bestApiCandidate": "Jakob Soltun",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Kristiansund",
+      "ourPlayer": "Aksel Nordvik Brattøy",
+      "bestApiCandidate": "A. Børset",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Kristiansund",
+      "ourPlayer": "Hrannar Snær Magnússon",
+      "bestApiCandidate": "H. Haugen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Kristiansund",
+      "ourPlayer": "Marius Kolind",
+      "bestApiCandidate": "M. Lansing",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Rosenborg",
+      "ourPlayer": "Aleksander Borgersen",
+      "bestApiCandidate": "J. Mortensen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Sarpsborg 08",
+      "ourPlayer": "Jesper Gregersen",
+      "bestApiCandidate": "J. H. Skjoren",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Aalesund",
+      "ourPlayer": "Kristoffer Klaesson",
+      "bestApiCandidate": "K. Nessø",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Sandefjord",
+      "ourPlayer": "Foster Apetorgbor",
+      "bestApiCandidate": "F. Pedersen",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Sandefjord",
+      "ourPlayer": "Jacob Hanstad",
+      "bestApiCandidate": "J. Vester",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Sandefjord",
+      "ourPlayer": "Ruben Kristensen Alte",
+      "bestApiCandidate": "R. Holten",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Start",
+      "ourPlayer": "Johannes Engenes",
+      "bestApiCandidate": "J. Meyer",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Viking",
+      "ourPlayer": "Edvin Austbö",
+      "bestApiCandidate": "A. Østbø",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Viking",
+      "ourPlayer": "Fillip Voster Botnen",
+      "bestApiCandidate": "O. Visted",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Viking",
+      "ourPlayer": "Hilmir Rafn Mikaelsson",
+      "bestApiCandidate": "H. Haugen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "KFUM",
+      "ourPlayer": "Bjørn Martin Kristensen",
+      "bestApiCandidate": "A. Christensen",
+      "bestScore": 0.61
+    },
+    {
+      "club": "KFUM",
+      "ourPlayer": "Eirik Franke Saunes",
+      "bestApiCandidate": "E. Knudsen",
+      "bestScore": 0.46
+    },
+    {
+      "club": "KFUM",
+      "ourPlayer": "Martin Tangen Vinjor",
+      "bestApiCandidate": "M. Larsen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "KFUM",
+      "ourPlayer": "Momodou Lion Njie",
+      "bestApiCandidate": "M. Larsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "FK Bodo - Glimt",
+      "ourPlayer": "Kasper Waarst Høgh",
+      "bestApiCandidate": "K. Solhaug",
+      "bestScore": 0.46
+    },
+    {
+      "club": "FK Bodo - Glimt",
+      "ourPlayer": "Mikkel Bro Hansen",
+      "bestApiCandidate": "M. L. Andersen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Brann",
+      "ourPlayer": "Jón Dagur Thorsteinsson",
+      "bestApiCandidate": "J. Sørensen",
+      "bestScore": 0.6
+    },
+    {
+      "club": "Brann",
+      "ourPlayer": "Lars Bjørnerud Remmem",
+      "bestApiCandidate": "L. Cornic",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Brann",
+      "ourPlayer": "Markus Haaland",
+      "bestApiCandidate": "M. Dyngeland",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Brann",
+      "ourPlayer": "Mathias Engevik Klausen",
+      "bestApiCandidate": "M. Dyngeland",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Lillestrøm",
+      "ourPlayer": "Lucas Svenningsen",
+      "bestApiCandidate": "L. Ranger",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Lillestrøm",
+      "ourPlayer": "Salieu Drammeh",
+      "bestApiCandidate": "S. Kristiansen",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Fredrikstad",
+      "ourPlayer": "Jonathan Vonheim Norbye",
+      "bestApiCandidate": "J. Torkildsen",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Fredrikstad",
+      "ourPlayer": "Oskar Øhlenschlæger",
+      "bestApiCandidate": "O. Langbråten",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Raufoss",
+      "ourPlayer": "Filip Fjeldheim Da Silva",
+      "bestApiCandidate": "Ludvik Bergheim",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Casper Glenna Andersen",
+      "bestApiCandidate": "C. Hansen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Fenuel Temesgen Tewelde",
+      "bestApiCandidate": "F. Gjerde",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Godwill Fabio Ambrose",
+      "bestApiCandidate": "G. Andresen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Hans Christian Bonnesen",
+      "bestApiCandidate": "H. Urnes",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Jacob Buus Jacobsen",
+      "bestApiCandidate": "O. Buur",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Jonathan Roaas Engen",
+      "bestApiCandidate": "J. Robertsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Julian Lerato Gunnerød",
+      "bestApiCandidate": "J. Berisha",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Kasper Andersen",
+      "bestApiCandidate": "G. Andresen",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Mukhtar Mustapha Adamu",
+      "bestApiCandidate": "M.  Mulac",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Samuel Skree Skjeldal",
+      "bestApiCandidate": "S. Mikkelsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Storm Leander Øines",
+      "bestApiCandidate": "S. Mikkelsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Odd",
+      "ourPlayer": "Syver Aas",
+      "bestApiCandidate": "S. Hanssen",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Sandnes Ulf",
+      "ourPlayer": "Eliah Røksund Debes",
+      "bestApiCandidate": "E. Berland",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Lyn",
+      "ourPlayer": "Ebrima Sawaneh",
+      "bestApiCandidate": "E. Race",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Lyn",
+      "ourPlayer": "Isak Kjelsrud Vik",
+      "bestApiCandidate": "Gabriel Vik Buet",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Strømmen",
+      "ourPlayer": "Matias Belli Moldskred",
+      "bestApiCandidate": "M. Kollstrom",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Bryne",
+      "ourPlayer": "Duarte Miguel Ramos Moreira",
+      "bestApiCandidate": "D. Motland",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Moss",
+      "ourPlayer": "Mathias Eriksen Ranmark",
+      "bestApiCandidate": "M. Lassen",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Moss",
+      "ourPlayer": "Thomas Klemetsen Jakobsen",
+      "bestApiCandidate": "Noah Ibsen",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Hødd",
+      "ourPlayer": "Ola Lerheim Olsen",
+      "bestApiCandidate": "C. Nilsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Egersund",
+      "ourPlayer": "Arne Bjørnemo Hetland",
+      "bestApiCandidate": "P. Hovland",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Egersund",
+      "ourPlayer": "Hinrik Harðarson",
+      "bestApiCandidate": "H. Hardarson",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Egersund",
+      "ourPlayer": "Oscar Forsmo Kapskarmo",
+      "bestApiCandidate": "O. Toft Noreng",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Egersund",
+      "ourPlayer": "Petter Hokstad",
+      "bestApiCandidate": "P. Hovland",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Egersund",
+      "ourPlayer": "Sem Aleksander Bergene",
+      "bestApiCandidate": "S. Westerlund",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Haugesund",
+      "ourPlayer": "Lars Tanggaard Eide",
+      "bestApiCandidate": "L. Remmem",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Haugesund",
+      "ourPlayer": "Parfait Bizoza",
+      "bestApiCandidate": "P. Hannola",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Åsane",
+      "ourPlayer": "Gabriel Ramsay",
+      "bestApiCandidate": "G. Ramsay",
+      "bestScore": 1
+    },
+    {
+      "club": "Åsane",
+      "ourPlayer": "Joakim Aasen",
+      "bestApiCandidate": "J. Kvammen",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Åsane",
+      "ourPlayer": "Storm Kolbjörnsen",
+      "bestApiCandidate": "S. S. Furnes",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Strømsgodset",
+      "ourPlayer": "Kevin André Dæhlin",
+      "bestApiCandidate": "K. Antonsen",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Strømsgodset",
+      "ourPlayer": "Sebastian Heredia-Randen",
+      "bestApiCandidate": "A. Heredia-Randen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Ranheim",
+      "ourPlayer": "Mathias Johnsrud Emilsen",
+      "bestApiCandidate": "M. Johnsen",
+      "bestScore": 0.72
+    },
+    {
+      "club": "Universitatea Cluj",
+      "ourPlayer": "Atanas Ioan Trică-Balaci",
+      "bestApiCandidate": "A. Friday",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Corvinul Hunedoara",
+      "ourPlayer": "Florin Ionuţ Ilie",
+      "bestApiCandidate": "F. Ilie",
+      "bestScore": 1
+    },
+    {
+      "club": "Corvinul Hunedoara",
+      "ourPlayer": "Roger Junio Rodrigues Figueira",
+      "bestApiCandidate": "Roger",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Dinamo Bucureşti",
+      "ourPlayer": "Alexandru Mihai Constantin Pop",
+      "bestApiCandidate": "Cristian Petrișor Mihai",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Dinamo Bucureşti",
+      "ourPlayer": "Cristian Mihail Licsandru",
+      "bestApiCandidate": "Cristian Petrișor Mihai",
+      "bestScore": 0.88
+    },
+    {
+      "club": "Dinamo Bucureşti",
+      "ourPlayer": "Dragoș Alexandru Irimia",
+      "bestApiCandidate": "D. Irimia",
+      "bestScore": 1
+    },
+    {
+      "club": "Dinamo Bucureşti",
+      "ourPlayer": "Iulius Andrei Marginean",
+      "bestApiCandidate": "A. Mărginean",
+      "bestScore": 0.75
+    },
+    {
+      "club": "CS U Craiova",
+      "ourPlayer": "Heriberto Tavares",
+      "bestApiCandidate": "H. Vadasis",
+      "bestScore": 0.57
+    },
+    {
+      "club": "CS U Craiova",
+      "ourPlayer": "Vladimir Screciu",
+      "bestApiCandidate": "V. Marcu",
+      "bestScore": 0.57
+    },
+    {
+      "club": "UTA Arad",
+      "ourPlayer": "Alexandru Popescu",
+      "bestApiCandidate": "A. Pitu",
+      "bestScore": 0.46
+    },
+    {
+      "club": "FCSB",
+      "ourPlayer": "Andrei Dăncuș",
+      "bestApiCandidate": "A. DÄncuÈ",
+      "bestScore": 0.63
+    },
+    {
+      "club": "FCSB",
+      "ourPlayer": "Daniel Birligea",
+      "bestApiCandidate": "D. Batubinsika",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Argeș",
+      "ourPlayer": "Luca Crăciun",
+      "bestApiCandidate": "L. Sadriu",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Železničar Pančevo",
+      "ourPlayer": "Sumaila Wasiu",
+      "bestApiCandidate": "S. Plavšić",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Čukarički",
+      "ourPlayer": "Lazar Stojanović",
+      "bestApiCandidate": "L. Mijović",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Čukarički",
+      "ourPlayer": "Srđan Mijailović",
+      "bestApiCandidate": "U. Miladinović",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Novi Pazar",
+      "ourPlayer": "Ahmed Hadžimujović",
+      "bestApiCandidate": "A. Miljković",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Novi Pazar",
+      "ourPlayer": "Ahmed Ljajic",
+      "bestApiCandidate": "A. Ljajić",
+      "bestScore": 1
+    },
+    {
+      "club": "Novi Pazar",
+      "ourPlayer": "Birsen Leković",
+      "bestApiCandidate": "B. Bilalovic",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Novi Pazar",
+      "ourPlayer": "Haris Kadrić",
+      "bestApiCandidate": "H. Alic",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Novi Pazar",
+      "ourPlayer": "Khamad Shahirovich",
+      "bestApiCandidate": "H. Sacirovic",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Partizan",
+      "ourPlayer": "Dušan Jovanović",
+      "bestApiCandidate": "M. Milovanović",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Partizan",
+      "ourPlayer": "Marko Lekic",
+      "bestApiCandidate": "M. AleksiÄ",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Partizan",
+      "ourPlayer": "Matija Ninic",
+      "bestApiCandidate": "M. Krunić",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Partizan",
+      "ourPlayer": "Milan Roganović",
+      "bestApiCandidate": "M. Milovanović",
+      "bestScore": 0.73
+    },
+    {
+      "club": "Partizan",
+      "ourPlayer": "Vojin Marinković",
+      "bestApiCandidate": "V. Đurđević",
+      "bestScore": 0.55
+    },
+    {
+      "club": "OFK Beograd",
+      "ourPlayer": "Aleksa Cvetković",
+      "bestApiCandidate": "A. Pavlovic",
+      "bestScore": 0.58
+    },
+    {
+      "club": "LFK Mladost Lučani",
+      "ourPlayer": "David Đokić",
+      "bestApiCandidate": "D. Jovančić",
+      "bestScore": 0.53
+    },
+    {
+      "club": "LFK Mladost Lučani",
+      "ourPlayer": "Mihailo Todosijević",
+      "bestApiCandidate": "M. Joksimović",
+      "bestScore": 0.66
+    },
+    {
+      "club": "LFK Mladost Lučani",
+      "ourPlayer": "Nemanja Žunić",
+      "bestApiCandidate": "F. Žunić",
+      "bestScore": 0.75
+    },
+    {
+      "club": "LFK Mladost Lučani",
+      "ourPlayer": "Ognjen Alempijevic",
+      "bestApiCandidate": "O. Krsmanovic",
+      "bestScore": 0.52
+    },
+    {
+      "club": "IMT Novi Beograd",
+      "ourPlayer": "Rafael Batista da Silva Junior",
+      "bestApiCandidate": "Rafael Juninho",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Vojvodina",
+      "ourPlayer": "Marko Mladenovic",
+      "bestApiCandidate": "M. Poletanović",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Red Star Belgrade",
+      "ourPlayer": "Luka Zarić",
+      "bestApiCandidate": "D. Saric",
+      "bestScore": 0.6
+    },
+    {
+      "club": "Red Star Belgrade",
+      "ourPlayer": "Matheus Lima Magalhães",
+      "bestApiCandidate": "Matheus",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Red Star Belgrade",
+      "ourPlayer": "Strahinja Eraković",
+      "bestApiCandidate": "S. Radanović",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Radnički Niš",
+      "ourPlayer": "Luka Borovic",
+      "bestApiCandidate": "D. Petrović",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Semendrija 1924",
+      "ourPlayer": "Strahinja Lukovic",
+      "bestApiCandidate": "S. MitroviÄ",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Voždovac",
+      "ourPlayer": "Danilo Knežević",
+      "bestApiCandidate": "D. Popovic",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Dubočica",
+      "ourPlayer": "Mohamed Lamine Parker Sidibe",
+      "bestApiCandidate": "Parker Sidibe Mohamed Lamine",
+      "bestScore": 0.79
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Aleksandar Kovačević",
+      "bestApiCandidate": "A. Markovic",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Aleksandar Trajkovic",
+      "bestApiCandidate": "A. Markovic",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Andjelko Pavlovic",
+      "bestApiCandidate": "A. Markovic",
+      "bestScore": 0.72
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Dimitrije Minić",
+      "bestApiCandidate": "S. Mitic",
+      "bestScore": 0.6
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Luka Avramović",
+      "bestApiCandidate": "L. Radulovic",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Luka Subotic",
+      "bestApiCandidate": "L. Radulovic",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Marin Dulić",
+      "bestApiCandidate": "M. Golubovic",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Miloš Kosanović",
+      "bestApiCandidate": "M. Golubovic",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Nebojša Bastajić",
+      "bestApiCandidate": "N. Obradović",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Nemanja Čović",
+      "bestApiCandidate": "N. Petrovic",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Nikola Tasić",
+      "bestApiCandidate": "N. Petrovic",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Stefan Jovanovic",
+      "bestApiCandidate": "S. Sivic",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Strahinja Vasilic",
+      "bestApiCandidate": "S. Sivic",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Loznica",
+      "ourPlayer": "Andrija Milicevic",
+      "bestApiCandidate": "A. Vidić",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Loznica",
+      "ourPlayer": "Filip Matic",
+      "bestApiCandidate": "F. Matic",
+      "bestScore": 1
+    },
+    {
+      "club": "Loznica",
+      "ourPlayer": "Vladimir Petrović",
+      "bestApiCandidate": "I. Petrović",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Bačka Topola",
+      "ourPlayer": "Bogdan Petrovic",
+      "bestApiCandidate": "A. PetroviÄ",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Bačka Topola",
+      "ourPlayer": "Borisav Burmaz",
+      "bestApiCandidate": "N. Bursać",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Bačka Topola",
+      "ourPlayer": "Dragoljub Savić",
+      "bestApiCandidate": "Maksim Cavaric",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Bačka Topola",
+      "ourPlayer": "Lazar Stojsavljević",
+      "bestApiCandidate": "A. Stojanović",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Bačka Topola",
+      "ourPlayer": "Stefan Jovanović",
+      "bestApiCandidate": "S. Jovanović",
+      "bestScore": 1
+    },
+    {
+      "club": "Grafičar",
+      "ourPlayer": "Veljko Djordjevic",
+      "bestApiCandidate": "U. Djordjevic",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Naftagas",
+      "ourPlayer": "Marko Stanković",
+      "bestApiCandidate": "M. Arsović",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Naftagas",
+      "ourPlayer": "Matija Marsenić",
+      "bestApiCandidate": "M. Arsović",
+      "bestScore": 0.72
+    },
+    {
+      "club": "Dukla Banská Bystrica",
+      "ourPlayer": "Maik Gomes Viegas",
+      "bestApiCandidate": "M. Gjorgievski",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Žilina",
+      "ourPlayer": "Tobiáš Pališčák",
+      "bestApiCandidate": "T. Hranica",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Trenčín",
+      "ourPlayer": "Lukáš Skovajsa",
+      "bestApiCandidate": "Monika Skovajsova",
+      "bestScore": 0.64
+    },
+    {
+      "club": "Trenčín",
+      "ourPlayer": "Nikola Jovanović",
+      "bestApiCandidate": "N. Masarova",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Spartak Trnava",
+      "ourPlayer": "Kristián Pavol Stručka",
+      "bestApiCandidate": "K. Koštrna",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Spartak Trnava",
+      "ourPlayer": "Michal Tomič",
+      "bestApiCandidate": "M. Mikovič",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Bravo",
+      "ourPlayer": "Olanrewaju Ojo Molade",
+      "bestApiCandidate": "O. Mazié",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Radomlje",
+      "ourPlayer": "Andrej Pogačar",
+      "bestApiCandidate": "A. Bosec",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Radomlje",
+      "ourPlayer": "Bruno Burčul",
+      "bestApiCandidate": "B. BurÄul",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Koper",
+      "ourPlayer": "Omar El Manssouri",
+      "bestApiCandidate": "K. Manseri",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Maribor",
+      "ourPlayer": "Luka Mlakar",
+      "bestApiCandidate": "J. Mlakar",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Brinje-Grosuplje",
+      "ourPlayer": "Enej Marsetič",
+      "bestApiCandidate": "E. Milosevic",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Celje",
+      "ourPlayer": "Matej Poplatnik",
+      "bestApiCandidate": "M. Zabukovnik",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Abdi Mohamed Sabriye",
+      "bestApiCandidate": "A. Alkic",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Alexander Almqvist",
+      "bestApiCandidate": "A. Alkic",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Anthony Olusanya",
+      "bestApiCandidate": "A. Ogbonna",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Chukwuemeka Paul Nnamani",
+      "bestApiCandidate": "C. Lostelius Vikman",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Eskild Munk Dall",
+      "bestApiCandidate": "E. Roslund",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Lars Sætra",
+      "bestApiCandidate": "S. StrÃ¥lman",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Melker Hallberg",
+      "bestApiCandidate": "L. Hagberg",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Rony Jansson",
+      "bestApiCandidate": "R. Halleen",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Samuel Brolin",
+      "bestApiCandidate": "S. Bertilius",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Sodiq Lawal",
+      "bestApiCandidate": "S. StrÃ¥lman",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Tobias Lauritsen",
+      "bestApiCandidate": "T. Torstensson",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Kalmar",
+      "ourPlayer": "Victor Larsson",
+      "bestApiCandidate": "V. Andersson",
+      "bestScore": 0.67
+    },
+    {
+      "club": "AIK",
+      "ourPlayer": "Erik Hovden Flataker",
+      "bestApiCandidate": "J. Hove",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Häcken",
+      "ourPlayer": "Danilo Al-Saed",
+      "bestApiCandidate": "D. Seger",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Häcken",
+      "ourPlayer": "Silas Andersen",
+      "bestApiCandidate": "D. Andersson",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Djurgården",
+      "ourPlayer": "Joel Asoro",
+      "bestApiCandidate": "J. Une-Larsson",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Djurgården",
+      "ourPlayer": "Leon Hien",
+      "bestApiCandidate": "K. Lien",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Djurgården",
+      "ourPlayer": "Melvin Alexander Vučenović Persson",
+      "bestApiCandidate": "M. Larsson",
+      "bestScore": 0.79
+    },
+    {
+      "club": "Djurgården",
+      "ourPlayer": "Mikael Anderson",
+      "bestApiCandidate": "A. Andersson",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Djurgården",
+      "ourPlayer": "Milian Jansson",
+      "bestApiCandidate": "M. Larsson",
+      "bestScore": 0.79
+    },
+    {
+      "club": "IFK Göteborg",
+      "ourPlayer": "Filip Ottosson",
+      "bestApiCandidate": "F. Eriksson",
+      "bestScore": 0.63
+    },
+    {
+      "club": "IFK Göteborg",
+      "ourPlayer": "Sebastian Clemmensen",
+      "bestApiCandidate": "S. Larsson",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Sirius",
+      "ourPlayer": "August Johan Ljungberg",
+      "bestApiCandidate": "M. Lindberg",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Sirius",
+      "ourPlayer": "Hugo Jonas Andersson Mella",
+      "bestApiCandidate": "Å. Andersson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Sirius",
+      "ourPlayer": "Munaser Mohamud",
+      "bestApiCandidate": "M. Munaser",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Sirius",
+      "ourPlayer": "Villy Strindlund Larsen",
+      "bestApiCandidate": "V. Svensson",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Halmstad",
+      "ourPlayer": "Gustav Friberg",
+      "bestApiCandidate": "Hjalmar Aberg",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Malmö FF",
+      "ourPlayer": "Johan Karlsson",
+      "bestApiCandidate": "J. Stryger Larsen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Degerfors",
+      "ourPlayer": "Alexander Lindgren",
+      "bestApiCandidate": "D. Sundgren",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Brommapojkarna",
+      "ourPlayer": "Alex Timossi Andersson",
+      "bestApiCandidate": "A. Troelsen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Elfsborg",
+      "ourPlayer": "Frode Aronsson",
+      "bestApiCandidate": "S. Olsson",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Elfsborg",
+      "ourPlayer": "Tim Erlandsson",
+      "bestApiCandidate": "T. Sander",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Erik Hampus Skoglund",
+      "bestApiCandidate": "E. Sørum",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Felix Jakobsson",
+      "bestApiCandidate": "F. Peterson",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Filip Jakobsson",
+      "bestApiCandidate": "F. Peterson",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Frank Junior Adjei",
+      "bestApiCandidate": "F. Curmark",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Markus Karlsson",
+      "bestApiCandidate": "A. Carlsson",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Montader Madjed",
+      "bestApiCandidate": "M. Janzen",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Noah Persson",
+      "bestApiCandidate": "C. Andersson",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Oliver Jordan Hagen",
+      "bestApiCandidate": "M. Nyhagen",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Suwaibou Kebbeh",
+      "bestApiCandidate": "S. Rehnberg",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Hammarby",
+      "ourPlayer": "Victor Stange Lind",
+      "bestApiCandidate": "V. Hasund",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Öster",
+      "ourPlayer": "Musa Jatta",
+      "bestApiCandidate": "M. Hartmann",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Öster",
+      "ourPlayer": "Sebastian Starke Hedlund",
+      "bestApiCandidate": "S. Hedlund",
+      "bestScore": 1
+    },
+    {
+      "club": "Falkenberg",
+      "ourPlayer": "Anton Andersson",
+      "bestApiCandidate": "A. Andersson",
+      "bestScore": 1
+    },
+    {
+      "club": "Falkenberg",
+      "ourPlayer": "Oscar Linnér",
+      "bestApiCandidate": "O. Lindberg",
+      "bestScore": 0.72
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Alexander Fransson",
+      "bestApiCandidate": "I. Larsson",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Anton Eriksson",
+      "bestApiCandidate": "B. Persson",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Axel Brönner",
+      "bestApiCandidate": "P. Broddner-Klingspor",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Fabian Holst-Larsen",
+      "bestApiCandidate": "I. Larsson",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Filip Dagerstål",
+      "bestApiCandidate": "F. Andersson",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Ísak Andri Sigurgeirsson",
+      "bestApiCandidate": "I. Larsson",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Jonas Bertheussen Weber",
+      "bestApiCandidate": "J. Harrysson",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Norrköping",
+      "ourPlayer": "Mbaye Cissé",
+      "bestApiCandidate": "M. Kristell",
+      "bestScore": 0.53
+    },
+    {
+      "club": "Östersunds FK",
+      "ourPlayer": "Ali Suljic",
+      "bestApiCandidate": "A. Begić",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Östersunds FK",
+      "ourPlayer": "Edgar Sarkis Navassardian",
+      "bestApiCandidate": "E. Caarls",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Landskrona",
+      "ourPlayer": "Enes Habibovic",
+      "bestApiCandidate": "E. Hebibovic",
+      "bestScore": 0.92
+    },
+    {
+      "club": "Oddevold",
+      "ourPlayer": "Johan Albin",
+      "bestApiCandidate": "J. Merbom-Adolfsson",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Oddevold",
+      "ourPlayer": "Linus Tornblad",
+      "bestApiCandidate": "O. Kjellman Olblad",
+      "bestScore": 0.47
+    },
+    {
+      "club": "Helsingborg",
+      "ourPlayer": "Casper Gabriel Ljung Hofvendahl",
+      "bestApiCandidate": "C. Biten",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Helsingborg",
+      "ourPlayer": "Lino Wernberg Hyppänen",
+      "bestApiCandidate": "L. Hyppanen",
+      "bestScore": 1
+    },
+    {
+      "club": "Helsingborg",
+      "ourPlayer": "Omar Ademovic",
+      "bestApiCandidate": "O. Addo",
+      "bestScore": 0.53
+    },
+    {
+      "club": "United Nordic",
+      "ourPlayer": "Angelo Melek Melkemichel",
+      "bestApiCandidate": "A. Dževlan",
+      "bestScore": 0.46
+    },
+    {
+      "club": "United Nordic",
+      "ourPlayer": "Jake Larsson",
+      "bestApiCandidate": "J. Gürsac",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Brage",
+      "ourPlayer": "Marinus Frederik Løvgren Larsen",
+      "bestApiCandidate": "M. Persson",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Örebro",
+      "ourPlayer": "Erman Hrastovina",
+      "bestApiCandidate": "E. Rakip",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Ljungskile",
+      "ourPlayer": "Alex Rasheed",
+      "bestApiCandidate": "A. Rasheed",
+      "bestScore": 1
+    },
+    {
+      "club": "Ljungskile",
+      "ourPlayer": "Issaka Seidu",
+      "bestApiCandidate": "I. Shears",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Ljungskile",
+      "ourPlayer": "Magnus Tomren Solheim",
+      "bestApiCandidate": "V. Tyren",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Norrby",
+      "ourPlayer": "Lendi Haziraj",
+      "bestApiCandidate": "L. Isa",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Norrby",
+      "ourPlayer": "Magnus Holte",
+      "bestApiCandidate": "M. Wester",
+      "bestScore": 0.5
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "Alexandros Pantelidis",
+      "bestApiCandidate": "A. Atlee Manneh",
+      "bestScore": 0.48
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "Johan Bengtsson",
+      "bestApiCandidate": "E. Bengtsson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "John Mille Vincent Eriksson",
+      "bestApiCandidate": "N. Eriksson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "Ture Sandberg",
+      "bestApiCandidate": "Miguel Sandberg",
+      "bestScore": 0.79
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "Yaqub Hassan Muse Finey",
+      "bestApiCandidate": "E. Hansson",
+      "bestScore": 0.54
+    },
+    {
+      "club": "Basel",
+      "ourPlayer": "Abemly Meto Silu",
+      "bestApiCandidate": "A. Berti",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Basel",
+      "ourPlayer": "Andrej Bačanin",
+      "bestApiCandidate": "A. Berti",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Basel",
+      "ourPlayer": "Kazeem Olaigbe",
+      "bestApiCandidate": "K. Flis",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Basel",
+      "ourPlayer": "Leo Leroy",
+      "bestApiCandidate": "L. Almert",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Basel",
+      "ourPlayer": "Ludwig Malachowski Thorell",
+      "bestApiCandidate": "J. Matuschewski",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Lausanne Sport",
+      "ourPlayer": "Eren Batuhan Eren Ozcan",
+      "bestApiCandidate": "E. Bruchez",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Lausanne Sport",
+      "ourPlayer": "Étienne Youte Kinkoue",
+      "bestApiCandidate": "E. Bruchez",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Lausanne Sport",
+      "ourPlayer": "Ibrahim Mayala",
+      "bestApiCandidate": "I. Parra",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Lausanne Sport",
+      "ourPlayer": "Kevin Mouanga",
+      "bestApiCandidate": "Sekou Fofana",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Lausanne Sport",
+      "ourPlayer": "Sékou Koné",
+      "bestApiCandidate": "Sekou Fofana",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Thun",
+      "ourPlayer": "Layton Stewart",
+      "bestApiCandidate": "L. Passavant",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Young Boys",
+      "ourPlayer": "Darian Males",
+      "bestApiCandidate": "D. Marzino",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Young Boys",
+      "ourPlayer": "Joel Almada Monteiro",
+      "bestApiCandidate": "J. Mall",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Young Boys",
+      "ourPlayer": "Loris Macumi",
+      "bestApiCandidate": "L. Blum",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Zürich",
+      "ourPlayer": "Juan José Perea",
+      "bestApiCandidate": "J. Segura",
+      "bestScore": 0.5
+    },
+    {
+      "club": "St. Gallen",
+      "ourPlayer": "Lawrence Ati",
+      "bestApiCandidate": "L. Watkowiak",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Luzern",
+      "ourPlayer": "Bung Meng Freimann",
+      "bestApiCandidate": "B. Freimann",
+      "bestScore": 1
+    },
+    {
+      "club": "Luzern",
+      "ourPlayer": "Ruben Dantas Fernandes",
+      "bestApiCandidate": "R. Fernandes",
+      "bestScore": 1
+    },
+    {
+      "club": "LNZ Cherkasy",
+      "ourPlayer": "Alexander Drambayev",
+      "bestApiCandidate": "O. Drambaev",
+      "bestScore": 0.67
+    },
+    {
+      "club": "LNZ Cherkasy",
+      "ourPlayer": "Talles Brener de Paula",
+      "bestApiCandidate": "T. Cara",
+      "bestScore": 0.55
+    },
+    {
+      "club": "Shakhtar Donetsk",
+      "ourPlayer": "Newertton Martins da Silva",
+      "bestApiCandidate": "Marlon",
+      "bestScore": 0.51
+    },
+    {
+      "club": "Shakhtar Donetsk",
+      "ourPlayer": "Pedro Henrique Azevedo Pereira",
+      "bestApiCandidate": "Lucas Ferreira",
+      "bestScore": 0.56
+    },
+    {
+      "club": "Veres",
+      "ourPlayer": "Pavlo Bahrii",
+      "bestApiCandidate": "Pavlo Bagriy",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Veres",
+      "ourPlayer": "Wesley da Conceição Duarte Moreira",
+      "bestApiCandidate": "Wesley Borges",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Karpaty",
+      "ourPlayer": "Artur Shakh",
+      "bestApiCandidate": "A. Chachua",
+      "bestScore": 0.57
+    },
+    {
+      "club": "Zorya",
+      "ourPlayer": "Illia Karavashenko",
+      "bestApiCandidate": "l. Karavashchenko",
+      "bestScore": 0.64
+    },
+    {
+      "club": "Zorya",
+      "ourPlayer": "Ítalo Guilherme Machado Henrique",
+      "bestApiCandidate": "Ítalo",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Zorya",
+      "ourPlayer": "Leovigildo Junior Reis Rodrigues",
+      "bestApiCandidate": "Juninho",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Zorya",
+      "ourPlayer": "Stanislav Yaroshenko",
+      "bestApiCandidate": "V. Yurchenko",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Artem Shabanov",
+      "bestApiCandidate": "A. Sabalaiev",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Artem Smoliakov",
+      "bestApiCandidate": "A. Sabalaiev",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Denis Antyukh",
+      "bestApiCandidate": "D. Kondratiuk",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Dmytro Pushkalov",
+      "bestApiCandidate": "D. Palii",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Illia Krupskyi",
+      "bestApiCandidate": "I. Zasovitskyi",
+      "bestScore": 0.52
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Ivan Kaliuzhnyi",
+      "bestApiCandidate": "I. Zasovitskyi",
+      "bestScore": 0.45
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Oleksandr Martynyuk",
+      "bestApiCandidate": "O. Smityukh",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Oleksandr Yatsyk",
+      "bestApiCandidate": "O. Petruk",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Oleksiy Plichko",
+      "bestApiCandidate": "O. Petruk",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Metalist 1925 Kharkiv",
+      "ourPlayer": "Valerii Dubko",
+      "bestApiCandidate": "V. Tsubin",
+      "bestScore": 0.5
+    },
+    {
+      "club": "Livyi Bereh",
+      "ourPlayer": "Diego Henrique Souza da Silva",
+      "bestApiCandidate": "Sidney Silva Santos",
+      "bestScore": 0.79
+    },
+    {
+      "club": "Livyi Bereh",
+      "ourPlayer": "Sokolov Oleg",
+      "bestApiCandidate": "S. Tatolna",
+      "bestScore": 0.46
+    },
+    {
+      "club": "Polessya",
+      "ourPlayer": "Nazar Makarenko",
+      "bestApiCandidate": "O. Nazarenko",
+      "bestScore": 0.58
+    },
+    {
+      "club": "Bukovyna",
+      "ourPlayer": "Maksim Voytikhovskiy",
+      "bestApiCandidate": "M. Yakhontov",
+      "bestScore": 0.48
+    },
+    {
+      "club": "Hirnyk",
+      "ourPlayer": "Yevgen Mayakov",
+      "bestApiCandidate": "Yaroslav Burakov",
+      "bestScore": 0.46
+    }
+  ]
 }
