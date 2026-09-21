@@ -19,25 +19,36 @@ export const countryCodeAliases = {
 };
 
 // Value: the league's name as it appears in API-Football, OR its numeric ID.
+// Všech 26 lig je zamčeno na konkrétní ID (ověřeno ručně přes dashboard) —
+// eliminuje to riziko, že se automatické párování jménem někdy v budoucnu
+// trefí do podobně pojmenované soutěže (přesně to se stalo u švédské ligy).
 export const leagueAliases = {
-  "Austrian Bundesliga": "Bundesliga",
-  "Austrian 2. Liga": "2. Liga",
+  "Austrian Bundesliga": 218,
+  "Austrian 2. Liga": 219,
   "Bosnian WWIN Liga BiH": 315,
   "Bulgarian Parva Liga": 172,
   "Croatian HNL": 210,
+  "Czech Chance Liga": 345,
+  "Czech Chance Národní Liga": 346,
+  "Danish Superliga": 119,
+  "Danish Betinia Liga": 120,
   "Estonian Premium Liiga": 329,
-  "Polish Betclic 1. Liga": 107,
+  "Finland Veikkausliiga": 244,
   "Hungarian Fizz Liga": 271,
   "Latvian Virsliga": 365,
+  "Eliteserien": 103,
   "Norway First Division": 104,
+  "Polish Ekstraklasa": 106,
+  "Polish Betclic 1. Liga": 107,
+  "Romanian SuperLiga": 283,
   "Serbian Mozzart Bet Superliga": 286,
   "Serbian Mozzart Bet Prva Liga": 287,
   "Slovak Niké Liga": 332,
   "Slovenian PrvaLiga": 373,
-  "Danish Betinia Liga": 120,
-  "Romanian SuperLiga": 283,
-  "Czech Chance Národní Liga": 346,
-  "Sweden Allsvenskan": 113, // opraveno — auto-shoda pravděpodobně trefila jinou švédskou soutěž
+  "Sweden Allsvenskan": 113,
+  "Sweden Superettan": 114,
+  "Swiss Super League": 207,
+  "Ukraine Premier League": 333,
 };
 
 // Value: the club's numeric API-Football team ID (fastest/most reliable —
