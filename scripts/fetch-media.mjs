@@ -268,6 +268,7 @@ async function resolveLeagues(leagueInfo, codeByOurCountry) {
         : candidates.find((c) => normalizeLeagueName(c.league.name) === normalizeLeagueName(alias));
       if (found) {
         matches[ourLeagueName] = { id: found.league.id, name: found.league.name, logo: found.league.logo };
+        console.log(`  ✓ ${ourLeagueName} -> "${found.league.name}" (id ${found.league.id}) [alias]`);
         continue;
       }
     }
@@ -278,6 +279,7 @@ async function resolveLeagues(leagueInfo, codeByOurCountry) {
     const bestScore = ranked[0]?.score || 0;
     if (best && bestScore >= LEAGUE_MATCH_THRESHOLD) {
       matches[ourLeagueName] = { id: best.league.id, name: best.league.name, logo: best.league.logo, score: Number(bestScore.toFixed(2)) };
+      console.log(`  ✓ ${ourLeagueName} -> "${best.league.name}" (id ${best.league.id}, skóre ${bestScore.toFixed(2)})`);
     } else {
       unmatched.push({
         ourLeagueName,
@@ -546,7 +548,12 @@ async function main() {
 
   fs.writeFileSync(OUT_FILE, JSON.stringify(mediaMap));
   fs.writeFileSync(FORM_OUT_FILE, JSON.stringify(formMap));
-  fs.writeFileSync(REPORT_FILE, JSON.stringify({ unmatchedLeagues, unmatchedClubs }, null, 2));
+  const matchedLeagues = Object.entries(leagueMatches).map(([ourName, m]) => ({
+    ourLeagueName: ourName,
+    apiName: m.name,
+    apiId: m.id,
+  }));
+  fs.writeFileSync(REPORT_FILE, JSON.stringify({ matchedLeagues, unmatchedLeagues, unmatchedClubs }, null, 2));
 
   console.log(`\n[fetch-media] Hotovo. Použito requestů: ${requestCount}.`);
   console.log(`  Ligy:  ${mediaMap.stats.leaguesMatched}/${mediaMap.stats.leaguesTotal}`);
