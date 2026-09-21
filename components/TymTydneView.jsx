@@ -210,7 +210,10 @@ export default function TymTydneView() {
 /* ---------------------------------------------------------------------- */
 
 function PlayerOfWeek({ players }) {
-  const sorted = useMemo(() => [...players].sort((a, b) => b.form_ratings[0] - a.form_ratings[0]), [players]);
+  const sorted = useMemo(
+    () => [...players].sort((a, b) => b.form_ratings[0] - a.form_ratings[0]).slice(0, 30),
+    [players]
+  );
 
   return (
     <div className="week-list">
