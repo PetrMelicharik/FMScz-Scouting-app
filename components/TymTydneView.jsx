@@ -89,6 +89,12 @@ function formatShortDate(iso) {
   return `${d.getDate()}.${d.getMonth() + 1}.`;
 }
 
+function splitName(fullName) {
+  const parts = (fullName || "").trim().split(" ");
+  if (parts.length <= 1) return { first: fullName || "", last: "" };
+  return { first: parts[0], last: parts.slice(1).join(" ") };
+}
+
 /* ---------------------------------------------------------------------- */
 /* Main view                                                                */
 /* ---------------------------------------------------------------------- */
@@ -253,7 +259,12 @@ function XISlotCard({ layout, player }) {
         {player.club_logo_url && <img src={player.club_logo_url} alt="" className="xi-club-badge" />}
       </div>
       <div className="xi-rating" style={{ background: formColor(rating) }}>{rating.toFixed(1)}</div>
-      <div className="xi-name">{player.player_name}</div>
+      <div className="xi-name">
+        <div className="xi-name-first">{splitName(player.player_name).first}</div>
+        {splitName(player.player_name).last && (
+          <div className="xi-name-last">{splitName(player.player_name).last}</div>
+        )}
+      </div>
     </Link>
   );
 }
