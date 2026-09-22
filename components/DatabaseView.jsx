@@ -139,6 +139,10 @@ export default function DatabaseView() {
   const rows = dataset ? dataset.rows : [];
 
   const leagues = useMemo(() => [...new Set(rows.map((r) => r.league_name).filter(Boolean))].sort(), [rows]);
+  const clubs = useMemo(() => {
+    const source = filters.league ? rows.filter((r) => r.league_name === filters.league) : rows;
+    return [...new Set(source.map((r) => r["Current Club"]).filter(Boolean))].sort();
+  }, [rows, filters.league]);
   const seasons = useMemo(() => [...new Set(rows.map((r) => r.season).filter(Boolean))].sort(), [rows]);
 
   const ageDomain = useMemo(() => {
@@ -156,7 +160,7 @@ export default function DatabaseView() {
   const filtered = useMemo(() => {
     return rows.filter((r) => {
       if (filters.text && !(r.player_name || "").toLowerCase().includes(filters.text.toLowerCase())) return false;
-      if (filters.club && !(r["Current Club"] || "").toLowerCase().includes(filters.club.toLowerCase())) return false;
+      if (filters.club && r["Current Club"] !== filters.club) return false;
       if (filters.nationality && !(r.nationality || "").toLowerCase().includes(filters.nationality.toLowerCase())) return false;
       if (filters.league && r.league_name !== filters.league) return false;
       if (filters.seasons.size && !filters.seasons.has(r.season)) return false;
@@ -210,18 +214,32 @@ export default function DatabaseView() {
                 <input type="text" value={filters.text} onChange={(e) => { setPage(0); setFilters((f) => ({ ...f, text: e.target.value })); }} placeholder="např. Kanté" />
               </div>
               <div className="field">
-                <div className="field-label">Klub</div>
-                <input type="text" value={filters.club} onChange={(e) => { setPage(0); setFilters((f) => ({ ...f, club: e.target.value })); }} placeholder="klub" />
-              </div>
-              <div className="field">
                 <div className="field-label">Národnost</div>
                 <input type="text" value={filters.nationality} onChange={(e) => { setPage(0); setFilters((f) => ({ ...f, nationality: e.target.value })); }} placeholder="národnost" />
               </div>
               <div className="field">
                 <div className="field-label">Liga</div>
-                <select value={filters.league} onChange={(e) => { setPage(0); setFilters((f) => ({ ...f, league: e.target.value })); }}>
+                <select
+                  value={filters.league}
+                  onChange={(e) => {
+                    setPage(0);
+                    const league = e.target.value;
+                    setFilters((f) => {
+                      const source = league ? rows.filter((r) => r.league_name === league) : rows;
+                      const stillValid = source.some((r) => r["Current Club"] === f.club);
+                      return { ...f, league, club: stillValid ? f.club : "" };
+                    });
+                  }}
+                >
                   <option value="">Všechny ligy</option>
                   {leagues.map((l) => <option key={l} value={l}>{l}</option>)}
+                </select>
+              </div>
+              <div className="field">
+                <div className="field-label">Klub</div>
+                <select value={filters.club} onChange={(e) => { setPage(0); setFilters((f) => ({ ...f, club: e.target.value })); }}>
+                  <option value="">Všechny kluby</option>
+                  {clubs.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div className="field">
