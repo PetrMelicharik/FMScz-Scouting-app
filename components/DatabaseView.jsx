@@ -136,6 +136,48 @@ export default function DatabaseView() {
   const [sortState, setSortState] = useState({ key: "avg_rating_", dir: "desc" });
   const [page, setPage] = useState(0);
 
+  // Restore filters/sort/page from the URL on first load — so the browser's
+  // back button (or the "Zpět na databázi" link on a player profile) returns
+  // to the same filtered view instead of a reset one.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if ([...params.keys()].length === 0) return;
+    setFilters({
+      text: params.get("q") || "",
+      club: params.get("club") || "",
+      nationality: params.get("nat") || "",
+      league: params.get("league") || "",
+      ageMin: params.has("ageMin") ? Number(params.get("ageMin")) : null,
+      ageMax: params.has("ageMax") ? Number(params.get("ageMax")) : null,
+      minMinutes: params.get("min") || "",
+      seasons: new Set((params.get("seasons") || "").split(",").filter(Boolean)),
+    });
+    if (params.has("sort") || params.has("dir")) {
+      setSortState((s) => ({ key: params.get("sort") || s.key, dir: params.get("dir") || s.dir }));
+    }
+    if (params.has("page")) setPage(Number(params.get("page")) || 0);
+  }, []);
+
+  // Keep the URL in sync with the current filters/sort/page, without adding
+  // a new history entry per keystroke (replaceState, not pushState).
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (filters.text) params.set("q", filters.text);
+    if (filters.club) params.set("club", filters.club);
+    if (filters.nationality) params.set("nat", filters.nationality);
+    if (filters.league) params.set("league", filters.league);
+    if (filters.ageMin !== null) params.set("ageMin", String(filters.ageMin));
+    if (filters.ageMax !== null) params.set("ageMax", String(filters.ageMax));
+    if (filters.minMinutes !== "") params.set("min", filters.minMinutes);
+    if (filters.seasons.size) params.set("seasons", [...filters.seasons].join(","));
+    if (sortState.key !== "avg_rating_") params.set("sort", sortState.key);
+    if (sortState.dir !== "desc") params.set("dir", sortState.dir);
+    if (page > 0) params.set("page", String(page));
+    const qs = params.toString();
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, "", url);
+  }, [filters, sortState, page]);
+
   const rows = dataset ? dataset.rows : [];
 
   const leagues = useMemo(() => [...new Set(rows.map((r) => r.league_name).filter(Boolean))].sort(), [rows]);
