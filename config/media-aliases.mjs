@@ -73,6 +73,14 @@ export const clubAliases = {
   "St. Pölten": 1027, // opraveno
   "Hartberg": 1072, // opraveno
   "Rheindorf Altach": 618, // opraveno
+  "Željezničar": 654, // opraveno
+  "Arda": 1430, // opraveno
+  "CSKA 1948 Sofia": 1426, // opraveno
+  "Cherno More": 851, // opraveno
+  "Líšeň": 4257, // opraveno — klub se přejmenoval na Artis, ID funguje bez ohledu na jméno
+  "Viktoria Plzeň": 567, // opraveno
+  "Baník Ostrava U21": 8621, // opraveno — B-tým
+  "Slavia Praha U21": 8618, // opraveno — B-tým
   "Harju Jalgpallikool": 18657,
   "Puszcza Niepołomice": 3490,
   "ŁKS Łódź": 3498,
