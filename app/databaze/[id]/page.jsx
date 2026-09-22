@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BackButton from "../../../components/BackButton";
 import { notFound } from "next/navigation";
 import Avatar from "../../../components/Avatar";
 import PitchIcon from "../../../components/PitchIcon";
@@ -70,7 +70,7 @@ export default function PlayerPage({ params }) {
 
   return (
     <div className="profile">
-      <Link href="/databaze" className="btn-ghost profile-back">← Zpět na databázi</Link>
+      <BackButton />
 
       <div className="profile-header">
         <Avatar src={p.photo_url} size={72} className="profile-avatar" />
