@@ -96,6 +96,28 @@ export const clubAliases = {
   "Zorya": 599,
   "Hirnyk": 3624,
   "AB": 2060, // opraveno — 24213 bylo špatně, dohledáno přes /teams?league=120&season=2026
+  "HamKam": 2159, // opraveno
+  "KFUM": 2143, // opraveno
+  "Nõmme Kalju": 662, // opraveno
+  "Tallinna FC Flora": 687, // opraveno
+  "Tallinna FC Levadia": 2273, // opraveno
+  "HJK": 649, // opraveno
+  "Jaro": 2075, // opraveno
+  "TPS": 1168, // opraveno
+  "Debrecen": 2392, // opraveno
+  "Paksi SE": 2390, // opraveno
+  "Puskás": 2391, // opraveno
+  "Várda SE": 2394, // opraveno
+  "Riga": 10124, // opraveno
+  "Odd": 330, // opraveno
+  "Jagiellonia Białystok": 336, // opraveno
+  "CFR Cluj": 2246, // opraveno
+  "CS U Craiova": 632, // opraveno
+  "Oţelul Galaţi": 6886, // opraveno
+  "Petrolul 52": 2598, // opraveno
+  "Rapid Bucureşti": 6231, // opraveno
+  "SSC Farul": 2596, // opraveno
+  "Sepsi": 2585, // opraveno
   "Blau-Weiß Linz": 1394,
   "Young Boys": 565, // opraveno — auto-shoda podle jména byla špatná
   "Brage": 2175, // opraveno — auto-shoda podle jména byla špatná
