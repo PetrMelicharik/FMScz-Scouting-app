@@ -57,6 +57,8 @@ export const clubAliases = {
   "OB": 405,
   "København": 400,
   "Hillerød": 6026,
+  "Rapid Wien": 781, // opraveno — auto-shoda spletla A-tým s rezervou (Rapid Wien II)
+  "Rapid Wien II": 8247, // opraveno — viz výše
   "Harju Jalgpallikool": 18657,
   "Puszcza Niepołomice": 3490,
   "ŁKS Łódź": 3498,
