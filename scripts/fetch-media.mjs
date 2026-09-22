@@ -91,6 +91,22 @@ function sleep(ms) { return new Promise((res) => setTimeout(res, ms)); }
 
 let requestCount = 0;
 
+// API-Football occasionally returns player names with double-encoded UTF-8
+// (special characters like ć, ï, ń, ă, ș come through as garbled sequences
+// such as "AleksiÄ\x87" instead of "Aleksić"). This detects and repairs
+// that specific pattern; strings that aren't actually mis-decoded UTF-8 are
+// returned unchanged (the decode throws and we fall back to the original).
+function fixMojibake(s) {
+  if (!s) return s;
+  if (!/[ÃÂÄÅÐÞâ€]|[\x80-\x9f]/.test(s)) return s;
+  try {
+    const bytes = Uint8Array.from([...s].map((c) => c.charCodeAt(0)));
+    return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+  } catch {
+    return s;
+  }
+}
+
 async function apiGet(endpoint, params = {}) {
   const url = new URL(BASE_URL + endpoint);
   Object.entries(params).forEach(([k, v]) => { if (v !== undefined && v !== null) url.searchParams.set(k, v); });
@@ -370,6 +386,7 @@ async function fetchSquads(clubMatches, rosterByClub) {
       console.log(`  [${i}/${entries.length}] GET /players/squads?team=${team.id} (${ourClubName})`);
       const json = await apiGet("/players/squads", { team: team.id });
       squadPlayers = (json.response && json.response[0] && json.response[0].players) || [];
+      squadPlayers = squadPlayers.map((sp) => ({ ...sp, name: fixMojibake(sp.name) }));
       writeCache(cacheName, squadPlayers);
     }
 
@@ -470,7 +487,13 @@ async function fetchForm(clubMatches, rosterByClub, clubToLeagueId) {
         let cached = readCache(cacheName);
         if (!cached) {
           const json = await apiGet("/fixtures/players", { fixture: fid });
-          cached = json.response || [];
+          cached = (json.response || []).map((tb) => ({
+            ...tb,
+            players: (tb.players || []).map((p) => ({
+              ...p,
+              player: { ...p.player, name: fixMojibake(p.player.name) },
+            })),
+          }));
           writeCache(cacheName, cached);
         }
         fixturePlayersCache.set(fid, cached);
