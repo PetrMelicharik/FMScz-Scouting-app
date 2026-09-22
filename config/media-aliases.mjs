@@ -66,6 +66,13 @@ export const clubAliases = {
   "Ferencváros": 651, // opraveno
   "Honvéd": 576, // opraveno
   "AaB": 402, // opraveno — Aalborg
+  "Admira": 1023, // opraveno
+  "Austria Wien": 601, // opraveno
+  "Austria Wien II": 2860, // nejistá shoda (zkontroluj po nasazení)
+  "Kapfenberger SV": 1401, // opraveno
+  "St. Pölten": 1027, // opraveno
+  "Hartberg": 1072, // opraveno
+  "Rheindorf Altach": 618, // opraveno
   "Harju Jalgpallikool": 18657,
   "Puszcza Niepołomice": 3490,
   "ŁKS Łódź": 3498,
