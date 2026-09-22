@@ -375,32 +375,46 @@ async function fetchSquads(clubMatches, rosterByClub) {
 
     const ourRoster = rosterByClub.get(ourClubName) || new Set();
     const ourRosterList = [...ourRoster];
-    const matchedOurNames = new Set();
 
+    // Build every (our player, API player) pair that clears the threshold,
+    // then assign greedily from the HIGHEST score down, claiming both sides
+    // as we go. This avoids the earlier bug where processing API players
+    // one at a time could let player A "steal" the best match for player B
+    // (e.g. two teammates both named "Jovanović" competing for the same
+    // abbreviated "S. Jovanović" — whoever got processed first won, even if
+    // the other was the better match).
+    const pairs = [];
     for (const sp of squadPlayers) {
-      let best = null, bestScore = 0;
       for (const ourName of ourRosterList) {
         const score = playerNameScore(sp.name, ourName);
-        if (score > bestScore) { bestScore = score; best = ourName; }
-      }
-      if (best && bestScore >= PLAYER_MATCH_THRESHOLD) {
-        playerPhotos[playerClubKey(best, ourClubName)] = sp.photo;
-        matchedOurNames.add(best);
+        if (score >= PLAYER_MATCH_THRESHOLD) pairs.push({ ourName, sp, score });
       }
     }
+    pairs.sort((a, b) => b.score - a.score);
 
-    // Diagnostic only: for our roster players who got no photo, record the
-    // closest API squad name and score — but only "near misses" (score high
-    // enough to suggest a naming quirk, not just "not in this API's data at
-    // all", which is the far more common and less interesting case).
+    const usedOurNames = new Set();
+    const usedApiPlayers = new Set();
+    for (const { ourName, sp, score } of pairs) {
+      if (usedOurNames.has(ourName) || usedApiPlayers.has(sp)) continue;
+      playerPhotos[playerClubKey(ourName, ourClubName)] = sp.photo;
+      usedOurNames.add(ourName);
+      usedApiPlayers.add(sp);
+    }
+
+    // Diagnostic only: for our roster players who still got no photo, record
+    // the closest API squad name and score — but only "near misses" (score
+    // high enough to suggest a genuine naming quirk, not just "not in this
+    // API's data at all", which is the far more common and less interesting
+    // case — most sub-0.6 scores are coincidental Levenshtein overlap
+    // between otherwise unrelated names, not real candidates).
     for (const ourName of ourRosterList) {
-      if (matchedOurNames.has(ourName)) continue;
+      if (usedOurNames.has(ourName)) continue;
       let best = null, bestScore = 0;
       for (const sp of squadPlayers) {
         const score = playerNameScore(sp.name, ourName);
         if (score > bestScore) { bestScore = score; best = sp.name; }
       }
-      if (bestScore >= 0.45) {
+      if (bestScore >= 0.6) {
         unmatchedPlayers.push({
           club: ourClubName,
           ourPlayer: ourName,
@@ -466,20 +480,29 @@ async function fetchForm(clubMatches, rosterByClub, clubToLeagueId) {
       const teamBlock = fpBlocks.find((tb) => tb.team.id === team.id);
       if (!teamBlock) continue;
 
-      for (const p of teamBlock.players || []) {
+      const candidates = (teamBlock.players || []).filter((p) => {
         const stat = p.statistics?.[0];
-        const rating = stat?.games?.rating ? Number(stat.games.rating) : null;
-        if (rating === null) continue;
+        return stat?.games?.rating ? true : false;
+      });
 
-        let best = null, bestScore = 0;
+      const pairs = [];
+      for (const p of candidates) {
         for (const ourName of ourRosterList) {
           const score = playerNameScore(p.player.name, ourName);
-          if (score > bestScore) { bestScore = score; best = ourName; }
+          if (score >= PLAYER_MATCH_THRESHOLD) pairs.push({ ourName, p, score });
         }
-        if (best && bestScore >= PLAYER_MATCH_THRESHOLD) {
-          if (!perPlayer.has(best)) perPlayer.set(best, []);
-          perPlayer.get(best).push({ date: fx.fixture.date, rating });
-        }
+      }
+      pairs.sort((a, b) => b.score - a.score);
+
+      const usedOurNames = new Set();
+      const usedApiPlayers = new Set();
+      for (const { ourName, p, score } of pairs) {
+        if (usedOurNames.has(ourName) || usedApiPlayers.has(p)) continue;
+        const rating = Number(p.statistics[0].games.rating);
+        if (!perPlayer.has(ourName)) perPlayer.set(ourName, []);
+        perPlayer.get(ourName).push({ date: fx.fixture.date, rating });
+        usedOurNames.add(ourName);
+        usedApiPlayers.add(p);
       }
     }
 
