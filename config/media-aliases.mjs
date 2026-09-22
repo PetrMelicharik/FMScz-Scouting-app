@@ -59,6 +59,7 @@ export const clubAliases = {
   "Hillerød": 6026,
   "Rapid Wien": 781, // opraveno — auto-shoda spletla A-tým s rezervou (Rapid Wien II)
   "Rapid Wien II": 8247, // opraveno — viz výše
+  "Norrköping": 378, // opraveno — auto-shoda trefila ženský tým
   "Harju Jalgpallikool": 18657,
   "Puszcza Niepołomice": 3490,
   "ŁKS Łódź": 3498,
