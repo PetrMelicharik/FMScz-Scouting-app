@@ -95,7 +95,7 @@ export const clubAliases = {
   "Veres": 6501,
   "Zorya": 599,
   "Hirnyk": 3624,
-  "AB": 24213,
+  "AB": 2060, // opraveno — 24213 bylo špatně, dohledáno přes /teams?league=120&season=2026
   "Blau-Weiß Linz": 1394,
   "Young Boys": 565, // opraveno — auto-shoda podle jména byla špatná
   "Brage": 2175, // opraveno — auto-shoda podle jména byla špatná
