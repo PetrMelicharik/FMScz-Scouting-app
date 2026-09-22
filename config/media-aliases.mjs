@@ -60,6 +60,12 @@ export const clubAliases = {
   "Rapid Wien": 781, // opraveno — auto-shoda spletla A-tým s rezervou (Rapid Wien II)
   "Rapid Wien II": 8247, // opraveno — viz výše
   "Norrköping": 378, // opraveno — auto-shoda trefila ženský tým
+  "AGF": 406, // opraveno — Aarhus
+  "MTK": 2396, // opraveno — MTK Budapešť
+  "Hammarby": 363, // opraveno
+  "Ferencváros": 651, // opraveno
+  "Honvéd": 576, // opraveno
+  "AaB": 402, // opraveno — Aalborg
   "Harju Jalgpallikool": 18657,
   "Puszcza Niepołomice": 3490,
   "ŁKS Łódź": 3498,
