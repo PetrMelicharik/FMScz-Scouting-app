@@ -94,7 +94,7 @@ export const clubAliases = {
   "Radnički Kragujevac": 2644, // opraveno — 26417 byla nejistá shoda
   "Veres": 6501,
   "Zorya": 599,
-  "Hirnyk": 3624,
+  "Hirnyk": 6489, // opraveno
   "AB": 2060, // opraveno — 24213 bylo špatně, dohledáno přes /teams?league=120&season=2026
   "HamKam": 2159, // opraveno
   "KFUM": 2143, // opraveno
