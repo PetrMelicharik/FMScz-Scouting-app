@@ -91,7 +91,7 @@ export const clubAliases = {
   "Nyíregyháza Spartacus": 2403,
   "Argeș": 2592,
   "Mačva Šabac": 2637, // opraveno — 12324 bylo špatně
-  "Radnički Kragujevac": 26417, // nejistá shoda (jiný historický název klubu), zkontroluj logo po nasazení
+  "Radnički Kragujevac": 2644, // opraveno — 26417 byla nejistá shoda
   "Veres": 6501,
   "Zorya": 599,
   "Hirnyk": 3624,
@@ -118,6 +118,20 @@ export const clubAliases = {
   "Rapid Bucureşti": 6231, // opraveno
   "SSC Farul": 2596, // opraveno
   "Sepsi": 2585, // opraveno
+  "Bor": 26409, // opraveno
+  "Jedinstvo Ub": 12319,
+  "Spartak Subotica": 2251, // opraveno
+  "Teleoptik": 2645, // opraveno
+  "Zemun": 2642, // opraveno
+  "Trenčín": 655, // opraveno
+  "Olimpija": 677, // opraveno
+  "Kalmar": 374, // opraveno
+  "Örgryte": 2166, // opraveno
+  "Varberg": 2171, // opraveno
+  "Värnamo": 2163, // opraveno
+  "Basel": 551, // opraveno
+  "Lausanne Sport": 1014, // opraveno
+  "Metalist 1925 Kharkiv": 10697, // opraveno
   "Blau-Weiß Linz": 1394,
   "Young Boys": 565, // opraveno — auto-shoda podle jména byla špatná
   "Brage": 2175, // opraveno — auto-shoda podle jména byla špatná
