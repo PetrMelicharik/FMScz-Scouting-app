@@ -587,7 +587,7 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 /* ---------------------------------------------------------------------- */
 
 .pizza-panel { display: flex; justify-content: center; padding: 8px 0; }
-.pizza-svg { width: 100%; max-width: 720px; height: auto; display: block; }
+.pizza-svg { width: 100%; max-width: 700px; height: auto; display: block; }
 .pizza-slice path { transition: fill-opacity 0.15s ease; cursor: default; }
 .pizza-slice:hover path { fill-opacity: 1; }
 .pizza-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 6px; font-size: 12.5px; color: var(--ink-dim); }
