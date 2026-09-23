@@ -65,15 +65,23 @@ function FormLineChart({ ratings, dates }) {
   );
 }
 
+function shortLabel(label) {
+  // Drop the "/90" suffix for the curved outer label — it's implied by the
+  // chart itself (per-90 stats) and the full label with "/90" stays in the
+  // hover tooltip. Shorter text = less overlap risk with 20+ slices.
+  return label.replace(/\/90$/, "");
+}
+
 function PizzaChart({ data }) {
   const { stats } = data;
   const n = stats.length;
-  const size = 640;
+  const size = 760;
   const cx = size / 2;
   const cy = size / 2;
-  const innerR = 58;
-  const maxR = 225;
-  const gapDeg = Math.min(2, 360 / n / 6);
+  const innerR = 62;
+  const maxR = 250;
+  const labelR = maxR + 26;
+  const gapDeg = Math.min(2.2, 360 / n / 6);
   const sliceDeg = 360 / n;
 
   function polar(angleDeg, r) {
@@ -83,6 +91,32 @@ function PizzaChart({ data }) {
 
   return (
     <svg viewBox={`0 0 ${size} ${size}`} className="pizza-svg">
+      <defs>
+        {stats.map((s, i) => {
+          const a0 = i * sliceDeg;
+          const a1 = (i + 1) * sliceDeg;
+          const mid = (a0 + a1) / 2;
+          // Curved label path: wider than the slice itself so longer text
+          // has room, centred on the slice. Direction reverses in the
+          // bottom half so the text never reads upside-down.
+          const span = Math.max(sliceDeg, 24);
+          const isBottom = mid > 90 && mid < 270;
+          const start = isBottom ? mid + span / 2 : mid - span / 2;
+          const end = isBottom ? mid - span / 2 : mid + span / 2;
+          const [x0, y0] = polar(start, labelR);
+          const [x1, y1] = polar(end, labelR);
+          const sweep = isBottom ? 0 : 1;
+          return (
+            <path
+              key={s.key}
+              id={`pizza-label-arc-${s.key}`}
+              d={`M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${labelR} ${labelR} 0 0 ${sweep} ${x1.toFixed(1)} ${y1.toFixed(1)}`}
+              fill="none"
+            />
+          );
+        })}
+      </defs>
+
       {[20, 40, 60, 80, 100].map((pct) => (
         <circle key={pct} cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" />
       ))}
@@ -98,26 +132,21 @@ function PizzaChart({ data }) {
         const path = `M ${x0i.toFixed(1)} ${y0i.toFixed(1)} L ${x0o.toFixed(1)} ${y0o.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 ${largeArc} 1 ${x1o.toFixed(1)} ${y1o.toFixed(1)} L ${x1i.toFixed(1)} ${y1i.toFixed(1)} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x0i.toFixed(1)} ${y0i.toFixed(1)} Z`;
 
         const midAngle = (a0 + a1) / 2;
-        const valueR = Math.max(r, innerR + 34);
+        const valueR = Math.max(r, innerR + 36);
         const [vx, vy] = polar(midAngle, valueR);
-        const [lx, ly] = polar(midAngle, maxR + 26);
-        const flip = midAngle > 90 && midAngle < 270;
-        const labelRot = flip ? midAngle + 180 : midAngle;
 
         return (
           <g key={s.key} className="pizza-slice">
             <path d={path} fill={CATEGORY_COLORS[s.category]} fillOpacity="0.82" stroke="#FFFFFF" strokeWidth="1.5">
               <title>{`${s.label}: ${s.display} (${s.percentile}. percentil, n=${s.sampleSize})`}</title>
             </path>
-            <text x={vx} y={vy} textAnchor="middle" fontSize="13" fontWeight="800" fill="#14171A" style={{ pointerEvents: "none" }}>
+            <text x={vx} y={vy} textAnchor="middle" fontSize="12.5" fontWeight="800" fill="#14171A" style={{ pointerEvents: "none" }}>
               {s.display}
             </text>
-            <text
-              x={lx} y={ly} textAnchor="middle" fontSize="11" fill="#44514A"
-              transform={`rotate(${labelRot.toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})`}
-              style={{ pointerEvents: "none" }}
-            >
-              {s.label}
+            <text fontSize="10.5" fill="#44514A" style={{ pointerEvents: "none" }}>
+              <textPath href={`#pizza-label-arc-${s.key}`} startOffset="50%" textAnchor="middle">
+                {shortLabel(s.label)}
+              </textPath>
             </text>
           </g>
         );
