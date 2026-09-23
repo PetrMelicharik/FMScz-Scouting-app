@@ -5,6 +5,7 @@ import PitchIcon from "../../../components/PitchIcon";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { flagUrl } from "../../../lib/countryFlags";
 import { loadPlayerById } from "../../../lib/playersData";
+import { computePizzaData, CATEGORY_COLORS, CATEGORY_LABELS } from "../../../lib/pizzaData";
 
 const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
 
@@ -64,9 +65,72 @@ function FormLineChart({ ratings, dates }) {
   );
 }
 
+function PizzaChart({ data }) {
+  const { stats } = data;
+  const n = stats.length;
+  const size = 640;
+  const cx = size / 2;
+  const cy = size / 2;
+  const innerR = 58;
+  const maxR = 225;
+  const gapDeg = Math.min(2, 360 / n / 6);
+  const sliceDeg = 360 / n;
+
+  function polar(angleDeg, r) {
+    const rad = ((angleDeg - 90) * Math.PI) / 180;
+    return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+  }
+
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="pizza-svg">
+      {[20, 40, 60, 80, 100].map((pct) => (
+        <circle key={pct} cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" />
+      ))}
+      {stats.map((s, i) => {
+        const a0 = i * sliceDeg + gapDeg / 2;
+        const a1 = (i + 1) * sliceDeg - gapDeg / 2;
+        const r = innerR + (Math.max(2, s.percentile) / 100) * (maxR - innerR);
+        const [x0i, y0i] = polar(a0, innerR);
+        const [x0o, y0o] = polar(a0, r);
+        const [x1o, y1o] = polar(a1, r);
+        const [x1i, y1i] = polar(a1, innerR);
+        const largeArc = a1 - a0 > 180 ? 1 : 0;
+        const path = `M ${x0i.toFixed(1)} ${y0i.toFixed(1)} L ${x0o.toFixed(1)} ${y0o.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 ${largeArc} 1 ${x1o.toFixed(1)} ${y1o.toFixed(1)} L ${x1i.toFixed(1)} ${y1i.toFixed(1)} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x0i.toFixed(1)} ${y0i.toFixed(1)} Z`;
+
+        const midAngle = (a0 + a1) / 2;
+        const valueR = Math.max(r, innerR + 34);
+        const [vx, vy] = polar(midAngle, valueR);
+        const [lx, ly] = polar(midAngle, maxR + 26);
+        const flip = midAngle > 90 && midAngle < 270;
+        const labelRot = flip ? midAngle + 180 : midAngle;
+
+        return (
+          <g key={s.key} className="pizza-slice">
+            <path d={path} fill={CATEGORY_COLORS[s.category]} fillOpacity="0.82" stroke="#FFFFFF" strokeWidth="1.5">
+              <title>{`${s.label}: ${s.display} (${s.percentile}. percentil, n=${s.sampleSize})`}</title>
+            </path>
+            <text x={vx} y={vy} textAnchor="middle" fontSize="13" fontWeight="800" fill="#14171A" style={{ pointerEvents: "none" }}>
+              {s.display}
+            </text>
+            <text
+              x={lx} y={ly} textAnchor="middle" fontSize="11" fill="#44514A"
+              transform={`rotate(${labelRot.toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})`}
+              style={{ pointerEvents: "none" }}
+            >
+              {s.label}
+            </text>
+          </g>
+        );
+      })}
+      <circle cx={cx} cy={cy} r={innerR - 6} fill="#FFFFFF" stroke="#E3E8E2" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
 export default function PlayerPage({ params }) {
   const p = loadPlayerById(params.id);
   if (!p) return notFound();
+  const pizza = computePizzaData(p);
 
   return (
     <div className="profile">
@@ -98,6 +162,28 @@ export default function PlayerPage({ params }) {
           </div>
         </div>
       </div>
+
+      {pizza && (
+        <div className="profile-group">
+          <div className="profile-group-title">
+            Srovnání se skupinou hráčů ({pizza.groupLabel}) — {p.league_name}
+          </div>
+          <div className="pizza-panel">
+            <PizzaChart data={pizza} />
+          </div>
+          <div className="pizza-legend">
+            {[...new Set(pizza.stats.map((s) => s.category))].map((cat) => (
+              <div key={cat} className="pizza-legend-item">
+                <span className="legend-dot" style={{ background: CATEGORY_COLORS[cat] }}></span>
+                {CATEGORY_LABELS[cat]}
+              </div>
+            ))}
+          </div>
+          <p className="chart-note" style={{ textAlign: "center" }}>
+            Percentil vůči {pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize {p.league_name}, min. 300 odehraných minut.
+          </p>
+        </div>
+      )}
 
       <div className="profile-highlights">
         <div className="stat-box">
