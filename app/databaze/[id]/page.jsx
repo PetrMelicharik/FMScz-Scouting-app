@@ -66,22 +66,51 @@ function FormLineChart({ ratings, dates }) {
 }
 
 function shortLabel(label) {
-  // Drop the "/90" suffix for the curved outer label — it's implied by the
-  // chart itself (per-90 stats) and the full label with "/90" stays in the
-  // hover tooltip. Shorter text = less overlap risk with 20+ slices.
+  // Drop the "/90" suffix — implied by the chart itself, and shortens most
+  // labels meaningfully for the wrapped radial text.
   return label.replace(/\/90$/, "");
 }
 
-function PizzaChart({ data }) {
+function wrapLabel(label, maxLen = 12) {
+  const words = label.split(" ");
+  const lines = [];
+  let current = "";
+  for (const w of words) {
+    const candidate = current ? `${current} ${w}` : w;
+    if (candidate.length > maxLen && current) {
+      lines.push(current);
+      current = w;
+    } else {
+      current = candidate;
+    }
+  }
+  if (current) lines.push(current);
+  return lines.slice(0, 2);
+}
+
+function ValueBadge({ x, y, text, color }) {
+  const w = Math.max(30, text.length * 7.6 + 14);
+  const h = 21;
+  return (
+    <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)})`}>
+      <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={h / 2} fill={color} />
+      <text x={0} y={1} textAnchor="middle" dominantBaseline="middle" fontSize="11.5" fontWeight="800" fill="#FFFFFF">
+        {text}
+      </text>
+    </g>
+  );
+}
+
+function PizzaChart({ data, clubLogoUrl }) {
   const { stats } = data;
   const n = stats.length;
-  const size = 760;
+  const size = 700;
   const cx = size / 2;
   const cy = size / 2;
-  const innerR = 62;
-  const maxR = 250;
-  const labelR = maxR + 26;
-  const gapDeg = Math.min(2.2, 360 / n / 6);
+  const innerR = 64;
+  const maxR = 228;
+  const labelR = maxR + 46;
+  const gapDeg = Math.min(3, 360 / n / 5);
   const sliceDeg = 360 / n;
 
   function polar(angleDeg, r) {
@@ -91,39 +120,14 @@ function PizzaChart({ data }) {
 
   return (
     <svg viewBox={`0 0 ${size} ${size}`} className="pizza-svg">
-      <defs>
-        {stats.map((s, i) => {
-          const a0 = i * sliceDeg;
-          const a1 = (i + 1) * sliceDeg;
-          const mid = (a0 + a1) / 2;
-          // Curved label path: wider than the slice itself so longer text
-          // has room, centred on the slice. Direction reverses in the
-          // bottom half so the text never reads upside-down.
-          const span = Math.max(sliceDeg, 24);
-          const isBottom = mid > 90 && mid < 270;
-          const start = isBottom ? mid + span / 2 : mid - span / 2;
-          const end = isBottom ? mid - span / 2 : mid + span / 2;
-          const [x0, y0] = polar(start, labelR);
-          const [x1, y1] = polar(end, labelR);
-          const sweep = isBottom ? 0 : 1;
-          return (
-            <path
-              key={s.key}
-              id={`pizza-label-arc-${s.key}`}
-              d={`M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${labelR} ${labelR} 0 0 ${sweep} ${x1.toFixed(1)} ${y1.toFixed(1)}`}
-              fill="none"
-            />
-          );
-        })}
-      </defs>
-
       {[20, 40, 60, 80, 100].map((pct) => (
-        <circle key={pct} cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" />
+        <circle key={pct} cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="3 4" />
       ))}
       {stats.map((s, i) => {
         const a0 = i * sliceDeg + gapDeg / 2;
         const a1 = (i + 1) * sliceDeg - gapDeg / 2;
         const r = innerR + (Math.max(2, s.percentile) / 100) * (maxR - innerR);
+        const color = CATEGORY_COLORS[s.category];
         const [x0i, y0i] = polar(a0, innerR);
         const [x0o, y0o] = polar(a0, r);
         const [x1o, y1o] = polar(a1, r);
@@ -132,26 +136,46 @@ function PizzaChart({ data }) {
         const path = `M ${x0i.toFixed(1)} ${y0i.toFixed(1)} L ${x0o.toFixed(1)} ${y0o.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 ${largeArc} 1 ${x1o.toFixed(1)} ${y1o.toFixed(1)} L ${x1i.toFixed(1)} ${y1i.toFixed(1)} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x0i.toFixed(1)} ${y0i.toFixed(1)} Z`;
 
         const midAngle = (a0 + a1) / 2;
-        const valueR = Math.max(r, innerR + 36);
+        const valueR = Math.max(r, innerR + 42);
         const [vx, vy] = polar(midAngle, valueR);
+        const [lx, ly] = polar(midAngle, labelR);
+        const flip = midAngle > 90 && midAngle < 270;
+        const rot = flip ? midAngle + 180 : midAngle;
+        const lines = wrapLabel(shortLabel(s.label));
 
         return (
           <g key={s.key} className="pizza-slice">
-            <path d={path} fill={CATEGORY_COLORS[s.category]} fillOpacity="0.82" stroke="#FFFFFF" strokeWidth="1.5">
+            <path d={path} fill={color} fillOpacity="0.22" stroke={color} strokeWidth="1.75">
               <title>{`${s.label}: ${s.display} (${s.percentile}. percentil, n=${s.sampleSize})`}</title>
             </path>
-            <text x={vx} y={vy} textAnchor="middle" fontSize="12.5" fontWeight="800" fill="#14171A" style={{ pointerEvents: "none" }}>
-              {s.display}
-            </text>
-            <text fontSize="10.5" fill="#44514A" style={{ pointerEvents: "none" }}>
-              <textPath href={`#pizza-label-arc-${s.key}`} startOffset="50%" textAnchor="middle">
-                {shortLabel(s.label)}
-              </textPath>
-            </text>
+            <ValueBadge x={vx} y={vy} text={s.display} color={color} />
+            <g transform={`translate(${lx.toFixed(1)} ${ly.toFixed(1)}) rotate(${rot.toFixed(1)})`}>
+              {lines.map((line, li) => (
+                <text
+                  key={li} x={0} y={(li - (lines.length - 1) / 2) * 12.5}
+                  textAnchor="middle" fontSize="10.5" fontWeight="600" fill="#44514A"
+                  style={{ pointerEvents: "none" }}
+                >
+                  {line}
+                </text>
+              ))}
+            </g>
           </g>
         );
       })}
-      <circle cx={cx} cy={cy} r={innerR - 6} fill="#FFFFFF" stroke="#E3E8E2" strokeWidth="1.5" />
+      <circle cx={cx} cy={cy} r={innerR - 4} fill="#FFFFFF" stroke="#E3E8E2" strokeWidth="1.5" />
+      {clubLogoUrl && (
+        <>
+          <clipPath id="pizza-club-clip">
+            <circle cx={cx} cy={cy} r={innerR - 12} />
+          </clipPath>
+          <image
+            href={clubLogoUrl} x={cx - (innerR - 12)} y={cy - (innerR - 12)}
+            width={(innerR - 12) * 2} height={(innerR - 12) * 2}
+            clipPath="url(#pizza-club-clip)" preserveAspectRatio="xMidYMid meet"
+          />
+        </>
+      )}
     </svg>
   );
 }
@@ -198,7 +222,7 @@ export default function PlayerPage({ params }) {
             Srovnání se skupinou hráčů ({pizza.groupLabel}) — {p.league_name}
           </div>
           <div className="pizza-panel">
-            <PizzaChart data={pizza} />
+            <PizzaChart data={pizza} clubLogoUrl={p.club_logo_url} />
           </div>
           <div className="pizza-legend">
             {[...new Set(pizza.stats.map((s) => s.category))].map((cat) => (
