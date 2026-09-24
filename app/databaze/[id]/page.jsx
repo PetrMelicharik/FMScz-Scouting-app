@@ -295,18 +295,27 @@ export default function PlayerPage({ params }) {
           <div className="stat-box-label">Rating</div>
           <div className="stat-box-value">{formatStat("avg_rating_", p.avg_rating_)}</div>
         </div>
-        <div className="stat-box">
-          <div className="stat-box-label">Góly</div>
-          <div className="stat-box-value">{p.goals ?? "–"}</div>
-        </div>
-        <div className="stat-box">
-          <div className="stat-box-label">Asistence</div>
-          <div className="stat-box-value">{p.assists ?? "–"}</div>
-        </div>
-        <div className="stat-box">
-          <div className="stat-box-label">Góly + asistence</div>
-          <div className="stat-box-value">{p.goals != null || p.assists != null ? (p.goals || 0) + (p.assists || 0) : "–"}</div>
-        </div>
+        {isGoalkeeper ? (
+          <div className="stat-box">
+            <div className="stat-box-label">Čistá konta</div>
+            <div className="stat-box-value">{p.clean_sheets ?? "–"}</div>
+          </div>
+        ) : (
+          <>
+            <div className="stat-box">
+              <div className="stat-box-label">Góly</div>
+              <div className="stat-box-value">{p.goals ?? "–"}</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-box-label">Asistence</div>
+              <div className="stat-box-value">{p.assists ?? "–"}</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-box-label">Góly + asistence</div>
+              <div className="stat-box-value">{p.goals != null || p.assists != null ? (p.goals || 0) + (p.assists || 0) : "–"}</div>
+            </div>
+          </>
+        )}
       </div>
 
       {p.form_ratings && p.form_ratings.length > 0 && (
