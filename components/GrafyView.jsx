@@ -8,10 +8,19 @@ import {
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../lib/statMeta";
 
 // Each entry: [key, dropdown label (with group), plain label (for chart/axis/title)]
+const EXCLUDED_AXIS_KEYS = new Set([
+  "avg_rating_",
+  "rank_in_league_top_attackers",
+  "rank_in_league_top_midfielders",
+  "rank_in_league_top_defenders",
+]);
+
 const AXIS_OPTIONS = [
   ["age", "Věk", "Věk"],
   ...Object.entries(STAT_GROUPS).flatMap(([g, keys]) =>
-    keys.map((k) => [k, `${STAT_LABELS[k] || k} (${g})`, STAT_LABELS[k] || k])
+    keys
+      .filter((k) => !EXCLUDED_AXIS_KEYS.has(k))
+      .map((k) => [k, `${STAT_LABELS[k] || k} (${g})`, STAT_LABELS[k] || k])
   ),
 ];
 
@@ -320,7 +329,7 @@ function ScatterPanel({ rows, leagues, router }) {
   const [league, setLeague] = useState("");
   const [minMinutes, setMinMinutes] = useState("450");
   const [xStat, setXStat] = useState("age");
-  const [yStat, setYStat] = useState("avg_rating_");
+  const [yStat, setYStat] = useState("goals_per_90");
   const [chart, setChart] = useState(null);
   const chartRef = useRef(null);
 
