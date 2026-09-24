@@ -276,8 +276,8 @@ export default function ComparePlayersView() {
     } else if (typeA !== typeB) {
       pizzaResult = { error: "mismatch" };
     } else {
-      const dataA = computePizzaFromPool(playerA, poolA, dataset.columns, groupA);
-      const dataB = computePizzaFromPool(playerB, poolB, dataset.columns, groupB);
+      const dataA = computePizzaFromPool(playerA, poolA, groupA);
+      const dataB = computePizzaFromPool(playerB, poolB, groupB);
       if (!dataA || !dataB) {
         pizzaResult = { error: "insufficient_data" };
       } else {
@@ -398,31 +398,43 @@ export default function ComparePlayersView() {
                   return (
                     <div key={group} className="profile-group">
                       <div className="profile-group-title">{group}</div>
-                      <div className="compare-stat-table">
-                        <div className="compare-stat-row compare-stat-row-header">
-                          <span></span>
-                          <span>{playerA.player_name}</span>
-                          <span>{playerB.player_name}</span>
-                        </div>
+                      <div className="compare-bar-legend">
+                        <div className="pizza-legend-item"><span className="legend-dot" style={{ background: "#2563EB" }}></span>{playerA.player_name}</div>
+                        <div className="pizza-legend-item"><span className="legend-dot" style={{ background: "#DC2626" }}></span>{playerB.player_name}</div>
+                      </div>
+                      <div className="compare-bar-table">
                         {visible.map((k) => {
                           const va = playerA[k];
                           const vb = playerB[k];
                           const na = va === null || va === undefined || va === "" ? null : Number(va);
                           const nb = vb === null || vb === undefined || vb === "" ? null : Number(vb);
+                          const magA = na === null || Number.isNaN(na) ? 0 : Math.abs(na);
+                          const magB = nb === null || Number.isNaN(nb) ? 0 : Math.abs(nb);
+                          const total = magA + magB;
+                          const pctA = total > 0 ? (magA / total) * 100 : 50;
+                          const pctB = 100 - pctA;
                           let winner = null;
                           if (na !== null && nb !== null && !Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) {
                             const lower = LOWER_IS_BETTER.has(k);
                             winner = (na > nb) !== lower ? "a" : "b";
                           }
                           return (
-                            <div key={k} className="compare-stat-row">
-                              <span className="compare-stat-label">{STAT_LABELS[k] || k}</span>
-                              <span className={winner === "a" ? "compare-stat-value compare-stat-win" : "compare-stat-value"}>
-                                {va !== null && va !== undefined && va !== "" ? formatStat(k, va) : "–"}
-                              </span>
-                              <span className={winner === "b" ? "compare-stat-value compare-stat-win" : "compare-stat-value"}>
-                                {vb !== null && vb !== undefined && vb !== "" ? formatStat(k, vb) : "–"}
-                              </span>
+                            <div key={k} className="compare-bar-row">
+                              <div className="compare-bar-label">{STAT_LABELS[k] || k}</div>
+                              <div className="compare-bar-track">
+                                <div
+                                  className={winner === "a" ? "compare-bar-segment compare-bar-segment-win" : "compare-bar-segment"}
+                                  style={{ width: `${pctA}%`, background: "#2563EB" }}
+                                >
+                                  <span className="compare-bar-value">{na !== null ? formatStat(k, va) : "–"}</span>
+                                </div>
+                                <div
+                                  className={winner === "b" ? "compare-bar-segment compare-bar-segment-win" : "compare-bar-segment"}
+                                  style={{ width: `${pctB}%`, background: "#DC2626" }}
+                                >
+                                  <span className="compare-bar-value">{nb !== null ? formatStat(k, vb) : "–"}</span>
+                                </div>
+                              </div>
                             </div>
                           );
                         })}
