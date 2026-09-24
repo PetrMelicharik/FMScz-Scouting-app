@@ -37,9 +37,9 @@ function axisLabel(key) {
 function ScatterDot(props) {
   const { cx, cy, fill, payload } = props;
   if (cx === undefined || cy === undefined) return null;
-  const left = payload?.labelSide === "left";
   const tier = payload?.labelTier || 0;
-  const labelY = cy + 4 - tier * 13;
+  const left = (payload?.labelSide === "left") !== (tier % 2 === 1);
+  const labelY = cy + 4 - Math.floor(tier / 2) * 14;
   return (
     <g>
       <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />
@@ -344,22 +344,24 @@ function ScatterPanel({ rows, leagues, router }) {
       }))
       .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
 
-    const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 10).map((p) => p._id));
+    const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 8).map((p) => p._id));
     const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
     const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
     const xSpan = xDomain[1] - xDomain[0];
 
     // Labeled points that sit close together on X (a common case when many
     // players share a similar stat value) would otherwise have their name
-    // labels drawn right on top of each other — stagger them into
-    // alternating vertical tiers instead.
-    const closeThreshold = xSpan * 0.06;
+    // labels drawn right on top of each other. Stagger them across several
+    // vertical tiers AND alternate which side of the dot the text sits on —
+    // a name is much wider than it is tall, so spreading left/right helps
+    // at least as much as spreading up/down.
+    const closeThreshold = xSpan * 0.14;
     const tierByld = new Map();
     const sortedLabeled = points.filter((p) => topIds.has(p._id)).sort((a, b) => a.x - b.x);
     let lastX = null;
     let tier = 0;
     for (const p of sortedLabeled) {
-      tier = lastX !== null && p.x - lastX < closeThreshold ? (tier + 1) % 4 : 0;
+      tier = lastX !== null && p.x - lastX < closeThreshold ? (tier + 1) % 6 : 0;
       tierByld.set(p._id, tier);
       lastX = p.x;
     }
@@ -463,7 +465,7 @@ function ScatterPanel({ rows, leagues, router }) {
               </div>
             ))}
           </div>
-          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu, jména popsána u 10 s nejvyšší hodnotou na ose Y. Klikni na bod pro otevření profilu hráče.</p>
+          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu, jména popsána u 8 s nejvyšší hodnotou na ose Y. Klikni na bod pro otevření profilu hráče.</p>
         </>
       )}
     </div>
