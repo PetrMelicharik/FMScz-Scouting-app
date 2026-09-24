@@ -422,7 +422,7 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 
 .profile { padding-top: 28px; max-width: 760px; margin: 0 auto; }
 .profile-back { padding-left: 0; margin-bottom: 18px; display: inline-block; }
-.profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+.profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
 .profile-avatar {
   width: 72px; height: 72px; border-radius: 50%;
   background: var(--bg-alt); color: var(--ink-dim);
@@ -592,3 +592,16 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 .pizza-slice:hover path { fill-opacity: 1; }
 .pizza-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 6px; font-size: 12.5px; color: var(--ink-dim); }
 .pizza-legend-item { display: flex; align-items: center; gap: 6px; }
+
+/* ---------------------------------------------------------------------- */
+/* Mini-hřiště s pozicí hráče (v hlavičce profilu)                         */
+/* ---------------------------------------------------------------------- */
+
+.profile-position-pitch { margin-left: auto; flex-shrink: 0; }
+.mini-pitch-svg { width: 100px; height: auto; display: block; }
+
+/* Sloupec s pořadím v lize u detailních statistik */
+.profile-stat-row-ranked { display: grid; grid-template-columns: 1fr auto 86px; align-items: center; gap: 10px; }
+.profile-stat-rank { color: var(--ink-dim); font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; }
+.profile-stat-row-header { padding-top: 6px; padding-bottom: 6px; }
+.profile-stat-row-header .profile-stat-rank { font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; font-size: 10.5px; }
