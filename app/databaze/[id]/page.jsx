@@ -71,11 +71,9 @@ function MiniPitch({ pos }) {
   const dot = slot ? POSITION_DOT[slot] : null;
   return (
     <svg viewBox="0 0 140 180" className="mini-pitch-svg">
-      <rect x="4" y="4" width="132" height="172" rx="6" fill="#2E5266" stroke="#FFFFFF" strokeWidth="2" />
+      <rect x="4" y="4" width="132" height="172" rx="6" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2" />
       <line x1="4" y1="90" x2="136" y2="90" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
       <circle cx="70" cy="90" r="16" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-      <circle cx="16" cy="16" r="7" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
-      <circle cx="124" cy="16" r="7" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
       <path d="M 50 4 A 20 20 0 0 0 90 4" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
       <rect x="35" y="142" width="70" height="34" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
       <rect x="52" y="162" width="36" height="14" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
@@ -132,8 +130,10 @@ function PizzaChart({ data, clubLogoUrl }) {
   const innerR = 64;
   const maxR = 228;
   const labelR = maxR + 46;
-  const gapDeg = Math.min(3, 360 / n / 5);
-  const sliceDeg = 360 / n;
+  const axisGapDeg = 18;
+  const gapDeg = Math.min(3, (360 - axisGapDeg) / n / 5);
+  const sliceDeg = (360 - axisGapDeg) / n;
+  const sliceStart = axisGapDeg / 2;
 
   function polar(angleDeg, r) {
     const rad = ((angleDeg - 90) * Math.PI) / 180;
@@ -145,12 +145,12 @@ function PizzaChart({ data, clubLogoUrl }) {
       {[20, 40, 60, 80, 100].map((pct) => (
         <g key={pct}>
           <circle cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="3 4" />
-          <text x={cx + 4} y={cy - (innerR + (pct / 100) * (maxR - innerR)) - 3} fontSize="10" fill="#9AA39A">{pct}</text>
+          <text x={cx} y={cy - (innerR + (pct / 100) * (maxR - innerR)) - 3} textAnchor="middle" fontSize="10" fill="#9AA39A">{pct}</text>
         </g>
       ))}
       {stats.map((s, i) => {
-        const a0 = i * sliceDeg + gapDeg / 2;
-        const a1 = (i + 1) * sliceDeg - gapDeg / 2;
+        const a0 = sliceStart + i * sliceDeg + gapDeg / 2;
+        const a1 = sliceStart + (i + 1) * sliceDeg - gapDeg / 2;
         const r = innerR + (Math.max(2, s.percentile) / 100) * (maxR - innerR);
         const color = CATEGORY_COLORS[s.category];
         const [x0i, y0i] = polar(a0, innerR);
@@ -209,6 +209,7 @@ export default function PlayerPage({ params }) {
   const p = loadPlayerById(params.id);
   if (!p) return notFound();
   const pizza = computePizzaData(p);
+  const isGoalkeeper = classifyMainSlot(p.tm_position || p.position) === "GK";
 
   return (
     <div className="profile">
@@ -344,7 +345,10 @@ export default function PlayerPage({ params }) {
         </div>
       )}
 
-      {Object.entries(STAT_GROUPS).filter(([group]) => group !== "Obecné").map(([group, keys]) => {
+      {Object.entries(STAT_GROUPS)
+        .filter(([group]) => group !== "Obecné")
+        .filter(([group]) => (isGoalkeeper ? group === "Brankářské" : group !== "Brankářské"))
+        .map(([group, keys]) => {
         const visible = keys.filter((k) => p[k] !== null && p[k] !== undefined && p[k] !== "");
         if (!visible.length) return null;
         return (
