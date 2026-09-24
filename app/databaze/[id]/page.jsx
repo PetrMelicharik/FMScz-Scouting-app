@@ -5,7 +5,8 @@ import PitchIcon from "../../../components/PitchIcon";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { flagUrl } from "../../../lib/countryFlags";
 import { loadPlayerById } from "../../../lib/playersData";
-import { computePizzaData, CATEGORY_COLORS, CATEGORY_LABELS } from "../../../lib/pizzaData";
+import { computePizzaData, computeLeagueRank, CATEGORY_COLORS, CATEGORY_LABELS } from "../../../lib/pizzaData";
+import { classifyMainSlot, POSITION_DOT } from "../../../lib/positionSlot";
 
 const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
 
@@ -61,6 +62,27 @@ function FormLineChart({ ratings, dates }) {
           <text x={p.x} y={h - 3} textAnchor="middle" fontSize="10" fill="#667066">{formatShortDate(p.date)}</text>
         </g>
       ))}
+    </svg>
+  );
+}
+
+function MiniPitch({ pos }) {
+  const slot = classifyMainSlot(pos);
+  const dot = slot ? POSITION_DOT[slot] : null;
+  return (
+    <svg viewBox="0 0 140 180" className="mini-pitch-svg">
+      <rect x="4" y="4" width="132" height="172" rx="6" fill="#2E5266" stroke="#FFFFFF" strokeWidth="2" />
+      <line x1="4" y1="90" x2="136" y2="90" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+      <circle cx="70" cy="90" r="16" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+      <circle cx="16" cy="16" r="7" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
+      <circle cx="124" cy="16" r="7" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
+      <path d="M 50 4 A 20 20 0 0 0 90 4" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
+      <rect x="35" y="142" width="70" height="34" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
+      <rect x="52" y="162" width="36" height="14" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
+      <path d="M 58 142 A 12 12 0 0 1 82 142" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
+      {dot && (
+        <circle cx={(dot.left / 100) * 140} cy={(dot.top / 100) * 180} r="9" fill="#4CB848" stroke="#FFFFFF" strokeWidth="2.5" />
+      )}
     </svg>
   );
 }
@@ -121,7 +143,10 @@ function PizzaChart({ data, clubLogoUrl }) {
   return (
     <svg viewBox={`0 0 ${size} ${size}`} className="pizza-svg">
       {[20, 40, 60, 80, 100].map((pct) => (
-        <circle key={pct} cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="3 4" />
+        <g key={pct}>
+          <circle cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="3 4" />
+          <text x={cx + 4} y={cy - (innerR + (pct / 100) * (maxR - innerR)) - 3} fontSize="10" fill="#9AA39A">{pct}</text>
+        </g>
       ))}
       {stats.map((s, i) => {
         const a0 = i * sliceDeg + gapDeg / 2;
@@ -214,9 +239,12 @@ export default function PlayerPage({ params }) {
             {[p.league_name, p.season].filter(Boolean).join(" ")}
           </div>
         </div>
+        <div className="profile-position-pitch">
+          <MiniPitch pos={p.tm_position || p.position} />
+        </div>
       </div>
 
-      {pizza && (
+      {pizza && !pizza.insufficient && (
         <div className="profile-group">
           <div className="profile-group-title">
             Srovnání se skupinou hráčů ({pizza.groupLabel}) — {p.league_name}
@@ -238,6 +266,17 @@ export default function PlayerPage({ params }) {
         </div>
       )}
 
+      {pizza && pizza.insufficient && (
+        <div className="profile-group">
+          <div className="empty-state">
+            <div className="empty-title">Graf zatím není dostupný</div>
+            <div className="empty-sub">
+              Hráč má odehráno jen {pizza.minutesPlayed} minut — pro srovnání se skupinou ({pizza.groupLabel}) je potřeba alespoň 300 minut.
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="profile-highlights">
         <div className="stat-box">
           <div className="stat-box-label">Věk</div>
@@ -254,6 +293,18 @@ export default function PlayerPage({ params }) {
         <div className="stat-box">
           <div className="stat-box-label">Rating</div>
           <div className="stat-box-value">{formatStat("avg_rating_", p.avg_rating_)}</div>
+        </div>
+        <div className="stat-box">
+          <div className="stat-box-label">Góly</div>
+          <div className="stat-box-value">{p.goals ?? "–"}</div>
+        </div>
+        <div className="stat-box">
+          <div className="stat-box-label">Asistence</div>
+          <div className="stat-box-value">{p.assists ?? "–"}</div>
+        </div>
+        <div className="stat-box">
+          <div className="stat-box-label">Góly + asistence</div>
+          <div className="stat-box-value">{p.goals != null || p.assists != null ? (p.goals || 0) + (p.assists || 0) : "–"}</div>
         </div>
       </div>
 
@@ -293,19 +344,28 @@ export default function PlayerPage({ params }) {
         </div>
       )}
 
-      {Object.entries(STAT_GROUPS).map(([group, keys]) => {
+      {Object.entries(STAT_GROUPS).filter(([group]) => group !== "Obecné").map(([group, keys]) => {
         const visible = keys.filter((k) => p[k] !== null && p[k] !== undefined && p[k] !== "");
         if (!visible.length) return null;
         return (
           <div key={group} className="profile-group">
             <div className="profile-group-title">{group}</div>
             <div className="profile-stat-grid">
-              {visible.map((k) => (
-                <div key={k} className="profile-stat-row">
-                  <span className="profile-stat-label">{STAT_LABELS[k] || k}</span>
-                  <span className="profile-stat-value">{formatStat(k, p[k])}</span>
-                </div>
-              ))}
+              <div className="profile-stat-row profile-stat-row-ranked profile-stat-row-header">
+                <span></span>
+                <span></span>
+                <span className="profile-stat-rank">Pořadí v lize</span>
+              </div>
+              {visible.map((k) => {
+                const rank = computeLeagueRank(p, k);
+                return (
+                  <div key={k} className="profile-stat-row profile-stat-row-ranked">
+                    <span className="profile-stat-label">{STAT_LABELS[k] || k}</span>
+                    <span className="profile-stat-value">{formatStat(k, p[k])}</span>
+                    <span className="profile-stat-rank">{rank ? `#${rank.rank} z ${rank.total}` : "–"}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         );
