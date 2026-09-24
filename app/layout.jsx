@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 
 export const metadata = {
   title: "FM Scouts cz — skautovací databáze",
-  description: "Skautská databáze fotbalových hráčů se statistikami, filtry a vyhledáváním.",
+  description: "Databáze fotbalových hráčů se statistikami, filtry a vyhledáváním.",
 };
 
 export default function RootLayout({ children }) {
