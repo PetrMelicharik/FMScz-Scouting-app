@@ -38,17 +38,24 @@ function ScatterDot(props) {
   const { cx, cy, fill, payload } = props;
   if (cx === undefined || cy === undefined) return null;
   const left = payload?.labelSide === "left";
+  const tier = payload?.labelTier || 0;
+  const labelY = cy + 4 - tier * 13;
   return (
     <g>
       <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />
       {payload?.labeled && (
-        <text
-          x={left ? cx - 10 : cx + 10} y={cy + 4}
-          textAnchor={left ? "end" : "start"}
-          fontSize={11} fontWeight={600} fill="#14171A" style={{ pointerEvents: "none" }}
-        >
-          {payload.player_name}
-        </text>
+        <>
+          {tier > 0 && (
+            <line x1={cx} y1={cy} x2={left ? cx - 10 : cx + 10} y2={labelY} stroke="#9AA39A" strokeWidth={1} />
+          )}
+          <text
+            x={left ? cx - 10 : cx + 10} y={labelY}
+            textAnchor={left ? "end" : "start"}
+            fontSize={11} fontWeight={600} fill="#14171A" style={{ pointerEvents: "none" }}
+          >
+            {payload.player_name}
+          </text>
+        </>
       )}
     </g>
   );
@@ -57,12 +64,22 @@ function ScatterDot(props) {
 function computeDomain(values) {
   const min = Math.min(...values);
   const max = Math.max(...values);
+  const clampLower = (lower) => (min >= 0 ? Math.max(0, lower) : lower);
   if (min === max) {
     const pad = Math.max(Math.abs(min) * 0.1, 1);
-    return [min - pad, max + pad];
+    return [clampLower(min - pad), max + pad];
   }
   const pad = (max - min) * 0.08;
-  return [min - pad, max + pad];
+  return [clampLower(min - pad), max + pad];
+}
+
+function formatAxisTick(value, span) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "";
+  let decimals = 0;
+  if (span < 3) decimals = 2;
+  else if (span < 30) decimals = 1;
+  return n.toFixed(decimals);
 }
 
 function ScatterTooltip({ active, payload }) {
@@ -331,9 +348,26 @@ function ScatterPanel({ rows, leagues, router }) {
     const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
     const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
     const xSpan = xDomain[1] - xDomain[0];
+
+    // Labeled points that sit close together on X (a common case when many
+    // players share a similar stat value) would otherwise have their name
+    // labels drawn right on top of each other — stagger them into
+    // alternating vertical tiers instead.
+    const closeThreshold = xSpan * 0.06;
+    const tierByld = new Map();
+    const sortedLabeled = points.filter((p) => topIds.has(p._id)).sort((a, b) => a.x - b.x);
+    let lastX = null;
+    let tier = 0;
+    for (const p of sortedLabeled) {
+      tier = lastX !== null && p.x - lastX < closeThreshold ? (tier + 1) % 4 : 0;
+      tierByld.set(p._id, tier);
+      lastX = p.x;
+    }
+
     points = points.map((p) => ({
       ...p,
       labeled: topIds.has(p._id),
+      labelTier: tierByld.get(p._id) || 0,
       labelSide: (p.x - xDomain[0]) / xSpan > 0.82 ? "left" : "right",
     }));
 
@@ -401,12 +435,14 @@ function ScatterPanel({ rows, leagues, router }) {
                 <XAxis
                   type="number" dataKey="x" name={chart.xLabel} domain={chart.xDomain}
                   tick={{ fontSize: 12, fill: "#667066" }}
+                  tickFormatter={(v) => formatAxisTick(v, chart.xDomain[1] - chart.xDomain[0])}
                   axisLine={{ stroke: "#D8DED7" }} tickLine={false}
                   label={{ value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
                 />
                 <YAxis
                   type="number" dataKey="y" name={chart.yLabel} domain={chart.yDomain}
                   tick={{ fontSize: 12, fill: "#667066" }}
+                  tickFormatter={(v) => formatAxisTick(v, chart.yDomain[1] - chart.yDomain[0])}
                   axisLine={{ stroke: "#D8DED7" }} tickLine={false}
                   label={{ value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
                 />
