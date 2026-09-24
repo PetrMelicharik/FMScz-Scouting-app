@@ -344,7 +344,7 @@ function ScatterPanel({ rows, leagues, router }) {
       }))
       .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
 
-    const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 8).map((p) => p._id));
+    const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 5).map((p) => p._id));
     const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
     const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
     const xSpan = xDomain[1] - xDomain[0];
@@ -465,7 +465,7 @@ function ScatterPanel({ rows, leagues, router }) {
               </div>
             ))}
           </div>
-          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu, jména popsána u 8 s nejvyšší hodnotou na ose Y. Klikni na bod pro otevření profilu hráče.</p>
+          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu, jména popsána u 5 s nejvyšší hodnotou na ose Y. Klikni na bod pro otevření profilu hráče.</p>
         </>
       )}
     </div>
