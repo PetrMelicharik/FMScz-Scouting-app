@@ -116,29 +116,14 @@ function shortLabel(label) {
   return label.replace(/\/90$/, "");
 }
 
-function MiniBadge({ x, y, text, color }) {
-  const w = Math.max(28, text.length * 6.6 + 10);
-  const h = 17;
-  return (
-    <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)})`}>
-      <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={h / 2} fill={color} />
-      <text x={0} y={1} textAnchor="middle" dominantBaseline="middle" fontSize="10" fontWeight="800" fill="#FFFFFF">
-        {text}
-      </text>
-    </g>
-  );
-}
-
 function ComparisonPizzaChart({ statsA, statsB, nameA, nameB, colorA, colorB }) {
   const n = statsA.length;
   const size = 700;
   const cx = size / 2;
   const cy = size / 2;
-  const innerR = 64;
-  const maxR = 228;
-  const labelR = maxR + 46;
+  const maxR = 230;
+  const labelR = maxR + 44;
   const axisGapDeg = 18;
-  const gapDeg = Math.min(3, (360 - axisGapDeg) / n / 5);
   const sliceDeg = (360 - axisGapDeg) / n;
   const sliceStart = axisGapDeg / 2;
 
@@ -147,47 +132,53 @@ function ComparisonPizzaChart({ statsA, statsB, nameA, nameB, colorA, colorB }) 
     return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
   }
 
-  function wedgePath(a0, a1, r) {
-    const [x0i, y0i] = polar(a0, innerR);
-    const [x0o, y0o] = polar(a0, r);
-    const [x1o, y1o] = polar(a1, r);
-    const [x1i, y1i] = polar(a1, innerR);
-    const largeArc = a1 - a0 > 180 ? 1 : 0;
-    return `M ${x0i.toFixed(1)} ${y0i.toFixed(1)} L ${x0o.toFixed(1)} ${y0o.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 ${largeArc} 1 ${x1o.toFixed(1)} ${y1o.toFixed(1)} L ${x1i.toFixed(1)} ${y1i.toFixed(1)} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x0i.toFixed(1)} ${y0i.toFixed(1)} Z`;
+  const axisAngles = statsA.map((_, i) => sliceStart + i * sliceDeg + sliceDeg / 2);
+
+  function polygonPoints(stats) {
+    return stats.map((s, i) => polar(axisAngles[i], Math.max(4, s.percentile) / 100 * maxR));
   }
+
+  function polygonPath(points) {
+    return points.map(([x, y], i) => `${i === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`).join(" ") + " Z";
+  }
+
+  const pointsA = polygonPoints(statsA);
+  const pointsB = polygonPoints(statsB);
 
   return (
     <svg viewBox={`0 0 ${size} ${size}`} className="pizza-svg">
       {[20, 40, 60, 80, 100].map((pct) => (
         <g key={pct}>
-          <circle cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="3 4" />
-          <text x={cx} y={cy - (innerR + (pct / 100) * (maxR - innerR)) - 3} textAnchor="middle" fontSize="10" fill="#9AA39A">{pct}</text>
+          <circle cx={cx} cy={cy} r={(pct / 100) * maxR} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="3 4" />
+          <text x={cx} y={cy - (pct / 100) * maxR - 3} textAnchor="middle" fontSize="10" fill="#9AA39A">{pct}</text>
         </g>
       ))}
+      {axisAngles.map((a, i) => {
+        const [x, y] = polar(a, maxR);
+        return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="#E3E8E2" strokeWidth="1" />;
+      })}
+
+      <path d={polygonPath(pointsA)} fill={colorA} fillOpacity="0.3" stroke={colorA} strokeWidth="2" strokeLinejoin="round" />
+      <path d={polygonPath(pointsB)} fill={colorB} fillOpacity="0.3" stroke={colorB} strokeWidth="2" strokeLinejoin="round" />
+
       {statsA.map((sA, i) => {
         const sB = statsB[i];
-        const a0 = sliceStart + i * sliceDeg + gapDeg / 2;
-        const a1 = sliceStart + (i + 1) * sliceDeg - gapDeg / 2;
-        const aMid = (a0 + a1) / 2;
-        const rA = innerR + (Math.max(2, sA.percentile) / 100) * (maxR - innerR);
-        const rB = innerR + (Math.max(2, sB.percentile) / 100) * (maxR - innerR);
-        const [badgeAx, badgeAy] = polar((a0 + aMid) / 2, Math.max(rA, innerR + 30));
-        const [badgeBx, badgeBy] = polar((aMid + a1) / 2, Math.max(rB, innerR + 30));
-        const [lx, ly] = polar(aMid, labelR);
-        const flip = aMid > 90 && aMid < 270;
-        const rot = flip ? aMid + 180 : aMid;
+        const a = axisAngles[i];
+        const [xA, yA] = pointsA[i];
+        const [xB, yB] = pointsB[i];
+        const [lx, ly] = polar(a, labelR);
+        const flip = a > 90 && a < 270;
+        const rot = flip ? a + 180 : a;
         const lines = wrapLabel(shortLabel(sA.label));
 
         return (
           <g key={sA.key}>
-            <path d={wedgePath(a0, aMid, rA)} fill={colorA} fillOpacity="0.28" stroke={colorA} strokeWidth="1.5">
+            <circle cx={xA} cy={yA} r={4} fill={colorA} stroke="#FFFFFF" strokeWidth="1.5">
               <title>{`${nameA} — ${sA.label}: ${sA.display} (${sA.percentile}. percentil)`}</title>
-            </path>
-            <path d={wedgePath(aMid, a1, rB)} fill={colorB} fillOpacity="0.28" stroke={colorB} strokeWidth="1.5">
+            </circle>
+            <circle cx={xB} cy={yB} r={4} fill={colorB} stroke="#FFFFFF" strokeWidth="1.5">
               <title>{`${nameB} — ${sB.label}: ${sB.display} (${sB.percentile}. percentil)`}</title>
-            </path>
-            <MiniBadge x={badgeAx} y={badgeAy} text={sA.display} color={colorA} />
-            <MiniBadge x={badgeBx} y={badgeBy} text={sB.display} color={colorB} />
+            </circle>
             <g transform={`translate(${lx.toFixed(1)} ${ly.toFixed(1)}) rotate(${rot.toFixed(1)})`}>
               {lines.map((line, li) => (
                 <text key={li} x={0} y={(li - (lines.length - 1) / 2) * 12.5} textAnchor="middle" fontSize="10.5" fontWeight="600" fill="#44514A" style={{ pointerEvents: "none" }}>
@@ -198,7 +189,7 @@ function ComparisonPizzaChart({ statsA, statsB, nameA, nameB, colorA, colorB }) 
           </g>
         );
       })}
-      <circle cx={cx} cy={cy} r={innerR - 4} fill="#FFFFFF" stroke="#E3E8E2" strokeWidth="1.5" />
+      <circle cx={cx} cy={cy} r={3} fill="#9AA39A" />
     </svg>
   );
 }
