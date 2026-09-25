@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { flagUrl } from "../lib/countryFlags";
 import { classifyMainSlot, POSITION_DOT } from "../lib/positionSlot";
 import { CATEGORY_COLORS } from "../lib/pizzaShared";
+import { formatStat } from "../lib/statMeta";
 
 const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
 
@@ -90,135 +91,189 @@ const CARD_W = 900;
 const FONT_BODY = "'Inter', -apple-system, sans-serif";
 const FONT_HEAD = "'Baloo 2', -apple-system, sans-serif";
 
-function ReportCard({ form, pizza }) {
+function formColor(r) {
+  return r >= 7 ? "#4CB848" : r >= 6 ? "#D97706" : "#DC2626";
+}
+
+function formatShortDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return `${d.getDate()}.${d.getMonth() + 1}.`;
+}
+
+function FormChart({ ratings, dates, width, height }) {
+  const padX = 20;
+  const padTop = 20;
+  const padBottom = 16;
+  const domainMin = 4, domainMax = 9;
+  const plotH = height - padTop - padBottom;
+  const n = ratings.length;
+  const stepX = n > 1 ? (width - padX * 2) / (n - 1) : 0;
+  const baseY = padTop + plotH;
+
+  const points = ratings.map((r, i) => {
+    const x = padX + stepX * i;
+    const clamped = Math.max(domainMin, Math.min(domainMax, r));
+    const y = padTop + plotH - ((clamped - domainMin) / (domainMax - domainMin)) * plotH;
+    return { x, y, r, date: dates?.[i] };
+  });
+
+  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
+  const areaPath = points.length > 1
+    ? `${linePath} L ${points[points.length - 1].x.toFixed(1)} ${baseY} L ${points[0].x.toFixed(1)} ${baseY} Z`
+    : "";
+
+  return (
+    <g>
+      <text x="0" y="12" fontFamily={FONT_HEAD} fontSize="12" fontWeight="700" fill="#14171A">Forma (posledních {ratings.length} zápasů)</text>
+      <g transform="translate(0, 10)">
+        {areaPath && <path d={areaPath} fill="#4CB848" fillOpacity="0.14" stroke="none" />}
+        <path d={linePath} fill="none" stroke="#4CB848" strokeWidth="2.25" strokeLinejoin="round" strokeLinecap="round" />
+        {points.map((p, i) => (
+          <g key={i}>
+            <circle cx={p.x} cy={p.y} r="4.5" fill={formColor(p.r)} stroke="#FFFFFF" strokeWidth="1.5" />
+            <text x={p.x} y={p.y - 9} textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#14171A">{p.r.toFixed(1)}</text>
+            <text x={p.x} y={height - 2} textAnchor="middle" fontSize="9" fill="#667066">{formatShortDate(p.date)}</text>
+          </g>
+        ))}
+      </g>
+    </g>
+  );
+}
+
+function ReportCard({ form, pizza, player }) {
   const nationalFlag = flagUrl(form.nationality);
   const slot = classifyMainSlot(form.positionLabel);
   const dot = slot ? POSITION_DOT[slot] : null;
   const hasPizza = pizza && !pizza.insufficient;
+  const hasForm = player?.form_ratings && player.form_ratings.length > 0;
 
   const margin = 36;
   const colW = CARD_W - margin * 2;
 
-  // Middle section: text (Profil / Scoutský report) on the left, stacked
-  // stat cards on the right — same arrangement as the reference template.
-  const textColW = Math.round(colW * 0.6);
-  const statColW = colW - textColW - 24;
-  const textCharWidth = 6.9; // approx. px per character for Inter at 13.5px
-  const maxLineLen = Math.max(30, Math.floor((textColW - 36) / textCharWidth));
-
-  const profileLines = wrapParagraph(form.profileText, maxLineLen);
-  const scoutLines = wrapParagraph(form.scoutReportText, maxLineLen);
-
-  const headerH = hasPizza ? 420 : 264;
+  const row1H = 140;
+  const row2H = 30;
   const infoCardsH = 62;
-  const textLineH = 21;
-  const textBoxPad = 40;
-  const profileH = form.profileText ? textBoxPad + Math.max(1, profileLines.length) * textLineH : 0;
-  const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
-  const statCardH = 76;
-  const statGap = 12;
-  const leftStackH = profileH + (profileH && scoutH ? 20 : 0) + scoutH;
-  const rightStackH = statCardH * 3 + statGap * 2;
-  const middleH = Math.max(leftStackH, rightStackH);
-  const footerH = 54;
+  const statCardsH = 62;
   const gap = 20;
 
-  const totalH = 30 + headerH + gap + infoCardsH + gap + middleH + gap + footerH + 30;
+  const leftColW = Math.round(colW * 0.54);
+  const rightColW = colW - leftColW - 24;
+
+  const textCharWidth = 6.9; // approx. px per character for Inter at 13.5px
+  const maxLineLen = Math.max(30, Math.floor((leftColW - 36) / textCharWidth));
+  const scoutLines = wrapParagraph(form.scoutReportText, maxLineLen);
+  const textLineH = 21;
+  const textBoxPad = 40;
+  const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
+
+  const formChartH = 116;
+  const rightColH = (hasForm ? formChartH + 20 : 0) + (hasPizza ? rightColW : 0);
+  const middleH = Math.max(scoutH, rightColH);
+
+  const footerH = 54;
+
+  const totalH = 30 + row1H + gap + row2H + gap + infoCardsH + gap + statCardsH + gap + middleH + gap + footerH + 30;
 
   let y = 30;
-  const headerY = y; y += headerH + gap;
+  const row1Y = y; y += row1H + gap;
+  const row2Y = y; y += row2H + gap;
   const infoY = y; y += infoCardsH + gap;
+  const statsY = y; y += statCardsH + gap;
   const middleY = y; y += middleH + gap;
   const footerY = totalH - footerH - 20;
 
-  const leftColW = 270;
-  const pitchColW = 100;
-  const pizzaColW = colW - leftColW - pitchColW - 40;
+  const pitchW = 108;
 
   return (
-    <svg viewBox={`0 0 ${CARD_W} ${totalH}`} className="report-svg" style={{ background: "#FFFFFF", fontFamily: FONT_BODY }}>
-      <rect x="0" y="0" width={CARD_W} height={totalH} fill="#FFFFFF" />
+    <svg viewBox={`0 0 ${CARD_W} ${totalH}`} className="report-svg" style={{ background: "#EAF3FB", fontFamily: FONT_BODY }}>
+      <rect x="0" y="0" width={CARD_W} height={totalH} fill="#EAF3FB" />
+      <image href="/logo.jpg" x={CARD_W / 2 - 260} y={Math.max(0, totalH / 2 - 260)} width="520" height="520" opacity="0.055" />
 
-      {/* Header: photo/name/meta (col 1), pizza chart (col 2), pitch (col 3) */}
-      <g transform={`translate(${margin}, ${headerY})`}>
-        <clipPath id="report-photo-clip"><circle cx="55" cy="55" r="55" /></clipPath>
+      {/* Row 1: photo, name, pitch */}
+      <g transform={`translate(${margin}, ${row1Y})`}>
+        <clipPath id="report-photo-clip"><circle cx="50" cy="50" r="50" /></clipPath>
         {form.photoUrl ? (
           <>
-            <circle cx="55" cy="55" r="57" fill="none" stroke="#E3E8E2" strokeWidth="2" />
-            <image href={form.photoUrl} x="0" y="0" width="110" height="110" clipPath="url(#report-photo-clip)" preserveAspectRatio="xMidYMid slice" />
+            <circle cx="50" cy="50" r="52" fill="none" stroke="#FFFFFF" strokeWidth="3" />
+            <image href={form.photoUrl} x="0" y="0" width="100" height="100" clipPath="url(#report-photo-clip)" preserveAspectRatio="xMidYMid slice" />
           </>
         ) : (
-          <circle cx="55" cy="55" r="55" fill="#EFF6EE" stroke="#E3E8E2" strokeWidth="2" />
+          <circle cx="50" cy="50" r="50" fill="#F3FAF2" stroke="#FFFFFF" strokeWidth="3" />
         )}
-        <text x="0" y="130" fontFamily={FONT_HEAD} fontSize="26" fontWeight="700" fill="#14171A">{form.playerName || "Jméno hráče"}</text>
-        <text x="0" y="152" fontSize="12" fill="#9AA39A">
-          Report vytvořen: <tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#4CB848">FM</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#14171A"> Scouts</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#9AA39A"> cz</tspan>
+        <text x="118" y="44" fontFamily={FONT_HEAD} fontSize="28" fontWeight="700" fill="#14171A">{form.playerName || "Jméno hráče"}</text>
+        <text x="118" y="68" fontSize="12" fill="#8A96A3">
+          Report vytvořen: <tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#4CB848">FM</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#14171A"> Scouts</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#8A96A3"> cz</tspan>
         </text>
 
-        {form.dob && <text x="0" y="186" fontSize="12.5" fill="#667066">Datum narození: <tspan fontWeight="700" fill="#14171A">{form.dob}</tspan></text>}
-        {nationalFlag && (
-          <>
-            <image href={nationalFlag} x="0" y="198" width="21" height="15" />
-            <text x="27" y="210" fontSize="12.5" fill="#667066">{form.nationality}</text>
-          </>
-        )}
-        {form.foot && <text x="0" y="238" fontSize="12.5" fill="#667066">Noha: <tspan fontWeight="700" fill="#14171A">{FOOT_LABELS[form.foot.toLowerCase()] || form.foot}</tspan></text>}
-        {form.positionLabel && <text x="0" y="264" fontSize="12.5" fill="#667066">Pozice: <tspan fontWeight="700" fill="#14171A">{form.positionLabel}</tspan></text>}
-
-        {hasPizza && (
-          <g transform={`translate(${leftColW + 20}, 0)`}>
-            <MiniPizza data={pizza} size={pizzaColW} />
-          </g>
-        )}
-
-        {/* standalone pitch, right column */}
-        <g transform={`translate(${leftColW + 20 + pizzaColW + 20}, 38)`}>
-          <rect x="0" y="0" width={pitchColW} height="132" rx="8" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2" />
-          <line x1="0" y1="66" x2={pitchColW} y2="66" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <circle cx={pitchColW / 2} cy="66" r="14" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <path d={`M ${pitchColW / 2 - 13} 0 A 13 13 0 0 0 ${pitchColW / 2 + 13} 0`} fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <rect x={pitchColW / 2 - 26} y="105" width="52" height="27" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <rect x={pitchColW / 2 - 13} y="120" width="26" height="12" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          {dot && <circle cx={(dot.left / 100) * pitchColW} cy={(dot.top / 100) * 132} r="7" fill="#4CB848" stroke="#FFFFFF" strokeWidth="2.5" />}
+        <g transform={`translate(${colW - pitchW}, 0)`}>
+          <rect x="0" y="0" width={pitchW} height="140" rx="9" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2.5" />
+          <line x1="0" y1="70" x2={pitchW} y2="70" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+          <circle cx={pitchW / 2} cy="70" r="15" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+          <path d={`M ${pitchW / 2 - 14} 0 A 14 14 0 0 0 ${pitchW / 2 + 14} 0`} fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+          <rect x={pitchW / 2 - 28} y="111" width="56" height="29" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+          <rect x={pitchW / 2 - 14} y="127" width="28" height="13" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+          {dot && <circle cx={(dot.left / 100) * pitchW} cy={(dot.top / 100) * 140} r="7.5" fill="#4CB848" stroke="#FFFFFF" strokeWidth="2.5" />}
         </g>
       </g>
 
-      {/* Info cards row */}
+      {/* Row 2: DOB / Nationality / Foot */}
+      <g transform={`translate(${margin}, ${row2Y})`}>
+        {form.dob && <text x="0" y="14" fontSize="12.5" fill="#667066">Datum narození: <tspan fontWeight="700" fill="#14171A">{form.dob}</tspan></text>}
+        {nationalFlag && (
+          <>
+            <image href={nationalFlag} x="280" y="2" width="20" height="14" />
+            <text x="306" y="14" fontSize="12.5" fill="#667066">{form.nationality}</text>
+          </>
+        )}
+        {form.foot && <text x="520" y="14" fontSize="12.5" fill="#667066">Noha: <tspan fontWeight="700" fill="#14171A">{FOOT_LABELS[form.foot.toLowerCase()] || form.foot}</tspan></text>}
+      </g>
+
+      {/* Row 3: club / value / contract */}
       <g transform={`translate(${margin}, ${infoY})`}>
         {[
           { label: form.league || "Liga", value: form.club || "Klub", logo: form.clubLogoUrl },
-          { label: "Tržní hodnota", value: form.marketValue || "–" },
+          { label: "Hodnota hráče", value: form.marketValue || "–" },
           { label: "Smlouva do", value: form.contractUntil || "–" },
         ].map((card, i) => {
           const cardW = (colW - 24) / 3;
           const x = i * (cardW + 12);
           return (
             <g key={i} transform={`translate(${x}, 0)`}>
-              <rect x="0" y="0" width={cardW} height={infoCardsH} rx="9" fill="#F3FAF2" />
+              <rect x="0" y="0" width={cardW} height={infoCardsH} rx="9" fill="rgba(255,255,255,0.6)" />
               {card.logo && <image href={card.logo} x="12" y="15" width="22" height="22" />}
-              <text x={card.logo ? 42 : 14} y="24" fontSize="10" fill="#9AA39A">{card.label}</text>
+              <text x={card.logo ? 42 : 14} y="24" fontSize="10" fill="#7C8894">{card.label}</text>
               <text x={card.logo ? 42 : 14} y="43" fontSize="14" fontWeight="700" fill="#14171A">{card.value}</text>
             </g>
           );
         })}
       </g>
 
-      {/* Middle section: text column (left) + stacked stat cards (right) */}
+      {/* Row 4: matches / goals+assists / avg rating */}
+      <g transform={`translate(${margin}, ${statsY})`}>
+        {[
+          { label: "Počet zápasů", value: form.appearances || "–" },
+          { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}` },
+          { label: "Průměrné hodnocení", value: form.avgRating || "–" },
+        ].map((card, i) => {
+          const cardW = (colW - 24) / 3;
+          const x = i * (cardW + 12);
+          return (
+            <g key={i} transform={`translate(${x}, 0)`}>
+              <rect x="0" y="0" width={cardW} height={statCardsH} rx="9" fill="rgba(255,255,255,0.6)" />
+              <text x="14" y="24" fontSize="10" fill="#7C8894">{card.label}</text>
+              <text x="14" y="43" fontSize="14" fontWeight="700" fill="#14171A">{card.value}</text>
+            </g>
+          );
+        })}
+      </g>
+
+      {/* Row 5: scout report (left) + form chart & pizza (right) */}
       <g transform={`translate(${margin}, ${middleY})`}>
-        {/* Profil */}
-        {profileH > 0 && (
-          <g>
-            <rect x="0" y="0" width={textColW} height={profileH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
-            <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Profil</text>
-            {profileLines.map((line, i) => (
-              <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
-            ))}
-          </g>
-        )}
-        {/* Scoutský report */}
         {scoutH > 0 && (
-          <g transform={`translate(0, ${profileH ? profileH + 20 : 0})`}>
-            <rect x="0" y="0" width={textColW} height={scoutH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
+          <g>
+            <rect x="0" y="0" width={leftColW} height={scoutH} rx="12" fill="rgba(255,255,255,0.65)" stroke="#D7E4F0" strokeWidth="1" />
             <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Scoutský report</text>
             {scoutLines.map((line, i) => (
               <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
@@ -226,26 +281,20 @@ function ReportCard({ form, pizza }) {
           </g>
         )}
 
-        {/* Stacked stat cards */}
-        <g transform={`translate(${textColW + 24}, 0)`}>
-          {[
-            { label: form.season ? `Sezóna ${form.season}` : "Sezóna", value: form.appearances ? `${form.appearances} zápasů` : "–" },
-            { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}` },
-            { label: form.externalRatingLabel || "Externí hodnocení", value: form.externalRatingValue || "–" },
-          ].map((card, i) => (
-            <g key={i} transform={`translate(0, ${i * (statCardH + statGap)})`}>
-              <rect x="0" y="0" width={statColW} height={statCardH} rx="10" fill="#F3FAF2" />
-              <text x="16" y="30" fontSize="11" fill="#9AA39A">{card.label}</text>
-              <text x="16" y="56" fontSize="19" fontWeight="700" fill="#14171A">{card.value}</text>
+        <g transform={`translate(${leftColW + 24}, 0)`}>
+          {hasForm && <FormChart ratings={[...player.form_ratings].reverse()} dates={[...(player.form_dates || [])].reverse()} width={rightColW} height={formChartH} />}
+          {hasPizza && (
+            <g transform={`translate(0, ${hasForm ? formChartH + 20 : 0})`}>
+              <MiniPizza data={pizza} size={rightColW} />
             </g>
-          ))}
+          )}
         </g>
       </g>
 
       {/* Footer */}
-      <line x1={margin} y1={footerY - 14} x2={CARD_W - margin} y2={footerY - 14} stroke="#E3E8E2" strokeWidth="1" />
+      <line x1={margin} y1={footerY - 14} x2={CARD_W - margin} y2={footerY - 14} stroke="#D7E4F0" strokeWidth="1" />
       <text x={CARD_W / 2} y={footerY + 14} textAnchor="middle" fontFamily={FONT_HEAD} fontSize="13" fontWeight="700">
-        <tspan fill="#4CB848">FM</tspan><tspan fill="#14171A"> Scouts</tspan><tspan fill="#9AA39A"> cz</tspan>
+        <tspan fill="#4CB848">FM</tspan><tspan fill="#14171A"> Scouts</tspan><tspan fill="#8A96A3"> cz</tspan>
       </text>
     </svg>
   );
@@ -345,9 +394,7 @@ export default function ReportBuilder({ player, pizza }) {
     appearances: player.appearances != null ? String(player.appearances) : "",
     goals: player.goals != null ? String(player.goals) : "",
     assists: player.assists != null ? String(player.assists) : "",
-    externalRatingLabel: "Sofascore rating",
-    externalRatingValue: "",
-    profileText: "",
+    avgRating: player.avg_rating_ != null ? formatStat("avg_rating_", player.avg_rating_) : "",
     scoutReportText: "",
   });
 
@@ -488,11 +535,6 @@ export default function ReportBuilder({ player, pizza }) {
             </div>
 
             <div className="field">
-              <div className="field-label">Sezóna</div>
-              <input type="text" value={form.season} onChange={(e) => set("season", e.target.value)} />
-            </div>
-
-            <div className="field">
               <div className="field-label">Zápasy</div>
               <input type="text" value={form.appearances} onChange={(e) => set("appearances", e.target.value)} />
             </div>
@@ -508,17 +550,8 @@ export default function ReportBuilder({ player, pizza }) {
             </div>
 
             <div className="field">
-              <div className="field-label">Externí hodnocení — popisek</div>
-              <input type="text" value={form.externalRatingLabel} onChange={(e) => set("externalRatingLabel", e.target.value)} placeholder="např. Sofascore rating" />
-            </div>
-            <div className="field">
-              <div className="field-label">Externí hodnocení — hodnota</div>
-              <input type="text" value={form.externalRatingValue} onChange={(e) => set("externalRatingValue", e.target.value)} placeholder="např. 7,24" />
-            </div>
-
-            <div className="field">
-              <div className="field-label">Profil (text)</div>
-              <textarea rows={5} value={form.profileText} onChange={(e) => set("profileText", e.target.value)} placeholder="Krátký popis hráče…" />
+              <div className="field-label">Průměrné hodnocení</div>
+              <input type="text" value={form.avgRating} onChange={(e) => set("avgRating", e.target.value)} />
             </div>
 
             <div className="field">
@@ -532,7 +565,7 @@ export default function ReportBuilder({ player, pizza }) {
           </div>
 
           <div className="report-preview" ref={previewRef}>
-            <ReportCard form={form} pizza={pizza} />
+            <ReportCard form={form} pizza={pizza} player={player} />
           </div>
         </div>
       )}
