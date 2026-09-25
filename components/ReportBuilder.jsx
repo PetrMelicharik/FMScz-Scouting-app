@@ -134,11 +134,28 @@ function FormChart({ ratings, dates, width, height }) {
           <g key={i}>
             <circle cx={p.x} cy={p.y} r="4.5" fill={formColor(p.r)} stroke="#FFFFFF" strokeWidth="1.5" />
             <text x={p.x} y={p.y - 9} textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#14171A">{p.r.toFixed(1)}</text>
-            <text x={p.x} y={height - 2} textAnchor="middle" fontSize="9" fill="#667066">{formatShortDate(p.date)}</text>
+            <text x={p.x} y={height - 2} textAnchor="middle" fontSize="9" fill="#667066">{p.date || ""}</text>
           </g>
         ))}
       </g>
     </g>
+  );
+}
+
+function TileRow({ items, colW, cardH }) {
+  const cardW = (colW - 24) / 3;
+  return (
+    <>
+      {items.map((card, i) => (
+        <g key={i} transform={`translate(${i * (cardW + 12)}, 0)`}>
+          <rect x="0" y="0" width={cardW} height={cardH} rx="9" fill="rgba(255,255,255,0.6)" />
+          {card.logo && <image href={card.logo} x="12" y="15" width="22" height="22" />}
+          {!card.logo && card.emoji && <text x="12" y="35" fontSize="19">{card.emoji}</text>}
+          <text x={card.logo || card.emoji ? 42 : 14} y="24" fontSize="10" fill="#7C8894">{card.label}</text>
+          <text x={card.logo || card.emoji ? 42 : 14} y="43" fontSize="14" fontWeight="700" fill="#14171A">{card.value}</text>
+        </g>
+      ))}
+    </>
   );
 }
 
@@ -147,13 +164,14 @@ function ReportCard({ form, pizza, player }) {
   const slot = classifyMainSlot(form.positionLabel);
   const dot = slot ? POSITION_DOT[slot] : null;
   const hasPizza = pizza && !pizza.insufficient;
-  const hasForm = player?.form_ratings && player.form_ratings.length > 0;
+  const filledFormRows = (form.formRatings || []).filter((r) => r.rating !== "" && !Number.isNaN(Number(r.rating)));
+  const hasForm = filledFormRows.length > 0;
 
   const margin = 36;
   const colW = CARD_W - margin * 2;
 
   const row1H = 140;
-  const row2H = 30;
+  const row2H = 62;
   const infoCardsH = 62;
   const statCardsH = 62;
   const gap = 20;
@@ -203,9 +221,7 @@ function ReportCard({ form, pizza, player }) {
           <circle cx="50" cy="50" r="50" fill="#F3FAF2" stroke="#FFFFFF" strokeWidth="3" />
         )}
         <text x="118" y="44" fontFamily={FONT_HEAD} fontSize="28" fontWeight="700" fill="#14171A">{form.playerName || "Jméno hráče"}</text>
-        <text x="118" y="68" fontSize="12" fill="#8A96A3">
-          Report vytvořen: <tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#4CB848">FM</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#14171A"> Scouts</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#8A96A3"> cz</tspan>
-        </text>
+        <text x="118" y="72" fontSize="17" fontWeight="600" fill="#4A5A68">{form.positionLabel}</text>
 
         <g transform={`translate(${colW - pitchW}, 0)`}>
           <rect x="0" y="0" width={pitchW} height="140" rx="9" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2.5" />
@@ -218,55 +234,43 @@ function ReportCard({ form, pizza, player }) {
         </g>
       </g>
 
-      {/* Row 2: DOB / Nationality / Foot */}
+      {/* Row 2: DOB / Nationality / Foot — as tiles */}
       <g transform={`translate(${margin}, ${row2Y})`}>
-        {form.dob && <text x="0" y="14" fontSize="12.5" fill="#667066">Datum narození: <tspan fontWeight="700" fill="#14171A">{form.dob}</tspan></text>}
-        {nationalFlag && (
-          <>
-            <image href={nationalFlag} x="280" y="2" width="20" height="14" />
-            <text x="306" y="14" fontSize="12.5" fill="#667066">{form.nationality}</text>
-          </>
-        )}
-        {form.foot && <text x="520" y="14" fontSize="12.5" fill="#667066">Noha: <tspan fontWeight="700" fill="#14171A">{FOOT_LABELS[form.foot.toLowerCase()] || form.foot}</tspan></text>}
+        <TileRow
+          colW={colW}
+          cardH={row2H}
+          items={[
+            { label: "Datum narození", value: form.dob || "–", emoji: "🎂" },
+            { label: "Národnost", value: form.nationality || "–", logo: nationalFlag },
+            { label: "Noha", value: form.foot ? (FOOT_LABELS[form.foot.toLowerCase()] || form.foot) : "–", emoji: "🦶" },
+          ]}
+        />
       </g>
 
       {/* Row 3: club / value / contract */}
       <g transform={`translate(${margin}, ${infoY})`}>
-        {[
-          { label: form.league || "Liga", value: form.club || "Klub", logo: form.clubLogoUrl },
-          { label: "Hodnota hráče", value: form.marketValue || "–" },
-          { label: "Smlouva do", value: form.contractUntil || "–" },
-        ].map((card, i) => {
-          const cardW = (colW - 24) / 3;
-          const x = i * (cardW + 12);
-          return (
-            <g key={i} transform={`translate(${x}, 0)`}>
-              <rect x="0" y="0" width={cardW} height={infoCardsH} rx="9" fill="rgba(255,255,255,0.6)" />
-              {card.logo && <image href={card.logo} x="12" y="15" width="22" height="22" />}
-              <text x={card.logo ? 42 : 14} y="24" fontSize="10" fill="#7C8894">{card.label}</text>
-              <text x={card.logo ? 42 : 14} y="43" fontSize="14" fontWeight="700" fill="#14171A">{card.value}</text>
-            </g>
-          );
-        })}
+        <TileRow
+          colW={colW}
+          cardH={infoCardsH}
+          items={[
+            { label: form.league || "Liga", value: form.club || "Klub", logo: form.clubLogoUrl },
+            { label: "Hodnota hráče", value: form.marketValue || "–", emoji: "💰" },
+            { label: "Smlouva do", value: form.contractUntil || "–", emoji: "📝" },
+          ]}
+        />
       </g>
 
       {/* Row 4: matches / goals+assists / avg rating */}
       <g transform={`translate(${margin}, ${statsY})`}>
-        {[
-          { label: "Počet zápasů", value: form.appearances || "–" },
-          { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}` },
-          { label: "Průměrné hodnocení", value: form.avgRating || "–" },
-        ].map((card, i) => {
-          const cardW = (colW - 24) / 3;
-          const x = i * (cardW + 12);
-          return (
-            <g key={i} transform={`translate(${x}, 0)`}>
-              <rect x="0" y="0" width={cardW} height={statCardsH} rx="9" fill="rgba(255,255,255,0.6)" />
-              <text x="14" y="24" fontSize="10" fill="#7C8894">{card.label}</text>
-              <text x="14" y="43" fontSize="14" fontWeight="700" fill="#14171A">{card.value}</text>
-            </g>
-          );
-        })}
+        <TileRow
+          colW={colW}
+          cardH={statCardsH}
+          items={[
+            { label: "Počet zápasů", value: form.appearances || "–", emoji: "🎽" },
+            { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}`, emoji: "⚽" },
+            { label: "Průměrné hodnocení", value: form.avgRating || "–", emoji: "⭐" },
+          ]}
+        />
       </g>
 
       {/* Row 5: scout report (left) + form chart & pizza (right) */}
@@ -282,7 +286,7 @@ function ReportCard({ form, pizza, player }) {
         )}
 
         <g transform={`translate(${leftColW + 24}, 0)`}>
-          {hasForm && <FormChart ratings={[...player.form_ratings].reverse()} dates={[...(player.form_dates || [])].reverse()} width={rightColW} height={formChartH} />}
+          {hasForm && <FormChart ratings={filledFormRows.map((r) => Number(r.rating))} dates={filledFormRows.map((r) => r.date)} width={rightColW} height={formChartH} />}
           {hasPizza && (
             <g transform={`translate(0, ${hasForm ? formChartH + 20 : 0})`}>
               <MiniPizza data={pizza} size={rightColW} />
@@ -368,6 +372,19 @@ function MiniPizza({ data, size }) {
   );
 }
 
+function buildInitialFormRatings(player) {
+  const ratings = player.form_ratings ? [...player.form_ratings].reverse() : [];
+  const dates = player.form_dates ? [...player.form_dates].reverse() : [];
+  const rows = [];
+  for (let i = 0; i < 6; i++) {
+    rows.push({
+      date: dates[i] ? formatShortDate(dates[i]) : "",
+      rating: ratings[i] != null ? String(ratings[i]) : "",
+    });
+  }
+  return rows;
+}
+
 /* ---------------------------------------------------------------------- */
 /* Main builder — form + live preview + download                          */
 /* ---------------------------------------------------------------------- */
@@ -396,6 +413,7 @@ export default function ReportBuilder({ player, pizza }) {
     assists: player.assists != null ? String(player.assists) : "",
     avgRating: player.avg_rating_ != null ? formatStat("avg_rating_", player.avg_rating_) : "",
     scoutReportText: "",
+    formRatings: buildInitialFormRatings(player),
   });
 
   function set(field, value) {
@@ -552,6 +570,32 @@ export default function ReportBuilder({ player, pizza }) {
             <div className="field">
               <div className="field-label">Průměrné hodnocení</div>
               <input type="text" value={form.avgRating} onChange={(e) => set("avgRating", e.target.value)} />
+            </div>
+
+            <div className="field">
+              <div className="field-label">Forma (posledních 6 zápasů)</div>
+              {form.formRatings.map((row, i) => (
+                <div key={i} className="report-form-row">
+                  <input
+                    type="text" placeholder="datum, např. 23.8."
+                    value={row.date}
+                    onChange={(e) => {
+                      const next = [...form.formRatings];
+                      next[i] = { ...next[i], date: e.target.value };
+                      set("formRatings", next);
+                    }}
+                  />
+                  <input
+                    type="text" placeholder="rating, např. 7.3"
+                    value={row.rating}
+                    onChange={(e) => {
+                      const next = [...form.formRatings];
+                      next[i] = { ...next[i], rating: e.target.value };
+                      set("formRatings", next);
+                    }}
+                  />
+                </div>
+              ))}
             </div>
 
             <div className="field">
