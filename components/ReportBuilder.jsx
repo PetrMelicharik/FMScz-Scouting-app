@@ -187,7 +187,8 @@ function ReportCard({ form, pizza, player }) {
   const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
 
   const formChartH = 116;
-  const rightColH = (hasForm ? formChartH + 20 : 0) + (hasPizza ? rightColW : 0);
+  const pizzaCaptionH = 46;
+  const rightColH = (hasForm ? formChartH + 20 : 0) + (hasPizza ? rightColW + pizzaCaptionH : 0);
   const middleH = Math.max(scoutH, rightColH);
 
   const footerH = 54;
@@ -230,7 +231,7 @@ function ReportCard({ form, pizza, player }) {
           <path d={`M ${pitchW / 2 - 14} 0 A 14 14 0 0 0 ${pitchW / 2 + 14} 0`} fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
           <rect x={pitchW / 2 - 28} y="111" width="56" height="29" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
           <rect x={pitchW / 2 - 14} y="127" width="28" height="13" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          {dot && <circle cx={(dot.left / 100) * pitchW} cy={(dot.top / 100) * 140} r="7.5" fill="#4CB848" stroke="#FFFFFF" strokeWidth="2.5" />}
+          {dot && <circle cx={(dot.left / 100) * pitchW} cy={(dot.top / 100) * 140} r="7.5" fill="#F97316" stroke="#FFFFFF" strokeWidth="2.5" />}
         </g>
       </g>
 
@@ -289,7 +290,10 @@ function ReportCard({ form, pizza, player }) {
           {hasForm && <FormChart ratings={filledFormRows.map((r) => Number(r.rating))} dates={filledFormRows.map((r) => r.date)} width={rightColW} height={formChartH} />}
           {hasPizza && (
             <g transform={`translate(0, ${hasForm ? formChartH + 20 : 0})`}>
-              <MiniPizza data={pizza} size={rightColW} />
+              <MiniPizza
+                data={pizza} size={rightColW}
+                caption={`Percentil vůči ${pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${form.league}, min. 300 odehraných minut.`}
+              />
             </g>
           )}
         </g>
@@ -304,18 +308,18 @@ function ReportCard({ form, pizza, player }) {
   );
 }
 
-function MiniPizza({ data, size }) {
+function MiniPizza({ data, size, caption }) {
   const { stats } = data;
   const n = stats.length;
   const cx = size / 2;
-  const titleH = 22;
-  const cy = titleH + (size - titleH) / 2 + 4;
+  const cy = size / 2;
   const innerR = size * 0.095;
-  const maxR = size * 0.32;
+  const maxR = size * 0.34;
   const axisGapDeg = 16;
   const gapDeg = Math.min(3, (360 - axisGapDeg) / n / 5);
   const sliceDeg = (360 - axisGapDeg) / n;
   const sliceStart = axisGapDeg / 2;
+  const captionLines = wrapParagraph(caption || "", Math.max(20, Math.floor(size / 6.2)));
 
   function polar(angleDeg, r) {
     const rad = ((angleDeg - 90) * Math.PI) / 180;
@@ -324,9 +328,6 @@ function MiniPizza({ data, size }) {
 
   return (
     <g>
-      <text x={cx} y="14" textAnchor="middle" fontFamily={FONT_HEAD} fontSize="12" fontWeight="700" fill="#14171A">
-        {wrapLabel(`Srovnání (${data.groupLabel})`, 36)[0]}
-      </text>
       {[20, 40, 60, 80, 100].map((pct) => (
         <g key={pct}>
           <circle cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="2 3" />
@@ -368,6 +369,13 @@ function MiniPizza({ data, size }) {
         );
       })}
       <circle cx={cx} cy={cy} r={innerR - 3} fill="#FFFFFF" stroke="#E3E8E2" strokeWidth="1.5" />
+      {captionLines.length > 0 && (
+        <g transform={`translate(${cx}, ${size + 16})`}>
+          {captionLines.map((line, i) => (
+            <text key={i} x="0" y={i * 13} textAnchor="middle" fontSize="10" fill="#667066">{line}</text>
+          ))}
+        </g>
+      )}
     </g>
   );
 }
