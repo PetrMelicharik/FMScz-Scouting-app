@@ -32,7 +32,7 @@ function wrapParagraph(text, maxLen) {
   return lines;
 }
 
-function wrapLabel(label, maxLen = 12) {
+function wrapLabel(label, maxLen = 11) {
   const words = label.split(" ");
   const lines = [];
   let current = "";
@@ -80,28 +80,33 @@ async function readFileAsDataURI(file) {
 /* ---------------------------------------------------------------------- */
 
 const CARD_W = 900;
+const FONT_BODY = "'Inter', -apple-system, sans-serif";
+const FONT_HEAD = "'Baloo 2', -apple-system, sans-serif";
 
 function ReportCard({ form, pizza }) {
   const nationalFlag = flagUrl(form.nationality);
   const slot = classifyMainSlot(form.positionLabel);
   const dot = slot ? POSITION_DOT[slot] : null;
+  const hasPizza = pizza && !pizza.insufficient;
 
-  const profileLines = wrapParagraph(form.profileText, 62);
-  const scoutLines = wrapParagraph(form.scoutReportText, 62);
+  const profileLines = wrapParagraph(form.profileText, 80);
+  const scoutLines = wrapParagraph(form.scoutReportText, 80);
 
-  const headerH = 250;
-  const infoCardsH = 110;
-  const statsH = 100;
+  const margin = 36;
+  const colW = CARD_W - margin * 2;
+
+  const headerH = hasPizza ? 500 : 264;
+  const infoCardsH = 82;
+  const statsH = 78;
   const textLineH = 21;
-  const textBoxPad = 42;
+  const textBoxPad = 40;
   const profileH = form.profileText ? textBoxPad + Math.max(1, profileLines.length) * textLineH : 0;
   const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
-  const pizzaH = pizza && !pizza.insufficient ? 560 : 0;
-  const footerH = 60;
-  const gap = 26;
+  const footerH = 54;
+  const gap = 22;
 
-  const sectionCount = [true, true, true, !!profileH, !!scoutH, !!pizzaH, true].filter(Boolean).length;
-  const totalH = 30 + headerH + infoCardsH + statsH + profileH + scoutH + pizzaH + footerH + gap * (sectionCount - 1) + 30;
+  const sectionCount = [true, true, true, !!profileH, !!scoutH, true].filter(Boolean).length;
+  const totalH = 30 + headerH + infoCardsH + statsH + profileH + scoutH + footerH + gap * (sectionCount - 1) + 30;
 
   let y = 30;
   const headerY = y; y += headerH + gap;
@@ -109,50 +114,57 @@ function ReportCard({ form, pizza }) {
   const statsY = y; y += statsH + gap;
   const profileY = y; if (profileH) y += profileH + gap;
   const scoutY = y; if (scoutH) y += scoutH + gap;
-  const pizzaY = y; if (pizzaH) y += pizzaH + gap;
   const footerY = totalH - footerH - 20;
 
-  const margin = 36;
-  const colW = CARD_W - margin * 2;
+  const leftColW = 360;
+  const rightColW = colW - leftColW - 24;
 
   return (
-    <svg viewBox={`0 0 ${CARD_W} ${totalH}`} className="report-svg" style={{ background: "#FFFFFF" }}>
+    <svg viewBox={`0 0 ${CARD_W} ${totalH}`} className="report-svg" style={{ background: "#FFFFFF", fontFamily: FONT_BODY }}>
       <rect x="0" y="0" width={CARD_W} height={totalH} fill="#FFFFFF" />
 
-      {/* Header: photo, name, meta + mini pitch */}
-      <g>
-        <clipPath id="report-photo-clip"><circle cx={margin + 55} cy={headerY + 55} r="55" /></clipPath>
+      {/* Header: photo, name, meta (left) + pizza chart filling the rest */}
+      <g transform={`translate(${margin}, ${headerY})`}>
+        <clipPath id="report-photo-clip"><circle cx="55" cy="55" r="55" /></clipPath>
         {form.photoUrl ? (
-          <image href={form.photoUrl} x={margin} y={headerY} width="110" height="110" clipPath="url(#report-photo-clip)" preserveAspectRatio="xMidYMid slice" />
+          <>
+            <circle cx="55" cy="55" r="57" fill="none" stroke="#E3E8E2" strokeWidth="2" />
+            <image href={form.photoUrl} x="0" y="0" width="110" height="110" clipPath="url(#report-photo-clip)" preserveAspectRatio="xMidYMid slice" />
+          </>
         ) : (
-          <circle cx={margin + 55} cy={headerY + 55} r="55" fill="#EFF6EE" stroke="#E3E8E2" strokeWidth="2" />
+          <circle cx="55" cy="55" r="55" fill="#EFF6EE" stroke="#E3E8E2" strokeWidth="2" />
         )}
-        <text x={margin + 128} y={headerY + 46} fontSize="34" fontWeight="800" fill="#14171A">{form.playerName || "Jméno hráče"}</text>
-        <text x={margin + 128} y={headerY + 74} fontSize="13.5" fill="#667066">
-          Report vytvořen: <tspan fontWeight="700" fill="#4CB848">FM</tspan><tspan fontWeight="700"> Scouts cz</tspan>
+        <text x="128" y="42" fontFamily={FONT_HEAD} fontSize="30" fontWeight="700" fill="#14171A">{form.playerName || "Jméno hráče"}</text>
+        <text x="128" y="66" fontSize="12.5" fill="#9AA39A">
+          Report vytvořen: <tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#4CB848">FM</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#14171A"> Scouts</tspan><tspan fontFamily={FONT_HEAD} fontWeight="700" fill="#9AA39A"> cz</tspan>
         </text>
 
-        {form.dob && <text x={margin + 128} y={headerY + 104} fontSize="12.5" fill="#667066">Datum narození: <tspan fontWeight="700" fill="#14171A">{form.dob}</tspan></text>}
+        {form.dob && <text x="128" y="98" fontSize="13" fill="#667066">Datum narození: <tspan fontWeight="700" fill="#14171A">{form.dob}</tspan></text>}
         {nationalFlag && (
           <>
-            <image href={nationalFlag} x={margin + 128} y={headerY + 116} width="22" height="16" />
-            <text x={margin + 156} y={headerY + 129} fontSize="12.5" fill="#667066">{form.nationality}</text>
+            <image href={nationalFlag} x="128" y="110" width="22" height="16" />
+            <text x="156" y="123" fontSize="13" fill="#667066">{form.nationality}</text>
           </>
         )}
-        {form.foot && <text x={margin + 128} y={headerY + 152} fontSize="12.5" fill="#667066">Noha: <tspan fontWeight="700" fill="#14171A">{FOOT_LABELS[form.foot.toLowerCase()] || form.foot}</tspan></text>}
-        {form.positionLabel && <text x={margin + 128} y={headerY + 175} fontSize="12.5" fill="#667066">Pozice: <tspan fontWeight="700" fill="#14171A">{form.positionLabel}</tspan></text>}
+        {form.foot && <text x="128" y="150" fontSize="13" fill="#667066">Noha: <tspan fontWeight="700" fill="#14171A">{FOOT_LABELS[form.foot.toLowerCase()] || form.foot}</tspan></text>}
+        {form.positionLabel && (
+          <>
+            <text x="128" y="177" fontSize="13" fill="#667066">Pozice: <tspan fontWeight="700" fill="#14171A">{form.positionLabel}</tspan></text>
+            {/* small inline pitch icon */}
+            <g transform="translate(0, 194)">
+              <rect x="0" y="0" width="46" height="60" rx="5" fill="#2E8B45" />
+              <line x1="0" y1="30" x2="46" y2="30" stroke="#FFFFFF" strokeWidth="0.75" opacity="0.6" />
+              <rect x="14" y="46" width="18" height="10" fill="none" stroke="#FFFFFF" strokeWidth="0.75" opacity="0.6" />
+              {dot && <circle cx={(dot.left / 100) * 46} cy={(dot.top / 100) * 60} r="4" fill="#FFFFFF" />}
+            </g>
+          </>
+        )}
 
-        {/* mini pitch, top right */}
-        <g transform={`translate(${CARD_W - margin - 150}, ${headerY})`}>
-          <rect x="0" y="0" width="150" height="196" rx="8" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2" />
-          <line x1="0" y1="98" x2="150" y2="98" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <circle cx="75" cy="98" r="18" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <path d="M 54 0 A 21 21 0 0 0 96 0" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
-          <rect x="38" y="154" width="74" height="36" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
-          <rect x="56" y="176" width="38" height="14" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
-          <path d="M 62 154 A 13 13 0 0 1 88 154" fill="none" stroke="#FFFFFF" strokeWidth="1.25" opacity="0.6" />
-          {dot && <circle cx={(dot.left / 100) * 150} cy={(dot.top / 100) * 196} r="10" fill="#4CB848" stroke="#FFFFFF" strokeWidth="3" />}
-        </g>
+        {hasPizza && (
+          <g transform={`translate(${leftColW + 24}, 0)`}>
+            <MiniPizza data={pizza} size={rightColW} />
+          </g>
+        )}
       </g>
 
       {/* Info cards row */}
@@ -166,10 +178,10 @@ function ReportCard({ form, pizza }) {
           const x = i * (cardW + 12);
           return (
             <g key={i} transform={`translate(${x}, 0)`}>
-              <rect x="0" y="0" width={cardW} height={infoCardsH} rx="12" fill="#F3FAF2" />
-              {card.logo && <image href={card.logo} x="14" y="18" width="34" height="34" />}
-              <text x={card.logo ? 60 : 16} y="34" fontSize="11.5" fill="#667066">{card.label}</text>
-              <text x={card.logo ? 60 : 16} y="60" fontSize="16" fontWeight="700" fill="#14171A">{card.value}</text>
+              <rect x="0" y="0" width={cardW} height={infoCardsH} rx="10" fill="#F3FAF2" />
+              {card.logo && <image href={card.logo} x="12" y="14" width="28" height="28" />}
+              <text x={card.logo ? 50 : 14} y="30" fontSize="10.5" fill="#9AA39A">{card.label}</text>
+              <text x={card.logo ? 50 : 14} y="52" fontSize="15" fontWeight="700" fill="#14171A">{card.value}</text>
             </g>
           );
         })}
@@ -186,9 +198,9 @@ function ReportCard({ form, pizza }) {
           const x = i * (cardW + 12);
           return (
             <g key={i} transform={`translate(${x}, 0)`}>
-              <rect x="0" y="0" width={cardW} height={statsH} rx="12" fill="#F3FAF2" />
-              <text x="16" y="40" fontSize="11.5" fill="#667066">{card.label}</text>
-              <text x="16" y="70" fontSize="19" fontWeight="800" fill="#14171A">{card.value}</text>
+              <rect x="0" y="0" width={cardW} height={statsH} rx="10" fill="#F3FAF2" />
+              <text x="14" y="30" fontSize="10.5" fill="#9AA39A">{card.label}</text>
+              <text x="14" y="55" fontSize="17" fontWeight="700" fill="#14171A">{card.value}</text>
             </g>
           );
         })}
@@ -198,7 +210,7 @@ function ReportCard({ form, pizza }) {
       {profileH > 0 && (
         <g transform={`translate(${margin}, ${profileY})`}>
           <rect x="0" y="0" width={colW} height={profileH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
-          <text x="18" y="26" fontSize="14" fontWeight="800" fill="#4CB848">Profil</text>
+          <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Profil</text>
           {profileLines.map((line, i) => (
             <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
           ))}
@@ -209,24 +221,17 @@ function ReportCard({ form, pizza }) {
       {scoutH > 0 && (
         <g transform={`translate(${margin}, ${scoutY})`}>
           <rect x="0" y="0" width={colW} height={scoutH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
-          <text x="18" y="26" fontSize="14" fontWeight="800" fill="#4CB848">Scoutský report</text>
+          <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Scoutský report</text>
           {scoutLines.map((line, i) => (
             <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
           ))}
         </g>
       )}
 
-      {/* Pizza chart */}
-      {pizzaH > 0 && (
-        <g transform={`translate(${CARD_W / 2 - 250}, ${pizzaY})`}>
-          <MiniPizza data={pizza} size={500} />
-        </g>
-      )}
-
       {/* Footer */}
       <line x1={margin} y1={footerY - 14} x2={CARD_W - margin} y2={footerY - 14} stroke="#E3E8E2" strokeWidth="1" />
-      <text x={CARD_W / 2} y={footerY + 14} textAnchor="middle" fontSize="13" fontWeight="800">
-        <tspan fill="#4CB848">FM</tspan><tspan fill="#14171A"> Scouts</tspan><tspan fill="#667066"> cz</tspan>
+      <text x={CARD_W / 2} y={footerY + 14} textAnchor="middle" fontFamily={FONT_HEAD} fontSize="13" fontWeight="700">
+        <tspan fill="#4CB848">FM</tspan><tspan fill="#14171A"> Scouts</tspan><tspan fill="#9AA39A"> cz</tspan>
       </text>
     </svg>
   );
@@ -236,9 +241,10 @@ function MiniPizza({ data, size }) {
   const { stats } = data;
   const n = stats.length;
   const cx = size / 2;
-  const cy = size / 2 - 20;
-  const innerR = 42;
-  const maxR = size * 0.32;
+  const titleH = 34;
+  const cy = titleH + (size - titleH) / 2 + 6;
+  const innerR = size * 0.09;
+  const maxR = size * 0.34;
   const axisGapDeg = 16;
   const gapDeg = Math.min(3, (360 - axisGapDeg) / n / 5);
   const sliceDeg = (360 - axisGapDeg) / n;
@@ -250,10 +256,13 @@ function MiniPizza({ data, size }) {
   }
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size}>
-      <text x={cx} y="20" textAnchor="middle" fontSize="14" fontWeight="800" fill="#14171A">
-        Srovnání se skupinou hráčů ({data.groupLabel})
+    <g>
+      <text x={cx} y="18" textAnchor="middle" fontFamily={FONT_HEAD} fontSize="13" fontWeight="700" fill="#14171A">
+        {wrapLabel(`Srovnání (${data.groupLabel})`, 34)[0]}
       </text>
+      {[50, 100].map((pct) => (
+        <circle key={pct} cx={cx} cy={cy} r={innerR + (pct / 100) * (maxR - innerR)} fill="none" stroke="#E3E8E2" strokeWidth="1" strokeDasharray="2 3" />
+      ))}
       {stats.map((s, i) => {
         const a0 = sliceStart + i * sliceDeg + gapDeg / 2;
         const a1 = sliceStart + (i + 1) * sliceDeg - gapDeg / 2;
@@ -266,23 +275,26 @@ function MiniPizza({ data, size }) {
         const largeArc = a1 - a0 > 180 ? 1 : 0;
         const path = `M ${x0i.toFixed(1)} ${y0i.toFixed(1)} L ${x0o.toFixed(1)} ${y0o.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 ${largeArc} 1 ${x1o.toFixed(1)} ${y1o.toFixed(1)} L ${x1i.toFixed(1)} ${y1i.toFixed(1)} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x0i.toFixed(1)} ${y0i.toFixed(1)} Z`;
         const midAngle = (a0 + a1) / 2;
-        const lines = wrapLabel(s.label.replace(/\/90$/, ""), 10);
-        const [lx, ly] = polar(midAngle, maxR + 30);
+        const valueR = Math.max(r, innerR + 12);
+        const [vx, vy] = polar(midAngle, valueR + 9);
+        const lines = wrapLabel(s.label.replace(/\/90$/, ""), 11);
+        const [lx, ly] = polar(midAngle, maxR + 28);
         const flip = midAngle > 90 && midAngle < 270;
         const rot = flip ? midAngle + 180 : midAngle;
         return (
           <g key={s.key}>
-            <path d={path} fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1.25" />
+            <path d={path} fill={color} fillOpacity="0.32" stroke={color} strokeWidth="1.25" />
+            <text x={vx} y={vy} textAnchor="middle" fontSize="7.5" fontWeight="700" fill="#14171A" style={{ pointerEvents: "none" }}>{s.display}</text>
             <g transform={`translate(${lx.toFixed(1)} ${ly.toFixed(1)}) rotate(${rot.toFixed(1)})`}>
               {lines.map((line, li) => (
-                <text key={li} x={0} y={(li - (lines.length - 1) / 2) * 10} textAnchor="middle" fontSize="7.5" fontWeight="600" fill="#44514A">{line}</text>
+                <text key={li} x={0} y={(li - (lines.length - 1) / 2) * 9} textAnchor="middle" fontSize="7.5" fontWeight="600" fill="#44514A">{line}</text>
               ))}
             </g>
           </g>
         );
       })}
       <circle cx={cx} cy={cy} r={innerR - 3} fill="#FFFFFF" stroke="#E3E8E2" strokeWidth="1.5" />
-    </svg>
+    </g>
   );
 }
 
