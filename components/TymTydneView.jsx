@@ -5,7 +5,7 @@ import Avatar from "./Avatar";
 import PersonIcon from "./PersonIcon";
 import { flagUrl } from "../lib/countryFlags";
 
-const FRESH_DAYS = 5;
+const ROUND_TOLERANCE_DAYS = 4; // matches within one round can span a few days (Fri–Mon)
 
 /* ---------------------------------------------------------------------- */
 /* Position → formation slot classification                                */
@@ -137,23 +137,41 @@ export default function TymTydneView() {
   const rows = dataset ? dataset.rows : [];
   const leagues = useMemo(() => [...new Set(rows.map((r) => r.league_name).filter(Boolean))].sort(), [rows]);
 
+  // Per league, the date of its own most recently played round — not
+  // "today". This way a two-week international break doesn't wipe out
+  // Hráč/Tým týdne: a league's last round stays "current" for that league
+  // regardless of how long ago it was relative to the calendar.
+  const leagueMaxDate = useMemo(() => {
+    const map = new Map();
+    for (const r of rows) {
+      if (!r.form_last_date) continue;
+      const t = new Date(r.form_last_date).getTime();
+      if (Number.isNaN(t)) continue;
+      const current = map.get(r.league_name);
+      if (current === undefined || t > current) map.set(r.league_name, t);
+    }
+    return map;
+  }, [rows]);
+
   const eligible = useMemo(() => {
-    const cutoff = Date.now() - FRESH_DAYS * 24 * 60 * 60 * 1000;
     return rows.filter((r) => {
       if (!r.form_last_date || !r.form_ratings || !r.form_ratings.length) return false;
       const t = new Date(r.form_last_date).getTime();
-      if (Number.isNaN(t) || t < cutoff) return false;
+      if (Number.isNaN(t)) return false;
+      const leagueMax = leagueMaxDate.get(r.league_name);
+      if (leagueMax === undefined) return false;
+      if (leagueMax - t > ROUND_TOLERANCE_DAYS * 24 * 60 * 60 * 1000) return false;
       if (league && r.league_name !== league) return false;
       return true;
     });
-  }, [rows, league]);
+  }, [rows, league, leagueMaxDate]);
 
   return (
     <div>
       <div className="db-header">
         <h1 className="db-title">Tým týdne</h1>
         <p className="db-subtitle">
-          {loading ? "Načítám databázi…" : dataset ? `Hráči s ratingem z posledních ${FRESH_DAYS} dní` : "Databázi se nepodařilo načíst."}
+          {loading ? "Načítám databázi…" : dataset ? "Hráči z posledního odehraného kola své ligy" : "Databázi se nepodařilo načíst."}
         </p>
       </div>
 
@@ -184,8 +202,8 @@ export default function TymTydneView() {
               <div className="empty-title">Žádní hráči s čerstvým ratingem</div>
               <div className="empty-sub">
                 {league
-                  ? `V lize "${league}" nemá nikdo rating z posledních ${FRESH_DAYS} dní.`
-                  : `Nikdo v databázi nemá rating z posledních ${FRESH_DAYS} dní.`} Zkus jinou ligu nebo počkej na další běh workflow.
+                  ? `V lize "${league}" se zatím nenašlo poslední odehrané kolo.`
+                  : "V databázi se zatím nenašlo žádné odehrané kolo."} Zkus jinou ligu nebo počkej na další běh workflow.
               </div>
             </div>
           ) : tab === "player" ? (
