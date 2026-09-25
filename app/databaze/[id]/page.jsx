@@ -11,6 +11,14 @@ import { classifyMainSlot, POSITION_DOT } from "../../../lib/positionSlot";
 
 const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
 
+function formatBirthday(raw) {
+  if (!raw) return null;
+  const m = /^(\d{4})\/(\d{2})\/(\d{2})$/.exec(raw);
+  if (!m) return raw;
+  const [, y, mo, d] = m;
+  return `${d}.${mo}.${y}`;
+}
+
 function formatShortDate(iso) {
   if (!iso) return "";
   const d = new Date(iso);
@@ -220,6 +228,12 @@ export default function PlayerPage({ params }) {
         <Avatar src={p.photo_url} size={72} className="profile-avatar" />
         <div>
           <h1 className="profile-name">{p.player_name}</h1>
+          {formatBirthday(p.birthday) && (
+            <div className="profile-meta-line">
+              <span className="profile-meta-icon">🎂</span>
+              {formatBirthday(p.birthday)}
+            </div>
+          )}
           {flagUrl(p.nationality) && (
             <div className="profile-meta-line">
               <img src={flagUrl(p.nationality)} alt="" className="flag-mini" />
