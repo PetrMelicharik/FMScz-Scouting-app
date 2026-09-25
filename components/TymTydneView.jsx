@@ -199,12 +199,23 @@ export default function TymTydneView() {
 
           {eligible.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-title">Žádní hráči s čerstvým ratingem</div>
-              <div className="empty-sub">
-                {league
-                  ? `V lize "${league}" se zatím nenašlo poslední odehrané kolo.`
-                  : "V databázi se zatím nenašlo žádné odehrané kolo."} Zkus jinou ligu nebo počkej na další běh workflow.
-              </div>
+              {league && !leagueMaxDate.has(league) ? (
+                <>
+                  <div className="empty-title">Pro tuto ligu nemáme rating data</div>
+                  <div className="empty-sub">
+                    V lize "{league}" se zatím nepodařilo napárovat žádné ratingy z posledních zápasů — buď se u ní ještě neodehrálo žádné kolo od nasazení této funkce, nebo se pro ni forma zatím nedostala do databáze. Zkus jinou ligu nebo se vrať po dalším běhu workflow.
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="empty-title">Žádní hráči s čerstvým ratingem</div>
+                  <div className="empty-sub">
+                    {league
+                      ? `V lize "${league}" se zatím nenašlo poslední odehrané kolo.`
+                      : "V databázi se zatím nenašlo žádné odehrané kolo."} Zkus jinou ligu nebo počkej na další běh workflow.
+                  </div>
+                </>
+              )}
             </div>
           ) : tab === "player" ? (
             <PlayerOfWeek players={eligible} />
