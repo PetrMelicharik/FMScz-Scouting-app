@@ -19,7 +19,14 @@ function wrapParagraph(text, maxLen) {
   const words = text.split(/\s+/).filter(Boolean);
   const lines = [];
   let current = "";
-  for (const w of words) {
+  for (let w of words) {
+    // A single "word" longer than the whole line (e.g. no spaces at all,
+    // or a long URL) has to be hard-broken — otherwise it never wraps.
+    while (w.length > maxLen) {
+      if (current) { lines.push(current); current = ""; }
+      lines.push(w.slice(0, maxLen));
+      w = w.slice(maxLen);
+    }
     const candidate = current ? `${current} ${w}` : w;
     if (candidate.length > maxLen && current) {
       lines.push(current);
@@ -89,31 +96,39 @@ function ReportCard({ form, pizza }) {
   const dot = slot ? POSITION_DOT[slot] : null;
   const hasPizza = pizza && !pizza.insufficient;
 
-  const profileLines = wrapParagraph(form.profileText, 80);
-  const scoutLines = wrapParagraph(form.scoutReportText, 80);
-
   const margin = 36;
   const colW = CARD_W - margin * 2;
 
+  // Middle section: text (Profil / Scoutský report) on the left, stacked
+  // stat cards on the right — same arrangement as the reference template.
+  const textColW = Math.round(colW * 0.6);
+  const statColW = colW - textColW - 24;
+  const textCharWidth = 6.9; // approx. px per character for Inter at 13.5px
+  const maxLineLen = Math.max(30, Math.floor((textColW - 36) / textCharWidth));
+
+  const profileLines = wrapParagraph(form.profileText, maxLineLen);
+  const scoutLines = wrapParagraph(form.scoutReportText, maxLineLen);
+
   const headerH = hasPizza ? 420 : 264;
   const infoCardsH = 62;
-  const statsH = 60;
   const textLineH = 21;
   const textBoxPad = 40;
   const profileH = form.profileText ? textBoxPad + Math.max(1, profileLines.length) * textLineH : 0;
   const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
+  const statCardH = 76;
+  const statGap = 12;
+  const leftStackH = profileH + (profileH && scoutH ? 20 : 0) + scoutH;
+  const rightStackH = statCardH * 3 + statGap * 2;
+  const middleH = Math.max(leftStackH, rightStackH);
   const footerH = 54;
   const gap = 20;
 
-  const sectionCount = [true, true, true, !!profileH, !!scoutH, true].filter(Boolean).length;
-  const totalH = 30 + headerH + infoCardsH + statsH + profileH + scoutH + footerH + gap * (sectionCount - 1) + 30;
+  const totalH = 30 + headerH + gap + infoCardsH + gap + middleH + gap + footerH + 30;
 
   let y = 30;
   const headerY = y; y += headerH + gap;
   const infoY = y; y += infoCardsH + gap;
-  const statsY = y; y += statsH + gap;
-  const profileY = y; if (profileH) y += profileH + gap;
-  const scoutY = y; if (scoutH) y += scoutH + gap;
+  const middleY = y; y += middleH + gap;
   const footerY = totalH - footerH - 20;
 
   const leftColW = 270;
@@ -188,46 +203,44 @@ function ReportCard({ form, pizza }) {
         })}
       </g>
 
-      {/* Season stats row */}
-      <g transform={`translate(${margin}, ${statsY})`}>
-        {[
-          { label: form.season ? `Sezóna ${form.season}` : "Sezóna", value: form.appearances ? `${form.appearances} zápasů` : "–" },
-          { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}` },
-          { label: form.externalRatingLabel || "Externí hodnocení", value: form.externalRatingValue || "–" },
-        ].map((card, i) => {
-          const cardW = (colW - 24) / 3;
-          const x = i * (cardW + 12);
-          return (
-            <g key={i} transform={`translate(${x}, 0)`}>
-              <rect x="0" y="0" width={cardW} height={statsH} rx="9" fill="#F3FAF2" />
-              <text x="14" y="24" fontSize="10" fill="#9AA39A">{card.label}</text>
-              <text x="14" y="44" fontSize="15" fontWeight="700" fill="#14171A">{card.value}</text>
+      {/* Middle section: text column (left) + stacked stat cards (right) */}
+      <g transform={`translate(${margin}, ${middleY})`}>
+        {/* Profil */}
+        {profileH > 0 && (
+          <g>
+            <rect x="0" y="0" width={textColW} height={profileH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
+            <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Profil</text>
+            {profileLines.map((line, i) => (
+              <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
+            ))}
+          </g>
+        )}
+        {/* Scoutský report */}
+        {scoutH > 0 && (
+          <g transform={`translate(0, ${profileH ? profileH + 20 : 0})`}>
+            <rect x="0" y="0" width={textColW} height={scoutH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
+            <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Scoutský report</text>
+            {scoutLines.map((line, i) => (
+              <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
+            ))}
+          </g>
+        )}
+
+        {/* Stacked stat cards */}
+        <g transform={`translate(${textColW + 24}, 0)`}>
+          {[
+            { label: form.season ? `Sezóna ${form.season}` : "Sezóna", value: form.appearances ? `${form.appearances} zápasů` : "–" },
+            { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}` },
+            { label: form.externalRatingLabel || "Externí hodnocení", value: form.externalRatingValue || "–" },
+          ].map((card, i) => (
+            <g key={i} transform={`translate(0, ${i * (statCardH + statGap)})`}>
+              <rect x="0" y="0" width={statColW} height={statCardH} rx="10" fill="#F3FAF2" />
+              <text x="16" y="30" fontSize="11" fill="#9AA39A">{card.label}</text>
+              <text x="16" y="56" fontSize="19" fontWeight="700" fill="#14171A">{card.value}</text>
             </g>
-          );
-        })}
+          ))}
+        </g>
       </g>
-
-      {/* Profile text */}
-      {profileH > 0 && (
-        <g transform={`translate(${margin}, ${profileY})`}>
-          <rect x="0" y="0" width={colW} height={profileH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
-          <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Profil</text>
-          {profileLines.map((line, i) => (
-            <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
-          ))}
-        </g>
-      )}
-
-      {/* Scout report text */}
-      {scoutH > 0 && (
-        <g transform={`translate(${margin}, ${scoutY})`}>
-          <rect x="0" y="0" width={colW} height={scoutH} rx="12" fill="#FAFBFA" stroke="#E3E8E2" strokeWidth="1" />
-          <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Scoutský report</text>
-          {scoutLines.map((line, i) => (
-            <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
-          ))}
-        </g>
-      )}
 
       {/* Footer */}
       <line x1={margin} y1={footerY - 14} x2={CARD_W - margin} y2={footerY - 14} stroke="#E3E8E2" strokeWidth="1" />
