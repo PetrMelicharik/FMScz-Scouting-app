@@ -46,8 +46,8 @@ export default function HomePage() {
           Najdi příští <span className="accent">hvězdu</span> dřív než ostatní.
         </h1>
         <p>
-          Databáze evropských fotbalových talentů s podrobnými výkonnostními
-          statistikami — hledej, filtruj a porovnávej hráče na jednom místě.
+          Aplikace pro skauting hráčů z vybraných evropských lig s podrobnými
+          výkonnostními statistikami — hledej, filtruj a porovnávej hráče na jednom místě.
         </p>
         <Link href="/databaze" className="btn-primary-lg">Prohlédnout databázi</Link>
       </section>
