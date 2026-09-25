@@ -1,4 +1,5 @@
 import BackButton from "../../../components/BackButton";
+import ReportBuilder from "../../../components/ReportBuilder";
 import { notFound } from "next/navigation";
 import Avatar from "../../../components/Avatar";
 import PitchIcon from "../../../components/PitchIcon";
@@ -244,6 +245,8 @@ export default function PlayerPage({ params }) {
           <MiniPitch pos={p.tm_position || p.position} />
         </div>
       </div>
+
+      <ReportBuilder player={p} pizza={pizza} />
 
       {pizza && !pizza.insufficient && (
         <div className="profile-group">
