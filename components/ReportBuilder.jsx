@@ -6,6 +6,14 @@ import { CATEGORY_COLORS } from "../lib/pizzaShared";
 
 const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
 
+function formatBirthday(raw) {
+  if (!raw) return "";
+  const m = /^(\d{4})\/(\d{2})\/(\d{2})$/.exec(raw);
+  if (!m) return raw;
+  const [, y, mo, d] = m;
+  return `${d}.${mo}.${y}`;
+}
+
 function wrapParagraph(text, maxLen) {
   if (!text) return [];
   const words = text.split(/\s+/).filter(Boolean);
@@ -290,7 +298,7 @@ export default function ReportBuilder({ player, pizza }) {
   const [form, setForm] = useState({
     photoUrl: player.photo_url || "",
     playerName: player.player_name || "",
-    dob: "",
+    dob: formatBirthday(player.birthday),
     nationality: player.nationality || "",
     foot: player.foot || "",
     positionLabel: player.tm_position || player.position || "",
