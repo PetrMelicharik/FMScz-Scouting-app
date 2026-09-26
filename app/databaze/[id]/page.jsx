@@ -279,7 +279,7 @@ export default function PlayerPage({ params }) {
             ))}
           </div>
           <p className="chart-note" style={{ textAlign: "center" }}>
-            Percentil vůči {pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize {p.league_name}, min. 300 odehraných minut.
+            Percentil vůči {pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize {p.league_name} (statistiky na 90 minut), min. 300 odehraných minut.
           </p>
         </div>
       )}
