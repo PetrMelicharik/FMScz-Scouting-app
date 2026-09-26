@@ -3,9 +3,54 @@ import React, { useState, useRef } from "react";
 import { flagUrl } from "../lib/countryFlags";
 import { classifyMainSlot, POSITION_DOT } from "../lib/positionSlot";
 import { CATEGORY_COLORS } from "../lib/pizzaShared";
-import { formatStat } from "../lib/statMeta";
+import { formatStat, STAT_LABELS_EN } from "../lib/statMeta";
 
-const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
+/* ---------------------------------------------------------------------- */
+/* Report language — every string that ends up ON the report card must go */
+/* through this dictionary so "Vytvořit report v angličtině" really means  */
+/* the whole exported image, including chart labels/captions.              */
+/* ---------------------------------------------------------------------- */
+
+const REPORT_TEXT = {
+  cs: {
+    foot: { right: "Pravá", left: "Levá", both: "Obě" },
+    dob: "Datum narození",
+    nationality: "Národnost",
+    footLabel: "Noha",
+    leagueFallback: "Liga",
+    clubFallback: "Klub",
+    marketValue: "Hodnota hráče",
+    contractUntil: "Smlouva do",
+    appearances: "Počet zápasů",
+    goalsAssists: "Góly + asistence",
+    avgRating: "Průměrné hodnocení",
+    scoutReport: "Scoutský report",
+    playerNamePlaceholder: "Jméno hráče",
+    formTitle: (n) => `Forma (posledních ${n} zápasů)`,
+    pizzaCaption: (poolSize, league) =>
+      `Percentil vůči ${poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${league}, min. 300 odehraných minut.`,
+    numberLocale: "cs-CZ",
+  },
+  en: {
+    foot: { right: "Right", left: "Left", both: "Both" },
+    dob: "Date of birth",
+    nationality: "Nationality",
+    footLabel: "Foot",
+    leagueFallback: "League",
+    clubFallback: "Club",
+    marketValue: "Market value",
+    contractUntil: "Contract until",
+    appearances: "Appearances",
+    goalsAssists: "Goals + assists",
+    avgRating: "Average rating",
+    scoutReport: "Scout report",
+    playerNamePlaceholder: "Player name",
+    formTitle: (n) => `Form (last ${n} matches)`,
+    pizzaCaption: (poolSize, league) =>
+      `Percentile vs. ${poolSize.toLocaleString("en-US")} players in the same position in ${league}, min. 300 minutes played.`,
+    numberLocale: "en-US",
+  },
+};
 
 function formatBirthday(raw) {
   if (!raw) return "";
@@ -102,7 +147,7 @@ function formatShortDate(iso) {
   return `${d.getDate()}.${d.getMonth() + 1}.`;
 }
 
-function FormChart({ ratings, dates, width, height }) {
+function FormChart({ ratings, dates, width, height, t }) {
   const padX = 20;
   const padTop = 20;
   const padBottom = 16;
@@ -126,7 +171,7 @@ function FormChart({ ratings, dates, width, height }) {
 
   return (
     <g>
-      <text x="0" y="12" fontFamily={FONT_HEAD} fontSize="12" fontWeight="700" fill="#14171A">Forma (posledních {ratings.length} zápasů)</text>
+      <text x="0" y="12" fontFamily={FONT_HEAD} fontSize="12" fontWeight="700" fill="#14171A">{t.formTitle(ratings.length)}</text>
       <g transform="translate(0, 10)">
         {areaPath && <path d={areaPath} fill="#4CB848" fillOpacity="0.14" stroke="none" />}
         <path d={linePath} fill="none" stroke="#4CB848" strokeWidth="2.25" strokeLinejoin="round" strokeLinecap="round" />
@@ -159,7 +204,8 @@ function TileRow({ items, colW, cardH }) {
   );
 }
 
-function ReportCard({ form, pizza, player }) {
+function ReportCard({ form, pizza, player, lang }) {
+  const t = REPORT_TEXT[lang] || REPORT_TEXT.cs;
   const nationalFlag = flagUrl(form.nationality);
   const slot = classifyMainSlot(form.positionLabel);
   const dot = slot ? POSITION_DOT[slot] : null;
@@ -221,7 +267,7 @@ function ReportCard({ form, pizza, player }) {
         ) : (
           <circle cx="50" cy="50" r="50" fill="#F3FAF2" stroke="#FFFFFF" strokeWidth="3" />
         )}
-        <text x="118" y="44" fontFamily={FONT_HEAD} fontSize="28" fontWeight="700" fill="#14171A">{form.playerName || "Jméno hráče"}</text>
+        <text x="118" y="44" fontFamily={FONT_HEAD} fontSize="28" fontWeight="700" fill="#14171A">{form.playerName || t.playerNamePlaceholder}</text>
         <text x="118" y="72" fontSize="17" fontWeight="600" fill="#4A5A68">{form.positionLabel}</text>
 
         <g transform={`translate(${colW - pitchW}, 0)`}>
@@ -241,9 +287,9 @@ function ReportCard({ form, pizza, player }) {
           colW={colW}
           cardH={row2H}
           items={[
-            { label: "Datum narození", value: form.dob || "–", emoji: "🎂" },
-            { label: "Národnost", value: form.nationality || "–", logo: nationalFlag },
-            { label: "Noha", value: form.foot ? (FOOT_LABELS[form.foot.toLowerCase()] || form.foot) : "–", emoji: "🦶" },
+            { label: t.dob, value: form.dob || "–", emoji: "🎂" },
+            { label: t.nationality, value: form.nationality || "–", logo: nationalFlag },
+            { label: t.footLabel, value: form.foot ? (t.foot[form.foot.toLowerCase()] || form.foot) : "–", emoji: "🦶" },
           ]}
         />
       </g>
@@ -254,9 +300,9 @@ function ReportCard({ form, pizza, player }) {
           colW={colW}
           cardH={infoCardsH}
           items={[
-            { label: form.league || "Liga", value: form.club || "Klub", logo: form.clubLogoUrl },
-            { label: "Hodnota hráče", value: form.marketValue || "–", emoji: "💰" },
-            { label: "Smlouva do", value: form.contractUntil || "–", emoji: "📝" },
+            { label: form.league || t.leagueFallback, value: form.club || t.clubFallback, logo: form.clubLogoUrl },
+            { label: t.marketValue, value: form.marketValue || "–", emoji: "💰" },
+            { label: t.contractUntil, value: form.contractUntil || "–", emoji: "📝" },
           ]}
         />
       </g>
@@ -267,9 +313,9 @@ function ReportCard({ form, pizza, player }) {
           colW={colW}
           cardH={statCardsH}
           items={[
-            { label: "Počet zápasů", value: form.appearances || "–", emoji: "🎽" },
-            { label: "Góly + asistence", value: `${form.goals || 0} + ${form.assists || 0}`, emoji: "⚽" },
-            { label: "Průměrné hodnocení", value: form.avgRating || "–", emoji: "⭐" },
+            { label: t.appearances, value: form.appearances || "–", emoji: "🎽" },
+            { label: t.goalsAssists, value: `${form.goals || 0} + ${form.assists || 0}`, emoji: "⚽" },
+            { label: t.avgRating, value: form.avgRating || "–", emoji: "⭐" },
           ]}
         />
       </g>
@@ -279,7 +325,7 @@ function ReportCard({ form, pizza, player }) {
         {scoutH > 0 && (
           <g>
             <rect x="0" y="0" width={leftColW} height={scoutH} rx="12" fill="rgba(255,255,255,0.65)" stroke="#D7E4F0" strokeWidth="1" />
-            <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">Scoutský report</text>
+            <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">{t.scoutReport}</text>
             {scoutLines.map((line, i) => (
               <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
             ))}
@@ -287,12 +333,13 @@ function ReportCard({ form, pizza, player }) {
         )}
 
         <g transform={`translate(${leftColW + 24}, 0)`}>
-          {hasForm && <FormChart ratings={filledFormRows.map((r) => Number(r.rating))} dates={filledFormRows.map((r) => r.date)} width={rightColW} height={formChartH} />}
+          {hasForm && <FormChart ratings={filledFormRows.map((r) => Number(r.rating))} dates={filledFormRows.map((r) => r.date)} width={rightColW} height={formChartH} t={t} />}
           {hasPizza && (
             <g transform={`translate(0, ${hasForm ? formChartH + 20 : 0})`}>
               <MiniPizza
                 data={pizza} size={rightColW}
-                caption={`Percentil vůči ${pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${form.league}, min. 300 odehraných minut.`}
+                caption={t.pizzaCaption(pizza.poolSize, form.league)}
+                lang={lang}
               />
             </g>
           )}
@@ -308,7 +355,7 @@ function ReportCard({ form, pizza, player }) {
   );
 }
 
-function MiniPizza({ data, size, caption }) {
+function MiniPizza({ data, size, caption, lang }) {
   const { stats } = data;
   const n = stats.length;
   const cx = size / 2;
@@ -348,17 +395,19 @@ function MiniPizza({ data, size, caption }) {
         const midAngle = (a0 + a1) / 2;
         const valueR = Math.max(r, innerR + 14);
         const [vx, vy] = polar(midAngle, valueR + 3);
-        const lines = wrapLabel(s.label.replace(/\/90$/, ""), 11);
+        const label = lang === "en" ? (STAT_LABELS_EN[s.key] || s.label) : s.label;
+        const display = lang === "en" ? formatStat(s.key, s.value, "en-US") : s.display;
+        const lines = wrapLabel(label.replace(/\/90$/, ""), 11);
         const [lx, ly] = polar(midAngle, maxR + 26);
         const flip = midAngle > 90 && midAngle < 270;
         const rot = flip ? midAngle + 180 : midAngle;
-        const badgeW = Math.max(20, s.display.length * 5.2 + 8);
+        const badgeW = Math.max(20, display.length * 5.2 + 8);
         return (
           <g key={s.key}>
             <path d={path} fill={color} fillOpacity="0.28" stroke={color} strokeWidth="1.25" />
             <g transform={`translate(${vx.toFixed(1)} ${vy.toFixed(1)})`}>
               <rect x={-badgeW / 2} y="-7" width={badgeW} height="14" rx="7" fill={color} />
-              <text x="0" y="1" textAnchor="middle" dominantBaseline="middle" fontSize="7.5" fontWeight="700" fill="#FFFFFF">{s.display}</text>
+              <text x="0" y="1" textAnchor="middle" dominantBaseline="middle" fontSize="7.5" fontWeight="700" fill="#FFFFFF">{display}</text>
             </g>
             <g transform={`translate(${lx.toFixed(1)} ${ly.toFixed(1)}) rotate(${rot.toFixed(1)})`}>
               {lines.map((line, li) => (
@@ -400,6 +449,7 @@ function buildInitialFormRatings(player) {
 export default function ReportBuilder({ player, pizza }) {
   const [open, setOpen] = useState(false);
   const [downloading, setDownloading] = useState(false);
+  const [lang, setLang] = useState("cs");
   const previewRef = useRef(null);
 
   const [form, setForm] = useState({
@@ -479,7 +529,8 @@ export default function ReportBuilder({ player, pizza }) {
       canvas.toBlob((blob) => {
         const link = document.createElement("a");
         const safeName = (form.playerName || "report").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-        link.download = `fmscouts-report-${safeName}.png`;
+        const langSuffix = lang === "en" ? "-en" : "";
+        link.download = `fmscouts-report-${safeName}${langSuffix}.png`;
         link.href = URL.createObjectURL(blob);
         link.click();
       });
@@ -501,6 +552,14 @@ export default function ReportBuilder({ player, pizza }) {
         <div className="report-builder">
           <div className="report-form">
             <div className="report-form-title">Údaje reportu</div>
+
+            <div className="field">
+              <div className="field-label">Jazyk reportu</div>
+              <div className="chip-row">
+                <button type="button" className={`chip${lang === "cs" ? " active" : ""}`} onClick={() => setLang("cs")}>🇨🇿 Čeština</button>
+                <button type="button" className={`chip${lang === "en" ? " active" : ""}`} onClick={() => setLang("en")}>🇬🇧 English</button>
+              </div>
+            </div>
 
             <div className="field">
               <div className="field-label">Fotka hráče</div>
@@ -617,7 +676,7 @@ export default function ReportBuilder({ player, pizza }) {
           </div>
 
           <div className="report-preview" ref={previewRef}>
-            <ReportCard form={form} pizza={pizza} player={player} />
+            <ReportCard form={form} pizza={pizza} player={player} lang={lang} />
           </div>
         </div>
       )}
