@@ -28,7 +28,7 @@ const REPORT_TEXT = {
     playerNamePlaceholder: "Jméno hráče",
     formTitle: (n) => `Forma (posledních ${n} zápasů)`,
     pizzaCaption: (poolSize, league) =>
-      `Percentil vůči ${poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${league}, min. 300 odehraných minut.`,
+      `Percentil vůči ${poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${league} (statistiky na 90 minut), min. 300 odehraných minut.`,
     numberLocale: "cs-CZ",
   },
   en: {
@@ -47,7 +47,7 @@ const REPORT_TEXT = {
     playerNamePlaceholder: "Player name",
     formTitle: (n) => `Form (last ${n} matches)`,
     pizzaCaption: (poolSize, league) =>
-      `Percentile vs. ${poolSize.toLocaleString("en-US")} players in the same position in ${league}, min. 300 minutes played.`,
+      `Percentile vs. ${poolSize.toLocaleString("en-US")} players in the same position in ${league} (stats per 90 minutes), min. 300 minutes played.`,
     numberLocale: "en-US",
   },
 };
