@@ -262,7 +262,10 @@ export default function PlayerPage({ params }) {
         </div>
       </div>
 
-      <ReportBuilder player={p} pizza={pizza} />
+      <div className="profile-group profile-actions-row">
+        <ReportBuilder player={p} pizza={pizza} />
+        <SimilarPlayers data={similar} />
+      </div>
 
       {pizza && !pizza.insufficient && (
         <div className="profile-group">
@@ -296,8 +299,6 @@ export default function PlayerPage({ params }) {
           </div>
         </div>
       )}
-
-      <SimilarPlayers data={similar} />
 
       <div className="profile-highlights">
         <div className="stat-box">
