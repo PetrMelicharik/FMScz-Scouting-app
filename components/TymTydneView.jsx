@@ -3,9 +3,13 @@ import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Avatar from "./Avatar";
 import PersonIcon from "./PersonIcon";
+import AuthPanel from "./AuthPanel";
 import { flagUrl } from "../lib/countryFlags";
+import { supabase } from "../lib/supabaseClient";
+import { useAuthUser } from "../lib/useAuthUser";
 
 const ROUND_TOLERANCE_DAYS = 4; // matches within one round can span a few days (Fri–Mon)
+const SHORTLIST_VALUE = "__shortlist__"; // sentinel for the league <select> — not a real league name
 
 /* ---------------------------------------------------------------------- */
 /* Position → formation slot classification                                */
@@ -105,6 +109,29 @@ export default function TymTydneView() {
   const [loadError, setLoadError] = useState(null);
   const [tab, setTab] = useState("player");
   const [league, setLeague] = useState("");
+  const isShortlistMode = league === SHORTLIST_VALUE;
+
+  const user = useAuthUser();
+  const [shortlistIds, setShortlistIds] = useState(null);
+  const [shortlistLoading, setShortlistLoading] = useState(false);
+  const [shortlistError, setShortlistError] = useState("");
+
+  useEffect(() => {
+    if (!isShortlistMode || !user) return;
+    let cancelled = false;
+    setShortlistLoading(true);
+    setShortlistError("");
+    supabase
+      .from("shortlist_players")
+      .select("player_id")
+      .then(({ data, error }) => {
+        if (cancelled) return;
+        if (error) setShortlistError(error.message);
+        else setShortlistIds(new Set((data || []).map((r) => r.player_id)));
+        setShortlistLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [isShortlistMode, user]);
 
   useEffect(() => {
     let cancelled = false;
@@ -161,10 +188,17 @@ export default function TymTydneView() {
       const leagueMax = leagueMaxDate.get(r.league_name);
       if (leagueMax === undefined) return false;
       if (leagueMax - t > ROUND_TOLERANCE_DAYS * 24 * 60 * 60 * 1000) return false;
-      if (league && r.league_name !== league) return false;
+      if (isShortlistMode) {
+        if (!shortlistIds || !shortlistIds.has(r._id)) return false;
+      } else if (league && r.league_name !== league) {
+        return false;
+      }
       return true;
     });
-  }, [rows, league, leagueMaxDate]);
+  }, [rows, league, leagueMaxDate, isShortlistMode, shortlistIds]);
+
+  const readyForResults =
+    !isShortlistMode || (user && !shortlistLoading && !shortlistError && shortlistIds && shortlistIds.size > 0);
 
   return (
     <div>
@@ -192,35 +226,80 @@ export default function TymTydneView() {
             <div className="field" style={{ marginBottom: 0, minWidth: 220 }}>
               <select value={league} onChange={(e) => setLeague(e.target.value)}>
                 <option value="">Všechny ligy</option>
+                <option value={SHORTLIST_VALUE}>⭐ Můj shortlist</option>
                 {leagues.map((l) => <option key={l} value={l}>{l}</option>)}
               </select>
             </div>
           </div>
 
-          {eligible.length === 0 ? (
+          {isShortlistMode && user === undefined && (
             <div className="empty-state">
-              {league && !leagueMaxDate.has(league) ? (
-                <>
-                  <div className="empty-title">Pro tuto ligu nemáme rating data</div>
-                  <div className="empty-sub">
-                    V lize "{league}" se zatím nepodařilo napárovat žádné ratingy z posledních zápasů — buď se u ní ještě neodehrálo žádné kolo od nasazení této funkce, nebo se pro ni forma zatím nedostala do databáze. Zkus jinou ligu nebo se vrať po dalším běhu workflow.
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="empty-title">Žádní hráči s čerstvým ratingem</div>
-                  <div className="empty-sub">
-                    {league
-                      ? `V lize "${league}" se zatím nenašlo poslední odehrané kolo.`
-                      : "V databázi se zatím nenašlo žádné odehrané kolo."} Zkus jinou ligu nebo počkej na další běh workflow.
-                  </div>
-                </>
-              )}
+              <div className="empty-title">Načítám…</div>
             </div>
-          ) : tab === "player" ? (
-            <PlayerOfWeek players={eligible} />
-          ) : (
-            <TeamOfWeek players={eligible} />
+          )}
+
+          {isShortlistMode && user === null && (
+            <div className="filter-panel" style={{ maxWidth: 420 }}>
+              <p className="chart-note" style={{ marginBottom: 12 }}>
+                Pro zobrazení hráče/týmu týdne ze shortlistu se nejdřív přihlas.
+              </p>
+              <AuthPanel />
+            </div>
+          )}
+
+          {isShortlistMode && user && shortlistLoading && (
+            <div className="empty-state">
+              <div className="empty-title">Načítám shortlist…</div>
+            </div>
+          )}
+
+          {isShortlistMode && user && !shortlistLoading && shortlistError && (
+            <div className="empty-state">
+              <div className="empty-title">Shortlist se nepodařilo načíst</div>
+              <div className="empty-sub">Chyba: {shortlistError}</div>
+            </div>
+          )}
+
+          {isShortlistMode && user && !shortlistLoading && !shortlistError && shortlistIds && shortlistIds.size === 0 && (
+            <div className="empty-state">
+              <div className="empty-title">Shortlist je zatím prázdný</div>
+              <div className="empty-sub">Přidej hráče tlačítkem "Přidat do shortlistu" na jeho profilu.</div>
+            </div>
+          )}
+
+          {readyForResults && (
+            eligible.length === 0 ? (
+              <div className="empty-state">
+                {isShortlistMode ? (
+                  <>
+                    <div className="empty-title">Žádný hráč ze shortlistu nemá čerstvý rating</div>
+                    <div className="empty-sub">
+                      Nikdo ze shortlistu zatím nemá odehrané poslední kolo své ligy v databázi ratingů formy. Zkus to znovu po dalším běhu workflow.
+                    </div>
+                  </>
+                ) : league && !leagueMaxDate.has(league) ? (
+                  <>
+                    <div className="empty-title">Pro tuto ligu nemáme rating data</div>
+                    <div className="empty-sub">
+                      V lize "{league}" se zatím nepodařilo napárovat žádné ratingy z posledních zápasů — buď se u ní ještě neodehrálo žádné kolo od nasazení této funkce, nebo se pro ni forma zatím nedostala do databáze. Zkus jinou ligu nebo se vrať po dalším běhu workflow.
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="empty-title">Žádní hráči s čerstvým ratingem</div>
+                    <div className="empty-sub">
+                      {league
+                        ? `V lize "${league}" se zatím nenašlo poslední odehrané kolo.`
+                        : "V databázi se zatím nenašlo žádné odehrané kolo."} Zkus jinou ligu nebo počkej na další běh workflow.
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : tab === "player" ? (
+              <PlayerOfWeek players={eligible} />
+            ) : (
+              <TeamOfWeek players={eligible} />
+            )
           )}
         </>
       )}
