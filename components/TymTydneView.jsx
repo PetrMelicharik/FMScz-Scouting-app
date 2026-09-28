@@ -273,9 +273,13 @@ function PlayerOfWeek({ players }) {
 /* ---------------------------------------------------------------------- */
 
 function XISlotCard({ layout, player }) {
+  // The GK slot's key is "GK"; every other slot's key (CB1, CM2, ...)
+  // starts with its 2-letter position code — plain `layout.key` is used
+  // only for GK so CSS can nudge just that slot on mobile (see .xi-slot-GK).
+  const slotClass = layout.key === "GK" ? "xi-slot xi-slot-GK" : "xi-slot";
   if (!player) {
     return (
-      <div className="xi-slot" style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
+      <div className={slotClass} style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
         <div className="xi-avatar-wrap">
           <div className="xi-avatar xi-avatar-empty"><PersonIcon size={22} /></div>
         </div>
@@ -285,7 +289,7 @@ function XISlotCard({ layout, player }) {
   }
   const rating = player.form_ratings[0];
   return (
-    <Link href={`/databaze/${player._id}`} className="xi-slot" style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
+    <Link href={`/databaze/${player._id}`} className={slotClass} style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
       <div className="xi-avatar-wrap">
         <Avatar src={player.photo_url} size={60} className="xi-avatar" />
         {player.club_logo_url && <img src={player.club_logo_url} alt="" className="xi-club-badge" />}
