@@ -515,11 +515,19 @@ export default function ReportBuilder({ player, pizza }) {
         img.src = url;
       });
 
-      const scale = 2;
+      // Exported at 3x the template size (≈2700px wide) rather than 2x —
+      // social platforms like X re-compress uploaded images, and small text
+      // (stat labels, pizza-chart numbers) needs the extra source resolution
+      // to survive that compression legibly. The <img> src is an SVG blob,
+      // so Chromium rasterizes it at whatever size drawImage requests here
+      // (not a fixed low-res bitmap that then just gets stretched), which is
+      // what actually makes the higher scale produce genuinely sharper output.
+      const scale = 3;
       const canvas = document.createElement("canvas");
       canvas.width = width * scale;
       canvas.height = height * scale;
       const ctx = canvas.getContext("2d");
+      if ("imageSmoothingQuality" in ctx) ctx.imageSmoothingQuality = "high";
       ctx.scale(scale, scale);
       ctx.fillStyle = "#FFFFFF";
       ctx.fillRect(0, 0, width, height);
