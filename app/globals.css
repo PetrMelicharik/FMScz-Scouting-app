@@ -641,7 +641,12 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 @media (max-width: 700px) {
   .xi-slot { width: 68px; gap: 1px; }
   .xi-avatar-wrap { width: 32px; height: 32px; }
-  .xi-avatar { width: 32px; height: 32px; border-width: 1.5px; }
+  /* !important: when a player has a photo, <Avatar> sets width/height as an
+     INLINE style (from its size={60} prop in TymTydneView.jsx), and an
+     inline style always beats a plain class rule regardless of media
+     query — so without !important this only ever shrunk the no-photo
+     fallback icon, leaving real photos huge and overflowing their slot. */
+  .xi-avatar { width: 32px !important; height: 32px !important; border-width: 1.5px; }
   .xi-club-badge { width: 13px; height: 13px; bottom: -1px; right: -2px; border-width: 1.5px; }
   .xi-rating { font-size: 8.5px; padding: 0.5px 5px; margin-top: -4px; }
   .xi-name { max-width: 68px; }
@@ -665,7 +670,7 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 @media (max-width: 420px) {
   .xi-slot { width: 56px; }
   .xi-avatar-wrap { width: 30px; height: 30px; }
-  .xi-avatar { width: 30px; height: 30px; }
+  .xi-avatar { width: 30px !important; height: 30px !important; }
   .xi-club-badge { width: 12px; height: 12px; }
   .xi-rating { font-size: 8px; padding: 0 4px; margin-top: -4px; }
   .xi-name-first { font-size: 8px; }
