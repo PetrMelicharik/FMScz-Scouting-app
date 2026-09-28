@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/grafy", label: "Grafy" },
   { href: "/tym-tydne", label: "Tým týdne" },
   { href: "/porovnani", label: "Porovnání hráčů" },
+  { href: "/scouting-tool", label: "Scouting tool" },
 ];
 
 export default function NavBar() {
