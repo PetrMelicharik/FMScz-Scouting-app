@@ -26,6 +26,19 @@ const AXIS_OPTIONS = [
 
 const GK_STAT_KEYS = new Set(STAT_GROUPS["Brankářské"]);
 
+// Only used to trim the scatter chart's margins/font sizes on narrow
+// screens — the desktop layout below the breakpoint is untouched.
+function useIsMobile(breakpoint = 700) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= breakpoint);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 const POSITION_COLORS = { GK: "#D97706", DF: "#2563EB", MF: "#4CB848", FW: "#DC2626", other: "#9AA39A" };
 const POSITION_LABELS = { GK: "Brankář", DF: "Obránce", MF: "Záložník", FW: "Útočník", other: "Ostatní" };
 
@@ -332,6 +345,7 @@ function ScatterPanel({ rows, leagues, router }) {
   const [yStat, setYStat] = useState("goals_per_90");
   const [chart, setChart] = useState(null);
   const chartRef = useRef(null);
+  const isMobile = useIsMobile();
 
   function generate() {
     const xLabel = axisLabel(xStat);
@@ -440,22 +454,23 @@ function ScatterPanel({ rows, leagues, router }) {
           {chart.gkChart && <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>Zobrazeni jsou jen brankáři — zvolená statistika je brankářská.</p>}
           <div className="chart-box" ref={chartRef}>
             <Watermark />
-            <ResponsiveContainer width="100%" height={480}>
-              <ScatterChart margin={{ top: 20, right: 70, bottom: 20, left: 10 }}>
+            <ResponsiveContainer width="100%" height={isMobile ? 420 : 480}>
+              <ScatterChart margin={isMobile ? { top: 16, right: 16, bottom: 16, left: 0 } : { top: 20, right: 70, bottom: 20, left: 10 }}>
                 <CartesianGrid stroke="#E3E8E2" strokeDasharray="3 3" />
                 <XAxis
                   type="number" dataKey="x" name={chart.xLabel} domain={chart.xDomain}
-                  tick={{ fontSize: 12, fill: "#667066" }}
+                  tick={{ fontSize: isMobile ? 10.5 : 12, fill: "#667066" }}
                   tickFormatter={(v) => formatAxisTick(v, chart.xDomain[1] - chart.xDomain[0])}
                   axisLine={{ stroke: "#D8DED7" }} tickLine={false}
-                  label={{ value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
+                  label={isMobile ? undefined : { value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
                 />
                 <YAxis
                   type="number" dataKey="y" name={chart.yLabel} domain={chart.yDomain}
-                  tick={{ fontSize: 12, fill: "#667066" }}
+                  tick={{ fontSize: isMobile ? 10.5 : 12, fill: "#667066" }}
                   tickFormatter={(v) => formatAxisTick(v, chart.yDomain[1] - chart.yDomain[0])}
                   axisLine={{ stroke: "#D8DED7" }} tickLine={false}
-                  label={{ value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
+                  width={isMobile ? 34 : undefined}
+                  label={isMobile ? undefined : { value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
                 />
                 <Tooltip content={<ScatterTooltip />} cursor={{ strokeDasharray: "3 3" }} />
                 <Scatter data={chart.points} shape={<ScatterDot />} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer">

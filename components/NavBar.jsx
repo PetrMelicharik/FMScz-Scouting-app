@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,6 +13,12 @@ const LINKS = [
 
 export default function NavBar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  // Close the mobile dropdown whenever the route actually changes (NavBar
+  // lives in the root layout, so it stays mounted across navigation).
+  useEffect(() => { setOpen(false); }, [pathname]);
+
   return (
     <header className="site-nav">
       <div className="site-nav-inner">
@@ -21,12 +28,26 @@ export default function NavBar() {
             FM <span className="accent">Scouts</span> <span className="brand-cz">cz</span>
           </span>
         </Link>
-        <nav className="site-links">
+
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={open ? "Zavřít menu" : "Otevřít menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="nav-toggle-bar" />
+          <span className="nav-toggle-bar" />
+          <span className="nav-toggle-bar" />
+        </button>
+
+        <nav className={open ? "site-links open" : "site-links"}>
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className={pathname === l.href ? "site-link active" : "site-link"}
+              onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
