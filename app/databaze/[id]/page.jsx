@@ -1,6 +1,7 @@
 import BackButton from "../../../components/BackButton";
 import ReportBuilder from "../../../components/ReportBuilder";
 import SimilarPlayers from "../../../components/SimilarPlayers";
+import ShortlistButton from "../../../components/ShortlistButton";
 import { notFound } from "next/navigation";
 import Avatar from "../../../components/Avatar";
 import PitchIcon from "../../../components/PitchIcon";
@@ -265,6 +266,7 @@ export default function PlayerPage({ params }) {
       <div className="profile-group profile-actions-row">
         <ReportBuilder player={p} pizza={pizza} />
         <SimilarPlayers data={similar} />
+        <ShortlistButton player={p} />
       </div>
 
       {pizza && !pizza.insufficient && (
