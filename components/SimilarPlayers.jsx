@@ -16,7 +16,7 @@ export default function SimilarPlayers({ data }) {
   return (
     <>
       <button type="button" className="btn-accent similar-action-btn" onClick={() => setOpen((o) => !o)}>
-        {open ? "Zavřít podobné hráče" : "Najít podobné"}
+        {open ? "Zavřít podobné hráče" : "Najít podobné hráče"}
       </button>
 
       {open && (
