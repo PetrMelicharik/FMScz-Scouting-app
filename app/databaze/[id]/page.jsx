@@ -1,12 +1,13 @@
 import BackButton from "../../../components/BackButton";
 import ReportBuilder from "../../../components/ReportBuilder";
+import SimilarPlayers from "../../../components/SimilarPlayers";
 import { notFound } from "next/navigation";
 import Avatar from "../../../components/Avatar";
 import PitchIcon from "../../../components/PitchIcon";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { flagUrl } from "../../../lib/countryFlags";
 import { loadPlayerById } from "../../../lib/playersData";
-import { computePizzaData, computeLeagueRank, CATEGORY_COLORS, CATEGORY_LABELS } from "../../../lib/pizzaData";
+import { computePizzaData, computeSimilarPlayersData, computeLeagueRank, CATEGORY_COLORS, CATEGORY_LABELS } from "../../../lib/pizzaData";
 import { classifyMainSlot, POSITION_DOT } from "../../../lib/positionSlot";
 
 const FOOT_LABELS = { right: "Pravá", left: "Levá", both: "Obě" };
@@ -218,6 +219,7 @@ export default function PlayerPage({ params }) {
   const p = loadPlayerById(params.id);
   if (!p) return notFound();
   const pizza = computePizzaData(p);
+  const similar = computeSimilarPlayersData(p);
   const isGoalkeeper = classifyMainSlot(p.tm_position || p.position) === "GK";
 
   return (
@@ -294,6 +296,8 @@ export default function PlayerPage({ params }) {
           </div>
         </div>
       )}
+
+      <SimilarPlayers data={similar} />
 
       <div className="profile-highlights">
         <div className="stat-box">
