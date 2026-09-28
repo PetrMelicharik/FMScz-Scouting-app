@@ -463,42 +463,6 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
 }
 
 /* ---------------------------------------------------------------------- */
-/* Mobile — Tým týdne pitch: shrink avatars/names so slots stop           */
-/* overlapping at narrow widths (positions are percentage-based, but the  */
-/* card sizes were fixed px and didn't scale down with the pitch).        */
-/* ---------------------------------------------------------------------- */
-
-@media (max-width: 700px) {
-  .xi-slot { width: 68px; gap: 1px; }
-  .xi-avatar-wrap { width: 32px; height: 32px; }
-  .xi-avatar { width: 32px; height: 32px; border-width: 1.5px; }
-  .xi-club-badge { width: 13px; height: 13px; bottom: -1px; right: -2px; border-width: 1.5px; }
-  .xi-rating { font-size: 8.5px; padding: 0.5px 5px; margin-top: -4px; }
-  .xi-name { max-width: 68px; }
-  /* Keep just the last name on one line — two stacked lines don't fit the
-     tighter vertical spacing between formation rows on a phone. Players
-     with a single-word name (no "last" span rendered) still show it via
-     .xi-name-first, since :has() only hides it when a sibling follows. */
-  .xi-name-first:has(+ .xi-name-last) { display: none; }
-  .xi-name-first { font-size: 9px; }
-  .xi-name-last { font-size: 10px; }
-  .xi-name-first, .xi-name-last { max-width: 68px; }
-  .xi-slot-label { font-size: 7.5px; }
-}
-
-@media (max-width: 420px) {
-  .xi-slot { width: 56px; }
-  .xi-avatar-wrap { width: 30px; height: 30px; }
-  .xi-avatar { width: 30px; height: 30px; }
-  .xi-club-badge { width: 12px; height: 12px; }
-  .xi-rating { font-size: 8px; padding: 0 4px; margin-top: -4px; }
-  .xi-name-first { font-size: 8px; }
-  .xi-name-last { font-size: 9px; }
-  .xi-name { max-width: 56px; }
-  .xi-name-first, .xi-name-last { max-width: 56px; }
-}
-
-/* ---------------------------------------------------------------------- */
 /* Player profile page                                                    */
 /* ---------------------------------------------------------------------- */
 
@@ -664,6 +628,52 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
   white-space: nowrap;
 }
 .xi-slot-label { font-size: 10px; color: rgba(255,255,255,0.85); text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+
+/* ---------------------------------------------------------------------- */
+/* Mobile — Tým týdne pitch: shrink avatars/names so slots stop           */
+/* overlapping at narrow widths (positions are percentage-based, but the  */
+/* card sizes were fixed px and didn't scale down with the pitch). These  */
+/* rules MUST come after the base .xi-* rules above — same specificity,   */
+/* so source order decides, and a media query earlier in the file loses   */
+/* to a later unconditional rule regardless of viewport width.            */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .xi-slot { width: 68px; gap: 1px; }
+  .xi-avatar-wrap { width: 32px; height: 32px; }
+  .xi-avatar { width: 32px; height: 32px; border-width: 1.5px; }
+  .xi-club-badge { width: 13px; height: 13px; bottom: -1px; right: -2px; border-width: 1.5px; }
+  .xi-rating { font-size: 8.5px; padding: 0.5px 5px; margin-top: -4px; }
+  .xi-name { max-width: 68px; }
+  /* Keep just the last name on one line — two stacked lines don't fit the
+     tighter vertical spacing between formation rows on a phone. Players
+     with a single-word name (no "last" span rendered) still show it via
+     .xi-name-first, since :has() only hides it when a sibling follows. */
+  .xi-name-first:has(+ .xi-name-last) { display: none; }
+  .xi-name-first { font-size: 9px; }
+  .xi-name-last { font-size: 10px; }
+  .xi-name-first, .xi-name-last { max-width: 68px; }
+  .xi-slot-label { font-size: 7.5px; }
+
+  /* GK sits at top:93% — right at the pitch's bottom edge. Even with the
+     smaller card above, its name got clipped by the pitch's
+     overflow:hidden, so nudge it up a bit on mobile. !important is needed
+     to beat the inline top/left position style set from JS. */
+  .xi-slot-GK { top: 89% !important; }
+}
+
+@media (max-width: 420px) {
+  .xi-slot { width: 56px; }
+  .xi-avatar-wrap { width: 30px; height: 30px; }
+  .xi-avatar { width: 30px; height: 30px; }
+  .xi-club-badge { width: 12px; height: 12px; }
+  .xi-rating { font-size: 8px; padding: 0 4px; margin-top: -4px; }
+  .xi-name-first { font-size: 8px; }
+  .xi-name-last { font-size: 9px; }
+  .xi-name { max-width: 56px; }
+  .xi-name-first, .xi-name-last { max-width: 56px; }
+  .xi-slot-GK { top: 88% !important; }
+}
 
 /* ---------------------------------------------------------------------- */
 /* Pizza chart (percentil srovnání)                                       */
