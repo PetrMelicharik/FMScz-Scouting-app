@@ -543,13 +543,13 @@ export default function ReportBuilder({ player, pizza }) {
   }
 
   return (
-    <div className="profile-group">
-      <button type="button" className="btn-accent" onClick={() => setOpen((o) => !o)}>
+    <>
+      <button type="button" className="btn-accent report-action-btn" onClick={() => setOpen((o) => !o)}>
         {open ? "Zavřít tvorbu reportu" : "Vytvořit report"}
       </button>
 
       {open && (
-        <div className="report-builder">
+        <div className="report-builder report-action-panel">
           <div className="report-form">
             <div className="report-form-title">Údaje reportu</div>
 
@@ -680,6 +680,6 @@ export default function ReportBuilder({ player, pizza }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

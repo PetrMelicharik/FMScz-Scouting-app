@@ -14,15 +14,15 @@ export default function SimilarPlayers({ data }) {
   if (!data || data.insufficient || !data.results || data.results.length === 0) return null;
 
   return (
-    <div className="profile-group">
-      <div className="profile-group-title">Podobní hráči</div>
-
-      <button type="button" className="chip" onClick={() => setOpen((v) => !v)}>
-        {open ? "Skrýt podobné hráče" : "🔍 Najít podobné hráče"}
+    <>
+      <button type="button" className="btn-accent similar-action-btn" onClick={() => setOpen((o) => !o)}>
+        {open ? "Zavřít podobné hráče" : "Najít podobné"}
       </button>
 
       {open && (
-        <>
+        <div className="similar-action-panel">
+          <div className="report-form-title">Podobní hráči ({data.groupLabel})</div>
+
           <div className="week-list" style={{ marginTop: 12 }}>
             {data.results.map(({ player: sp, similarity }) => (
               <Link href={`/databaze/${sp._id}`} className="week-row" key={sp._id}>
@@ -42,8 +42,8 @@ export default function SimilarPlayers({ data }) {
           <p className="chart-note">
             Shoda podle percentilového profilu hráčů ve skupině „{data.groupLabel}" napříč ligami (statistiky na 90 minut), min. 300 odehraných minut.
           </p>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }
