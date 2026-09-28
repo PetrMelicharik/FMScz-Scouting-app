@@ -915,5 +915,23 @@ input[type=text]:focus, input[type=number]:focus, select:focus { border-color: v
    siblings of their own component, so order/flex-basis do the layout). */
 .profile-actions-row .report-action-btn { order: 1; }
 .profile-actions-row .similar-action-btn { order: 2; }
-.profile-actions-row .report-action-panel { order: 3; flex: 1 1 100%; width: 100%; }
-.profile-actions-row .similar-action-panel { order: 4; flex: 1 1 100%; width: 100%; margin-top: 20px; }
+.profile-actions-row .shortlist-action-btn { order: 3; }
+.profile-actions-row .report-action-panel { order: 4; flex: 1 1 100%; width: 100%; }
+.profile-actions-row .similar-action-panel { order: 5; flex: 1 1 100%; width: 100%; margin-top: 20px; }
+.profile-actions-row .shortlist-action-panel { order: 6; flex: 1 1 100%; width: 100%; margin-top: 20px; max-width: 420px; }
+
+.shortlist-action-btn.shortlist-in { background: #D97706; border-color: #D97706; }
+.shortlist-action-btn.shortlist-in:hover { background: #b3620a; border-color: #b3620a; }
+
+/* ---------------------------------------------------------------------- */
+/* Auth panel (shared by the shortlist button + /shortlist page)          */
+/* ---------------------------------------------------------------------- */
+
+.auth-panel { max-width: 340px; }
+.auth-form { display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------------------------------------------------------------------- */
+/* Shortlist page                                                          */
+/* ---------------------------------------------------------------------- */
+
+.shortlist-row-link { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; color: var(--ink); text-decoration: none; }
