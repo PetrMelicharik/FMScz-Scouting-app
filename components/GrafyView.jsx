@@ -59,15 +59,15 @@ function axisLabel(key) {
 function ScatterDot(props) {
   const { cx, cy, fill, payload } = props;
   if (cx === undefined || cy === undefined) return null;
-  const tier = payload?.labelTier || 0;
-  const left = (payload?.labelSide === "left") !== (tier % 2 === 1);
-  const labelY = cy + 4 - Math.floor(tier / 2) * 14;
+  const tier = payload?.labelTier || 0; // signed row multiplier — 0 is level with the dot, negative is above, positive is below
+  const left = payload?.labelSide === "left";
+  const labelY = cy + 4 + tier * 15;
   return (
     <g>
       <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />
       {payload?.labeled && (
         <>
-          {tier > 0 && (
+          {tier !== 0 && (
             <line x1={cx} y1={cy} x2={left ? cx - 10 : cx + 10} y2={labelY} stroke="#9AA39A" strokeWidth={1} />
           )}
           <text
@@ -371,29 +371,62 @@ function ScatterPanel({ rows, leagues, router }) {
     const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
     const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
     const xSpan = xDomain[1] - xDomain[0];
+    const ySpan = yDomain[1] - yDomain[0] || 1;
 
-    // Labeled points that sit close together on X (a common case when many
-    // players share a similar stat value) would otherwise have their name
-    // labels drawn right on top of each other. Stagger them across several
-    // vertical tiers AND alternate which side of the dot the text sits on —
-    // a name is much wider than it is tall, so spreading left/right helps
-    // at least as much as spreading up/down.
-    const closeThreshold = xSpan * 0.14;
+    // Labeled points can cluster tightly in BOTH x and y (a common case —
+    // several players with a similar statline). Placing each label with a
+    // real 2D collision check — against every other already-placed label,
+    // not just its neighbour in x — is what actually prevents overlap; a
+    // name's rendered width varies a lot ("Imo Zaal" vs "Chukwuemeka
+    // Emmanuel Okereke"), so that width is part of the check too.
+    //
+    // There's no exact pixel size available here (the chart is responsive),
+    // so positions are estimated against a conservative reference box —
+    // smaller than the chart typically renders at, which only ever makes
+    // this *more* cautious about spacing labels out, never less.
+    const REF_W = 640;
+    const REF_H = isMobile ? 420 : 480;
+    const CHAR_W = 6.8;
+    const LABEL_H = 14;
+    const ROW_H = 15;
+    const DOT_GAP = 10;
+    const ROW_OFFSETS = [0, -1, 1, -2, 2, -3, 3, -4, 4, -5, 5]; // expand outward from the dot's own row
+
+    const dataToPxX = (x) => ((x - xDomain[0]) / xSpan) * REF_W;
+    const dataToPxY = (y) => REF_H - ((y - yDomain[0]) / ySpan) * REF_H;
+    const boxesOverlap = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+
+    const placedBoxes = [];
     const tierByld = new Map();
-    const sortedLabeled = points.filter((p) => topIds.has(p._id)).sort((a, b) => a.x - b.x);
-    let lastX = null;
-    let tier = 0;
-    for (const p of sortedLabeled) {
-      tier = lastX !== null && p.x - lastX < closeThreshold ? (tier + 1) % 6 : 0;
-      tierByld.set(p._id, tier);
-      lastX = p.x;
+    const sideByld = new Map();
+    const labeledPoints = points.filter((p) => topIds.has(p._id)).sort((a, b) => b.y - a.y);
+
+    for (const p of labeledPoints) {
+      const cxPx = dataToPxX(p.x);
+      const cyPx = dataToPxY(p.y);
+      const side = cxPx / REF_W > 0.82 ? "left" : "right";
+      const textW = p.player_name.length * CHAR_W;
+
+      let chosenRow = ROW_OFFSETS[ROW_OFFSETS.length - 1];
+      for (const row of ROW_OFFSETS) {
+        const labelCy = cyPx + 4 + row * ROW_H;
+        const left = side === "left" ? cxPx - DOT_GAP - textW : cxPx + DOT_GAP;
+        const box = { left, right: left + textW, top: labelCy - LABEL_H / 2, bottom: labelCy + LABEL_H / 2 };
+        if (!placedBoxes.some((b) => boxesOverlap(box, b))) {
+          placedBoxes.push(box);
+          chosenRow = row;
+          break;
+        }
+      }
+      tierByld.set(p._id, chosenRow);
+      sideByld.set(p._id, side);
     }
 
     points = points.map((p) => ({
       ...p,
       labeled: topIds.has(p._id),
       labelTier: tierByld.get(p._id) || 0,
-      labelSide: (p.x - xDomain[0]) / xSpan > 0.82 ? "left" : "right",
+      labelSide: sideByld.get(p._id) || "right",
     }));
 
     setChart({ points, xLabel, yLabel, gkChart, xDomain, yDomain });
