@@ -248,18 +248,39 @@ function ReportCard({ form, pizza, player, lang }) {
 
   const headerH = Math.max(col1H, col2H, col3H);
 
-  // Scout report: one column spanning the full card width (matching the
-  // header row above it), however long the text gets — the box just grows
-  // taller rather than splitting into columns.
+  // Scout report: spans the full card width (matching the header row
+  // above it). A short note stays one column; a longer write-up flows into
+  // two columns, newspaper-style, with a vertical rule down the middle so
+  // it visually reads as two columns rather than looking like one overly
+  // wide, off-balance block.
   const scoutColW = colW;
   const textCharWidth = 6.9; // approx. px per character for Inter at 13.5px
-  const textLineH = 21;
-  const textBoxPad = 40;
-  const scoutPadX = 18;
-  const scoutColInnerW = scoutColW - scoutPadX * 2;
-  const fullMaxLen = Math.max(30, Math.floor(scoutColInnerW / textCharWidth));
-  const scoutLines = wrapParagraph(form.scoutReportText, fullMaxLen);
-  const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
+  const textLineH = 22;
+  const textBoxPad = 44;
+  const scoutPadX = 24;
+  const scoutColGap = 44;
+  // Whether to split into two columns is decided from the raw character
+  // count, not from lines wrapped at full width — a long text wrapped that
+  // wide would only ever produce a handful of (way too long) lines, which
+  // would never trip a "line count" threshold.
+  const useTwoCols = (form.scoutReportText || "").length > 480;
+
+  let scoutLines = [];
+  let scoutCol2Lines = [];
+  let scoutColInnerW = scoutColW - scoutPadX * 2;
+  if (!useTwoCols) {
+    const fullMaxLen = Math.max(30, Math.floor(scoutColInnerW / textCharWidth));
+    scoutLines = wrapParagraph(form.scoutReportText, fullMaxLen);
+  } else {
+    scoutColInnerW = (scoutColW - scoutPadX * 2 - scoutColGap) / 2;
+    const wideMaxLen = Math.max(30, Math.floor(scoutColInnerW / textCharWidth));
+    const allLines = wrapParagraph(form.scoutReportText, wideMaxLen);
+    const perCol = Math.ceil(allLines.length / 2);
+    scoutLines = allLines.slice(0, perCol);
+    scoutCol2Lines = allLines.slice(perCol);
+  }
+  const scoutLineCount = Math.max(scoutLines.length, scoutCol2Lines.length);
+  const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLineCount) * textLineH : 0;
 
   const footerH = 54;
 
@@ -357,9 +378,19 @@ function ReportCard({ form, pizza, player, lang }) {
       {scoutH > 0 && (
         <g transform={`translate(${margin}, ${scoutY})`}>
           <rect x="0" y="0" width={scoutColW} height={scoutH} rx="12" fill="rgba(255,255,255,0.65)" stroke="#D7E4F0" strokeWidth="1" />
-          <text x={scoutPadX} y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">{t.scoutReport}</text>
+          <text x={scoutPadX} y="30" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">{t.scoutReport}</text>
+          {useTwoCols && (
+            <line
+              x1={scoutPadX + scoutColInnerW + scoutColGap / 2} y1="24"
+              x2={scoutPadX + scoutColInnerW + scoutColGap / 2} y2={scoutH - 18}
+              stroke="#AFC2CC" strokeWidth="2"
+            />
+          )}
           {scoutLines.map((line, i) => (
-            <text key={i} x={scoutPadX} y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
+            <text key={i} x={scoutPadX} y={30 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
+          ))}
+          {useTwoCols && scoutCol2Lines.map((line, i) => (
+            <text key={i} x={scoutPadX + scoutColInnerW + scoutColGap} y={30 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
           ))}
         </g>
       )}
