@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import Avatar from "./Avatar";
 import { STAT_LABELS, formatStat } from "../lib/statMeta";
@@ -74,9 +74,55 @@ export default function ScoutingTool() {
 
   const statList = group === "GK" ? GK_STATS : group ? OUTFIELD_STATS : [];
 
+  // Restore the filter/stat/sort state from the URL on first load — so the
+  // browser's back button (after clicking through to a player's profile)
+  // returns to the same set-up search instead of a reset one.
+  const restoringRef = useRef(false);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if ([...params.keys()].length === 0) return;
+    restoringRef.current = true;
+    if (params.has("group")) setGroup(params.get("group"));
+    if (params.has("league")) setLeague(params.get("league"));
+    if (params.has("min")) setMinMinutes(params.get("min"));
+    if (params.has("maxv")) setMaxValueM(params.get("maxv"));
+    if (params.has("ageMin")) setAgeMin(Number(params.get("ageMin")));
+    if (params.has("ageMax")) setAgeMax(Number(params.get("ageMax")));
+    if (params.has("stats")) setSelectedStats(new Set(params.get("stats").split(",").filter(Boolean)));
+    if (params.has("topN")) setTopN(Number(params.get("topN")) || 20);
+    if (params.has("sort")) setSortKey(params.get("sort"));
+    if (params.has("dir")) setSortDir(params.get("dir"));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Keep the URL in sync with the current filters/stats/sort, without adding
+  // a new history entry per change (replaceState, not pushState).
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (group) params.set("group", group);
+    if (league) params.set("league", league);
+    if (minMinutes !== String(MIN_MINUTES)) params.set("min", minMinutes);
+    if (maxValueM !== "") params.set("maxv", maxValueM);
+    if (ageMin !== null) params.set("ageMin", String(ageMin));
+    if (ageMax !== null) params.set("ageMax", String(ageMax));
+    if (selectedStats.size) params.set("stats", [...selectedStats].join(","));
+    if (topN !== 20) params.set("topN", String(topN));
+    if (sortKey !== "score") params.set("sort", sortKey);
+    if (sortDir !== "desc") params.set("dir", sortDir);
+    const qs = params.toString();
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, "", url);
+  }, [group, league, minMinutes, maxValueM, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
+
   // When the position group changes, drop any selected stats that no longer
   // belong to that group's stat catalog (GK vs outfield lists don't overlap).
+  // The very first run (mount, group still "") is always a no-op anyway, so
+  // it's skipped outright; that leaves the *next* run — the one triggered by
+  // the restore effect's setGroup(...) — as the one restoringRef guards,
+  // so a URL restore doesn't wipe the stats/sort we just restored for it.
+  const isFirstGroupRunRef = useRef(true);
   useEffect(() => {
+    if (isFirstGroupRunRef.current) { isFirstGroupRunRef.current = false; return; }
+    if (restoringRef.current) { restoringRef.current = false; return; }
     setSelectedStats((prev) => {
       const validKeys = new Set(statList.map(([k]) => k));
       const next = new Set([...prev].filter((k) => validKeys.has(k)));
