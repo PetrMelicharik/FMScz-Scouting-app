@@ -132,7 +132,13 @@ async function readFileAsDataURI(file) {
 /* Report card — one big self-contained SVG, height grows with the text    */
 /* ---------------------------------------------------------------------- */
 
-const CARD_W = 900;
+// Landscape-ish width/height ratio on purpose: X/Twitter applies much more
+// aggressive cropping/re-compression to tall "portrait" images (the old
+// 900px-wide card routinely came out ~1050-1100px tall) which is what made
+// text in the uploaded report look blurry/artifacted after it was posted.
+// A wide, shorter card (roughly 2:1-ish, depending on how much scout-report
+// text is typed in) stays inside the aspect-ratio range X handles best.
+const CARD_W = 1180;
 const FONT_BODY = "'Inter', -apple-system, sans-serif";
 const FONT_HEAD = "'Baloo 2', -apple-system, sans-serif";
 
@@ -215,136 +221,145 @@ function ReportCard({ form, pizza, player, lang }) {
 
   const margin = 36;
   const colW = CARD_W - margin * 2;
-
-  const row1H = 140;
-  const row2H = 62;
-  const infoCardsH = 62;
-  const statCardsH = 62;
   const gap = 20;
 
-  const leftColW = Math.round(colW * 0.54);
-  const rightColW = colW - leftColW - 24;
+  // Header = three columns side by side instead of the old stack of rows:
+  // 1) photo/name/pitch, 2) stat tiles (3x3 grid) + form chart, 3) pizza
+  // chart. Spreading these across the width (instead of down the page) is
+  // what keeps the whole card from becoming a tall portrait image.
+  const col1W = 300;
+  const col3W = 340;
+  const col2W = colW - col1W - col3W - gap * 2;
 
+  const identityH = 92;
+  const pitchW = 140;
+  const pitchH = 172;
+  const col1H = identityH + 14 + pitchH;
+
+  const tileRowH = 54;
+  const tileGap = 10;
+  const gridH = tileRowH * 3 + tileGap * 2;
+  const formChartH = 108;
+  const col2H = gridH + (hasForm ? 16 + formChartH : 0);
+
+  const pizzaSize = Math.min(col3W, 300);
+  const pizzaCaptionH = 40;
+  const col3H = hasPizza ? pizzaSize + 10 + pizzaCaptionH : 0;
+
+  const headerH = Math.max(col1H, col2H, col3H);
+
+  // Scout report: a moderately wide (not full-width) text block, so lines
+  // stay a comfortable reading length instead of stretching edge-to-edge.
+  const scoutColW = Math.min(640, colW);
   const textCharWidth = 6.9; // approx. px per character for Inter at 13.5px
-  const maxLineLen = Math.max(30, Math.floor((leftColW - 36) / textCharWidth));
+  const maxLineLen = Math.max(30, Math.floor((scoutColW - 36) / textCharWidth));
   const scoutLines = wrapParagraph(form.scoutReportText, maxLineLen);
   const textLineH = 21;
   const textBoxPad = 40;
   const scoutH = form.scoutReportText ? textBoxPad + Math.max(1, scoutLines.length) * textLineH : 0;
 
-  const formChartH = 116;
-  const pizzaCaptionH = 46;
-  const rightColH = (hasForm ? formChartH + 20 : 0) + (hasPizza ? rightColW + pizzaCaptionH : 0);
-  const middleH = Math.max(scoutH, rightColH);
-
   const footerH = 54;
 
-  const totalH = 30 + row1H + gap + row2H + gap + infoCardsH + gap + statCardsH + gap + middleH + gap + footerH + 30;
+  const totalH = 30 + headerH + (scoutH > 0 ? gap + scoutH : 0) + gap + footerH + 30;
 
   let y = 30;
-  const row1Y = y; y += row1H + gap;
-  const row2Y = y; y += row2H + gap;
-  const infoY = y; y += infoCardsH + gap;
-  const statsY = y; y += statCardsH + gap;
-  const middleY = y; y += middleH + gap;
+  const headerY = y; y += headerH + gap;
+  const scoutY = y; if (scoutH > 0) y += scoutH + gap;
   const footerY = totalH - footerH - 20;
-
-  const pitchW = 108;
 
   return (
     <svg viewBox={`0 0 ${CARD_W} ${totalH}`} className="report-svg" style={{ background: "#EAF3FB", fontFamily: FONT_BODY }}>
       <rect x="0" y="0" width={CARD_W} height={totalH} fill="#EAF3FB" />
       <image href="/logo.jpg" x={CARD_W / 2 - 260} y={Math.max(0, totalH / 2 - 260)} width="520" height="520" opacity="0.055" />
 
-      {/* Row 1: photo, name, pitch */}
-      <g transform={`translate(${margin}, ${row1Y})`}>
-        <clipPath id="report-photo-clip"><circle cx="50" cy="50" r="50" /></clipPath>
-        {form.photoUrl ? (
-          <>
-            <circle cx="50" cy="50" r="52" fill="none" stroke="#FFFFFF" strokeWidth="3" />
-            <image href={form.photoUrl} x="0" y="0" width="100" height="100" clipPath="url(#report-photo-clip)" preserveAspectRatio="xMidYMid slice" />
-          </>
-        ) : (
-          <circle cx="50" cy="50" r="50" fill="#F3FAF2" stroke="#FFFFFF" strokeWidth="3" />
-        )}
-        <text x="118" y="44" fontFamily={FONT_HEAD} fontSize="28" fontWeight="700" fill="#14171A">{form.playerName || t.playerNamePlaceholder}</text>
-        <text x="118" y="72" fontSize="17" fontWeight="600" fill="#4A5A68">{form.positionLabel}</text>
+      <g transform={`translate(${margin}, ${headerY})`}>
+        {/* Column 1: photo, name, position, mini pitch */}
+        <g>
+          <clipPath id="report-photo-clip"><circle cx="46" cy="46" r="46" /></clipPath>
+          {form.photoUrl ? (
+            <>
+              <circle cx="46" cy="46" r="48" fill="none" stroke="#FFFFFF" strokeWidth="3" />
+              <image href={form.photoUrl} x="0" y="0" width="92" height="92" clipPath="url(#report-photo-clip)" preserveAspectRatio="xMidYMid slice" />
+            </>
+          ) : (
+            <circle cx="46" cy="46" r="46" fill="#F3FAF2" stroke="#FFFFFF" strokeWidth="3" />
+          )}
+          <text x="104" y="40" fontFamily={FONT_HEAD} fontSize="24" fontWeight="700" fill="#14171A">{form.playerName || t.playerNamePlaceholder}</text>
+          <text x="104" y="64" fontSize="15" fontWeight="600" fill="#4A5A68">{form.positionLabel}</text>
 
-        <g transform={`translate(${colW - pitchW}, 0)`}>
-          <rect x="0" y="0" width={pitchW} height="140" rx="9" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2.5" />
-          <line x1="0" y1="70" x2={pitchW} y2="70" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <circle cx={pitchW / 2} cy="70" r="15" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <path d={`M ${pitchW / 2 - 14} 0 A 14 14 0 0 0 ${pitchW / 2 + 14} 0`} fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <rect x={pitchW / 2 - 28} y="111" width="56" height="29" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          <rect x={pitchW / 2 - 14} y="127" width="28" height="13" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
-          {dot && <circle cx={(dot.left / 100) * pitchW} cy={(dot.top / 100) * 140} r="7.5" fill="#F97316" stroke="#FFFFFF" strokeWidth="2.5" />}
-        </g>
-      </g>
-
-      {/* Row 2: DOB / Nationality / Foot — as tiles */}
-      <g transform={`translate(${margin}, ${row2Y})`}>
-        <TileRow
-          colW={colW}
-          cardH={row2H}
-          items={[
-            { label: t.dob, value: form.dob || "–", emoji: "🎂" },
-            { label: t.nationality, value: form.nationality || "–", logo: nationalFlag },
-            { label: t.footLabel, value: form.foot ? (t.foot[form.foot.toLowerCase()] || form.foot) : "–", emoji: "🦶" },
-          ]}
-        />
-      </g>
-
-      {/* Row 3: club / value / contract */}
-      <g transform={`translate(${margin}, ${infoY})`}>
-        <TileRow
-          colW={colW}
-          cardH={infoCardsH}
-          items={[
-            { label: form.league || t.leagueFallback, value: form.club || t.clubFallback, logo: form.clubLogoUrl },
-            { label: t.marketValue, value: form.marketValue || "–", emoji: "💰" },
-            { label: t.contractUntil, value: form.contractUntil || "–", emoji: "📝" },
-          ]}
-        />
-      </g>
-
-      {/* Row 4: matches / goals+assists / avg rating */}
-      <g transform={`translate(${margin}, ${statsY})`}>
-        <TileRow
-          colW={colW}
-          cardH={statCardsH}
-          items={[
-            { label: t.appearances, value: form.appearances || "–", emoji: "🎽" },
-            { label: t.goalsAssists, value: `${form.goals || 0} + ${form.assists || 0}`, emoji: "⚽" },
-            { label: t.avgRating, value: form.avgRating || "–", emoji: "⭐" },
-          ]}
-        />
-      </g>
-
-      {/* Row 5: scout report (left) + form chart & pizza (right) */}
-      <g transform={`translate(${margin}, ${middleY})`}>
-        {scoutH > 0 && (
-          <g>
-            <rect x="0" y="0" width={leftColW} height={scoutH} rx="12" fill="rgba(255,255,255,0.65)" stroke="#D7E4F0" strokeWidth="1" />
-            <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">{t.scoutReport}</text>
-            {scoutLines.map((line, i) => (
-              <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
-            ))}
+          <g transform={`translate(${(col1W - pitchW) / 2}, ${identityH + 14})`}>
+            <rect x="0" y="0" width={pitchW} height={pitchH} rx="10" fill="#2E8B45" stroke="#FFFFFF" strokeWidth="2.5" />
+            <line x1="0" y1={pitchH / 2} x2={pitchW} y2={pitchH / 2} stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+            <circle cx={pitchW / 2} cy={pitchH / 2} r="18" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+            <path d={`M ${pitchW / 2 - 17} 0 A 17 17 0 0 0 ${pitchW / 2 + 17} 0`} fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+            <rect x={pitchW / 2 - 34} y={pitchH - 36} width="68" height="36" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+            <rect x={pitchW / 2 - 17} y={pitchH - 16} width="34" height="16" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+            {dot && <circle cx={(dot.left / 100) * pitchW} cy={(dot.top / 100) * pitchH} r="8" fill="#F97316" stroke="#FFFFFF" strokeWidth="2.5" />}
           </g>
-        )}
+        </g>
 
-        <g transform={`translate(${leftColW + 24}, 0)`}>
-          {hasForm && <FormChart ratings={filledFormRows.map((r) => Number(r.rating))} dates={filledFormRows.map((r) => r.date)} width={rightColW} height={formChartH} t={t} />}
-          {hasPizza && (
-            <g transform={`translate(0, ${hasForm ? formChartH + 20 : 0})`}>
-              <MiniPizza
-                data={pizza} size={rightColW}
-                caption={t.pizzaCaption(pizza.poolSize, form.league)}
-                lang={lang}
-              />
+        {/* Column 2: stat tiles (3x3 grid) + form chart */}
+        <g transform={`translate(${col1W + gap}, 0)`}>
+          <TileRow
+            colW={col2W}
+            cardH={tileRowH}
+            items={[
+              { label: t.dob, value: form.dob || "–", emoji: "🎂" },
+              { label: t.nationality, value: form.nationality || "–", logo: nationalFlag },
+              { label: t.footLabel, value: form.foot ? (t.foot[form.foot.toLowerCase()] || form.foot) : "–", emoji: "🦶" },
+            ]}
+          />
+          <g transform={`translate(0, ${tileRowH + tileGap})`}>
+            <TileRow
+              colW={col2W}
+              cardH={tileRowH}
+              items={[
+                { label: form.league || t.leagueFallback, value: form.club || t.clubFallback, logo: form.clubLogoUrl },
+                { label: t.marketValue, value: form.marketValue || "–", emoji: "💰" },
+                { label: t.contractUntil, value: form.contractUntil || "–", emoji: "📝" },
+              ]}
+            />
+          </g>
+          <g transform={`translate(0, ${(tileRowH + tileGap) * 2})`}>
+            <TileRow
+              colW={col2W}
+              cardH={tileRowH}
+              items={[
+                { label: t.appearances, value: form.appearances || "–", emoji: "🎽" },
+                { label: t.goalsAssists, value: `${form.goals || 0} + ${form.assists || 0}`, emoji: "⚽" },
+                { label: t.avgRating, value: form.avgRating || "–", emoji: "⭐" },
+              ]}
+            />
+          </g>
+          {hasForm && (
+            <g transform={`translate(0, ${gridH + 16})`}>
+              <FormChart ratings={filledFormRows.map((r) => Number(r.rating))} dates={filledFormRows.map((r) => r.date)} width={col2W} height={formChartH} t={t} />
             </g>
           )}
         </g>
+
+        {/* Column 3: pizza chart */}
+        {hasPizza && (
+          <g transform={`translate(${col1W + gap + col2W + gap}, 0)`}>
+            <MiniPizza
+              data={pizza} size={pizzaSize}
+              caption={t.pizzaCaption(pizza.poolSize, form.league)}
+              lang={lang}
+            />
+          </g>
+        )}
       </g>
+
+      {/* Scout report */}
+      {scoutH > 0 && (
+        <g transform={`translate(${margin}, ${scoutY})`}>
+          <rect x="0" y="0" width={scoutColW} height={scoutH} rx="12" fill="rgba(255,255,255,0.65)" stroke="#D7E4F0" strokeWidth="1" />
+          <text x="18" y="26" fontFamily={FONT_HEAD} fontSize="14" fontWeight="700" fill="#4CB848">{t.scoutReport}</text>
+          {scoutLines.map((line, i) => (
+            <text key={i} x="18" y={26 + textLineH * (i + 1)} fontSize="13.5" fill="#14171A">{line}</text>
+          ))}
+        </g>
+      )}
 
       {/* Footer */}
       <line x1={margin} y1={footerY - 14} x2={CARD_W - margin} y2={footerY - 14} stroke="#D7E4F0" strokeWidth="1" />
