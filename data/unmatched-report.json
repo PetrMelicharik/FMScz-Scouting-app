@@ -183,12 +183,6 @@
       "bestScore": 0.81
     },
     {
-      "club": "Ludogorets",
-      "ourPlayer": "Yves Erick Bile",
-      "bestApiCandidate": "E. Bille",
-      "bestScore": 0.6
-    },
-    {
       "club": "Spartak Varna",
       "ourPlayer": "Damyan Ivanov Yordanov",
       "bestApiCandidate": "B. Ivanov",
@@ -567,18 +561,6 @@
       "bestScore": 1
     },
     {
-      "club": "Mačva Šabac",
-      "ourPlayer": "Stefan Čolović",
-      "bestApiCandidate": "S. Jovic",
-      "bestScore": 0.68
-    },
-    {
-      "club": "Čukarički",
-      "ourPlayer": "Lazar Marković",
-      "bestApiCandidate": "L. Mijović",
-      "bestScore": 0.72
-    },
-    {
       "club": "Čukarički",
       "ourPlayer": "Lazar Stojanović",
       "bestApiCandidate": "L. Mijović",
@@ -627,6 +609,12 @@
       "bestScore": 0.66
     },
     {
+      "club": "Zemun",
+      "ourPlayer": "Danilo Miladinović",
+      "bestApiCandidate": "Đ. Jovanović",
+      "bestScore": 0.66
+    },
+    {
       "club": "Red Star Belgrade",
       "ourPlayer": "Luka Zarić",
       "bestApiCandidate": "D. Saric",
@@ -652,12 +640,6 @@
     },
     {
       "club": "Loznica",
-      "ourPlayer": "Marko Živković",
-      "bestApiCandidate": "M. Jezdimirović",
-      "bestScore": 0.63
-    },
-    {
-      "club": "Loznica",
       "ourPlayer": "Vladimir Petrović",
       "bestApiCandidate": "I. Petrović",
       "bestScore": 0.75
@@ -666,12 +648,6 @@
       "club": "Dubočica",
       "ourPlayer": "Mohamed Lamine Parker Sidibe",
       "bestApiCandidate": "Parker Sidibe Mohamed Lamine",
-      "bestScore": 0.79
-    },
-    {
-      "club": "Napredak",
-      "ourPlayer": "Danilo Miladinović",
-      "bestApiCandidate": "Lazar Miladinović",
       "bestScore": 0.79
     },
     {
@@ -691,12 +667,6 @@
       "ourPlayer": "Veljko Djordjevic",
       "bestApiCandidate": "U. Djordjevic",
       "bestScore": 0.75
-    },
-    {
-      "club": "Naftagas",
-      "ourPlayer": "Dušan Pantelić",
-      "bestApiCandidate": "D. Paderin",
-      "bestScore": 0.63
     },
     {
       "club": "Naftagas",
