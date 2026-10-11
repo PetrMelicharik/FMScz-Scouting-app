@@ -29,6 +29,50 @@ const POSITION_COLORS = { GK: "#E09A1A", DF: "#3B7DE0", MF: "#4CB848", FW: "#E04
 const POSITION_LABELS = { GK: "Brankář", DF: "Obránce", MF: "Záložník", FW: "Útočník", other: "Ostatní" };
 const POSITION_LABELS_EN = { GK: "Goalkeeper", DF: "Defender", MF: "Midfielder", FW: "Forward", other: "Other" };
 
+// Position filter shared by both charts. Goalkeepers are handled separately
+// (a goalkeeper stat always shows goalkeepers only), so the filter covers
+// outfield positions. All three selected (or none) = no filtering.
+const FILTER_POSITIONS = ["FW", "MF", "DF"];
+const POSITION_PLURAL = {
+  cs: { FW: "útočníci", MF: "záložníci", DF: "obránci" },
+  en: { FW: "forwards", MF: "midfielders", DF: "defenders" },
+};
+
+function isAllPositions(sel) {
+  return !sel || sel.length === 0 || FILTER_POSITIONS.every((b) => sel.includes(b));
+}
+
+function matchesPositions(row, sel) {
+  return isAllPositions(sel) || sel.includes(row.bucket);
+}
+
+function positionsText(sel, lang) {
+  if (isAllPositions(sel)) return null;
+  return FILTER_POSITIONS.filter((b) => sel.includes(b)).map((b) => POSITION_PLURAL[lang][b]).join(" + ");
+}
+
+function PositionFilter({ value, onChange, disabled }) {
+  const toggle = (b) => onChange(value.includes(b) ? value.filter((x) => x !== b) : [...value, b]);
+  return (
+    <div className="field">
+      <div className="field-label">Pozice{disabled ? " (u brankářské statistiky jen brankáři)" : ""}</div>
+      <div className="chip-row" style={{ opacity: disabled ? 0.45 : 1, pointerEvents: disabled ? "none" : "auto" }}>
+        {FILTER_POSITIONS.map((b) => (
+          <button
+            key={b}
+            type="button"
+            className={value.includes(b) ? "chip active" : "chip"}
+            onClick={() => toggle(b)}
+            style={value.includes(b) ? { background: POSITION_COLORS[b], borderColor: POSITION_COLORS[b] } : undefined}
+          >
+            {POSITION_LABELS[b]}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function positionBucket(pos) {
   if (!pos) return "other";
   const p = pos.toLowerCase();
@@ -486,6 +530,7 @@ function TopPanel({ rows, leagues, router }) {
   const [stat, setStat] = useState("goals_per_90");
   const [count, setCount] = useState("10");
   const [dir, setDir] = useState("desc");
+  const [positions, setPositions] = useState(FILTER_POSITIONS);
   const [lang, setLang] = useState("cs");
   const [customTitle, setCustomTitle] = useState("");
   const [chart, setChart] = useState(null);
@@ -500,6 +545,7 @@ function TopPanel({ rows, leagues, router }) {
       .filter((r) => !league || r.league_name === league)
       .filter((r) => (r.minutes_played ?? 0) >= Number(minMinutes || 0))
       .filter((r) => (gkChart ? r.bucket === "GK" : r.bucket !== "GK"))
+      .filter((r) => gkChart || matchesPositions(r, positions))
       .filter((r) => r[stat] !== null && r[stat] !== undefined && r[stat] !== "" && !Number.isNaN(Number(r[stat])));
 
     list = [...list].sort((a, b) => dir === "desc" ? b[stat] - a[stat] : a[stat] - b[stat]);
@@ -508,7 +554,7 @@ function TopPanel({ rows, leagues, router }) {
     const seasons = [...new Set(list.map((r) => r.season).filter(Boolean))];
     const leagueLogo = league ? list.find((r) => r.league_logo_url)?.league_logo_url || null : null;
 
-    setChart({ list, stat, gkChart, league, minMinutes: minMinutes || "0", dir, season: seasons.length === 1 ? seasons[0] : null, leagueLogo });
+    setChart({ list, stat, gkChart, league, minMinutes: minMinutes || "0", dir, season: seasons.length === 1 ? seasons[0] : null, leagueLogo, positions: gkChart ? null : [...positions] });
   }
 
   // Redraw whenever the data, language or custom title changes.
@@ -526,6 +572,7 @@ function TopPanel({ rows, leagues, router }) {
       subtitle: [
         chart.league || tx.allLeagues,
         chart.season && tx.season(chart.season),
+        chart.positions && positionsText(chart.positions, lang),
         tx.minutes(chart.minMinutes),
         chart.gkChart && tx.gkOnly,
       ].filter(Boolean).join("  ·  "),
@@ -602,6 +649,7 @@ function TopPanel({ rows, leagues, router }) {
               <option value="50">Top 50</option>
             </select>
           </div>
+          <PositionFilter value={positions} onChange={setPositions} disabled={GK_STAT_KEYS.has(stat)} />
           <div className="field">
             <div className="field-label">Vlastní nadpis (nepovinné)</div>
             <input type="text" value={customTitle} placeholder="např. Nejlepší střelci ligy" onChange={(e) => setCustomTitle(e.target.value)} />
@@ -916,6 +964,7 @@ function ScatterPanel({ rows, leagues, router }) {
   const [yStat, setYStat] = useState("goals_per_90");
   const [labelCount, setLabelCount] = useState("5");
   const [labelBy, setLabelBy] = useState("sum");
+  const [positions, setPositions] = useState(FILTER_POSITIONS);
   const [highlight, setHighlight] = useState("");
   const [customTitle, setCustomTitle] = useState("");
   const [lang, setLang] = useState("cs");
@@ -931,6 +980,7 @@ function ScatterPanel({ rows, leagues, router }) {
       .filter((r) => !league || r.league_name === league)
       .filter((r) => (r.minutes_played ?? 0) >= Number(minMinutes || 0))
       .filter((r) => (gkChart ? r.bucket === "GK" : r.bucket !== "GK"))
+      .filter((r) => gkChart || matchesPositions(r, positions))
       .filter((r) => r[xStat] !== null && r[xStat] !== undefined && r[xStat] !== "" && r[yStat] !== null && r[yStat] !== undefined && r[yStat] !== "")
       .map((r) => ({ ...r, x: Number(r[xStat]), y: Number(r[yStat]) }))
       .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
@@ -959,7 +1009,7 @@ function ScatterPanel({ rows, leagues, router }) {
     setChart({
       points, xStat, yStat, gkChart, league, minMinutes: minMinutes || "0",
       season: seasons.length === 1 ? seasons[0] : null, leagueLogo,
-      highlightIds: ids, notFound, xDomain, yDomain,
+      highlightIds: ids, notFound, xDomain, yDomain, positions: gkChart ? null : [...positions],
       means: { x: mean(points.map((p) => p.x)), y: mean(points.map((p) => p.y)) },
     });
   }
@@ -988,6 +1038,7 @@ function ScatterPanel({ rows, leagues, router }) {
       subtitle: [
         chart.league || tx.allLeagues,
         chart.season && tx.season(chart.season),
+        chart.positions && positionsText(chart.positions, lang),
         tx.minutes(chart.minMinutes),
         chart.gkChart && tx.gkOnly,
       ].filter(Boolean).join("  ·  "),
@@ -1070,6 +1121,7 @@ function ScatterPanel({ rows, leagues, router }) {
               {AXIS_OPTIONS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
             </select>
           </div>
+          <PositionFilter value={positions} onChange={setPositions} disabled={GK_STAT_KEYS.has(xStat) || GK_STAT_KEYS.has(yStat)} />
           <div className="field">
             <div className="field-label">Popsaní hráči</div>
             <select value={labelCount} onChange={(e) => setLabelCount(e.target.value)}>
@@ -1146,7 +1198,7 @@ function ScatterPanel({ rows, leagues, router }) {
             )}
           </div>
           <p className="chart-note">
-            {chart.points.length.toLocaleString("cs-CZ")} {hracuCs(chart.points.length)} v grafu. Přerušované zelené čáry = průměr ligy{sameUnit(chart.xStat, chart.yStat) ? ", šedá diagonála = obě hodnoty stejné" : ""}. Klikni na bod pro otevření profilu.
+            {chart.points.length.toLocaleString("cs-CZ")} {hracuCs(chart.points.length)} v grafu. Přerušované zelené čáry = průměr hráčů v grafu{sameUnit(chart.xStat, chart.yStat) ? ", šedá diagonála = obě hodnoty stejné" : ""}. Klikni na bod pro otevření profilu.
           </p>
         </>
       )}
