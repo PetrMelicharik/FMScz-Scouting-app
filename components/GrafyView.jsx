@@ -3,6 +3,8 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { STAT_GROUPS, STAT_LABELS, STAT_LABELS_EN, formatStat } from "../lib/statMeta";
 import { stripDiacritics } from "../lib/normalize";
+import { supabase } from "../lib/supabaseClient";
+import { useAuthUser } from "../lib/useAuthUser";
 
 // Each entry: [key, dropdown label (with group), plain label (for chart/axis/title)]
 const EXCLUDED_AXIS_KEYS = new Set([
@@ -413,8 +415,10 @@ function rankLayout(n) {
 async function drawRanking(canvas, spec) {
   const { list, kicker, title, subtitle, headerLogo, footerRight, valueLocale, subline, stat } = spec;
   await ensureRankFonts();
-  const [brandLogo, headLogo, ...clubLogos] = await Promise.all([
+  const anyStamp = list.some((r) => r.shortlisted);
+  const [brandLogo, stampImg, headLogo, ...clubLogos] = await Promise.all([
     loadImage("/logo.jpg").catch(() => null),
+    anyStamp ? loadImage("/approved-stamp.png").catch(() => null) : Promise.resolve(null),
     loadRankImage(headerLogo),
     ...list.map((r) => loadRankImage(r.club_logo_url)),
   ]);
@@ -445,11 +449,27 @@ async function drawRanking(canvas, spec) {
   const hi = Math.max(...vals);
   const span = hi - lo || 1;
 
+  // "Approved by FM Scouts" stamp for players on the user's shortlist —
+  // sits between the name and the value, slightly tilted and a bit taller
+  // than the row, like a real rubber stamp.
+  const stampSize = Math.min(120, rowH * 1.3);
+  const stampBaseCx = valueRight - valueW - 24 - stampSize / 2;
+  // Stamps on consecutive rows are staggered so they don't sit on top of each other
+  const stampCxs = [];
+  list.forEach((r, i) => {
+    const prev = i > 0 && list[i - 1].shortlisted ? stampCxs[i - 1] : null;
+    stampCxs[i] = prev !== null && prev === stampBaseCx ? stampBaseCx - stampSize * 0.62 : stampBaseCx;
+  });
+
   list.forEach((r, i) => {
     const y = top + i * rowH;
     const cy = y + rowH / 2;
 
-    if (i % 2 === 1) {
+    if (r.shortlisted && stampImg) {
+      ctx.fillStyle = "#E6F5E4";
+      rrect(ctx, RANK_PAD_X - 18, y + 2, W - 2 * RANK_PAD_X + 36, rowH - 4, 12);
+      ctx.fill();
+    } else if (i % 2 === 1) {
       ctx.fillStyle = C.rowAlt;
       rrect(ctx, RANK_PAD_X - 18, y + 2, W - 2 * RANK_PAD_X + 36, rowH - 4, 12);
       ctx.fill();
@@ -491,7 +511,7 @@ async function drawRanking(canvas, spec) {
 
     // Name + club line
     const nameX = tx + tile + 22;
-    const nameMax = valueRight - valueW - 32 - nameX;
+    const nameMax = r.shortlisted && stampImg ? stampCxs[i] - stampSize / 2 + 6 - nameX : valueRight - valueW - 32 - nameX;
     ctx.textAlign = "left";
     const nm = fitText(ctx, String(r.player_name || "").toLocaleUpperCase(valueLocale), nameMax, 800, FONT_DISPLAY, Math.round(33 * k), 20);
     ctx.fillStyle = C.ink;
@@ -519,6 +539,20 @@ async function drawRanking(canvas, spec) {
     ctx.fill();
   });
 
+  if (stampImg) {
+    list.forEach((r, i) => {
+      if (!r.shortlisted) return;
+      const cy = top + i * rowH + rowH / 2;
+      const sw = stampSize;
+      const sh = stampSize * (stampImg.height / stampImg.width);
+      ctx.save();
+      ctx.translate(stampCxs[i], cy);
+      ctx.rotate((-9 * Math.PI) / 180);
+      ctx.drawImage(stampImg, -sw / 2, -sh / 2, sw, sh);
+      ctx.restore();
+    });
+  }
+
   drawCardFooter(ctx, W, H, brandLogo, footerRight);
 
   return { top, rowH, height: H };
@@ -533,6 +567,9 @@ function TopPanel({ rows, leagues, router }) {
   const [positions, setPositions] = useState(FILTER_POSITIONS);
   const [lang, setLang] = useState("cs");
   const [customTitle, setCustomTitle] = useState("");
+  const [showStamp, setShowStamp] = useState(true);
+  const [shortlist, setShortlist] = useState([]);
+  const user = useAuthUser();
   const [chart, setChart] = useState(null);
   const [drawing, setDrawing] = useState(false);
   const canvasRef = useRef(null);
@@ -557,7 +594,33 @@ function TopPanel({ rows, leagues, router }) {
     setChart({ list, stat, gkChart, league, minMinutes: minMinutes || "0", dir, season: seasons.length === 1 ? seasons[0] : null, leagueLogo, positions: gkChart ? null : [...positions] });
   }
 
-  // Redraw whenever the data, language or custom title changes.
+  // The logged-in user's shortlist (RLS returns only their own rows).
+  useEffect(() => {
+    if (!user) { setShortlist([]); return; }
+    let cancelled = false;
+    supabase
+      .from("shortlist_players")
+      .select("player_id, player_name, club")
+      .eq("user_id", user.id)
+      .then(({ data, error }) => {
+        if (cancelled) return;
+        if (error) { console.error(error); return; }
+        setShortlist(data || []);
+      });
+    return () => { cancelled = true; };
+  }, [user]);
+
+  // Matched by name + club, or by stored id + name. Using the name as well
+  // keeps this correct when players.json row order shifts after a database
+  // update (player_id is the row index).
+  const isShortlisted = useMemo(() => {
+    const norm = (v) => stripDiacritics(String(v || "").trim().toLowerCase());
+    const byNameClub = new Set(shortlist.map((s) => `${norm(s.player_name)}|${norm(s.club)}`));
+    const nameById = new Map(shortlist.map((s) => [s.player_id, norm(s.player_name)]));
+    return (r) => byNameClub.has(`${norm(r.player_name)}|${norm(r["Current Club"])}`) || nameById.get(r._id) === norm(r.player_name);
+  }, [shortlist]);
+
+  // Redraw whenever the data, language, title or stamp setting changes.
   useEffect(() => {
     if (!chart || !chart.list.length || !canvasRef.current) return;
     let cancelled = false;
@@ -583,7 +646,7 @@ function TopPanel({ rows, leagues, router }) {
         !chart.league && r.league_name,
         r.age !== null && r.age !== undefined && r.age !== "" && tx.age(r.age),
       ].filter(Boolean).join("  ·  "),
-      list: chart.list.map((r) => ({ ...r, display: formatStat(chart.stat, r.value, tx.locale) })),
+      list: chart.list.map((r) => ({ ...r, display: formatStat(chart.stat, r.value, tx.locale), shortlisted: showStamp && isShortlisted(r) })),
     };
     setDrawing(true);
     drawRanking(canvasRef.current, spec)
@@ -591,7 +654,7 @@ function TopPanel({ rows, leagues, router }) {
       .catch((e) => console.error(e))
       .finally(() => { if (!cancelled) setDrawing(false); });
     return () => { cancelled = true; };
-  }, [chart, lang, customTitle]);
+  }, [chart, lang, customTitle, showStamp, isShortlisted]);
 
   function rowAt(e) {
     const g = geomRef.current;
@@ -661,7 +724,14 @@ function TopPanel({ rows, leagues, router }) {
           <span style={{ width: 12 }} />
           <button className={lang === "cs" ? "btn chart-dir-active" : "btn"} onClick={() => setLang("cs")}>CZ</button>
           <button className={lang === "en" ? "btn chart-dir-active" : "btn"} onClick={() => setLang("en")}>EN</button>
+          <span style={{ width: 12 }} />
+          <button className={showStamp ? "btn chart-dir-active" : "btn"} onClick={() => setShowStamp((v) => !v)} title="U hráčů z tvého shortlistu se zobrazí razítko Approved by FM Scouts">
+            {showStamp ? "✓ " : ""}Razítko u hráčů ze shortlistu
+          </button>
         </div>
+        {showStamp && user === null && (
+          <p className="chart-note" style={{ marginTop: -6, marginBottom: 12 }}>Pro razítko se přihlas (na stránce Shortlist) — jinak appka tvůj shortlist nevidí.</p>
+        )}
         <button className="btn-accent" onClick={generate}>Generovat</button>
       </div>
 
