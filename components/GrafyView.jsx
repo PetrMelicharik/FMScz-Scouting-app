@@ -1,11 +1,8 @@
 "use client";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  Cell,
-} from "recharts";
 import { STAT_GROUPS, STAT_LABELS, STAT_LABELS_EN, formatStat } from "../lib/statMeta";
+import { stripDiacritics } from "../lib/normalize";
 
 // Each entry: [key, dropdown label (with group), plain label (for chart/axis/title)]
 const EXCLUDED_AXIS_KEYS = new Set([
@@ -28,19 +25,9 @@ const GK_STAT_KEYS = new Set(STAT_GROUPS["Brankářské"]);
 
 // Only used to trim the scatter chart's margins/font sizes on narrow
 // screens — the desktop layout below the breakpoint is untouched.
-function useIsMobile(breakpoint = 700) {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= breakpoint);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, [breakpoint]);
-  return isMobile;
-}
-
-const POSITION_COLORS = { GK: "#D97706", DF: "#2563EB", MF: "#4CB848", FW: "#DC2626", other: "#9AA39A" };
+const POSITION_COLORS = { GK: "#E09A1A", DF: "#3B7DE0", MF: "#4CB848", FW: "#E0484D", other: "#9AA39A" };
 const POSITION_LABELS = { GK: "Brankář", DF: "Obránce", MF: "Záložník", FW: "Útočník", other: "Ostatní" };
+const POSITION_LABELS_EN = { GK: "Goalkeeper", DF: "Defender", MF: "Midfielder", FW: "Forward", other: "Other" };
 
 function positionBucket(pos) {
   if (!pos) return "other";
@@ -56,33 +43,6 @@ function axisLabel(key) {
   return AXIS_OPTIONS.find(([k]) => k === key)?.[2] || key;
 }
 
-function ScatterDot(props) {
-  const { cx, cy, fill, payload } = props;
-  if (cx === undefined || cy === undefined) return null;
-  const tier = payload?.labelTier || 0; // signed row multiplier — 0 is level with the dot, negative is above, positive is below
-  const left = payload?.labelSide === "left";
-  const labelY = cy + 4 + tier * 15;
-  return (
-    <g>
-      <circle cx={cx} cy={cy} r={7} fill={fill} fillOpacity={0.78} stroke="#FFFFFF" strokeWidth={1.5} />
-      {payload?.labeled && (
-        <>
-          {tier !== 0 && (
-            <line x1={cx} y1={cy} x2={left ? cx - 10 : cx + 10} y2={labelY} stroke="#9AA39A" strokeWidth={1} />
-          )}
-          <text
-            x={left ? cx - 10 : cx + 10} y={labelY}
-            textAnchor={left ? "end" : "start"}
-            fontSize={11} fontWeight={600} fill="#14171A" style={{ pointerEvents: "none" }}
-          >
-            {payload.player_name}
-          </text>
-        </>
-      )}
-    </g>
-  );
-}
-
 function computeDomain(values) {
   const min = Math.min(...values);
   const max = Math.max(...values);
@@ -93,28 +53,6 @@ function computeDomain(values) {
   }
   const pad = (max - min) * 0.08;
   return [clampLower(min - pad), max + pad];
-}
-
-function formatAxisTick(value, span) {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return "";
-  let decimals = 0;
-  if (span < 3) decimals = 2;
-  else if (span < 30) decimals = 1;
-  return n.toFixed(decimals);
-}
-
-function ScatterTooltip({ active, payload }) {
-  if (!active || !payload || !payload.length) return null;
-  const p = payload[0].payload;
-  return (
-    <div className="chart-tooltip">
-      <div className="chart-tooltip-name">{p.player_name}</div>
-      <div className="chart-tooltip-sub">{p["Current Club"] || "–"} · {p.tm_position || p.position || "–"}</div>
-      <div>{p.xLabel}: <strong>{p.xDisplay}</strong></div>
-      <div>{p.yLabel}: <strong>{p.yDisplay}</strong></div>
-    </div>
-  );
 }
 
 function sanitizeFilename(s) {
@@ -129,125 +67,6 @@ function loadImage(src) {
     img.onerror = reject;
     img.src = src;
   });
-}
-
-async function downloadChartAsImage(containerEl, filename, title, subtitle) {
-  if (!containerEl) return;
-  const svgEl = containerEl.querySelector("svg");
-  if (!svgEl) return;
-
-  const rect = svgEl.getBoundingClientRect();
-  const width = Math.round(rect.width);
-  const height = Math.round(rect.height);
-  const header = title ? 58 : 0;
-  const footer = 40;
-
-  const clonedSvg = svgEl.cloneNode(true);
-  clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  clonedSvg.setAttribute("width", width);
-  clonedSvg.setAttribute("height", height);
-  const bgRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  bgRect.setAttribute("width", "100%");
-  bgRect.setAttribute("height", "100%");
-  bgRect.setAttribute("fill", "#FFFFFF");
-  clonedSvg.insertBefore(bgRect, clonedSvg.firstChild);
-
-  const svgString = new XMLSerializer().serializeToString(clonedSvg);
-  const svgBlob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
-  const svgUrl = URL.createObjectURL(svgBlob);
-
-  try {
-    const [chartImg, logoImg] = await Promise.all([
-      loadImage(svgUrl),
-      loadImage("/logo.jpg").catch(() => null),
-    ]);
-
-    const scale = 2;
-    const canvas = document.createElement("canvas");
-    canvas.width = width * scale;
-    canvas.height = (header + height + footer) * scale;
-    const ctx = canvas.getContext("2d");
-    ctx.scale(scale, scale);
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0, 0, width, header + height + footer);
-
-    if (title) {
-      ctx.textBaseline = "alphabetic";
-      ctx.fillStyle = "#14171A";
-      ctx.font = "700 17px Arial, sans-serif";
-      ctx.fillText(title, 18, 28);
-      if (subtitle) {
-        ctx.fillStyle = "#667066";
-        ctx.font = "400 13px Arial, sans-serif";
-        ctx.fillText(subtitle, 18, 47);
-      }
-      ctx.strokeStyle = "#E3E8E2";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(0, header - 0.5);
-      ctx.lineTo(width, header - 0.5);
-      ctx.stroke();
-    }
-
-    ctx.drawImage(chartImg, 0, header, width, height);
-
-    ctx.strokeStyle = "#E3E8E2";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(0, header + height + 0.5);
-    ctx.lineTo(width, header + height + 0.5);
-    ctx.stroke();
-
-    const logoSize = 24;
-    const logoY = header + height + (footer - logoSize) / 2;
-    let textX = 14;
-    if (logoImg) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(14 + logoSize / 2, logoY + logoSize / 2, logoSize / 2, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.drawImage(logoImg, 14, logoY, logoSize, logoSize);
-      ctx.restore();
-      textX = 14 + logoSize + 8;
-    }
-
-    ctx.font = "700 14px Arial, sans-serif";
-    ctx.textBaseline = "middle";
-    ctx.fillStyle = "#4CB848";
-    ctx.fillText("FM", textX, header + height + footer / 2);
-    const fmWidth = ctx.measureText("FM ").width;
-    ctx.fillStyle = "#14171A";
-    ctx.fillText("Scouts", textX + fmWidth, header + height + footer / 2);
-    const scoutsWidth = ctx.measureText("Scouts ").width;
-    ctx.fillStyle = "#667066";
-    ctx.fillText("cz", textX + fmWidth + scoutsWidth, header + height + footer / 2);
-
-    canvas.toBlob((blob) => {
-      const link = document.createElement("a");
-      link.download = filename;
-      link.href = URL.createObjectURL(blob);
-      link.click();
-    });
-  } finally {
-    URL.revokeObjectURL(svgUrl);
-  }
-}
-
-function DownloadButton({ targetRef, filename, title, subtitle }) {
-  return (
-    <button className="btn chart-download-btn" onClick={() => downloadChartAsImage(targetRef.current, filename, title, subtitle)}>
-      ⬇ Stáhnout graf
-    </button>
-  );
-}
-
-function Watermark() {
-  return (
-    <div className="chart-watermark">
-      <img src="/logo.jpg" alt="" className="chart-watermark-logo" />
-      FM <span className="accent">Scouts</span> cz
-    </div>
-  );
 }
 
 export default function GrafyView() {
@@ -325,198 +144,6 @@ export default function GrafyView() {
     </div>
   );
 }
-
-function ScatterPanel({ rows, leagues, router }) {
-  const [league, setLeague] = useState("");
-  const [minMinutes, setMinMinutes] = useState("450");
-  const [xStat, setXStat] = useState("age");
-  const [yStat, setYStat] = useState("goals_per_90");
-  const [chart, setChart] = useState(null);
-  const chartRef = useRef(null);
-  const isMobile = useIsMobile();
-
-  function generate() {
-    const xLabel = axisLabel(xStat);
-    const yLabel = axisLabel(yStat);
-    const gkChart = GK_STAT_KEYS.has(xStat) || GK_STAT_KEYS.has(yStat);
-
-    let points = rows
-      .filter((r) => !league || r.league_name === league)
-      .filter((r) => (r.minutes_played ?? 0) >= Number(minMinutes || 0))
-      .filter((r) => (gkChart ? r.bucket === "GK" : r.bucket !== "GK"))
-      .filter((r) => r[xStat] !== null && r[xStat] !== undefined && r[yStat] !== null && r[yStat] !== undefined)
-      .map((r) => ({
-        ...r,
-        x: Number(r[xStat]),
-        y: Number(r[yStat]),
-        xLabel, yLabel,
-        xDisplay: formatStat(xStat, r[xStat]),
-        yDisplay: formatStat(yStat, r[yStat]),
-      }))
-      .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
-
-    const topIds = new Set([...points].sort((a, b) => b.y - a.y).slice(0, 5).map((p) => p._id));
-    const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
-    const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
-    const xSpan = xDomain[1] - xDomain[0];
-    const ySpan = yDomain[1] - yDomain[0] || 1;
-
-    // Labeled points can cluster tightly in BOTH x and y (a common case —
-    // several players with a similar statline). Placing each label with a
-    // real 2D collision check — against every other already-placed label,
-    // not just its neighbour in x — is what actually prevents overlap; a
-    // name's rendered width varies a lot ("Imo Zaal" vs "Chukwuemeka
-    // Emmanuel Okereke"), so that width is part of the check too.
-    //
-    // There's no exact pixel size available here (the chart is responsive),
-    // so positions are estimated against a conservative reference box —
-    // smaller than the chart typically renders at, which only ever makes
-    // this *more* cautious about spacing labels out, never less.
-    const REF_W = 640;
-    const REF_H = isMobile ? 420 : 480;
-    const CHAR_W = 6.8;
-    const LABEL_H = 14;
-    const ROW_H = 15;
-    const DOT_GAP = 10;
-    const ROW_OFFSETS = [0, -1, 1, -2, 2, -3, 3, -4, 4, -5, 5]; // expand outward from the dot's own row
-
-    const dataToPxX = (x) => ((x - xDomain[0]) / xSpan) * REF_W;
-    const dataToPxY = (y) => REF_H - ((y - yDomain[0]) / ySpan) * REF_H;
-    const boxesOverlap = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
-
-    const placedBoxes = [];
-    const tierByld = new Map();
-    const sideByld = new Map();
-    const labeledPoints = points.filter((p) => topIds.has(p._id)).sort((a, b) => b.y - a.y);
-
-    for (const p of labeledPoints) {
-      const cxPx = dataToPxX(p.x);
-      const cyPx = dataToPxY(p.y);
-      const side = cxPx / REF_W > 0.82 ? "left" : "right";
-      const textW = p.player_name.length * CHAR_W;
-
-      let chosenRow = ROW_OFFSETS[ROW_OFFSETS.length - 1];
-      for (const row of ROW_OFFSETS) {
-        const labelCy = cyPx + 4 + row * ROW_H;
-        const left = side === "left" ? cxPx - DOT_GAP - textW : cxPx + DOT_GAP;
-        const box = { left, right: left + textW, top: labelCy - LABEL_H / 2, bottom: labelCy + LABEL_H / 2 };
-        if (!placedBoxes.some((b) => boxesOverlap(box, b))) {
-          placedBoxes.push(box);
-          chosenRow = row;
-          break;
-        }
-      }
-      tierByld.set(p._id, chosenRow);
-      sideByld.set(p._id, side);
-    }
-
-    points = points.map((p) => ({
-      ...p,
-      labeled: topIds.has(p._id),
-      labelTier: tierByld.get(p._id) || 0,
-      labelSide: sideByld.get(p._id) || "right",
-    }));
-
-    setChart({ points, xLabel, yLabel, gkChart, xDomain, yDomain });
-  }
-
-  return (
-    <div>
-      <div className="filter-panel">
-        <div className="filter-grid">
-          <div className="field">
-            <div className="field-label">Liga</div>
-            <select value={league} onChange={(e) => setLeague(e.target.value)}>
-              <option value="">Všechny ligy</option>
-              {leagues.map((l) => <option key={l} value={l}>{l}</option>)}
-            </select>
-          </div>
-          <div className="field">
-            <div className="field-label">Min. odehraných minut</div>
-            <input type="number" value={minMinutes} onChange={(e) => setMinMinutes(e.target.value)} />
-          </div>
-          <div className="field">
-            <div className="field-label">Osa X</div>
-            <select value={xStat} onChange={(e) => setXStat(e.target.value)}>
-              {AXIS_OPTIONS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
-            </select>
-          </div>
-          <div className="field">
-            <div className="field-label">Osa Y</div>
-            <select value={yStat} onChange={(e) => setYStat(e.target.value)}>
-              {AXIS_OPTIONS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
-            </select>
-          </div>
-        </div>
-        <button className="btn-accent" onClick={generate}>Generovat</button>
-      </div>
-
-      {!chart ? (
-        <div className="empty-state">
-          <div className="empty-title">Zatím žádný graf</div>
-          <div className="empty-sub">Nastav filtry a osy a klikni na Generovat.</div>
-        </div>
-      ) : chart.points.length === 0 ? (
-        <div className="empty-state">
-          <div className="empty-title">Žádní hráči neodpovídají filtru</div>
-          <div className="empty-sub">Zkus snížit min. minuty nebo zvolit jinou ligu.</div>
-        </div>
-      ) : (
-        <>
-          <div className="chart-toolbar">
-            <span className="chart-toolbar-title">{chart.yLabel} vs. {chart.xLabel}</span>
-            <DownloadButton
-              targetRef={chartRef}
-              filename={`fmscouts-${sanitizeFilename(chart.xLabel)}-${sanitizeFilename(chart.yLabel)}.png`}
-              title={`${chart.yLabel} vs. ${chart.xLabel}`}
-              subtitle={`${league || "Všechny ligy"} · min. ${minMinutes || 0} minut`}
-            />
-          </div>
-          {chart.gkChart && <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>Zobrazeni jsou jen brankáři — zvolená statistika je brankářská.</p>}
-          <div className="chart-box" ref={chartRef}>
-            <Watermark />
-            <ResponsiveContainer width="100%" height={isMobile ? 420 : 480}>
-              <ScatterChart margin={isMobile ? { top: 16, right: 16, bottom: 16, left: 0 } : { top: 20, right: 70, bottom: 20, left: 10 }}>
-                <CartesianGrid stroke="#E3E8E2" strokeDasharray="3 3" />
-                <XAxis
-                  type="number" dataKey="x" name={chart.xLabel} domain={chart.xDomain}
-                  tick={{ fontSize: isMobile ? 10.5 : 12, fill: "#667066" }}
-                  tickFormatter={(v) => formatAxisTick(v, chart.xDomain[1] - chart.xDomain[0])}
-                  axisLine={{ stroke: "#D8DED7" }} tickLine={false}
-                  label={isMobile ? undefined : { value: chart.xLabel, position: "insideBottom", offset: -10, fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
-                />
-                <YAxis
-                  type="number" dataKey="y" name={chart.yLabel} domain={chart.yDomain}
-                  tick={{ fontSize: isMobile ? 10.5 : 12, fill: "#667066" }}
-                  tickFormatter={(v) => formatAxisTick(v, chart.yDomain[1] - chart.yDomain[0])}
-                  axisLine={{ stroke: "#D8DED7" }} tickLine={false}
-                  width={isMobile ? 34 : undefined}
-                  label={isMobile ? undefined : { value: chart.yLabel, angle: -90, position: "insideLeft", fontSize: 12.5, fontWeight: 600, fill: "#14171A" }}
-                />
-                <Tooltip content={<ScatterTooltip />} cursor={{ strokeDasharray: "3 3" }} />
-                <Scatter data={chart.points} shape={<ScatterDot />} onClick={(d) => router.push(`/databaze/${d._id}`)} cursor="pointer">
-                  {chart.points.map((p) => (
-                    <Cell key={p._id} fill={POSITION_COLORS[p.bucket]} />
-                  ))}
-                </Scatter>
-              </ScatterChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="chart-legend">
-            {Object.entries(POSITION_LABELS).map(([k, label]) => (
-              <div key={k} className="chart-legend-item">
-                <span className="legend-dot" style={{ background: POSITION_COLORS[k] }}></span>
-                {label}
-              </div>
-            ))}
-          </div>
-          <p className="chart-note">{chart.points.length.toLocaleString("cs-CZ")} hráčů v grafu, jména popsána u 5 s nejvyšší hodnotou na ose Y. Klikni na bod pro otevření profilu hráče.</p>
-        </>
-      )}
-    </div>
-  );
-}
-
 
 /* ------------------------------------------------------------------ */
 /* Žebříček — graphic drawn straight onto a <canvas>.                  */
@@ -637,6 +264,101 @@ function setSpacing(ctx, px) {
   if ("letterSpacing" in ctx) ctx.letterSpacing = `${px}px`;
 }
 
+// Shared card chrome — the ranking and the scatter chart use the exact same
+// header and footer so every graphic posted on X reads as one series.
+function drawCardHeader(ctx, W, H, { kicker, title, subtitle, headLogo, locale }) {
+  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, W, H);
+  const grad = ctx.createLinearGradient(0, 0, 0, RANK_HEADER_H);
+  grad.addColorStop(0, "#EEF8ED");
+  grad.addColorStop(1, "#FFFFFF");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, RANK_HEADER_H);
+  ctx.fillStyle = C.accent;
+  ctx.fillRect(0, 0, W, 8);
+
+  const headRight = W - RANK_PAD_X - (headLogo ? 120 : 0);
+  ctx.textAlign = "left";
+  ctx.fillStyle = C.accentDark;
+  ctx.font = `700 19px ${FONT_BODY}`;
+  setSpacing(ctx, 3);
+  ctx.fillText(kicker.toLocaleUpperCase(locale), RANK_PAD_X, 60);
+  setSpacing(ctx, 0);
+  const t = fitText(ctx, title, headRight - RANK_PAD_X, 800, FONT_DISPLAY, 60, 34);
+  ctx.fillStyle = C.ink;
+  ctx.fillText(t.text, RANK_PAD_X, 118);
+  const st = fitText(ctx, subtitle, headRight - RANK_PAD_X, 500, FONT_BODY, 21, 15);
+  ctx.fillStyle = C.dim;
+  ctx.fillText(st.text, RANK_PAD_X, 152);
+  if (headLogo) drawContained(ctx, headLogo, W - RANK_PAD_X - 100, (RANK_HEADER_H - 100) / 2 + 4, 100, 100);
+
+  ctx.fillStyle = C.line;
+  ctx.fillRect(0, RANK_HEADER_H - 1, W, 1);
+}
+
+// legend: optional [{ label, color }] drawn centred in the footer.
+function drawCardFooter(ctx, W, H, brandLogo, footerRight, legend) {
+  const fy = H - RANK_FOOTER_H;
+  ctx.fillStyle = C.line;
+  ctx.fillRect(0, fy, W, 1);
+  const fcy = fy + RANK_FOOTER_H / 2;
+  let fx = RANK_PAD_X;
+  if (brandLogo) {
+    const ls = 44;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(fx + ls / 2, fcy, ls / 2, 0, Math.PI * 2);
+    ctx.clip();
+    ctx.drawImage(brandLogo, fx, fcy - ls / 2, ls, ls);
+    ctx.restore();
+    fx += ls + 12;
+  }
+  ctx.textAlign = "left";
+  ctx.font = `800 28px ${FONT_DISPLAY}`;
+  ctx.fillStyle = C.accent;
+  ctx.fillText("FM", fx, fcy + 10);
+  fx += ctx.measureText("FM ").width;
+  ctx.fillStyle = C.ink;
+  ctx.fillText("Scouts", fx, fcy + 10);
+  fx += ctx.measureText("Scouts ").width;
+  ctx.fillStyle = C.dim;
+  ctx.fillText("cz", fx, fcy + 10);
+
+  if (legend && legend.length) {
+    ctx.font = `600 17px ${FONT_BODY}`;
+    const gap = 30, dot = 14;
+    const widths = legend.map((l) => (l.dash ? l.lineW : dot) + 9 + ctx.measureText(l.label).width);
+    let lx = W / 2 - (widths.reduce((a, b) => a + b, 0) + gap * (legend.length - 1)) / 2;
+    legend.forEach((l, i) => {
+      if (l.dash) {
+        ctx.strokeStyle = l.color;
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash(l.dash);
+        ctx.beginPath();
+        ctx.moveTo(lx, fcy);
+        ctx.lineTo(lx + l.lineW, fcy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      } else {
+        ctx.beginPath();
+        ctx.arc(lx + dot / 2, fcy, dot / 2, 0, Math.PI * 2);
+        ctx.fillStyle = l.color;
+        ctx.fill();
+      }
+      ctx.fillStyle = C.ink;
+      ctx.fillText(l.label, lx + (l.dash ? l.lineW : dot) + 9, fcy + 6);
+      lx += widths[i] + gap;
+    });
+  }
+
+  ctx.textAlign = "right";
+  ctx.font = `500 17px ${FONT_BODY}`;
+  ctx.fillStyle = C.dim;
+  ctx.fillText(footerRight, W - RANK_PAD_X, fcy + 6);
+  ctx.textAlign = "left";
+}
+
 function rankLayout(n) {
   const rowH = n <= 10 ? Math.min(96, (900 - RANK_HEADER_H - RANK_FOOTER_H - 20) / n) : 58;
   const top = RANK_HEADER_H + 10;
@@ -665,35 +387,7 @@ async function drawRanking(canvas, spec) {
   if ("imageSmoothingQuality" in ctx) ctx.imageSmoothingQuality = "high";
   ctx.textBaseline = "alphabetic";
 
-  // Background + header wash
-  ctx.fillStyle = "#FFFFFF";
-  ctx.fillRect(0, 0, W, H);
-  const grad = ctx.createLinearGradient(0, 0, 0, RANK_HEADER_H);
-  grad.addColorStop(0, "#EEF8ED");
-  grad.addColorStop(1, "#FFFFFF");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, W, RANK_HEADER_H);
-  ctx.fillStyle = C.accent;
-  ctx.fillRect(0, 0, W, 8);
-
-  // Header text
-  const headRight = W - RANK_PAD_X - (headLogo ? 120 : 0);
-  ctx.textAlign = "left";
-  ctx.fillStyle = C.accentDark;
-  ctx.font = `700 19px ${FONT_BODY}`;
-  setSpacing(ctx, 3);
-  ctx.fillText(kicker.toLocaleUpperCase(valueLocale), RANK_PAD_X, 60);
-  setSpacing(ctx, 0);
-  const t = fitText(ctx, title, headRight - RANK_PAD_X, 800, FONT_DISPLAY, 60, 34);
-  ctx.fillStyle = C.ink;
-  ctx.fillText(t.text, RANK_PAD_X, 118);
-  const st = fitText(ctx, subtitle, headRight - RANK_PAD_X, 500, FONT_BODY, 21, 15);
-  ctx.fillStyle = C.dim;
-  ctx.fillText(st.text, RANK_PAD_X, 152);
-  if (headLogo) drawContained(ctx, headLogo, W - RANK_PAD_X - 100, (RANK_HEADER_H - 100) / 2 + 4, 100, 100);
-
-  ctx.fillStyle = C.line;
-  ctx.fillRect(0, RANK_HEADER_H - 1, W, 1);
+  drawCardHeader(ctx, W, H, { kicker, title, subtitle, headLogo, locale: valueLocale });
 
   // Value column width — measured over every row so values line up
   const valueSize = Math.round(34 * k);
@@ -781,38 +475,7 @@ async function drawRanking(canvas, spec) {
     ctx.fill();
   });
 
-  // Footer
-  const fy = H - RANK_FOOTER_H;
-  ctx.fillStyle = C.line;
-  ctx.fillRect(0, fy, W, 1);
-  const fcy = fy + RANK_FOOTER_H / 2;
-  let fx = RANK_PAD_X;
-  if (brandLogo) {
-    const ls = 44;
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(fx + ls / 2, fcy, ls / 2, 0, Math.PI * 2);
-    ctx.clip();
-    ctx.drawImage(brandLogo, fx, fcy - ls / 2, ls, ls);
-    ctx.restore();
-    fx += ls + 12;
-  }
-  ctx.textAlign = "left";
-  ctx.font = `800 28px ${FONT_DISPLAY}`;
-  ctx.fillStyle = C.accent;
-  ctx.fillText("FM", fx, fcy + 10);
-  fx += ctx.measureText("FM ").width;
-  ctx.fillStyle = C.ink;
-  ctx.fillText("Scouts", fx, fcy + 10);
-  fx += ctx.measureText("Scouts ").width;
-  ctx.fillStyle = C.dim;
-  ctx.fillText("cz", fx, fcy + 10);
-
-  ctx.textAlign = "right";
-  ctx.font = `500 17px ${FONT_BODY}`;
-  ctx.fillStyle = C.dim;
-  ctx.fillText(footerRight, W - RANK_PAD_X, fcy + 6);
-  ctx.textAlign = "left";
+  drawCardFooter(ctx, W, H, brandLogo, footerRight);
 
   return { top, rowH, height: H };
 }
@@ -977,6 +640,514 @@ function TopPanel({ rows, leagues, router }) {
             style={{ display: "block", width: "100%", height: "auto", borderRadius: 12, border: "1px solid #E3E8E2", boxShadow: "0 4px 18px rgba(20,23,26,0.06)" }}
           />
           <p className="chart-note">Obrázek se stahuje ve 3200 px šířce (Top 10 = formát 16:9, ideální pro X). Klikni na řádek pro otevření profilu hráče.</p>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Bodový graf — same canvas approach and card chrome as the ranking.  */
+/* ------------------------------------------------------------------ */
+
+const SC_H = 900; // 1600×900 = 16:9
+const SC_PLOT = { left: 150, right: RANK_W - 70, top: RANK_HEADER_H + 44, bottom: SC_H - RANK_FOOTER_H - 96 };
+
+// Stats measured in the same unit — for these pairs a y = x diagonal is
+// drawn (e.g. góly vs. xG: above the line = scoring more than expected).
+const SAME_UNIT_GROUPS = [
+  ["goals", "xg", "npxg"],
+  ["goals_per_90", "xg_per_90", "npxg_per_90"],
+  ["assists", "xa"],
+  ["assists_per_90", "xa_per_90"],
+];
+function sameUnit(a, b) {
+  return a !== b && SAME_UNIT_GROUPS.some((g) => g.includes(a) && g.includes(b));
+}
+
+function niceTicks(lo, hi, target = 6) {
+  const span = hi - lo || 1;
+  const raw = span / target;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const norm = raw / mag;
+  const step = (norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10) * mag;
+  const ticks = [];
+  for (let v = Math.ceil(lo / step - 1e-9) * step; v <= hi + step * 1e-9; v += step) ticks.push(Number(v.toFixed(10)));
+  const decimals = Math.max(0, -Math.floor(Math.log10(step) + 1e-9));
+  return { ticks, decimals };
+}
+
+function isPercentStat(key) {
+  return key.includes("percentage") || key.includes("rate");
+}
+
+function boxesHit(a, b) {
+  return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+}
+
+function clubInitials(club) {
+  const c = String(club || "?");
+  return (c.split(/\s+/).filter((w) => /^[A-Za-zÀ-ž]/.test(w) && w.length > 2).slice(0, 2).map((w) => w[0]).join("") || c[0]).toUpperCase();
+}
+
+async function drawScatter(canvas, spec) {
+  const {
+    points, highlightIds, xKey, yKey, xLabel, yLabel, xDomain, yDomain, means,
+    kicker, title, subtitle, headerLogo, footerRight, locale, legend, avgWord, diagonal,
+  } = spec;
+  await ensureRankFonts();
+  const hl = points.filter((p) => highlightIds.has(p._id));
+  const [brandLogo, headLogo, ...logos] = await Promise.all([
+    loadImage("/logo.jpg").catch(() => null),
+    loadRankImage(headerLogo),
+    ...hl.map((p) => loadRankImage(p.club_logo_url)),
+  ]);
+  const logoById = new Map(hl.map((p, i) => [p._id, logos[i]]));
+
+  const W = RANK_W, H = SC_H, P = SC_PLOT;
+  canvas.width = W * RANK_SCALE;
+  canvas.height = H * RANK_SCALE;
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(RANK_SCALE, 0, 0, RANK_SCALE, 0, 0);
+  if ("imageSmoothingQuality" in ctx) ctx.imageSmoothingQuality = "high";
+
+  drawCardHeader(ctx, W, H, { kicker, title, subtitle, headLogo, locale });
+
+  const px = (x) => P.left + ((x - xDomain[0]) / (xDomain[1] - xDomain[0] || 1)) * (P.right - P.left);
+  const py = (y) => P.bottom - ((y - yDomain[0]) / (yDomain[1] - yDomain[0] || 1)) * (P.bottom - P.top);
+
+  // Grid + ticks
+  const xt = niceTicks(xDomain[0], xDomain[1], 7);
+  const yt = niceTicks(yDomain[0], yDomain[1], 6);
+  const fmtTick = (v, d, key) => v.toFixed(d) + (isPercentStat(key) ? "%" : "");
+  ctx.lineWidth = 1;
+  ctx.font = `500 17px ${FONT_BODY}`;
+  ctx.fillStyle = C.dim;
+  ctx.textAlign = "center";
+  xt.ticks.forEach((v) => {
+    const x = px(v);
+    if (x < P.left - 1 || x > P.right + 1) return;
+    ctx.fillStyle = C.line;
+    ctx.fillRect(Math.round(x), P.top, 1, P.bottom - P.top);
+    ctx.fillStyle = C.dim;
+    ctx.fillText(fmtTick(v, xt.decimals, xKey), x, P.bottom + 30);
+  });
+  ctx.textAlign = "right";
+  yt.ticks.forEach((v) => {
+    const y = py(v);
+    if (y < P.top - 1 || y > P.bottom + 1) return;
+    ctx.fillStyle = C.line;
+    ctx.fillRect(P.left, Math.round(y), P.right - P.left, 1);
+    ctx.fillStyle = C.dim;
+    ctx.fillText(fmtTick(v, yt.decimals, yKey), P.left - 14, y + 6);
+  });
+  ctx.fillStyle = "#CFD6CE";
+  ctx.fillRect(P.left, P.bottom, P.right - P.left, 1.5);
+  ctx.fillRect(P.left - 1, P.top, 1.5, P.bottom - P.top);
+
+  // Axis titles
+  ctx.fillStyle = C.ink;
+  ctx.font = `700 23px ${FONT_DISPLAY}`;
+  ctx.textAlign = "center";
+  ctx.fillText(xLabel, (P.left + P.right) / 2, P.bottom + 70);
+  ctx.save();
+  ctx.translate(52, (P.top + P.bottom) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText(yLabel, 0, 0);
+  ctx.restore();
+
+  // Reference lines (clipped to the plot)
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(P.left, P.top, P.right - P.left, P.bottom - P.top);
+  ctx.clip();
+  if (diagonal) {
+    const a = Math.max(xDomain[0], yDomain[0]);
+    const b = Math.min(xDomain[1], yDomain[1]);
+    if (b > a) {
+      ctx.strokeStyle = "#AEB6AD";
+      ctx.lineWidth = 2;
+      ctx.setLineDash([3, 6]);
+      ctx.beginPath();
+      ctx.moveTo(px(a), py(a));
+      ctx.lineTo(px(b), py(b));
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+  }
+  ctx.strokeStyle = "rgba(60,154,60,0.55)";
+  ctx.lineWidth = 2;
+  ctx.setLineDash([10, 7]);
+  ctx.beginPath();
+  ctx.moveTo(px(means.x), P.top);
+  ctx.lineTo(px(means.x), P.bottom);
+  ctx.moveTo(P.left, py(means.y));
+  ctx.lineTo(P.right, py(means.y));
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Background dots
+  const sorted = [...points].sort((a, b) => (highlightIds.has(a._id) ? 1 : 0) - (highlightIds.has(b._id) ? 1 : 0));
+  // Big datasets (all leagues) get smaller, lighter dots so clusters stay readable
+  const dotR = points.length > 1500 ? 5.5 : points.length > 400 ? 7 : 8.5;
+  const dotA = points.length > 1500 ? 0.45 : points.length > 400 ? 0.55 : 0.62;
+  sorted.forEach((p) => {
+    if (highlightIds.has(p._id)) return;
+    ctx.beginPath();
+    ctx.arc(px(p.x), py(p.y), dotR, 0, Math.PI * 2);
+    ctx.globalAlpha = dotA;
+    ctx.fillStyle = POSITION_COLORS[p.bucket];
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = dotR > 6 ? 1.5 : 1;
+    ctx.stroke();
+  });
+  ctx.restore();
+
+  // Labels for reference lines
+  ctx.font = `600 15px ${FONT_BODY}`;
+  ctx.fillStyle = C.accentDark;
+  ctx.textAlign = "left";
+  ctx.fillText(`${avgWord} ${means.xDisplay}`, px(means.x) + 8, P.top + 18);
+  ctx.textAlign = "right";
+  ctx.fillText(`${avgWord} ${means.yDisplay}`, P.right - 8, py(means.y) - 9);
+
+  // Highlighted players: logo badge + name pill, placed without collisions
+  const R = 19;
+  const geo = hl.map((p) => ({ p, x: px(p.x), y: py(p.y) }));
+  const obstacles = geo.map((g) => ({ id: g.p._id, left: g.x - R - 3, right: g.x + R + 3, top: g.y - R - 3, bottom: g.y + R + 3 }));
+  const placed = [];
+  const bounds = { left: P.left + 4, right: P.right - 4, top: P.top + 4, bottom: P.bottom - 4 };
+  const inBounds = (b) => b.left >= bounds.left && b.right <= bounds.right && b.top >= bounds.top && b.bottom <= bounds.bottom;
+  ctx.font = `700 20px ${FONT_DISPLAY}`;
+  const labels = geo
+    .sort((a, b) => a.y - b.y)
+    .map((g) => {
+      const name = String(g.p.player_name || "");
+      const bw = ctx.measureText(name).width + 26;
+      const bh = 34;
+      const gap = R + 8;
+      const prefRight = g.x + gap + bw <= bounds.right;
+      const sides = prefRight ? ["r", "l"] : ["l", "r"];
+      const cands = [];
+      for (const dy of [0, -1, 1, -2, 2, -3, 3, -4, 4, -5, 5]) {
+        for (const side of sides) {
+          const left = side === "r" ? g.x + gap : g.x - gap - bw;
+          cands.push({ left, right: left + bw, top: g.y - bh / 2 + dy * 40, bottom: g.y + bh / 2 + dy * 40, dy });
+        }
+        if (dy === 0) {
+          cands.push({ left: g.x - bw / 2, right: g.x + bw / 2, top: g.y - R - 10 - bh, bottom: g.y - R - 10, dy: 0, above: true });
+          cands.push({ left: g.x - bw / 2, right: g.x + bw / 2, top: g.y + R + 10, bottom: g.y + R + 10 + bh, dy: 0, below: true });
+        }
+      }
+      const ok = (b) => inBounds(b) && !placed.some((o) => boxesHit(b, o)) && !obstacles.some((o) => o.id !== g.p._id && boxesHit(b, o));
+      const box = cands.find(ok) || cands.find(inBounds) || cands[0];
+      placed.push(box);
+      return { g, box, name };
+    });
+
+  // Leader lines first (under badges and pills)
+  labels.forEach(({ g, box }) => {
+    if (box.dy === 0) return;
+    const tx = box.left > g.x ? box.left : box.right;
+    const ty = (box.top + box.bottom) / 2;
+    ctx.strokeStyle = "#9AA39A";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(g.x, g.y);
+    ctx.lineTo(tx, ty);
+    ctx.stroke();
+  });
+
+  // Badges
+  geo.forEach((g) => {
+    const color = POSITION_COLORS[g.p.bucket];
+    ctx.beginPath();
+    ctx.arc(g.x, g.y, R, 0, Math.PI * 2);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fill();
+    ctx.lineWidth = 3.5;
+    ctx.strokeStyle = color;
+    ctx.stroke();
+    const logo = logoById.get(g.p._id);
+    if (logo) {
+      drawContained(ctx, logo, g.x - 12, g.y - 12, 24, 24);
+    } else {
+      ctx.fillStyle = C.dim;
+      ctx.font = `700 14px ${FONT_DISPLAY}`;
+      ctx.textAlign = "center";
+      ctx.fillText(clubInitials(g.p["Current Club"]), g.x, g.y + 5);
+    }
+  });
+
+  // Name pills
+  labels.forEach(({ g, box, name }) => {
+    ctx.fillStyle = "rgba(255,255,255,0.96)";
+    rrect(ctx, box.left, box.top, box.right - box.left, box.bottom - box.top, 17);
+    ctx.fill();
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = POSITION_COLORS[g.p.bucket];
+    ctx.stroke();
+    ctx.fillStyle = C.ink;
+    ctx.font = `700 20px ${FONT_DISPLAY}`;
+    ctx.textAlign = "center";
+    ctx.fillText(name, (box.left + box.right) / 2, box.bottom - 10);
+  });
+
+  drawCardFooter(ctx, W, H, brandLogo, footerRight, legend);
+
+  return {
+    W, H,
+    hits: points.map((p) => ({ p, x: px(p.x), y: py(p.y), r: highlightIds.has(p._id) ? R + 2 : 12 })),
+  };
+}
+
+function hracuCs(n) {
+  if (n === 1) return "hráč";
+  if (n >= 2 && n <= 4) return "hráči";
+  return "hráčů";
+}
+
+function ScatterPanel({ rows, leagues, router }) {
+  const [league, setLeague] = useState("");
+  const [minMinutes, setMinMinutes] = useState("450");
+  const [xStat, setXStat] = useState("xg_per_90");
+  const [yStat, setYStat] = useState("goals_per_90");
+  const [labelCount, setLabelCount] = useState("5");
+  const [labelBy, setLabelBy] = useState("sum");
+  const [highlight, setHighlight] = useState("");
+  const [customTitle, setCustomTitle] = useState("");
+  const [lang, setLang] = useState("cs");
+  const [chart, setChart] = useState(null);
+  const [drawing, setDrawing] = useState(false);
+  const [hover, setHover] = useState(null);
+  const canvasRef = useRef(null);
+  const geomRef = useRef(null);
+
+  function generate() {
+    const gkChart = GK_STAT_KEYS.has(xStat) || GK_STAT_KEYS.has(yStat);
+    const points = rows
+      .filter((r) => !league || r.league_name === league)
+      .filter((r) => (r.minutes_played ?? 0) >= Number(minMinutes || 0))
+      .filter((r) => (gkChart ? r.bucket === "GK" : r.bucket !== "GK"))
+      .filter((r) => r[xStat] !== null && r[xStat] !== undefined && r[xStat] !== "" && r[yStat] !== null && r[yStat] !== undefined && r[yStat] !== "")
+      .map((r) => ({ ...r, x: Number(r[xStat]), y: Number(r[yStat]) }))
+      .filter((r) => !Number.isNaN(r.x) && !Number.isNaN(r.y));
+
+    const xDomain = points.length ? computeDomain(points.map((p) => p.x)) : [0, 1];
+    const yDomain = points.length ? computeDomain(points.map((p) => p.y)) : [0, 1];
+
+    // Who gets a logo + name: top N by the chosen rule, plus anyone typed
+    // into "Zvýraznit hráče".
+    const xs = xDomain[1] - xDomain[0] || 1, ys = yDomain[1] - yDomain[0] || 1;
+    const score = (p) => labelBy === "x" ? p.x : labelBy === "y" ? p.y : (p.x - xDomain[0]) / xs + (p.y - yDomain[0]) / ys;
+    const ids = new Set([...points].sort((a, b) => score(b) - score(a)).slice(0, Number(labelCount)).map((p) => p._id));
+    const wanted = highlight.split(",").map((s) => stripDiacritics(s.trim().toLowerCase())).filter((s) => s.length >= 3);
+    const notFound = [];
+    wanted.forEach((w) => {
+      const hit = points.filter((p) => stripDiacritics(String(p.player_name || "").toLowerCase()).includes(w));
+      if (hit.length) hit.slice(0, 3).forEach((p) => ids.add(p._id));
+      else notFound.push(w);
+    });
+
+    const mean = (arr) => arr.reduce((a, b) => a + b, 0) / (arr.length || 1);
+    const seasons = [...new Set(points.map((r) => r.season).filter(Boolean))];
+    const leagueLogo = league ? points.find((r) => r.league_logo_url)?.league_logo_url || null : null;
+
+    setHover(null);
+    setChart({
+      points, xStat, yStat, gkChart, league, minMinutes: minMinutes || "0",
+      season: seasons.length === 1 ? seasons[0] : null, leagueLogo,
+      highlightIds: ids, notFound, xDomain, yDomain,
+      means: { x: mean(points.map((p) => p.x)), y: mean(points.map((p) => p.y)) },
+    });
+  }
+
+  useEffect(() => {
+    if (!chart || !chart.points.length || !canvasRef.current) return;
+    let cancelled = false;
+    const tx = RANK_TEXT[lang];
+    const lab = (k) => (lang === "en" ? (STAT_LABELS_EN[k] || axisLabel(k)) : axisLabel(k));
+    const xLabel = lab(chart.xStat), yLabel = lab(chart.yStat);
+    const n = chart.points.length;
+    const posLabels = lang === "en" ? POSITION_LABELS_EN : POSITION_LABELS;
+    const present = new Set(chart.points.map((p) => p.bucket));
+    const spec = {
+      points: chart.points,
+      highlightIds: chart.highlightIds,
+      xKey: chart.xStat, yKey: chart.yStat, xLabel, yLabel,
+      xDomain: chart.xDomain, yDomain: chart.yDomain,
+      means: {
+        ...chart.means,
+        xDisplay: formatStat(chart.xStat, chart.means.x, tx.locale),
+        yDisplay: formatStat(chart.yStat, chart.means.y, tx.locale),
+      },
+      kicker: lang === "en" ? `Player comparison · ${n} players` : `Srovnání hráčů · ${n} ${hracuCs(n)}`,
+      title: customTitle.trim() || `${yLabel} vs. ${xLabel}`,
+      subtitle: [
+        chart.league || tx.allLeagues,
+        chart.season && tx.season(chart.season),
+        tx.minutes(chart.minMinutes),
+        chart.gkChart && tx.gkOnly,
+      ].filter(Boolean).join("  ·  "),
+      headerLogo: chart.leagueLogo,
+      footerRight: tx.asOf(new Date()),
+      locale: tx.locale,
+      legend: [
+        ...(chart.gkChart ? [] : ["FW", "MF", "DF", "other"].filter((b) => present.has(b)).map((b) => ({ label: posLabels[b], color: POSITION_COLORS[b] }))),
+        { label: lang === "en" ? "average" : "průměr", color: "rgba(60,154,60,0.75)", dash: [7, 5], lineW: 30 },
+        ...(sameUnit(chart.xStat, chart.yStat) ? [{ label: `${yLabel} = ${xLabel}`, color: "#9AA39A", dash: [2, 5], lineW: 30 }] : []),
+      ],
+      avgWord: lang === "en" ? "avg" : "průměr",
+      diagonal: sameUnit(chart.xStat, chart.yStat),
+    };
+    setDrawing(true);
+    drawScatter(canvasRef.current, spec)
+      .then((g) => { if (!cancelled) geomRef.current = g; })
+      .catch((e) => console.error(e))
+      .finally(() => { if (!cancelled) setDrawing(false); });
+    return () => { cancelled = true; };
+  }, [chart, lang, customTitle]);
+
+  function hitAt(e) {
+    const g = geomRef.current;
+    const canvas = canvasRef.current;
+    if (!g || !canvas) return null;
+    const rect = canvas.getBoundingClientRect();
+    const k = g.W / rect.width;
+    const x = (e.clientX - rect.left) * k;
+    const y = (e.clientY - rect.top) * k;
+    let best = null, bestD = Infinity;
+    for (const h of g.hits) {
+      const d = Math.hypot(h.x - x, h.y - y);
+      if (d <= h.r && d < bestD) { best = h; bestD = d; }
+    }
+    return best ? { ...best, cssX: best.x / k, cssY: best.y / k } : null;
+  }
+
+  function download() {
+    const canvas = canvasRef.current;
+    if (!canvas || !chart) return;
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        alert("Stažení se nepovedlo — zkus to prosím znovu.");
+        return;
+      }
+      const link = document.createElement("a");
+      link.download = `fmscouts-${sanitizeFilename(axisLabel(chart.yStat))}-vs-${sanitizeFilename(axisLabel(chart.xStat))}${chart.league ? "-" + sanitizeFilename(chart.league) : ""}${lang === "en" ? "-en" : ""}.png`;
+      link.href = URL.createObjectURL(blob);
+      link.click();
+    }, "image/png");
+  }
+
+  const hp = hover?.p;
+
+  return (
+    <div>
+      <div className="filter-panel">
+        <div className="filter-grid">
+          <div className="field">
+            <div className="field-label">Liga</div>
+            <select value={league} onChange={(e) => setLeague(e.target.value)}>
+              <option value="">Všechny ligy</option>
+              {leagues.map((l) => <option key={l} value={l}>{l}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <div className="field-label">Min. odehraných minut</div>
+            <input type="number" value={minMinutes} onChange={(e) => setMinMinutes(e.target.value)} />
+          </div>
+          <div className="field">
+            <div className="field-label">Osa X</div>
+            <select value={xStat} onChange={(e) => setXStat(e.target.value)}>
+              {AXIS_OPTIONS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <div className="field-label">Osa Y</div>
+            <select value={yStat} onChange={(e) => setYStat(e.target.value)}>
+              {AXIS_OPTIONS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <div className="field-label">Popsaní hráči</div>
+            <select value={labelCount} onChange={(e) => setLabelCount(e.target.value)}>
+              <option value="0">Žádní</option>
+              <option value="3">Top 3</option>
+              <option value="5">Top 5</option>
+              <option value="8">Top 8</option>
+              <option value="10">Top 10</option>
+            </select>
+          </div>
+          <div className="field">
+            <div className="field-label">Top podle</div>
+            <select value={labelBy} onChange={(e) => setLabelBy(e.target.value)}>
+              <option value="sum">Obou os (vpravo nahoře)</option>
+              <option value="y">Osy Y</option>
+              <option value="x">Osy X</option>
+            </select>
+          </div>
+          <div className="field">
+            <div className="field-label">Zvýraznit hráče (nepovinné)</div>
+            <input type="text" value={highlight} placeholder="např. Mikuš, Chory" onChange={(e) => setHighlight(e.target.value)} />
+          </div>
+          <div className="field">
+            <div className="field-label">Vlastní nadpis (nepovinné)</div>
+            <input type="text" value={customTitle} placeholder="např. Kdo překonává svá xG?" onChange={(e) => setCustomTitle(e.target.value)} />
+          </div>
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14 }}>
+          <button className={lang === "cs" ? "btn chart-dir-active" : "btn"} onClick={() => setLang("cs")}>CZ</button>
+          <button className={lang === "en" ? "btn chart-dir-active" : "btn"} onClick={() => setLang("en")}>EN</button>
+        </div>
+        <button className="btn-accent" onClick={generate}>Generovat</button>
+      </div>
+
+      {!chart ? (
+        <div className="empty-state">
+          <div className="empty-title">Zatím žádný graf</div>
+          <div className="empty-sub">Nastav filtry a osy a klikni na Generovat.</div>
+        </div>
+      ) : chart.points.length === 0 ? (
+        <div className="empty-state">
+          <div className="empty-title">Žádní hráči neodpovídají filtru</div>
+          <div className="empty-sub">Zkus snížit min. minuty nebo zvolit jinou ligu.</div>
+        </div>
+      ) : (
+        <>
+          <div className="chart-toolbar">
+            <span className="chart-toolbar-title">{drawing ? "Kreslím graf…" : "Náhled = stažený obrázek"}</span>
+            <button className="btn chart-download-btn" onClick={download} disabled={drawing}>⬇ Stáhnout graf</button>
+          </div>
+          {chart.notFound.length > 0 && (
+            <p className="chart-note" style={{ marginTop: 0, marginBottom: 10 }}>
+              V grafu nejsou: {chart.notFound.join(", ")} (zkontroluj jméno, ligu nebo min. minuty).
+            </p>
+          )}
+          <div style={{ position: "relative" }}>
+            <canvas
+              ref={canvasRef}
+              onClick={(e) => { const h = hitAt(e); if (h) router.push(`/databaze/${h.p._id}`); }}
+              onMouseMove={(e) => { const h = hitAt(e); e.currentTarget.style.cursor = h ? "pointer" : "default"; setHover(h); }}
+              onMouseLeave={() => setHover(null)}
+              style={{ display: "block", width: "100%", height: "auto", borderRadius: 12, border: "1px solid #E3E8E2", boxShadow: "0 4px 18px rgba(20,23,26,0.06)" }}
+            />
+            {hp && (
+              <div
+                className="chart-tooltip"
+                style={{ position: "absolute", left: hover.cssX, top: hover.cssY, transform: "translate(-50%, calc(-100% - 14px))", pointerEvents: "none", whiteSpace: "nowrap", zIndex: 2 }}
+              >
+                <div className="chart-tooltip-name">{hp.player_name}</div>
+                <div className="chart-tooltip-sub">{hp["Current Club"] || "–"} · {hp.tm_position || hp.position || "–"}</div>
+                <div>{axisLabel(chart.xStat)}: <strong>{formatStat(chart.xStat, hp.x)}</strong></div>
+                <div>{axisLabel(chart.yStat)}: <strong>{formatStat(chart.yStat, hp.y)}</strong></div>
+              </div>
+            )}
+          </div>
+          <p className="chart-note">
+            {chart.points.length.toLocaleString("cs-CZ")} {hracuCs(chart.points.length)} v grafu. Přerušované zelené čáry = průměr ligy{sameUnit(chart.xStat, chart.yStat) ? ", šedá diagonála = obě hodnoty stejné" : ""}. Klikni na bod pro otevření profilu.
+          </p>
         </>
       )}
     </div>
