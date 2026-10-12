@@ -351,12 +351,6 @@
       "bestScore": 0.75
     },
     {
-      "club": "Oulu",
-      "ourPlayer": "Joel Lotvonen",
-      "bestApiCandidate": "J. Korhonen",
-      "bestScore": 0.72
-    },
-    {
       "club": "TPS",
       "ourPlayer": "Akim Sairinen",
       "bestApiCandidate": "A. Sihvonen",
@@ -679,12 +673,6 @@
       "ourPlayer": "Marko Stanković",
       "bestApiCandidate": "M. Arsović",
       "bestScore": 0.67
-    },
-    {
-      "club": "Maribor",
-      "ourPlayer": "Luka Mlakar",
-      "bestApiCandidate": "J. Mlakar",
-      "bestScore": 0.75
     },
     {
       "club": "Brinje-Grosuplje",
