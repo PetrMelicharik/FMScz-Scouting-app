@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 import { formatStat } from "../lib/statMeta";
 import { flagUrl } from "../lib/countryFlags";
@@ -43,7 +44,7 @@ function MultiToggle({ label, options, selected, onChange }) {
 
 function PlayerCard({ p }) {
   return (
-    <Link href={`/databaze/${p._id}`} className="player-card">
+    <Link href={playerHref(p)} className="player-card">
       <div className="player-card-head">
         <Avatar src={p.photo_url} size={60} />
         <div className="player-card-head-text">

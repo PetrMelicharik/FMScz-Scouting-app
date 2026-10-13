@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 import PersonIcon from "./PersonIcon";
 import AuthPanel from "./AuthPanel";
@@ -336,7 +337,7 @@ function PlayerOfWeek({ players }) {
       {sorted.map((p, i) => {
         const rating = p.form_ratings[0];
         return (
-          <Link href={`/databaze/${p._id}`} className="week-row" key={p._id}>
+          <Link href={playerHref(p)} className="week-row" key={p._id}>
             <div className="week-rank">{i + 1}</div>
             <Avatar src={p.photo_url} size={40} className="week-avatar" />
             <div className="week-info">
@@ -376,7 +377,7 @@ function XISlotCard({ layout, player }) {
   }
   const rating = player.form_ratings[0];
   return (
-    <Link href={`/databaze/${player._id}`} className={slotClass} style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
+    <Link href={playerHref(player)} className={slotClass} style={{ top: `${layout.top}%`, left: `${layout.left}%` }}>
       <div className="xi-avatar-wrap">
         <Avatar src={player.photo_url} size={60} className="xi-avatar" />
         {player.club_logo_url && <img src={player.club_logo_url} alt="" className="xi-club-badge" />}

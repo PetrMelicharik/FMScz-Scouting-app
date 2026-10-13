@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 import AuthPanel from "./AuthPanel";
 import { supabase } from "../lib/supabaseClient";
@@ -327,7 +328,7 @@ export default function ShortlistView() {
                 <div className="week-list">
                   {sorted.map((r) => (
                     <div className="week-row" key={r.id}>
-                      <Link href={r._row ? `/databaze/${r._row._id}` : "#"} className="shortlist-row-link" onClick={(e) => { if (!r._row) e.preventDefault(); }}>
+                      <Link href={r._row ? playerHref(r._row) : "#"} className="shortlist-row-link" onClick={(e) => { if (!r._row) e.preventDefault(); }}>
                         <Avatar src={r.photo_url} size={40} className="week-avatar" />
                         <div className="week-info">
                           <div className="week-name">{r.player_name}</div>

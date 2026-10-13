@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { playerHref } from "../lib/playerUrl";
 import { STAT_GROUPS, STAT_LABELS, STAT_LABELS_EN, formatStat } from "../lib/statMeta";
 import { stripDiacritics } from "../lib/normalize";
 import { supabase } from "../lib/supabaseClient";
@@ -750,7 +751,7 @@ function TopPanel({ rows, leagues, router }) {
           </div>
           <canvas
             ref={canvasRef}
-            onClick={(e) => { const i = rowAt(e); if (i >= 0) router.push(`/databaze/${chart.list[i]._id}`); }}
+            onClick={(e) => { const i = rowAt(e); if (i >= 0) router.push(playerHref(chart.list[i])); }}
             onMouseMove={(e) => { e.currentTarget.style.cursor = rowAt(e) >= 0 ? "pointer" : "default"; }}
             style={{ display: "block", width: "100%", height: "auto", borderRadius: 12, border: "1px solid #E3E8E2", boxShadow: "0 4px 18px rgba(20,23,26,0.06)" }}
           />
@@ -1247,7 +1248,7 @@ function ScatterPanel({ rows, leagues, router }) {
           <div style={{ position: "relative" }}>
             <canvas
               ref={canvasRef}
-              onClick={(e) => { const h = hitAt(e); if (h) router.push(`/databaze/${h.p._id}`); }}
+              onClick={(e) => { const h = hitAt(e); if (h) router.push(playerHref(h.p)); }}
               onMouseMove={(e) => { const h = hitAt(e); e.currentTarget.style.cursor = h ? "pointer" : "default"; setHover(h); }}
               onMouseLeave={() => setHover(null)}
               style={{ display: "block", width: "100%", height: "auto", borderRadius: 12, border: "1px solid #E3E8E2", boxShadow: "0 4px 18px rgba(20,23,26,0.06)" }}

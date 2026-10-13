@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 
 function simColor(sim) {
@@ -25,7 +26,7 @@ export default function SimilarPlayers({ data }) {
 
           <div className="week-list" style={{ marginTop: 12 }}>
             {data.results.map(({ player: sp, similarity }) => (
-              <Link href={`/databaze/${sp._id}`} className="week-row" key={sp._id}>
+              <Link href={playerHref(sp)} className="week-row" key={sp._id}>
                 <Avatar src={sp.photo_url} size={40} className="week-avatar" />
                 <div className="week-info">
                   <div className="week-name">{sp.player_name}</div>

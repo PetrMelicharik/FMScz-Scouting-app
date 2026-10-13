@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 import { flagUrl } from "../lib/countryFlags";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../lib/statMeta";
@@ -71,7 +72,7 @@ function PlayerSelector({ label, rows, leagues, value, onChange }) {
 
 function PlayerSummaryCard({ p }) {
   return (
-    <Link href={`/databaze/${p._id}`} className="compare-profile-card">
+    <Link href={playerHref(p)} className="compare-profile-card">
       <Avatar src={p.photo_url} size={72} className="compare-avatar" />
       <div className="compare-profile-name">{p.player_name}</div>
       <div className="compare-profile-meta">

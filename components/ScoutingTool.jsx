@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 import { STAT_LABELS, formatStat } from "../lib/statMeta";
 import {
@@ -341,7 +342,7 @@ export default function ScoutingTool() {
                         <tr key={p._id}>
                           <td>{i + 1}</td>
                           <td>
-                            <Link href={`/databaze/${p._id}`} className="scout-player-cell">
+                            <Link href={playerHref(p)} className="scout-player-cell">
                               <Avatar src={p.photo_url} size={32} className="week-avatar" />
                               <div>
                                 <div className="scout-player-name">{p.player_name}</div>
