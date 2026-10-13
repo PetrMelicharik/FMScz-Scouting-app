@@ -18,7 +18,7 @@
 import XLSX from "xlsx";
 import fs from "fs";
 import path from "path";
-import { playerClubKey, playerKey } from "../lib/normalize.js";
+import { playerClubKey, playerKey, slugify } from "../lib/normalize.js";
 
 const SRC = path.join(process.cwd(), "data", "db.xlsx");
 const MEDIA_MAP_FILE = path.join(process.cwd(), "data", "media-map.json");
@@ -82,6 +82,50 @@ const duplicatesRemoved = rowCountBeforeDedup - rows.length;
   const bdayIdx = columns.indexOf("birthday");
   columns.push("player_key");
   rows = rows.map((row) => [...row, playerKey(nameIdx >= 0 ? row[nameIdx] : "", bdayIdx >= 0 ? row[bdayIdx] : "")]);
+}
+
+// Stable profile URL: /databaze/<profile_slug>, e.g. "rajmund-mikus-1996-05-14".
+// The row number used before shifted with every db.xlsx update, so bookmarked
+// or shared links opened a different player. A person with several rows (two
+// leagues / seasons) gets the bare slug on the main row (newest season, most
+// minutes) and "<slug>--<league>" on the others.
+{
+  const nameIdx = columns.indexOf("player_name");
+  const bdayIdx = columns.indexOf("birthday");
+  const leagueIdx = columns.indexOf("league_name");
+  const seasonIdx = columns.indexOf("season");
+  const minIdx = columns.indexOf("minutes_played");
+  const seasonStart = (v) => Number((String(v ?? "").match(/\d{4}/) || [0])[0]);
+  const baseOf = (row) => {
+    const name = slugify(row[nameIdx]) || "hrac";
+    const born = String(row[bdayIdx] ?? "").match(/\d+/g);
+    return born ? `${name}-${born.join("-")}` : name;
+  };
+  const groups = new Map();
+  rows.forEach((row, i) => {
+    const b = baseOf(row);
+    if (!groups.has(b)) groups.set(b, []);
+    groups.get(b).push(i);
+  });
+  const slugs = new Array(rows.length);
+  const used = new Set();
+  for (const [base, idxs] of groups) {
+    idxs.sort((a, b) =>
+      seasonStart(rows[b][seasonIdx]) - seasonStart(rows[a][seasonIdx]) ||
+      (Number(rows[b][minIdx]) || 0) - (Number(rows[a][minIdx]) || 0) ||
+      a - b
+    );
+    idxs.forEach((i, rank) => {
+      let slug = rank === 0 ? base : `${base}--${slugify(rows[i][leagueIdx]) || "liga"}`;
+      if (used.has(slug)) slug = `${slug}-${String(rows[i][seasonIdx] ?? "").replace(/\D/g, "")}`;
+      let n = 2, candidate = slug;
+      while (used.has(candidate)) candidate = `${slug}-${n++}`;
+      used.add(candidate);
+      slugs[i] = candidate;
+    });
+  }
+  columns.push("profile_slug");
+  rows = rows.map((row, i) => [...row, slugs[i]]);
 }
 
 let mediaStats = null;
