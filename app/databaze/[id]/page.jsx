@@ -2,12 +2,12 @@ import BackButton from "../../../components/BackButton";
 import ReportBuilder from "../../../components/ReportBuilder";
 import SimilarPlayers from "../../../components/SimilarPlayers";
 import ShortlistButton from "../../../components/ShortlistButton";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Avatar from "../../../components/Avatar";
 import PitchIcon from "../../../components/PitchIcon";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../../../lib/statMeta";
 import { flagUrl } from "../../../lib/countryFlags";
-import { loadPlayerById } from "../../../lib/playersData";
+import { loadPlayerBySlug } from "../../../lib/playersData";
 import { computePizzaData, computeSimilarPlayersData, computeLeagueRank, CATEGORY_COLORS, CATEGORY_LABELS } from "../../../lib/pizzaData";
 import { classifyMainSlot, POSITION_DOT } from "../../../lib/positionSlot";
 
@@ -217,8 +217,12 @@ function PizzaChart({ data, clubLogoUrl }) {
 }
 
 export default function PlayerPage({ params }) {
-  const p = loadPlayerById(params.id);
-  if (!p) return notFound();
+  // Profile URLs are /databaze/<name-dateofbirth>; old numeric links and
+  // links to a league row that no longer exists redirect to the right place.
+  const found = loadPlayerBySlug(params.id);
+  if (!found) return notFound();
+  if (found.canonical && found.canonical !== decodeURIComponent(params.id)) redirect(`/databaze/${found.canonical}`);
+  const p = found.player;
   const pizza = computePizzaData(p);
   const similar = computeSimilarPlayersData(p);
   const isGoalkeeper = classifyMainSlot(p.tm_position || p.position) === "GK";
