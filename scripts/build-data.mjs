@@ -18,7 +18,7 @@
 import XLSX from "xlsx";
 import fs from "fs";
 import path from "path";
-import { playerClubKey } from "../lib/normalize.js";
+import { playerClubKey, playerKey } from "../lib/normalize.js";
 
 const SRC = path.join(process.cwd(), "data", "db.xlsx");
 const MEDIA_MAP_FILE = path.join(process.cwd(), "data", "media-map.json");
@@ -73,6 +73,16 @@ rows = rows.filter((row) => {
   return true;
 });
 const duplicatesRemoved = rowCountBeforeDedup - rows.length;
+
+// Stable player identity (name + date of birth) — the shortlist stores this
+// instead of relying on the row index, which shifts whenever players are
+// added to db.xlsx.
+{
+  const nameIdx = columns.indexOf("player_name");
+  const bdayIdx = columns.indexOf("birthday");
+  columns.push("player_key");
+  rows = rows.map((row) => [...row, playerKey(nameIdx >= 0 ? row[nameIdx] : "", bdayIdx >= 0 ? row[bdayIdx] : "")]);
+}
 
 let mediaStats = null;
 if (fs.existsSync(MEDIA_MAP_FILE)) {
