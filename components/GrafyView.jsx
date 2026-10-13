@@ -5,6 +5,7 @@ import { STAT_GROUPS, STAT_LABELS, STAT_LABELS_EN, formatStat } from "../lib/sta
 import { stripDiacritics } from "../lib/normalize";
 import { supabase } from "../lib/supabaseClient";
 import { useAuthUser } from "../lib/useAuthUser";
+import { buildPlayerIndex, shortlistKeySet, rowKey } from "../lib/shortlist";
 
 // Each entry: [key, dropdown label (with group), plain label (for chart/axis/title)]
 const EXCLUDED_AXIS_KEYS = new Set([
@@ -600,7 +601,7 @@ function TopPanel({ rows, leagues, router }) {
     let cancelled = false;
     supabase
       .from("shortlist_players")
-      .select("player_id, player_name, club")
+      .select("*")
       .eq("user_id", user.id)
       .then(({ data, error }) => {
         if (cancelled) return;
@@ -610,15 +611,11 @@ function TopPanel({ rows, leagues, router }) {
     return () => { cancelled = true; };
   }, [user]);
 
-  // Matched by name + club, or by stored id + name. Using the name as well
-  // keeps this correct when players.json row order shifts after a database
-  // update (player_id is the row index).
+  // Matched by stable key (name + date of birth), see lib/shortlist.js.
   const isShortlisted = useMemo(() => {
-    const norm = (v) => stripDiacritics(String(v || "").trim().toLowerCase());
-    const byNameClub = new Set(shortlist.map((s) => `${norm(s.player_name)}|${norm(s.club)}`));
-    const nameById = new Map(shortlist.map((s) => [s.player_id, norm(s.player_name)]));
-    return (r) => byNameClub.has(`${norm(r.player_name)}|${norm(r["Current Club"])}`) || nameById.get(r._id) === norm(r.player_name);
-  }, [shortlist]);
+    const keys = shortlistKeySet(shortlist, buildPlayerIndex(rows));
+    return (r) => keys.has(rowKey(r));
+  }, [shortlist, rows]);
 
   // Redraw whenever the data, language, title or stamp setting changes.
   useEffect(() => {

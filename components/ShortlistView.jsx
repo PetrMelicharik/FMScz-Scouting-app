@@ -7,6 +7,7 @@ import { supabase } from "../lib/supabaseClient";
 import { useAuthUser } from "../lib/useAuthUser";
 import { formatStat } from "../lib/statMeta";
 import { flagUrl } from "../lib/countryFlags";
+import { buildPlayerIndex, resolveEntry } from "../lib/shortlist";
 
 const SORT_OPTIONS = [
   ["created_at", "Datum přidání"],
@@ -23,9 +24,9 @@ export default function ShortlistView() {
   const [error, setError] = useState("");
 
   // Extra per-player data the shortlist table itself doesn't store (age,
-  // nationality, rating, goals, assists) — looked up from the same dataset
-  // the rest of the app uses, keyed by player_id (== players.json row _id).
-  const [playersById, setPlayersById] = useState(null);
+  // nationality, rating, goals, assists) — looked up from players.json by the
+  // stable player key (see lib/shortlist.js), NOT by row number.
+  const [playerIndex, setPlayerIndex] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -34,15 +35,14 @@ export default function ShortlistView() {
       .then((payload) => {
         if (cancelled) return;
         const cols = payload.columns;
-        const map = new Map();
-        payload.rows.forEach((r, i) => {
-          const o = {};
+        const list = payload.rows.map((r, i) => {
+          const o = { _id: i };
           cols.forEach((c, ci) => { o[c] = r[ci]; });
-          map.set(i, o);
+          return o;
         });
-        setPlayersById(map);
+        setPlayerIndex(buildPlayerIndex(list));
       })
-      .catch(() => { if (!cancelled) setPlayersById(new Map()); });
+      .catch(() => { if (!cancelled) setPlayerIndex(buildPlayerIndex([])); });
     return () => { cancelled = true; };
   }, []);
 
@@ -80,12 +80,40 @@ export default function ShortlistView() {
 
   // Shortlist rows enriched with age/nationality/rating/goals/assists from
   // players.json, when that's loaded; falls back to "–" otherwise.
+  const resolved = useMemo(() => {
+    if (!rows || !playerIndex) return null;
+    return new Map(rows.map((r) => [r.id, resolveEntry(r, playerIndex)]));
+  }, [rows, playerIndex]);
+
+  // Older entries (saved before player_key existed) get their key filled in
+  // once — after that they're matched exactly, whatever happens to the row
+  // order in future database updates. Needs supabase/shortlist-v2.sql.
+  useEffect(() => {
+    if (!rows || !resolved) return;
+    const todo = rows.filter((r) => !r.player_key && resolved.get(r.id)?.key);
+    if (!todo.length) return;
+    Promise.all(
+      todo.map((r) => {
+        const { key, row } = resolved.get(r.id);
+        return supabase.from("shortlist_players").update({ player_key: key, player_id: row._id }).eq("id", r.id);
+      })
+    ).then((results) => {
+      const failed = results.filter((x) => x.error);
+      if (failed.length) console.warn("Shortlist: player_key se nepodařilo uložit (spuštěn supabase/shortlist-v2.sql?)", failed[0].error);
+    });
+  }, [rows, resolved]);
+
   const enriched = useMemo(() => {
     if (!rows) return [];
     return rows.map((r) => {
-      const p = playersById ? playersById.get(r.player_id) : null;
+      const p = resolved ? resolved.get(r.id)?.row : null;
       return {
         ...r,
+        _row: p,
+        _missing: !!resolved && !p,
+        club: p?.["Current Club"] || r.club,
+        league: p?.league_name || r.league,
+        photo_url: p?.photo_url || r.photo_url,
         age: p?.age ?? null,
         nationality: p?.nationality || "",
         avg_rating_: p?.avg_rating_ ?? null,
@@ -93,7 +121,7 @@ export default function ShortlistView() {
         assists: p?.assists ?? null,
       };
     });
-  }, [rows, playersById]);
+  }, [rows, resolved]);
 
   const positions = useMemo(
     () => [...new Set(enriched.map((r) => r.position).filter(Boolean))].sort(),
@@ -299,12 +327,14 @@ export default function ShortlistView() {
                 <div className="week-list">
                   {sorted.map((r) => (
                     <div className="week-row" key={r.id}>
-                      <Link href={`/databaze/${r.player_id}`} className="shortlist-row-link">
+                      <Link href={r._row ? `/databaze/${r._row._id}` : "#"} className="shortlist-row-link" onClick={(e) => { if (!r._row) e.preventDefault(); }}>
                         <Avatar src={r.photo_url} size={40} className="week-avatar" />
                         <div className="week-info">
                           <div className="week-name">{r.player_name}</div>
                           <div className="week-sub">
-                            {[r.position, r.club, r.league].filter(Boolean).join(" · ") || "–"}
+                            {r._missing
+                              ? "Hráč už v aktuální databázi není"
+                              : [r.position, r.club, r.league].filter(Boolean).join(" · ") || "–"}
                           </div>
                         </div>
                         <div className="week-sub" style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>

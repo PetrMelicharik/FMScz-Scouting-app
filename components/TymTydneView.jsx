@@ -7,6 +7,7 @@ import AuthPanel from "./AuthPanel";
 import { flagUrl } from "../lib/countryFlags";
 import { supabase } from "../lib/supabaseClient";
 import { useAuthUser } from "../lib/useAuthUser";
+import { buildPlayerIndex, shortlistKeySet, rowKey } from "../lib/shortlist";
 
 const ROUND_TOLERANCE_DAYS = 4; // matches within one round can span a few days (Fri–Mon)
 const SHORTLIST_VALUE = "__shortlist__"; // sentinel for the league <select> — not a real league name
@@ -112,7 +113,7 @@ export default function TymTydneView() {
   const isShortlistMode = league === SHORTLIST_VALUE;
 
   const user = useAuthUser();
-  const [shortlistIds, setShortlistIds] = useState(null);
+  const [shortlistEntries, setShortlistEntries] = useState(null);
   const [shortlistLoading, setShortlistLoading] = useState(false);
   const [shortlistError, setShortlistError] = useState("");
 
@@ -123,11 +124,11 @@ export default function TymTydneView() {
     setShortlistError("");
     supabase
       .from("shortlist_players")
-      .select("player_id")
+      .select("*")
       .then(({ data, error }) => {
         if (cancelled) return;
         if (error) setShortlistError(error.message);
-        else setShortlistIds(new Set((data || []).map((r) => r.player_id)));
+        else setShortlistEntries(data || []);
         setShortlistLoading(false);
       });
     return () => { cancelled = true; };
@@ -164,6 +165,13 @@ export default function TymTydneView() {
   const rows = dataset ? dataset.rows : [];
   const leagues = useMemo(() => [...new Set(rows.map((r) => r.league_name).filter(Boolean))].sort(), [rows]);
 
+  // Shortlisted players matched by stable key (name + date of birth) — not by
+  // row number, which changes with every database update.
+  const shortlistIds = useMemo(() => {
+    if (!shortlistEntries) return null;
+    return shortlistKeySet(shortlistEntries, buildPlayerIndex(rows));
+  }, [shortlistEntries, rows]);
+
   // Per league, the date of its own most recently played round — not
   // "today". This way a two-week international break doesn't wipe out
   // Hráč/Tým týdne: a league's last round stays "current" for that league
@@ -189,7 +197,7 @@ export default function TymTydneView() {
       if (leagueMax === undefined) return false;
       if (leagueMax - t > ROUND_TOLERANCE_DAYS * 24 * 60 * 60 * 1000) return false;
       if (isShortlistMode) {
-        if (!shortlistIds || !shortlistIds.has(r._id)) return false;
+        if (!shortlistIds || !shortlistIds.has(rowKey(r))) return false;
       } else if (league && r.league_name !== league) {
         return false;
       }
