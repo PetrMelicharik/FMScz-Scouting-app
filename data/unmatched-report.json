@@ -159,6 +159,12 @@
       "bestScore": 0.66
     },
     {
+      "club": "Velež",
+      "ourPlayer": "Armin Spahić",
+      "bestApiCandidate": "A. Aganspahić",
+      "bestScore": 0.7
+    },
+    {
       "club": "Zrinjski",
       "ourPlayer": "Adi Nalic",
       "bestApiCandidate": "A. Ilic",
@@ -472,6 +478,12 @@
     },
     {
       "club": "KFUM",
+      "ourPlayer": "Momodou Lion Njie",
+      "bestApiCandidate": "B. Njie",
+      "bestScore": 0.75
+    },
+    {
+      "club": "KFUM",
       "ourPlayer": "Moussa Njie",
       "bestApiCandidate": "B. Njie",
       "bestScore": 0.75
@@ -724,6 +736,12 @@
     },
     {
       "club": "Djurgården",
+      "ourPlayer": "Melvin Alexander Vučenović Persson",
+      "bestApiCandidate": "M. Larsson",
+      "bestScore": 0.79
+    },
+    {
+      "club": "Djurgården",
       "ourPlayer": "Mikael Anderson",
       "bestApiCandidate": "A. Andersson",
       "bestScore": 0.67
@@ -741,10 +759,10 @@
       "bestScore": 0.63
     },
     {
-      "club": "Malmö FF",
-      "ourPlayer": "Carl Amadeus Sundgren",
-      "bestApiCandidate": "William Nieroth Lundgren",
-      "bestScore": 0.69
+      "club": "Sirius",
+      "ourPlayer": "Hugo Jonas Andersson Mella",
+      "bestApiCandidate": "Å. Andersson",
+      "bestScore": 0.75
     },
     {
       "club": "Malmö FF",
