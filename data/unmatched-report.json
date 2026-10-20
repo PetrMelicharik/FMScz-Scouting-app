@@ -172,9 +172,9 @@
     },
     {
       "club": "Radnik Bijeljina",
-      "ourPlayer": "Miladin Stevanović",
+      "ourPlayer": "Mirko Vukovic",
       "bestApiCandidate": "M. Šukilović",
-      "bestScore": 0.63
+      "bestScore": 0.75
     },
     {
       "club": "Lokomotiv Sofia 1929",
@@ -256,15 +256,15 @@
     },
     {
       "club": "Rudeš",
-      "ourPlayer": "Slavko Bralić",
-      "bestApiCandidate": "J. Bralic",
-      "bestScore": 0.75
-    },
-    {
-      "club": "Rudeš",
       "ourPlayer": "Xavier Cabrita Fernandes",
       "bestApiCandidate": "J. Fernandes",
       "bestScore": 0.75
+    },
+    {
+      "club": "Lokomotiva Zagreb",
+      "ourPlayer": "Matej Mitrović",
+      "bestApiCandidate": "M. Antunović",
+      "bestScore": 0.67
     },
     {
       "club": "Pardubice",
@@ -283,6 +283,12 @@
       "ourPlayer": "Dominik Kúdelčík",
       "bestApiCandidate": "D. Kúdelčík",
       "bestScore": 1
+    },
+    {
+      "club": "Slavia Praha U21",
+      "ourPlayer": "Ondřej Suchý",
+      "bestApiCandidate": "M. Suchý",
+      "bestScore": 0.75
     },
     {
       "club": "Prostějov",
@@ -304,7 +310,7 @@
     },
     {
       "club": "Baník Ostrava U21",
-      "ourPlayer": "Nikolas Hořínek",
+      "ourPlayer": "Nikolas Horinek",
       "bestApiCandidate": "N. Horinek",
       "bestScore": 1
     },
@@ -375,6 +381,12 @@
       "bestScore": 0.79
     },
     {
+      "club": "Nõmme United",
+      "ourPlayer": "Otto Käis",
+      "bestApiCandidate": "J. Kais",
+      "bestScore": 0.75
+    },
+    {
       "club": "Lahti",
       "ourPlayer": "Luis Montiel Rodriguez",
       "bestApiCandidate": "Tòfol Montiel",
@@ -439,6 +451,12 @@
       "ourPlayer": "Alims Saveljevs",
       "bestApiCandidate": "J. Saveljevs",
       "bestScore": 0.75
+    },
+    {
+      "club": "FS Jelgava",
+      "ourPlayer": "Kristers Neilands",
+      "bestApiCandidate": "K. Bernans",
+      "bestScore": 0.63
     },
     {
       "club": "Rīgas FS",
@@ -579,6 +597,12 @@
       "bestScore": 1
     },
     {
+      "club": "FCSB",
+      "ourPlayer": "Octavian Popescu",
+      "bestApiCandidate": "M. Popescu",
+      "bestScore": 0.75
+    },
+    {
       "club": "Botoşani",
       "ourPlayer": "Alexandru Suchianu",
       "bestApiCandidate": "A. Suchianu",
@@ -670,14 +694,20 @@
     },
     {
       "club": "Loznica",
+      "ourPlayer": "Dimitrije Novićević",
+      "bestApiCandidate": "D. Starcevic",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Loznica",
       "ourPlayer": "Vladimir Petrović",
       "bestApiCandidate": "I. Petrović",
       "bestScore": 0.75
     },
     {
-      "club": "Loznica",
-      "ourPlayer": "Đorđije Pavličić",
-      "bestApiCandidate": "D. Pantić",
+      "club": "Dubočica",
+      "ourPlayer": "David Milićević",
+      "bestApiCandidate": "D. Mladenovic",
       "bestScore": 0.63
     },
     {
@@ -691,6 +721,18 @@
       "ourPlayer": "Aleksandar Trajkovic",
       "bestApiCandidate": "Aleksa Trajkovic",
       "bestScore": 0.9
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Nikola Karaklajić",
+      "bestApiCandidate": "N. Kuveljić",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Spartak Subotica",
+      "ourPlayer": "Stefan Stojanović",
+      "bestApiCandidate": "S. Jovanovic",
+      "bestScore": 0.77
     },
     {
       "club": "Bačka Topola",
@@ -829,6 +871,12 @@
       "ourPlayer": "Alexander Drambayev",
       "bestApiCandidate": "O. Drambaev",
       "bestScore": 0.67
+    },
+    {
+      "club": "LNZ Cherkasy",
+      "ourPlayer": "Maksym Tlumak",
+      "bestApiCandidate": "Y. Tlumak",
+      "bestScore": 0.75
     },
     {
       "club": "Veres",
