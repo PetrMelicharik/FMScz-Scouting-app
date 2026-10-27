@@ -177,10 +177,22 @@
       "bestScore": 0.75
     },
     {
+      "club": "Botev Vratsa",
+      "ourPlayer": "Martin Ivaylov Dimitrov",
+      "bestApiCandidate": "M. Dimitrov",
+      "bestScore": 1
+    },
+    {
       "club": "Lokomotiv Sofia 1929",
       "ourPlayer": "Mitko Mitkov",
       "bestApiCandidate": "M. Yankov",
       "bestScore": 0.63
+    },
+    {
+      "club": "Lokomotiv Sofia 1929",
+      "ourPlayer": "Nikolas Penev",
+      "bestApiCandidate": "N. Penev",
+      "bestScore": 1
     },
     {
       "club": "Lokomotiv Plovdiv",
@@ -217,6 +229,12 @@
       "ourPlayer": "Jose Alves da Silva Neto",
       "bestApiCandidate": "Edson Silva",
       "bestScore": 0.8
+    },
+    {
+      "club": "Septemvri Sofia",
+      "ourPlayer": "Pedro Tavares Ferreira",
+      "bestApiCandidate": "Pedro Ferreira",
+      "bestScore": 1
     },
     {
       "club": "Septemvri Sofia",
@@ -381,12 +399,6 @@
       "bestScore": 0.79
     },
     {
-      "club": "Nõmme United",
-      "ourPlayer": "Otto Käis",
-      "bestApiCandidate": "J. Kais",
-      "bestScore": 0.75
-    },
-    {
       "club": "Lahti",
       "ourPlayer": "Luis Montiel Rodriguez",
       "bestApiCandidate": "Tòfol Montiel",
@@ -459,6 +471,12 @@
       "bestScore": 0.63
     },
     {
+      "club": "Super Nova",
+      "ourPlayer": "Sabaly Balla Diallo Ndiaye",
+      "bestApiCandidate": "I. Ndiaye",
+      "bestScore": 0.75
+    },
+    {
       "club": "Rīgas FS",
       "ourPlayer": "Mor Talla Gaye",
       "bestApiCandidate": "M. Sylla",
@@ -475,6 +493,12 @@
       "ourPlayer": "Kristaps Kārlis Krieviņš",
       "bestApiCandidate": "Kristaps Klavins",
       "bestScore": 0.72
+    },
+    {
+      "club": "HamKam",
+      "ourPlayer": "Simon Rusen",
+      "bestApiCandidate": "S. Nilsen",
+      "bestScore": 0.63
     },
     {
       "club": "Aalesund",
@@ -705,6 +729,12 @@
       "bestScore": 0.75
     },
     {
+      "club": "Napredak",
+      "ourPlayer": "Jovan Stefanović",
+      "bestApiCandidate": "N. Stevanovic",
+      "bestScore": 0.68
+    },
+    {
       "club": "Dubočica",
       "ourPlayer": "David Milićević",
       "bestApiCandidate": "D. Mladenovic",
@@ -760,9 +790,21 @@
     },
     {
       "club": "Naftagas",
-      "ourPlayer": "Marko Stanković",
-      "bestApiCandidate": "M. Arsović",
+      "ourPlayer": "Mirko Nikolašević",
+      "bestApiCandidate": "Marko Kovacevic",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Naftagas",
+      "ourPlayer": "Stefan Gajilović",
+      "bestApiCandidate": "S. Trajkovic",
       "bestScore": 0.67
+    },
+    {
+      "club": "Naftagas",
+      "ourPlayer": "Strahinja Perin",
+      "bestApiCandidate": "Nikola Perić",
+      "bestScore": 0.63
     },
     {
       "club": "Mura",
@@ -859,6 +901,12 @@
       "ourPlayer": "Ture Sandberg",
       "bestApiCandidate": "Miguel Sandberg",
       "bestScore": 0.79
+    },
+    {
+      "club": "Grasshopper",
+      "ourPlayer": "Julian Vonmoos",
+      "bestApiCandidate": "J. von Moos",
+      "bestScore": 0.68
     },
     {
       "club": "Luzern",
