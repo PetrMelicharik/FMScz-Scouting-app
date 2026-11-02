@@ -171,12 +171,6 @@
       "bestScore": 0.7
     },
     {
-      "club": "Radnik Bijeljina",
-      "ourPlayer": "Mirko Vukovic",
-      "bestApiCandidate": "M. Šukilović",
-      "bestScore": 0.75
-    },
-    {
       "club": "Botev Vratsa",
       "ourPlayer": "Martin Ivaylov Dimitrov",
       "bestApiCandidate": "M. Dimitrov",
@@ -261,12 +255,6 @@
       "bestScore": 0.75
     },
     {
-      "club": "Osijek",
-      "ourPlayer": "Arnel Jakupovic",
-      "bestApiCandidate": "A. Matkovic",
-      "bestScore": 0.67
-    },
-    {
       "club": "Rudeš",
       "ourPlayer": "Ivan Djoric",
       "bestApiCandidate": "I. Đorić",
@@ -277,12 +265,6 @@
       "ourPlayer": "Xavier Cabrita Fernandes",
       "bestApiCandidate": "J. Fernandes",
       "bestScore": 0.75
-    },
-    {
-      "club": "Lokomotiva Zagreb",
-      "ourPlayer": "Matej Mitrović",
-      "bestApiCandidate": "M. Antunović",
-      "bestScore": 0.67
     },
     {
       "club": "Pardubice",
@@ -301,12 +283,6 @@
       "ourPlayer": "Dominik Kúdelčík",
       "bestApiCandidate": "D. Kúdelčík",
       "bestScore": 1
-    },
-    {
-      "club": "Slavia Praha U21",
-      "ourPlayer": "Ondřej Suchý",
-      "bestApiCandidate": "M. Suchý",
-      "bestScore": 0.75
     },
     {
       "club": "Prostějov",
@@ -337,6 +313,12 @@
       "ourPlayer": "Basit Lanre Ahmed",
       "bestApiCandidate": "B. Ahmed",
       "bestScore": 1
+    },
+    {
+      "club": "Horsens",
+      "ourPlayer": "Oscar Mandrup",
+      "bestApiCandidate": "A. Mandrup",
+      "bestScore": 0.75
     },
     {
       "club": "Nordsjælland",
@@ -397,6 +379,12 @@
       "ourPlayer": "Willian Gabriel Lins de Sá",
       "bestApiCandidate": "Victor Hugo dos Santos de Sá",
       "bestScore": 0.79
+    },
+    {
+      "club": "Tallinna FC Levadia",
+      "ourPlayer": "Alexandre Lopes Gomes",
+      "bestApiCandidate": "A. Kompus",
+      "bestScore": 0.63
     },
     {
       "club": "Lahti",
@@ -718,12 +706,6 @@
     },
     {
       "club": "Loznica",
-      "ourPlayer": "Dimitrije Novićević",
-      "bestApiCandidate": "D. Starcevic",
-      "bestScore": 0.67
-    },
-    {
-      "club": "Loznica",
       "ourPlayer": "Vladimir Petrović",
       "bestApiCandidate": "I. Petrović",
       "bestScore": 0.75
@@ -754,14 +736,8 @@
     },
     {
       "club": "Spartak Subotica",
-      "ourPlayer": "Nikola Karaklajić",
-      "bestApiCandidate": "N. Kuveljić",
-      "bestScore": 0.63
-    },
-    {
-      "club": "Spartak Subotica",
-      "ourPlayer": "Stefan Stojanović",
-      "bestApiCandidate": "S. Jovanovic",
+      "ourPlayer": "Stefan Jovanovic",
+      "bestApiCandidate": "S. Stojanović",
       "bestScore": 0.77
     },
     {
@@ -775,6 +751,12 @@
       "ourPlayer": "Bogdan Petrovic",
       "bestApiCandidate": "A. Petrović",
       "bestScore": 0.75
+    },
+    {
+      "club": "Jedinstvo Ub",
+      "ourPlayer": "Viktor Petrovic",
+      "bestApiCandidate": "V. Veskovic",
+      "bestScore": 0.72
     },
     {
       "club": "Grafičar",
@@ -883,6 +865,12 @@
       "ourPlayer": "Alex Rasheed",
       "bestApiCandidate": "A. Rasheed",
       "bestScore": 1
+    },
+    {
+      "club": "Varberg",
+      "ourPlayer": "Axel Vidjeskog",
+      "bestApiCandidate": "I. Vidjeskog",
+      "bestScore": 0.75
     },
     {
       "club": "GIF Sundsvall",
