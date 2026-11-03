@@ -16,6 +16,28 @@ function scoreColor(score) {
   return score >= 80 ? "#4CB848" : score >= 60 ? "#D97706" : "#DC2626";
 }
 
+// Transfermarkt contract end comes as "30/06/2027" (DD/MM/YYYY) → "2027-06-30",
+// so it can be compared as a plain string. null when missing/unparseable.
+function parseContractDate(raw) {
+  const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(String(raw ?? "").trim());
+  return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : null;
+}
+
+// "Contract ends by" choices, relative to today: the next four transfer-window
+// deadlines (30 June / 31 December). Players whose contract already ended
+// (free agents) are included too, since their date is before the deadline.
+function contractDeadlineOptions() {
+  const today = new Date().toISOString().slice(0, 10);
+  const out = [];
+  for (let y = new Date().getFullYear(); out.length < 4; y++) {
+    for (const [md, label] of [["06-30", "30. 6."], ["12-31", "31. 12."]]) {
+      const iso = `${y}-${md}`;
+      if (iso >= today && out.length < 4) out.push([iso, `Do ${label} ${y}`]);
+    }
+  }
+  return out;
+}
+
 export default function ScoutingTool() {
   const [dataset, setDataset] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -68,6 +90,8 @@ export default function ScoutingTool() {
   const [league, setLeague] = useState("");
   const [minMinutes, setMinMinutes] = useState(String(MIN_MINUTES));
   const [maxValueM, setMaxValueM] = useState("");
+  const [contractBy, setContractBy] = useState(""); // ISO date "YYYY-MM-DD" — contract ends on/before it
+  const contractOptions = useMemo(() => contractDeadlineOptions(), []);
   const [selectedStats, setSelectedStats] = useState(new Set());
   const [topN, setTopN] = useState(20);
   const [sortKey, setSortKey] = useState("score");
@@ -87,6 +111,7 @@ export default function ScoutingTool() {
     if (params.has("league")) setLeague(params.get("league"));
     if (params.has("min")) setMinMinutes(params.get("min"));
     if (params.has("maxv")) setMaxValueM(params.get("maxv"));
+    if (params.has("contract")) setContractBy(params.get("contract"));
     if (params.has("ageMin")) setAgeMin(Number(params.get("ageMin")));
     if (params.has("ageMax")) setAgeMax(Number(params.get("ageMax")));
     if (params.has("stats")) setSelectedStats(new Set(params.get("stats").split(",").filter(Boolean)));
@@ -103,6 +128,7 @@ export default function ScoutingTool() {
     if (league) params.set("league", league);
     if (minMinutes !== String(MIN_MINUTES)) params.set("min", minMinutes);
     if (maxValueM !== "") params.set("maxv", maxValueM);
+    if (contractBy) params.set("contract", contractBy);
     if (ageMin !== null) params.set("ageMin", String(ageMin));
     if (ageMax !== null) params.set("ageMax", String(ageMax));
     if (selectedStats.size) params.set("stats", [...selectedStats].join(","));
@@ -112,7 +138,7 @@ export default function ScoutingTool() {
     const qs = params.toString();
     const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
     window.history.replaceState(null, "", url);
-  }, [group, league, minMinutes, maxValueM, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
+  }, [group, league, minMinutes, maxValueM, contractBy, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
 
   // When the position group changes, drop any selected stats that no longer
   // belong to that group's stat catalog (GK vs outfield lists don't overlap).
@@ -148,9 +174,13 @@ export default function ScoutingTool() {
         const v = parseMarketValue(r.market_value);
         if (v === null || v > maxValue) return false;
       }
+      if (contractBy) {
+        const end = parseContractDate(r.contract_until);
+        if (!end || end > contractBy) return false;
+      }
       return true;
     });
-  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM]);
+  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy]);
 
   const statKeys = [...selectedStats];
 
@@ -243,6 +273,14 @@ export default function ScoutingTool() {
               <div className="field">
                 <div className="field-label">Max. tržní hodnota (mil. €)</div>
                 <input type="number" step="0.1" min="0" value={maxValueM} onChange={(e) => setMaxValueM(e.target.value)} placeholder="bez omezení" />
+              </div>
+              <div className="field">
+                <div className="field-label">Končící smlouva</div>
+                <select value={contractBy} onChange={(e) => setContractBy(e.target.value)}>
+                  <option value="">Bez omezení</option>
+                  {contractOptions.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+                  {contractBy && !contractOptions.some(([v]) => v === contractBy) && <option value={contractBy}>Do {contractBy}</option>}
+                </select>
               </div>
             </div>
 
