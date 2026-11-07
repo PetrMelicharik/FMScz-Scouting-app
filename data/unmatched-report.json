@@ -147,6 +147,12 @@
       "bestScore": 0.63
     },
     {
+      "club": "Austria Wien II",
+      "ourPlayer": "Noah Vinko Botić",
+      "bestApiCandidate": "Tomy Baotic",
+      "bestScore": 0.69
+    },
+    {
       "club": "Schwarz-Weiß Bregenz",
       "ourPlayer": "Lucas Soares Dantas",
       "bestApiCandidate": "L. Sealey",
@@ -165,16 +171,40 @@
       "bestScore": 0.7
     },
     {
+      "club": "Velež",
+      "ourPlayer": "Emir Velić",
+      "bestApiCandidate": "E. Velić",
+      "bestScore": 1
+    },
+    {
+      "club": "Velež",
+      "ourPlayer": "Kenan Đuliman",
+      "bestApiCandidate": "K. Djuliman",
+      "bestScore": 0.91
+    },
+    {
       "club": "Zrinjski",
       "ourPlayer": "Adi Nalic",
       "bestApiCandidate": "A. Ilic",
       "bestScore": 0.7
     },
     {
+      "club": "Široki Brijeg",
+      "ourPlayer": "Ivan Puljic",
+      "bestApiCandidate": "I. Puljić",
+      "bestScore": 1
+    },
+    {
       "club": "Botev Vratsa",
       "ourPlayer": "Martin Ivaylov Dimitrov",
       "bestApiCandidate": "M. Dimitrov",
       "bestScore": 1
+    },
+    {
+      "club": "Lokomotiv Sofia 1929",
+      "ourPlayer": "Cauê Caruso Alves",
+      "bestApiCandidate": "Caue Caruzo",
+      "bestScore": 0.88
     },
     {
       "club": "Lokomotiv Sofia 1929",
@@ -255,6 +285,12 @@
       "bestScore": 0.75
     },
     {
+      "club": "Slavia Sofia",
+      "ourPlayer": "Martin Hristinov Georgiev",
+      "bestApiCandidate": "M. Georgiev",
+      "bestScore": 1
+    },
+    {
       "club": "Rudeš",
       "ourPlayer": "Ivan Djoric",
       "bestApiCandidate": "I. Đorić",
@@ -285,6 +321,12 @@
       "bestScore": 1
     },
     {
+      "club": "Baník Ostrava U21",
+      "ourPlayer": "Nikolas Hořínek",
+      "bestApiCandidate": "N. Horinek",
+      "bestScore": 1
+    },
+    {
       "club": "Prostějov",
       "ourPlayer": "Martin Vaňák",
       "bestApiCandidate": "M. Černák",
@@ -301,12 +343,6 @@
       "ourPlayer": "Mustapha Badjie",
       "bestApiCandidate": "M. Baafi",
       "bestScore": 0.63
-    },
-    {
-      "club": "Baník Ostrava U21",
-      "ourPlayer": "Nikolas Horinek",
-      "bestApiCandidate": "N. Horinek",
-      "bestScore": 1
     },
     {
       "club": "Vlašim",
@@ -705,6 +741,12 @@
       "bestScore": 0.63
     },
     {
+      "club": "Teleoptik",
+      "ourPlayer": "Dušan Radović",
+      "bestApiCandidate": "D. Radovic",
+      "bestScore": 1
+    },
+    {
       "club": "Loznica",
       "ourPlayer": "Vladimir Petrović",
       "bestApiCandidate": "I. Petrović",
@@ -801,6 +843,12 @@
       "bestScore": 0.67
     },
     {
+      "club": "Västerås SK",
+      "ourPlayer": "Moussa Diallo",
+      "bestApiCandidate": "M. Diagne",
+      "bestScore": 0.63
+    },
+    {
       "club": "Djurgården",
       "ourPlayer": "Melvin Alexander Vučenović Persson",
       "bestApiCandidate": "M. Larsson",
@@ -849,6 +897,24 @@
       "bestScore": 0.72
     },
     {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "Johan Bengtsson",
+      "bestApiCandidate": "E. Bengtsson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "John Mille Vincent Eriksson",
+      "bestApiCandidate": "N. Eriksson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "GIF Sundsvall",
+      "ourPlayer": "Ture Sandberg",
+      "bestApiCandidate": "Miguel Sandberg",
+      "bestScore": 0.79
+    },
+    {
       "club": "Landskrona",
       "ourPlayer": "Enes Habibovic",
       "bestApiCandidate": "E. Hebibovic",
@@ -871,24 +937,6 @@
       "ourPlayer": "Axel Vidjeskog",
       "bestApiCandidate": "I. Vidjeskog",
       "bestScore": 0.75
-    },
-    {
-      "club": "GIF Sundsvall",
-      "ourPlayer": "Johan Bengtsson",
-      "bestApiCandidate": "E. Bengtsson",
-      "bestScore": 0.75
-    },
-    {
-      "club": "GIF Sundsvall",
-      "ourPlayer": "John Mille Vincent Eriksson",
-      "bestApiCandidate": "N. Eriksson",
-      "bestScore": 0.75
-    },
-    {
-      "club": "GIF Sundsvall",
-      "ourPlayer": "Ture Sandberg",
-      "bestApiCandidate": "Miguel Sandberg",
-      "bestScore": 0.79
     },
     {
       "club": "Grasshopper",
@@ -919,6 +967,12 @@
       "ourPlayer": "Pavlo Bahrii",
       "bestApiCandidate": "Pavlo Bagriy",
       "bestScore": 0.75
+    },
+    {
+      "club": "Karpaty",
+      "ourPlayer": "Volodymyr Antoniuk",
+      "bestApiCandidate": "V. Antonyuk",
+      "bestScore": 0.91
     },
     {
       "club": "Zorya",
