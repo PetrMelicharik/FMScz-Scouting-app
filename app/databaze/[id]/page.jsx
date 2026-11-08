@@ -294,7 +294,7 @@ export default function PlayerPage({ params }) {
             ))}
           </div>
           <p className="chart-note" style={{ textAlign: "center" }}>
-            Percentil vůči {pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize {p.league_name} (statistiky na 90 minut), min. 300 odehraných minut.
+            Percentil vůči {pizza.poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize {p.league_name} (statistiky na 90 minut), min. {pizza.minMinutes} odehraných minut (40 % minut odehratelných v lize).
           </p>
         </div>
       )}
@@ -304,7 +304,7 @@ export default function PlayerPage({ params }) {
           <div className="empty-state">
             <div className="empty-title">Graf zatím není dostupný</div>
             <div className="empty-sub">
-              Hráč má odehráno jen {pizza.minutesPlayed} minut — pro srovnání se skupinou ({pizza.groupLabel}) je potřeba alespoň 300 minut.
+              Hráč má odehráno jen {pizza.minutesPlayed} minut — pro srovnání se skupinou ({pizza.groupLabel}) je potřeba alespoň {pizza.minMinutes} minut (40 % minut odehratelných v lize).
             </div>
           </div>
         </div>

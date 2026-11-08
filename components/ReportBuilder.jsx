@@ -27,8 +27,8 @@ const REPORT_TEXT = {
     scoutReport: "Scoutský report",
     playerNamePlaceholder: "Jméno hráče",
     formTitle: (n) => `Forma (posledních ${n} zápasů)`,
-    pizzaCaption: (poolSize, league) =>
-      `Percentil vůči ${poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${league} (statistiky na 90 minut), min. 300 odehraných minut.`,
+    pizzaCaption: (poolSize, league, minMinutes = 300) =>
+      `Percentil vůči ${poolSize.toLocaleString("cs-CZ")} hráčům se stejnou pozicí v lize ${league} (statistiky na 90 minut), min. ${minMinutes} odehraných minut.`,
     numberLocale: "cs-CZ",
   },
   en: {
@@ -46,8 +46,8 @@ const REPORT_TEXT = {
     scoutReport: "Scout report",
     playerNamePlaceholder: "Player name",
     formTitle: (n) => `Form (last ${n} matches)`,
-    pizzaCaption: (poolSize, league) =>
-      `Percentile vs. ${poolSize.toLocaleString("en-US")} players in the same position in ${league} (stats per 90 minutes), min. 300 minutes played.`,
+    pizzaCaption: (poolSize, league, minMinutes = 300) =>
+      `Percentile vs. ${poolSize.toLocaleString("en-US")} players in the same position in ${league} (stats per 90 minutes), min. ${minMinutes} minutes played.`,
     numberLocale: "en-US",
   },
 };
@@ -367,7 +367,7 @@ function ReportCard({ form, pizza, player, lang }) {
           <g transform={`translate(${col1W + gap + col2W + gap}, 0)`}>
             <MiniPizza
               data={pizza} size={pizzaSize}
-              caption={t.pizzaCaption(pizza.poolSize, form.league)}
+              caption={t.pizzaCaption(pizza.poolSize, form.league, pizza.minMinutes)}
               lang={lang}
             />
           </g>

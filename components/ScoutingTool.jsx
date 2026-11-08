@@ -6,7 +6,8 @@ import Avatar from "./Avatar";
 import { STAT_LABELS, formatStat } from "../lib/statMeta";
 import {
   classifyPizzaGroup, PIZZA_GROUP_LABELS, CATEGORY_LABELS, CATEGORY_COLORS,
-  SCOUTING_OUTFIELD_STATS, GK_STATS, MIN_MINUTES, rankPlayersByStats, parseMarketValue,
+  SCOUTING_OUTFIELD_STATS, GK_STATS, rankPlayersByStats, parseMarketValue,
+  buildLeagueMinMinutes, minMinutesFor,
 } from "../lib/pizzaShared";
 import { SPECIFIC_POSITIONS, matchesSpecificPositions } from "../lib/positions";
 import PositionPicker from "./PositionPicker";
@@ -90,7 +91,9 @@ export default function ScoutingTool() {
   const [ageMin, setAgeMin] = useState(null);
   const [ageMax, setAgeMax] = useState(null);
   const [league, setLeague] = useState("");
-  const [minMinutes, setMinMinutes] = useState(String(MIN_MINUTES));
+  // Prázdné = hranice podle ligy (40 % odehratelných minut, min. 300); číslo = pro všechny stejně
+  const [minMinutes, setMinMinutes] = useState("");
+  const leagueMin = useMemo(() => buildLeagueMinMinutes(rows.map((r) => [r.league_name, r.minutes_played])), [rows]);
   const [maxValueM, setMaxValueM] = useState("");
   const [contractBy, setContractBy] = useState(""); // ISO date "YYYY-MM-DD" — contract ends on/before it
   const contractOptions = useMemo(() => contractDeadlineOptions(), []);
@@ -136,7 +139,7 @@ export default function ScoutingTool() {
     const params = new URLSearchParams();
     if (group) params.set("group", group);
     if (league) params.set("league", league);
-    if (minMinutes !== String(MIN_MINUTES)) params.set("min", minMinutes);
+    if (minMinutes !== "") params.set("min", minMinutes);
     if (maxValueM !== "") params.set("maxv", maxValueM);
     if (contractBy) params.set("contract", contractBy);
     if (foot) params.set("foot", foot);
@@ -182,7 +185,7 @@ export default function ScoutingTool() {
 
   const pool = useMemo(() => {
     if (!group) return [];
-    const minMin = Number(minMinutes) || 0;
+    const pevneMin = minMinutes !== "" ? Number(minMinutes) || 0 : null;
     const maxValue = maxValueM !== "" ? Number(maxValueM) * 1_000_000 : null;
     return rows.filter((r) => {
       // Zvolené konkrétní pozice nahrazují skupinu pozic (skupina pak určuje
@@ -190,7 +193,7 @@ export default function ScoutingTool() {
       if (activeSpec.length) {
         if (!matchesSpecificPositions(r, activeSpec, includeOther)) return false;
       } else if (classifyPizzaGroup(r.tm_position || r.position) !== group) return false;
-      if ((r.minutes_played ?? 0) < minMin) return false;
+      if ((r.minutes_played ?? 0) < (pevneMin ?? minMinutesFor(leagueMin, r.league_name))) return false;
       if ((r.age ?? -Infinity) < ageMinValue || (r.age ?? Infinity) > ageMaxValue) return false;
       if (league && r.league_name !== league) return false;
       if (maxValue !== null) {
@@ -209,7 +212,7 @@ export default function ScoutingTool() {
       }
       return true;
     });
-  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy, foot, activeSpec.join("|"), includeOther]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [rows, leagueMin, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy, foot, activeSpec.join("|"), includeOther]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const statKeys = [...selectedStats];
 
@@ -297,7 +300,9 @@ export default function ScoutingTool() {
               </div>
               <div className="field">
                 <div className="field-label">Min. odehraných minut</div>
-                <input type="number" value={minMinutes} onChange={(e) => setMinMinutes(e.target.value)} placeholder={String(MIN_MINUTES)} />
+                <input type="number" value={minMinutes} onChange={(e) => setMinMinutes(e.target.value)}
+                  placeholder={league ? `podle ligy (${minMinutesFor(leagueMin, league)})` : "podle ligy"}
+                  title="Prázdné = 40 % minut odehratelných v lize hráče (min. 300). Číslo = stejná hranice pro všechny." />
               </div>
               <div className="field">
                 <div className="field-label">Max. tržní hodnota (mil. €)</div>

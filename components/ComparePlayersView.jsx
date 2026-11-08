@@ -6,7 +6,7 @@ import Avatar from "./Avatar";
 import { flagUrl } from "../lib/countryFlags";
 import { STAT_GROUPS, STAT_LABELS, formatStat } from "../lib/statMeta";
 import {
-  classifyPizzaGroup, computePizzaFromPool, MIN_MINUTES,
+  classifyPizzaGroup, computePizzaFromPool, MIN_MINUTES, buildLeagueMinMinutes, minMinutesFor,
   CATEGORY_COLORS, CATEGORY_LABELS, PIZZA_GROUP_LABELS,
 } from "../lib/pizzaShared";
 
@@ -245,12 +245,18 @@ export default function ComparePlayersView() {
   const playerB = selB.playerId ? rows.find((r) => String(r._id) === String(selB.playerId)) : null;
   const canCompare = !!playerA && !!playerB;
 
+  // Hranice minut podle ligy (40 % odehratelných minut, min. 300)
+  const leagueMin = useMemo(() => buildLeagueMinMinutes(rows.map((r) => [r.league_name, r.minutes_played])), [rows]);
+  const minA = playerA ? minMinutesFor(leagueMin, playerA.league_name) : MIN_MINUTES;
+  const minB = playerB ? minMinutesFor(leagueMin, playerB.league_name) : MIN_MINUTES;
+
   function buildPool(player) {
     const group = classifyPizzaGroup(player.tm_position || player.position);
     if (!group) return { group: null, pool: [] };
+    const minMinutes = minMinutesFor(leagueMin, player.league_name);
     const pool = rows.filter((r) => {
       if (r.league_name !== player.league_name) return false;
-      if ((r.minutes_played ?? 0) < MIN_MINUTES) return false;
+      if ((r.minutes_played ?? 0) < minMinutes) return false;
       return classifyPizzaGroup(r.tm_position || r.position) === group;
     });
     return { group, pool };
@@ -260,8 +266,8 @@ export default function ComparePlayersView() {
   if (compared && canCompare) {
     const { group: groupA, pool: poolA } = buildPool(playerA);
     const { group: groupB, pool: poolB } = buildPool(playerB);
-    const insufficientA = (playerA.minutes_played ?? 0) < MIN_MINUTES;
-    const insufficientB = (playerB.minutes_played ?? 0) < MIN_MINUTES;
+    const insufficientA = (playerA.minutes_played ?? 0) < minA;
+    const insufficientB = (playerB.minutes_played ?? 0) < minB;
     const typeA = groupA === "GK" ? "GK" : groupA ? "OUTFIELD" : null;
     const typeB = groupB === "GK" ? "GK" : groupB ? "OUTFIELD" : null;
 
@@ -336,10 +342,10 @@ export default function ComparePlayersView() {
                     <div className="empty-title">Graf zatím není dostupný</div>
                     <div className="empty-sub">
                       {pizzaResult.insufficientA && pizzaResult.insufficientB
-                        ? "Oba hráči mají odehráno méně než 300 minut."
+                        ? `Oba hráči mají odehráno méně minut, než je potřeba (${playerA.player_name}: ${minA} min., ${playerB.player_name}: ${minB} min. – 40 % minut odehratelných v lize).`
                         : pizzaResult.insufficientA
-                        ? `${playerA.player_name} má odehráno méně než 300 minut.`
-                        : `${playerB.player_name} má odehráno méně než 300 minut.`}
+                        ? `${playerA.player_name} má odehráno méně než ${minA} minut (40 % minut odehratelných v jeho lize).`
+                        : `${playerB.player_name} má odehráno méně než ${minB} minut (40 % minut odehratelných v jeho lize).`}
                     </div>
                   </div>
                 )}
@@ -376,7 +382,7 @@ export default function ComparePlayersView() {
                     </div>
                     <p className="chart-note" style={{ textAlign: "center" }}>
                       Každý hráč je srovnán se skupinou hráčů své vlastní pozice ({PIZZA_GROUP_LABELS[pizzaResult.groupA]}
-                      {pizzaResult.groupA !== pizzaResult.groupB ? ` / ${PIZZA_GROUP_LABELS[pizzaResult.groupB]}` : ""}) ve své vlastní lize, min. 300 odehraných minut.
+                      {pizzaResult.groupA !== pizzaResult.groupB ? ` / ${PIZZA_GROUP_LABELS[pizzaResult.groupB]}` : ""}) ve své vlastní lize, min. 40 % minut odehratelných v lize ({playerA.league_name}: {minA} min.{playerB.league_name !== playerA.league_name ? `, ${playerB.league_name}: ${minB} min.` : ""}).
                     </p>
                   </>
                 )}

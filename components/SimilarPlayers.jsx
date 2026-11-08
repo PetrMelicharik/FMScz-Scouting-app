@@ -41,7 +41,7 @@ export default function SimilarPlayers({ data }) {
             ))}
           </div>
           <p className="chart-note">
-            Shoda podle percentilového profilu hráčů ve skupině „{data.groupLabel}" napříč ligami (statistiky na 90 minut), min. 300 odehraných minut.
+            Shoda podle percentilového profilu hráčů ve skupině „{data.groupLabel}" napříč ligami (statistiky na 90 minut), min. 40 % minut odehratelných v lize daného hráče (nejméně 300).
           </p>
         </div>
       )}
