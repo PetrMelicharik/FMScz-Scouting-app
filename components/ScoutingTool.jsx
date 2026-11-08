@@ -92,6 +92,8 @@ export default function ScoutingTool() {
   const [maxValueM, setMaxValueM] = useState("");
   const [contractBy, setContractBy] = useState(""); // ISO date "YYYY-MM-DD" — contract ends on/before it
   const contractOptions = useMemo(() => contractDeadlineOptions(), []);
+  // Preferovaná noha: "" = bez omezení, "right"/"left" zahrnují i obounohé, "both" = jen obounozí
+  const [foot, setFoot] = useState("");
   const [selectedStats, setSelectedStats] = useState(new Set());
   const [topN, setTopN] = useState(20);
   const [sortKey, setSortKey] = useState("score");
@@ -112,6 +114,7 @@ export default function ScoutingTool() {
     if (params.has("min")) setMinMinutes(params.get("min"));
     if (params.has("maxv")) setMaxValueM(params.get("maxv"));
     if (params.has("contract")) setContractBy(params.get("contract"));
+    if (params.has("foot")) setFoot(params.get("foot"));
     if (params.has("ageMin")) setAgeMin(Number(params.get("ageMin")));
     if (params.has("ageMax")) setAgeMax(Number(params.get("ageMax")));
     if (params.has("stats")) setSelectedStats(new Set(params.get("stats").split(",").filter(Boolean)));
@@ -129,6 +132,7 @@ export default function ScoutingTool() {
     if (minMinutes !== String(MIN_MINUTES)) params.set("min", minMinutes);
     if (maxValueM !== "") params.set("maxv", maxValueM);
     if (contractBy) params.set("contract", contractBy);
+    if (foot) params.set("foot", foot);
     if (ageMin !== null) params.set("ageMin", String(ageMin));
     if (ageMax !== null) params.set("ageMax", String(ageMax));
     if (selectedStats.size) params.set("stats", [...selectedStats].join(","));
@@ -138,7 +142,7 @@ export default function ScoutingTool() {
     const qs = params.toString();
     const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
     window.history.replaceState(null, "", url);
-  }, [group, league, minMinutes, maxValueM, contractBy, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
+  }, [group, league, minMinutes, maxValueM, contractBy, foot, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
 
   // When the position group changes, drop any selected stats that no longer
   // belong to that group's stat catalog (GK vs outfield lists don't overlap).
@@ -178,9 +182,15 @@ export default function ScoutingTool() {
         const end = parseContractDate(r.contract_until);
         if (!end || end > contractBy) return false;
       }
+      if (foot) {
+        // Hráč bez známé nohy při zvoleném filtru vypadne (stejně jako u hodnoty a smlouvy)
+        const f = (r.foot || "").toLowerCase();
+        if (!f) return false;
+        if (foot === "both" ? f !== "both" : f !== foot && f !== "both") return false;
+      }
       return true;
     });
-  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy]);
+  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy, foot]);
 
   const statKeys = [...selectedStats];
 
@@ -280,6 +290,15 @@ export default function ScoutingTool() {
                   <option value="">Bez omezení</option>
                   {contractOptions.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
                   {contractBy && !contractOptions.some(([v]) => v === contractBy) && <option value={contractBy}>Do {contractBy}</option>}
+                </select>
+              </div>
+              <div className="field">
+                <div className="field-label">Preferovaná noha</div>
+                <select value={foot} onChange={(e) => setFoot(e.target.value)}>
+                  <option value="">Bez omezení</option>
+                  <option value="right">Pravá</option>
+                  <option value="left">Levá</option>
+                  <option value="both">Obě</option>
                 </select>
               </div>
             </div>
