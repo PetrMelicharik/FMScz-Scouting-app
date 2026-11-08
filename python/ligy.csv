@@ -1,33 +1,33 @@
-﻿soubor;league_name;league_nationality
-austria-bundesliga;Austrian Bundesliga;Austria
-austria-2-liga;Austrian 2. Liga;Austria
-bosnia-and-herzegovina-premier-league-of-bosnia;Bosnian WWIN Liga BiH;Bosnia and Herzegovina
-bulgaria-first-league;Bulgarian Parva Liga;Bulgaria
-croatia-prva-hnl;Croatian HNL;Croatia
-czech-republic-first-league;Czech Chance Liga;Czechia
-czech-republic-fnl;Czech Chance Národní Liga;Czechia
-denmark-superliga;Danish Superliga;Denmark
-denmark-1st-division;Danish Betinia Liga;Denmark
-estonia-meistriliiga;Estonian Premium Liiga;Estonia
-finland-veikkausliiga;Finland Veikkausliiga;Finland
-poland-ekstraklasa;Polish Ekstraklasa;Poland
-poland-1-liga;Polish Betclic 1. Liga;Poland
-hungary-nb-i;Hungarian Fizz Liga;Hungary
-latvia-virsliga;Latvian Virsliga;Latvia
-norway-eliteserien;Eliteserien;Norway
-norway-first-division;Norway First Division;Norway
-romania-liga-i;Romanian SuperLiga;Romania
-serbia-superliga;Serbian Mozzart Bet Superliga;Serbia
-serbia-prva-liga;Serbian Mozzart Bet Prva Liga;Serbia
-slovakia-super-liga;Slovak Niké Liga;Slovakia
-slovenia-prvaliga;Slovenian PrvaLiga;Slovenia
-sweden-allsvenskan;Sweden Allsvenskan;Sweden
-sweden-superettan;Sweden Superettan;Sweden
-switzerland-super-league;Swiss Super League;Switzerland
-ukraine-ukrainian-premier-league;Ukraine Premier League;Ukraine
-albania-superliga;Albanian Superliga;Albania
-armenia-armenian-premier-league;Armenian Premier League;Armenia
-faroe-islands-faroe-islands-premier-league;Faroe Islands Premier League;Faroe Islands
-iceland-urvalsdeild;Iceland Besta deild;Iceland
-lithuania-a-lyga;Lithuanian A Lyga;Lithuania
-montenegro-montenegrin-first-league;Montenegrin First League;Montenegro
+﻿soubor;league_name;league_nationality;tm_kod
+austria-bundesliga;Austrian Bundesliga;Austria;A1
+austria-2-liga;Austrian 2. Liga;Austria;A2
+bosnia-and-herzegovina-premier-league-of-bosnia;Bosnian WWIN Liga BiH;Bosnia and Herzegovina;BOS1
+bulgaria-first-league;Bulgarian Parva Liga;Bulgaria;BU1
+croatia-prva-hnl;Croatian HNL;Croatia;KR1
+czech-republic-first-league;Czech Chance Liga;Czechia;TS1
+czech-republic-fnl;Czech Chance Národní Liga;Czechia;TS2
+denmark-superliga;Danish Superliga;Denmark;DK1
+denmark-1st-division;Danish Betinia Liga;Denmark;DK2
+estonia-meistriliiga;Estonian Premium Liiga;Estonia;EST1
+finland-veikkausliiga;Finland Veikkausliiga;Finland;FI1
+poland-ekstraklasa;Polish Ekstraklasa;Poland;PL1
+poland-1-liga;Polish Betclic 1. Liga;Poland;PL2
+hungary-nb-i;Hungarian Fizz Liga;Hungary;UNG1
+latvia-virsliga;Latvian Virsliga;Latvia;LET1
+norway-eliteserien;Eliteserien;Norway;NO1
+norway-first-division;Norway First Division;Norway;NO2
+romania-liga-i;Romanian SuperLiga;Romania;RO1
+serbia-superliga;Serbian Mozzart Bet Superliga;Serbia;SER1
+serbia-prva-liga;Serbian Mozzart Bet Prva Liga;Serbia;SER2
+slovakia-super-liga;Slovak Niké Liga;Slovakia;SLO1
+slovenia-prvaliga;Slovenian PrvaLiga;Slovenia;SL1
+sweden-allsvenskan;Sweden Allsvenskan;Sweden;SE1
+sweden-superettan;Sweden Superettan;Sweden;SE2
+switzerland-super-league;Swiss Super League;Switzerland;C1
+ukraine-ukrainian-premier-league;Ukraine Premier League;Ukraine;UKR1
+albania-superliga;Albanian Superliga;Albania;ALB1
+armenia-armenian-premier-league;Armenian Premier League;Armenia;ARM1
+faroe-islands-faroe-islands-premier-league;Faroe Islands Premier League;Faroe Islands;FARO
+iceland-urvalsdeild;Iceland Besta deild;Iceland;IS1
+lithuania-a-lyga;Lithuanian A Lyga;Lithuania;LI1
+montenegro-montenegrin-first-league;Montenegrin First League;Montenegro;MNE1

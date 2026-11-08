@@ -78,8 +78,23 @@ bys ji zakládal znovu od nuly.
 CSV soubory nejsou na GitHubu (jsou jen u tebe v počítači).
 
 **Nová liga:** přidej řádek do `python/ligy.csv` (začátek názvu CSV souboru
-před `-players-`, název ligy, země) a do `config/media-aliases.mjs` ID ligy
-z API-Football.
+před `-players-`, název ligy, země, kód soutěže na Transfermarktu – je v adrese
+stránky soutěže, např. `TS1` v `.../wettbewerb/TS1`) a do
+`config/media-aliases.mjs` ID ligy z API-Football.
+
+## Údaje z Transfermarktu (tržní hodnota, pozice, smlouva, noha)
+
+Dvojklikni na **`aktualizovat_transfermarkt.bat`** (trvá zhruba 1–2 hodiny).
+Skript `python/transfermarkt.py` projde podrobné soupisky všech klubů na
+Transfermarktu, hráče spáruje podle jména a data narození a výsledek uloží do
+`data/tm_data.json`. Po tvém potvrzení (A/N) ho pošle na GitHub.
+
+- Když ho přerušíš nebo tě Transfermarkt dočasně zablokuje, spusť ho znovu –
+  pokračuje tam, kde skončil.
+- Hráče, kteří v soupisce svého klubu nejsou (např. po přestupu) a odehráli
+  aspoň minutu, dohledá přes jejich profil.
+- Kluby, které se nespárují automaticky, se doplňují do `python/tm_kluby.csv`
+  (náš název klubu; ID klubu na Transfermarktu z adresy `.../verein/ID`).
 
 ## Fotky hráčů, loga klubů a lig (API-Football)
 

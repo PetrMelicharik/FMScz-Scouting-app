@@ -6,3 +6,4 @@ data/media-cache/
 .vercel
 data/footystats_csv/
 __pycache__/
+data/tm_cache/

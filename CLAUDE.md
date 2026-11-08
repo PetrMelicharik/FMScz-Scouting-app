@@ -40,8 +40,14 @@ scouting tool, tvorbu reportů a osobní shortlist (seznam sledovaných hráčů
   v `config/media-aliases.mjs`.
 - `aktualizovat_databazi.bat` – poloautomat: git pull → import CSV ze Stažených
   → build_db.py → potvrzení → push db.xlsx.
-- `data/tm_data.json` – doplňková data z lokálního Transfermarkt scraperu
-  (pozice, tržní hodnota, smlouva, noha).
+- `data/tm_data.json` – údaje z Transfermarktu (pozice, tržní hodnota, smlouva,
+  noha). Generuje ho `python/transfermarkt.py` (spouští se lokálně přes
+  `aktualizovat_transfermarkt.bat`, ne na GitHubu – Transfermarkt scraping
+  nepovoluje, je to Petrovo osobní použití). Čte soupisky klubů (kód soutěže
+  `tm_kod` v `python/ligy.csv`, ruční ID klubů v `python/tm_kluby.csv`),
+  cache v `data/tm_cache/` (není na GitHubu). Klíč = player_club_key, musí
+  zůstat shodný s `lib/normalize.js`. Tempo dotazů (5–10 s) nezrychlovat.
+  Původní verze: `Documents\Python\data_scout\transfm.ipynb`.
 - `data/media-map.json`, `data/form-map.json`, `data/unmatched-report.json` –
   fotky/loga a forma hráčů z API-Football. Generuje je
   `scripts/fetch-media.mjs` přes GitHub Actions, ručně se needitují.
