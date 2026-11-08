@@ -16,6 +16,13 @@
 export const countryCodeAliases = {
   "Czechia": "CZ",
   "Bosnia and Herzegovina": "BA",
+  // Nové ligy (listopad 2026) – kódy zemí napevno, ať se párování nespolehá na odhad.
+  "Albania": "AL",
+  "Armenia": "AM",
+  "Faroe Islands": "FO",
+  "Iceland": "IS",
+  "Lithuania": "LT",
+  "Montenegro": "ME",
 };
 
 // Value: the league's name as it appears in API-Football, OR its numeric ID.

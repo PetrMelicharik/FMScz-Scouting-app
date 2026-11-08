@@ -60,13 +60,26 @@ bys ji zakládal znovu od nuly.
 
 ## Jak aktualizovat databázi
 
-Kdykoliv budeš mít novou verzi dat:
-
-1. Vygeneruj nový `db.xlsx` svým Python skriptem.
-2. Nahraď jím soubor `data/db.xlsx` v repozitáři (přes `git push`,
-   nebo přetažením souboru přímo v GitHub webovém rozhraní — funguje i to).
+1. Stáhni z FootyStats CSV lig, které chceš aktualizovat (nechej je ve
+   složce Stažené soubory). Nemusíš stahovat všechny ligy najednou —
+   u ligy, kterou nestáhneš, se použije její poslední stažená verze.
+   Seznam všech lig je v `python/ligy.csv` (otevřeš ho v Excelu).
+2. Dvojklikni na **`aktualizovat_databazi.bat`**. Ten:
+   - stáhne novinky z GitHubu,
+   - přesune nová CSV ze Stažených do `data/footystats_csv/` (starší verze
+     odsune do `archiv/`, prázdné nebo poškozené soubory nepřevezme),
+   - sestaví `data/db.xlsx` (`python/build_db.py`) a vypíše přehled lig:
+     počet hráčů, srovnání s minulou verzí a jak staré je CSV každé ligy,
+   - když v nějaké lize výrazně ubude hráčů, zastaví se a nic neodešle,
+   - po tvém potvrzení (A/N) pošle `db.xlsx` na GitHub.
 3. Vercel automaticky spustí nový build a za pár minut je nová databáze
-   živá pro celý tým — nikdo nic dalšího dělat nemusí.
+   živá pro celý tým. Zároveň se spustí stahování fotek a formy hráčů.
+
+CSV soubory nejsou na GitHubu (jsou jen u tebe v počítači).
+
+**Nová liga:** přidej řádek do `python/ligy.csv` (začátek názvu CSV souboru
+před `-players-`, název ligy, země) a do `config/media-aliases.mjs` ID ligy
+z API-Football.
 
 ## Fotky hráčů, loga klubů a lig (API-Football)
 

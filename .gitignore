@@ -4,3 +4,5 @@ public/data/players.json
 data/media-cache/
 .env*.local
 .vercel
+data/footystats_csv/
+__pycache__/

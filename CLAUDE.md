@@ -29,7 +29,17 @@ scouting tool, tvorbu reportů a osobní shortlist (seznam sledovaných hráčů
   rovnou nasadí novou verzi na Vercel pro celý tým.
 
 ## Zdroje dat
-- `data/db.xlsx` – hlavní databáze hráčů (generuje ji Petrův Python skript mimo repo).
+- `data/db.xlsx` – hlavní databáze hráčů. Generuje ji `python/build_db.py`
+  (přepis Petrova notebooku `Documents\Python\fmscouts_footy_stats\db_creation.ipynb`,
+  výstup musí zůstat stejný) z CSV v `data/footystats_csv/`.
+- `data/footystats_csv/` – CSV z FootyStats, jedno na ligu (poslední stažená
+  verze, starší jsou v `archiv/`). Není na GitHubu (`.gitignore`), jsou placená.
+  Petr nestahuje vždy všechny ligy, takže se pro každou ligu použije poslední CSV.
+- `python/ligy.csv` – seznam lig (začátek názvu CSV; název ligy; země).
+  Pořadí řádků = pořadí v db.xlsx. Nová liga = nový řádek + ID ligy
+  v `config/media-aliases.mjs`.
+- `aktualizovat_databazi.bat` – poloautomat: git pull → import CSV ze Stažených
+  → build_db.py → potvrzení → push db.xlsx.
 - `data/tm_data.json` – doplňková data z lokálního Transfermarkt scraperu
   (pozice, tržní hodnota, smlouva, noha).
 - `data/media-map.json`, `data/form-map.json`, `data/unmatched-report.json` –
