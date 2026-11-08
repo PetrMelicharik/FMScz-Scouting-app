@@ -53,6 +53,7 @@ CACHE = PROJEKT / "data" / "tm_cache"
 REPORT = CACHE / "report.json"
 LIGY = PROJEKT / "python" / "ligy.csv"
 KLUBY_VYJIMKY = PROJEKT / "python" / "tm_kluby.csv"
+HRACI_VYJIMKY = PROJEKT / "python" / "tm_hraci.csv"   # ruční ID hráčů, které vyhledávání nenajde
 TM = "https://www.transfermarkt.com"
 
 STARI_SOUPISKY_DNI = 2    # soupisku staženou před méně než 2 dny znovu nestahujeme (pokračování po přerušení)
@@ -403,6 +404,15 @@ def nacti_vyjimky():
     df = pd.read_csv(KLUBY_VYJIMKY, sep=";", encoding="utf-8-sig", dtype=str).dropna(subset=["klub", "tm_id"])
     return {r["klub"].strip(): r["tm_id"].strip() for _, r in df.iterrows()}
 
+def nacti_vyjimky_hracu():
+    """Ruční výjimky hráčů z tm_hraci.csv: klíč hráče -> adresa jeho profilu na Transfermarktu."""
+    if not HRACI_VYJIMKY.exists():
+        return {}
+    df = pd.read_csv(HRACI_VYJIMKY, sep=";", encoding="utf-8-sig", dtype=str).dropna(subset=["hrac", "klub", "tm_id"])
+    # Na Transfermarktu stačí ID hráče, část adresy se jménem může být libovolná
+    return {player_club_key(r["hrac"].strip(), r["klub"].strip()): f"{TM}/x/profil/spieler/{r['tm_id'].strip()}"
+            for _, r in df.iterrows()}
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--jen-ligy", action="store_true", help="jen stáhnout seznamy klubů a ukázat párování")
@@ -520,10 +530,15 @@ def main():
     minuty = {(r["player_name"], r["Current Club"]): r["minutes_played"] for _, r in db.iterrows()}
     if not args.vsichni:
         mimo = [(j, k) for j, k in mimo if (minuty.get((j, k)) or 0) > 0]
+    vyjimky_hracu = nacti_vyjimky_hracu()
     k_dohledani = []
     for jmeno, klub in mimo:
-        ex = tm_data.get(player_club_key(jmeno, klub), {})
-        if ex.get("error"):
+        klic = player_club_key(jmeno, klub)
+        ex = tm_data.get(klic, {})
+        # Hráč s ruční výjimkou, který ještě nemá údaje z jejího profilu -> stáhnout hned
+        if klic in vyjimky_hracu and ex.get("tmUrl") != vyjimky_hracu[klic]:
+            k_dohledani.append((jmeno, klub))
+        elif ex.get("error"):
             if not je_cerstve(ex.get("lastUpdated"), OPAKOVAT_NENALEZENE_DNI):
                 k_dohledani.append((jmeno, klub))
         elif not je_cerstve(ex.get("lastUpdated"), STARI_PROFILU_DNI):
@@ -538,7 +553,8 @@ def main():
         for i, (jmeno, klub) in enumerate(k_dohledani, 1):
             klic = player_club_key(jmeno, klub)
             ex = tm_data.get(klic, {})
-            url = ex.get("tmUrl") or hledej_hrace(stahovac, jmeno, klub)
+            # Pořadí: ruční výjimka > dříve nalezený profil > vyhledání podle jména
+            url = vyjimky_hracu.get(klic) or ex.get("tmUrl") or hledej_hrace(stahovac, jmeno, klub)
             if not url:
                 tm_data[klic] = {"lastUpdated": datetime.now().isoformat(), "error": "not found"}
                 print(f"  [{i}/{len(k_dohledani)}] {jmeno} ({klub}) ✗ nenalezen")

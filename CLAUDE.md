@@ -44,7 +44,8 @@ scouting tool, tvorbu reportů a osobní shortlist (seznam sledovaných hráčů
   noha). Generuje ho `python/transfermarkt.py` (spouští se lokálně přes
   `aktualizovat_transfermarkt.bat`, ne na GitHubu – Transfermarkt scraping
   nepovoluje, je to Petrovo osobní použití). Čte soupisky klubů (kód soutěže
-  `tm_kod` v `python/ligy.csv`, ruční ID klubů v `python/tm_kluby.csv`),
+  `tm_kod` v `python/ligy.csv`, ruční ID klubů v `python/tm_kluby.csv`,
+  ruční ID hráčů v `python/tm_hraci.csv`),
   cache v `data/tm_cache/` (není na GitHubu). Klíč = player_club_key, musí
   zůstat shodný s `lib/normalize.js`. Tempo dotazů (5–10 s) nezrychlovat.
   Původní verze: `Documents\Python\data_scout\transfm.ipynb`.

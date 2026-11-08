@@ -95,6 +95,10 @@ Transfermarktu, hráče spáruje podle jména a data narození a výsledek ulož
   aspoň minutu, dohledá přes jejich profil.
 - Kluby, které se nespárují automaticky, se doplňují do `python/tm_kluby.csv`
   (náš název klubu; ID klubu na Transfermarktu z adresy `.../verein/ID`).
+- Hráče, které skript nenajde (ve výpisu `✗ nenalezen`), můžeš doplnit do
+  `python/tm_hraci.csv` (jméno a klub přesně jako v databázi; ID hráče
+  z adresy jeho profilu `.../profil/spieler/ID`). Při příštím běhu se jeho
+  údaje stáhnou rovnou z profilu.
 
 ## Fotky hráčů, loga klubů a lig (API-Football)
 
