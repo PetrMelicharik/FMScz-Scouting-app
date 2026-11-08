@@ -283,10 +283,12 @@ def parsuj_soupisku(html):
     if not tabulka:
         return None
     hlavicka = [text(h) for h in re.findall(r"<th[^>]*>(.*?)</th>", tabulka.group(1), re.S)]
-    # Ověření, že stránka vypadá tak, jak čekáme (kdyby ji Transfermarkt změnil).
-    for sloupec in ("Date of birth/Age", "Foot", "Contract", "Market value"):
-        if sloupec not in hlavicka:
-            raise RuntimeError(f"Soupiska Transfermarktu má jiný vzhled (chybí sloupec '{sloupec}'). Skript je potřeba upravit.")
+    # Transfermarkt občas pošle soupisku bez některých sloupců (např. bez
+    # smlouvy). Nespadneme – chybějící údaj u hráčů prostě nebude, a ostatní
+    # se načtou. Jen to vypíšeme, ať je vidět, že stránka vypadala jinak.
+    chybi = [s for s in ("Date of birth/Age", "Foot", "Contract", "Market value") if s not in hlavicka]
+    if chybi:
+        print(f"    (soupiska bez sloupců: {', '.join(chybi)})")
     # Sloupce za jménem hráče, které jsou v buňkách class="zentriert" (v pořadí hlavičky).
     zentriert = [h for h in hlavicka[2:] if h not in ("Market value",)]
 
