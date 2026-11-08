@@ -380,7 +380,8 @@ def parsuj_profil(html):
     vysledek = {}
     mv = re.search(r"Market value:\s*(€[\d,.]+\s*(?:m|k|bn)?)", html, re.IGNORECASE)
     if mv:
-        vysledek["marketValue"] = mv.group(1).strip()
+        # Stejný zápis jako ze soupisky ("€400k", "€6.00m"), ať se v appce zobrazuje jednotně
+        vysledek["marketValue"] = format_hodnoty(mv.group(1)) or mv.group(1).strip()
     pos = re.search(r"➤\s*([A-Za-z\s\-]+?)\s*➤\s*Market value", html)
     if pos:
         vysledek["position"] = pos.group(1).strip()
