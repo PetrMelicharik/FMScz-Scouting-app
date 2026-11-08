@@ -10,7 +10,11 @@ import {
   CATEGORY_COLORS, CATEGORY_LABELS, PIZZA_GROUP_LABELS,
 } from "../lib/pizzaShared";
 
-const LOWER_IS_BETTER = new Set(["conceded_per_90", "dribbled_past_per_90"]);
+// U těchto statistik je lepší nižší hodnota (ztráty míče a žluté karty přidány k původním)
+const LOWER_IS_BETTER = new Set([
+  "conceded_per_90", "dribbled_past_per_90",
+  "dispossessed", "dispossessed_per_90", "yellow_cards", "yellow_cards_per_90",
+]);
 
 /* ---------------------------------------------------------------------- */
 /* Cascading league → club → player selector                              */

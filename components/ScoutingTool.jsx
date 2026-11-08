@@ -6,7 +6,7 @@ import Avatar from "./Avatar";
 import { STAT_LABELS, formatStat } from "../lib/statMeta";
 import {
   classifyPizzaGroup, PIZZA_GROUP_LABELS, CATEGORY_LABELS, CATEGORY_COLORS,
-  OUTFIELD_STATS, GK_STATS, MIN_MINUTES, rankPlayersByStats, parseMarketValue,
+  SCOUTING_OUTFIELD_STATS, GK_STATS, MIN_MINUTES, rankPlayersByStats, parseMarketValue,
 } from "../lib/pizzaShared";
 
 const GROUP_ORDER = ["GK", "CB", "FB", "CM", "CAM", "WING", "FW"];
@@ -99,7 +99,7 @@ export default function ScoutingTool() {
   const [sortKey, setSortKey] = useState("score");
   const [sortDir, setSortDir] = useState("desc");
 
-  const statList = group === "GK" ? GK_STATS : group ? OUTFIELD_STATS : [];
+  const statList = group === "GK" ? GK_STATS : group ? SCOUTING_OUTFIELD_STATS : [];
 
   // Restore the filter/stat/sort state from the URL on first load — so the
   // browser's back button (after clicking through to a player's profile)

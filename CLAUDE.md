@@ -31,7 +31,10 @@ scouting tool, tvorbu reportů a osobní shortlist (seznam sledovaných hráčů
 ## Zdroje dat
 - `data/db.xlsx` – hlavní databáze hráčů. Generuje ji `python/build_db.py`
   (přepis Petrova notebooku `Documents\Python\fmscouts_footy_stats\db_creation.ipynb`,
-  výstup musí zůstat stejný) z CSV v `data/footystats_csv/`.
+  výstup musí zůstat stejný) z CSV v `data/footystats_csv/`. Navíc přidává na
+  konec nové statistiky (fauly na hráči, ztráty míče, % soubojů a driblinků,
+  žluté karty). U lig, kde FootyStats statistiku nesleduje (samé nuly), jsou
+  tyto sloupce a Obdriblován prázdné.
 - `data/footystats_csv/` – CSV z FootyStats, jedno na ligu (poslední stažená
   verze, starší jsou v `archiv/`). Není na GitHubu (`.gitignore`), jsou placená.
   Petr nestahuje vždy všechny ligy, takže se pro každou ligu použije poslední CSV.

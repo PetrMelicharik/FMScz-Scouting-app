@@ -80,6 +80,31 @@ NOVE_NAZVY = ['player_name', 'birthday', 'age', 'nationality', 'position', 'Curr
         'conceded_per_90', 'saves', 'saves_per_90', 'shots_faced', 'shots_faced_per_90', 'save_percentage', 'punches', 'punches_per_90', 'pens_saved'
 ]
 
+# --- Nové statistiky (přidané navíc k notebooku, na konec tabulky) ---------
+# sloupec v CSV -> název v db.xlsx
+NOVE_STATISTIKY = {
+    'fouls_drawn_total_overall': 'fouls_drawn',
+    'fouls_drawn_per_90_overall': 'fouls_drawn_per_90',
+    'dispossesed_total_overall': 'dispossessed',
+    'dispossesed_per_90_overall': 'dispossessed_per_90',
+    'duels_won_percentage_overall': 'duels_won_percentage',
+    'dribbles_successful_percentage_overall': 'dribbles_successful_percentage',
+    'yellow_cards_overall': 'yellow_cards',
+}
+# Žluté karty na 90 minut v CSV nejsou (je tam jen "karty/90" včetně červených),
+# proto je dopočítáme z počtu žlutých a odehraných minut.
+
+# FootyStats u ligy, kde danou statistiku nesleduje, nedává prázdné buňky,
+# ale nuly. U těchto sloupců proto nuly celé ligy přepíšeme na prázdno,
+# aby hráči z takové ligy nevypadali třeba jako "nikdy neztratí míč".
+NULY_JAKO_CHYBEJICI = [
+    'dribbled_past', 'dribbled_past_per_90',
+    'fouls_drawn', 'fouls_drawn_per_90', 'dispossessed', 'dispossessed_per_90',
+    'duels_won_percentage', 'dribbles_successful_percentage',
+    'yellow_cards', 'yellow_cards_per_90',
+]
+PODIL_NUL_BEZ_DAT = 0.9   # liga, kde má nulu aspoň 90 % hráčů s 300+ minutami = liga bez dat
+
 
 def nacti_ligy():
     """Načte seznam lig z python/ligy.csv (oddělovač středník, jde otevřít v Excelu)."""
@@ -210,16 +235,34 @@ def sestav_databazi(ligy):
 
     # Kdyby CSV některé ligy neobsahovalo nějaký sloupec (malé ligy mívají
     # méně statistik), doplníme ho prázdný, ať skript nespadne.
-    chybejici = [c for c in COLS if c not in df.columns]
+    vsechny_cols = COLS + list(NOVE_STATISTIKY)
+    chybejici = [c for c in vsechny_cols if c not in df.columns]
     if chybejici:
         print(f"  ! V CSV chybí sloupce, doplňuji je prázdné: {', '.join(chybejici)}")
         for c in chybejici:
             df[c] = pd.NA
 
     # Filtr a změna pořadí požadovaných sloupců
-    df = df[COLS]
+    df = df[vsechny_cols]
     # Přejmenování sloupců
-    df.columns = NOVE_NAZVY
+    df.columns = NOVE_NAZVY + list(NOVE_STATISTIKY.values())
+
+    # Žluté karty na 90 minut
+    minuty = pd.to_numeric(df['minutes_played'], errors='coerce')
+    zlute = pd.to_numeric(df['yellow_cards'], errors='coerce')
+    df['yellow_cards_per_90'] = (zlute / minuty * 90).where(minuty > 0).round(2)
+
+    # % úspěšných driblinků nedává smysl u hráče, který žádný driblink nezkusil
+    driblinky = pd.to_numeric(df['dribbles'], errors='coerce')
+    df.loc[~(driblinky > 0), 'dribbles_successful_percentage'] = pd.NA
+
+    # Ligy bez dat (samé nuly) -> prázdné buňky
+    hlavni = df[minuty >= 300]
+    for c in NULY_JAKO_CHYBEJICI:
+        hodnoty = pd.to_numeric(hlavni[c], errors='coerce').fillna(0)
+        podil_nul = (hodnoty == 0).groupby(hlavni['league_name']).mean()
+        bez_dat = podil_nul[podil_nul >= PODIL_NUL_BEZ_DAT].index
+        df.loc[df['league_name'].isin(bez_dat), c] = pd.NA
     # Smazání řádků bez jména hráče a duplicit
     df = df.dropna(subset=['player_name'])
     df = df.drop_duplicates()
