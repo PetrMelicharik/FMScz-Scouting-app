@@ -17,7 +17,11 @@ Postup:
   4. Hráče, které v soupisce nenašel (např. po přestupu), dohledá postaru přes
      jejich profil – jen pokud v sezóně odehráli aspoň minutu a nemají údaje,
      nebo jsou starší než 60 dní (s --vsichni i hráče bez minut).
-  5. Uloží data/tm_data.json (stejný formát i klíče jako dřív, appka ho při
+  5. Vedlejší pozice ("Other position") jsou jen na profilu hráče, proto se
+     stahují zvlášť: jen pro hráče s 300+ minutami, nejvýš LIMIT_POZIC hráčů
+     za jeden běh (první kompletní stažení se tak rozloží do několika běhů)
+     a znovu až po půl roce.
+  6. Uloží data/tm_data.json (stejný formát i klíče jako dřív, appka ho při
      buildu přimíchá k hráčům).
 
 Stažené stránky se ukládají do data/tm_cache/ (není na GitHubu). Když běh
@@ -28,6 +32,8 @@ Spuštění (v terminálu ve složce projektu):
   py python/transfermarkt.py              # celý běh
   py python/transfermarkt.py --jen-ligy   # jen kroky 1–2 (kontrola párování klubů)
   py python/transfermarkt.py --bez-profilu  # přeskočí krok 4
+  py python/transfermarkt.py --bez-pozic    # přeskočí krok 5 (vedlejší pozice)
+  py python/transfermarkt.py --limit-pozic 300   # v kroku 5 jen 300 hráčů
 """
 
 import argparse
@@ -60,6 +66,9 @@ STARI_SOUPISKY_DNI = 2    # soupisku staženou před méně než 2 dny znovu nes
 STARI_LIGY_DNI = 30       # seznam klubů ligy stačí obnovit jednou za měsíc
 STARI_PROFILU_DNI = 60    # hráče mimo soupisku dohledáváme, jen když jsou jeho údaje starší
 OPAKOVAT_NENALEZENE_DNI = 30  # nenalezeného hráče zkusíme hledat znovu až po měsíci
+STARI_POZIC_DNI = 180     # vedlejší pozice se mění málokdy, obnovujeme je po půl roce
+LIMIT_POZIC = 1500        # max. počet profilů kvůli vedlejším pozicím za jeden běh (~3,5 h)
+POZICE_MIN_MINUT = 300    # vedlejší pozice zjišťujeme jen u hráčů s aspoň 300 minutami
 
 # Stejné ohleduplné tempo jako původní skript: 5–10 s mezi dotazy,
 # po každých 30 dotazech delší pauza. Zrychlení je jen v tom, že dotazů je
@@ -393,7 +402,21 @@ def parsuj_profil(html):
     foot = re.search(r"Foot:\s*(?:<[^>]+>\s*)+(right|left|both)\b", html, re.IGNORECASE)
     if foot:
         vysledek["foot"] = foot.group(1).lower()
+    # Vedlejší pozice: blok "Main position:" / "Other position:" (dd = jedna pozice).
+    # Ukládáme je, jen když se blok s hlavní pozicí na stránce opravdu našel,
+    # jinak by se rozbitá stránka zapsala jako "žádné vedlejší pozice".
+    if "Main position:" in html:
+        jine = re.search(r"Other position:</dt>(.*?)</dl>", html, re.S)
+        vysledek["otherPositions"] = (
+            [text(p) for p in re.findall(r'<dd class="detail-position__position">(.*?)</dd>', jine.group(1), re.S)]
+            if jine else []
+        )
     return vysledek
+
+def id_hrace(url):
+    """Z adresy profilu vytáhne ID hráče (…/profil/spieler/12345 -> "12345")."""
+    m = re.search(r"/spieler/(\d+)", url or "")
+    return m.group(1) if m else None
 
 
 # ---------------------------------------------------------------------------
@@ -421,6 +444,9 @@ def main():
     parser.add_argument("--kluby", help="zpracovat jen tyto kluby (názvy oddělené čárkou), např. pro test")
     parser.add_argument("--vsichni", action="store_true",
                         help="přes profil dohledávat i hráče s 0 odehranými minutami (výrazně delší běh)")
+    parser.add_argument("--bez-pozic", action="store_true", help="nestahovat vedlejší pozice (krok 5)")
+    parser.add_argument("--limit-pozic", type=int, default=LIMIT_POZIC,
+                        help=f"kolik nejvýš hráčů projít kvůli vedlejším pozicím (výchozí {LIMIT_POZIC})")
     args = parser.parse_args()
     jen_kluby = {k.strip() for k in args.kluby.split(",")} if args.kluby else None
 
@@ -504,6 +530,12 @@ def main():
                     h = par[n][0][2]
                     zaznam = {k: v for k, v in h.items() if k in ("marketValue", "position", "contractUntil", "foot", "tmUrl")}
                     zaznam["lastUpdated"] = ted
+                    # Vedlejší pozice ze soupisky nejsou – převezmeme dříve stažené
+                    # z profilu, pokud jde pořád o stejného hráče (stejné ID).
+                    ex = tm_data.get(player_club_key(jmeno, klub), {})
+                    if "otherPositions" in ex and id_hrace(ex.get("tmUrl")) == id_hrace(zaznam.get("tmUrl")):
+                        zaznam["otherPositions"] = ex["otherPositions"]
+                        zaznam["positionsChecked"] = ex.get("positionsChecked")
                     tm_data[player_club_key(jmeno, klub)] = zaznam
                 else:
                     mimo.append((jmeno, klub))
@@ -565,9 +597,50 @@ def main():
                     zaznam = parsuj_profil(html)
                     zaznam["lastUpdated"] = datetime.now().isoformat()
                     zaznam["tmUrl"] = url
+                    if "otherPositions" in zaznam:
+                        zaznam["positionsChecked"] = zaznam["lastUpdated"]
                     tm_data[klic] = zaznam
                     ok += 1
                     print(f"  [{i}/{len(k_dohledani)}] {jmeno} ({klub}) ✓")
+            if i % 20 == 0:
+                uloz_json(VYSTUP, tm_data, indent=2)
+    except (Zablokovano, KeyboardInterrupt) as e:
+        uloz_json(VYSTUP, tm_data, indent=2)
+        print("\n!!! Transfermarkt nás dočasně blokuje." if isinstance(e, Zablokovano) else "\nPřerušeno.")
+        print("Postup je uložený, spusť skript znovu později a bude pokračovat.")
+        sys.exit(1)
+
+    uloz_json(VYSTUP, tm_data, indent=2)
+
+    # --- Krok 5: vedlejší pozice z profilů -----------------------------------
+    # Jen hráči s 300+ minutami, kteří už mají profil na Transfermarktu
+    # (tmUrl) a vedlejší pozice nemají vůbec nebo starší než půl roku.
+    hraci_pozice = db[db["minutes_played"].fillna(0) >= POZICE_MIN_MINUT].drop_duplicates(subset=["player_name", "Current Club"])
+    if jen_kluby:
+        hraci_pozice = hraci_pozice[hraci_pozice["Current Club"].isin(jen_kluby)]
+    k_pozicim = []
+    for _, r in hraci_pozice.iterrows():
+        klic = player_club_key(r["player_name"], r["Current Club"])
+        ex = tm_data.get(klic, {})
+        if ex.get("tmUrl") and not ex.get("error") and not je_cerstve(ex.get("positionsChecked"), STARI_POZIC_DNI):
+            k_pozicim.append((r["player_name"], r["Current Club"], klic))
+    celkem_cekajicich = len(k_pozicim)
+    k_pozicim = k_pozicim[:max(0, args.limit_pozic)]
+    print(f"\n=== 4) Vedlejší pozice: čeká {celkem_cekajicich} hráčů, v tomto běhu projdu {len(k_pozicim)}")
+    if args.bez_pozic:
+        print("  (--bez-pozic: přeskakuji)")
+        k_pozicim = []
+    try:
+        for i, (jmeno, klub, klic) in enumerate(k_pozicim, 1):
+            html = stahovac.get(tm_data[klic]["tmUrl"])
+            nove = parsuj_profil(html) if html else {}
+            if "otherPositions" in nove:
+                tm_data[klic]["otherPositions"] = nove["otherPositions"]
+                tm_data[klic]["positionsChecked"] = datetime.now().isoformat()
+                popis = ", ".join(nove["otherPositions"]) or "žádné"
+                print(f"  [{i}/{len(k_pozicim)}] {jmeno} ({klub}): {popis}")
+            else:
+                print(f"  [{i}/{len(k_pozicim)}] {jmeno} ({klub}): profil se nepodařilo přečíst")
             if i % 20 == 0:
                 uloz_json(VYSTUP, tm_data, indent=2)
     except (Zablokovano, KeyboardInterrupt) as e:
@@ -587,6 +660,12 @@ def main():
     print(f"   Hráči s údaji: {len(zaznamy)}/{len(klice)}")
     for pole, popis in (("marketValue", "tržní hodnota"), ("position", "pozice"), ("contractUntil", "smlouva"), ("foot", "noha")):
         print(f"   {popis:<14} {sum(1 for z in zaznamy if z.get(pole))}")
+    klice_300 = {player_club_key(r["player_name"], r["Current Club"]) for _, r in hraci_pozice.iterrows()}
+    s_pozicemi = sum(1 for k in klice_300 if "otherPositions" in tm_data.get(k, {}))
+    print(f"   vedlejší pozice zjištěny u {s_pozicemi}/{len(klice_300)} hráčů s {POZICE_MIN_MINUT}+ minutami")
+    zbyva = celkem_cekajicich - len(k_pozicim)
+    if zbyva > 0:
+        print(f"   (zbývá {zbyva} hráčů – stáhnou se při dalším spuštění)")
     print(f"{'#' * 50}")
 
 

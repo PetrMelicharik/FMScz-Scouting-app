@@ -84,7 +84,8 @@ stránky soutěže, např. `TS1` v `.../wettbewerb/TS1`) a do
 
 ## Údaje z Transfermarktu (tržní hodnota, pozice, smlouva, noha)
 
-Dvojklikni na **`aktualizovat_transfermarkt.bat`** (trvá zhruba 1–2 hodiny).
+Dvojklikni na **`aktualizovat_transfermarkt.bat`** (trvá zhruba 1–2 hodiny,
+dokud se dostahovávají vedlejší pozice, tak o ~3,5 hodiny déle).
 Skript `python/transfermarkt.py` projde podrobné soupisky všech klubů na
 Transfermarktu, hráče spáruje podle jména a data narození a výsledek uloží do
 `data/tm_data.json`. Po tvém potvrzení (A/N) ho pošle na GitHub.
@@ -93,6 +94,12 @@ Transfermarktu, hráče spáruje podle jména a data narození a výsledek ulož
   pokračuje tam, kde skončil.
 - Hráče, kteří v soupisce svého klubu nejsou (např. po přestupu) a odehráli
   aspoň minutu, dohledá přes jejich profil.
+- **Vedlejší pozice** (pro filtr konkrétních pozic v Databázi a Scouting toolu)
+  jsou jen na profilu hráče, proto se stahují zvlášť: u hráčů s 300+ minutami,
+  nejvýš 1 500 hráčů za jeden běh (zhruba 3,5 hodiny navíc) a znovu až po půl
+  roce. První kompletní stažení (~7 200 hráčů) tak rozložíš do 5 běhů.
+  Kolik hráčů ještě čeká, ukáže souhrn na konci. Bez tohoto kroku:
+  `py python\transfermarkt.py --bez-pozic`.
 - Kluby, které se nespárují automaticky, se doplňují do `python/tm_kluby.csv`
   (náš název klubu; ID klubu na Transfermarktu z adresy `.../verein/ID`).
 - Hráče, které skript nenajde (ve výpisu `✗ nenalezen`), můžeš doplnit do

@@ -251,6 +251,10 @@ export default function PlayerPage({ params }) {
             <div className="profile-meta-line">
               <PitchIcon className="position-icon-mini" />
               {p.tm_position || p.position}
+              {/* Vedlejší pozice z profilu na Transfermarktu (když jsou stažené) */}
+              {Array.isArray(p.tm_other_positions) && p.tm_other_positions.length > 0 && (
+                <span style={{ opacity: 0.7 }}>&nbsp;· vedlejší: {p.tm_other_positions.join(", ")}</span>
+              )}
             </div>
           )}
           <div className="profile-meta-line">

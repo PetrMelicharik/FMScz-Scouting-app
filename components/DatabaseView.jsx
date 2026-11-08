@@ -5,6 +5,8 @@ import { playerHref } from "../lib/playerUrl";
 import Avatar from "./Avatar";
 import { formatStat } from "../lib/statMeta";
 import { flagUrl } from "../lib/countryFlags";
+import { matchesSpecificPositions } from "../lib/positions";
+import PositionPicker from "./PositionPicker";
 
 const PAGE_SIZE = 48;
 
@@ -133,6 +135,7 @@ export default function DatabaseView() {
   const [filters, setFilters] = useState({
     text: "", club: "", nationality: "", league: "",
     ageMin: null, ageMax: null, minMinutes: "", seasons: new Set(),
+    positions: [], includeOther: true, // konkrétní pozice z Transfermarktu
   });
   const [sortState, setSortState] = useState({ key: "avg_rating_", dir: "desc" });
   const [page, setPage] = useState(0);
@@ -152,6 +155,8 @@ export default function DatabaseView() {
       ageMax: params.has("ageMax") ? Number(params.get("ageMax")) : null,
       minMinutes: params.get("min") || "",
       seasons: new Set((params.get("seasons") || "").split(",").filter(Boolean)),
+      positions: (params.get("pos") || "").split(",").filter(Boolean),
+      includeOther: params.get("other") !== "0",
     });
     if (params.has("sort") || params.has("dir")) {
       setSortState((s) => ({ key: params.get("sort") || s.key, dir: params.get("dir") || s.dir }));
@@ -171,6 +176,8 @@ export default function DatabaseView() {
     if (filters.ageMax !== null) params.set("ageMax", String(filters.ageMax));
     if (filters.minMinutes !== "") params.set("min", filters.minMinutes);
     if (filters.seasons.size) params.set("seasons", [...filters.seasons].join(","));
+    if (filters.positions.length) params.set("pos", filters.positions.join(","));
+    if (!filters.includeOther) params.set("other", "0");
     if (sortState.key !== "avg_rating_") params.set("sort", sortState.key);
     if (sortState.dir !== "desc") params.set("dir", sortState.dir);
     if (page > 0) params.set("page", String(page));
@@ -210,6 +217,7 @@ export default function DatabaseView() {
       if (filters.ageMin !== null && (r.age ?? -Infinity) < filters.ageMin) return false;
       if (filters.ageMax !== null && (r.age ?? Infinity) > filters.ageMax) return false;
       if (filters.minMinutes !== "" && (r.minutes_played ?? 0) < Number(filters.minMinutes)) return false;
+      if (!matchesSpecificPositions(r, filters.positions, filters.includeOther)) return false;
       return true;
     });
   }, [rows, filters]);
@@ -326,6 +334,13 @@ export default function DatabaseView() {
             </div>
 
             <MultiToggle label="Sezóna" options={seasons} selected={filters.seasons} onChange={(s) => { setPage(0); setFilters((f) => ({ ...f, seasons: s })); }} />
+
+            <PositionPicker
+              value={filters.positions}
+              onChange={(p) => { setPage(0); setFilters((f) => ({ ...f, positions: p })); }}
+              includeOther={filters.includeOther}
+              onIncludeOtherChange={(v) => { setPage(0); setFilters((f) => ({ ...f, includeOther: v })); }}
+            />
           </div>
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>

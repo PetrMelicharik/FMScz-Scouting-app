@@ -8,6 +8,8 @@ import {
   classifyPizzaGroup, PIZZA_GROUP_LABELS, CATEGORY_LABELS, CATEGORY_COLORS,
   SCOUTING_OUTFIELD_STATS, GK_STATS, MIN_MINUTES, rankPlayersByStats, parseMarketValue,
 } from "../lib/pizzaShared";
+import { SPECIFIC_POSITIONS, matchesSpecificPositions } from "../lib/positions";
+import PositionPicker from "./PositionPicker";
 
 const GROUP_ORDER = ["GK", "CB", "FB", "CM", "CAM", "WING", "FW"];
 const TOP_N_OPTIONS = [10, 20, 30, 50];
@@ -94,6 +96,9 @@ export default function ScoutingTool() {
   const contractOptions = useMemo(() => contractDeadlineOptions(), []);
   // Preferovaná noha: "" = bez omezení, "right"/"left" zahrnují i obounohé, "both" = jen obounozí
   const [foot, setFoot] = useState("");
+  // Konkrétní pozice z Transfermarktu (např. "Right Winger"); prázdné = jen podle skupiny pozic
+  const [specPositions, setSpecPositions] = useState([]);
+  const [includeOther, setIncludeOther] = useState(true);
   const [selectedStats, setSelectedStats] = useState(new Set());
   const [topN, setTopN] = useState(20);
   const [sortKey, setSortKey] = useState("score");
@@ -115,6 +120,8 @@ export default function ScoutingTool() {
     if (params.has("maxv")) setMaxValueM(params.get("maxv"));
     if (params.has("contract")) setContractBy(params.get("contract"));
     if (params.has("foot")) setFoot(params.get("foot"));
+    if (params.has("pos")) setSpecPositions(params.get("pos").split(",").filter(Boolean));
+    if (params.get("other") === "0") setIncludeOther(false);
     if (params.has("ageMin")) setAgeMin(Number(params.get("ageMin")));
     if (params.has("ageMax")) setAgeMax(Number(params.get("ageMax")));
     if (params.has("stats")) setSelectedStats(new Set(params.get("stats").split(",").filter(Boolean)));
@@ -133,6 +140,8 @@ export default function ScoutingTool() {
     if (maxValueM !== "") params.set("maxv", maxValueM);
     if (contractBy) params.set("contract", contractBy);
     if (foot) params.set("foot", foot);
+    if (specPositions.length) params.set("pos", specPositions.join(","));
+    if (!includeOther) params.set("other", "0");
     if (ageMin !== null) params.set("ageMin", String(ageMin));
     if (ageMax !== null) params.set("ageMax", String(ageMax));
     if (selectedStats.size) params.set("stats", [...selectedStats].join(","));
@@ -142,7 +151,7 @@ export default function ScoutingTool() {
     const qs = params.toString();
     const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
     window.history.replaceState(null, "", url);
-  }, [group, league, minMinutes, maxValueM, contractBy, foot, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
+  }, [group, league, minMinutes, maxValueM, contractBy, foot, specPositions, includeOther, ageMin, ageMax, selectedStats, topN, sortKey, sortDir]);
 
   // When the position group changes, drop any selected stats that no longer
   // belong to that group's stat catalog (GK vs outfield lists don't overlap).
@@ -165,12 +174,22 @@ export default function ScoutingTool() {
   const ageMinValue = ageMin ?? ageDomain[0];
   const ageMaxValue = ageMax ?? ageDomain[1];
 
+  // Konkrétní pozice nabízené ke skupině: u brankářů jen brankář, jinak hráči v poli
+  const positionOptions = group === "GK"
+    ? SPECIFIC_POSITIONS.filter(([v]) => v === "Goalkeeper")
+    : SPECIFIC_POSITIONS.filter(([v]) => v !== "Goalkeeper");
+  const activeSpec = specPositions.filter((p) => positionOptions.some(([v]) => v === p));
+
   const pool = useMemo(() => {
     if (!group) return [];
     const minMin = Number(minMinutes) || 0;
     const maxValue = maxValueM !== "" ? Number(maxValueM) * 1_000_000 : null;
     return rows.filter((r) => {
-      if (classifyPizzaGroup(r.tm_position || r.position) !== group) return false;
+      // Zvolené konkrétní pozice nahrazují skupinu pozic (skupina pak určuje
+      // jen nabídku metrik) – jinak by hráč s vedlejší pozicí z jiné skupiny vypadl.
+      if (activeSpec.length) {
+        if (!matchesSpecificPositions(r, activeSpec, includeOther)) return false;
+      } else if (classifyPizzaGroup(r.tm_position || r.position) !== group) return false;
       if ((r.minutes_played ?? 0) < minMin) return false;
       if ((r.age ?? -Infinity) < ageMinValue || (r.age ?? Infinity) > ageMaxValue) return false;
       if (league && r.league_name !== league) return false;
@@ -190,7 +209,7 @@ export default function ScoutingTool() {
       }
       return true;
     });
-  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy, foot]);
+  }, [rows, group, minMinutes, ageMinValue, ageMaxValue, league, maxValueM, contractBy, foot, activeSpec.join("|"), includeOther]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const statKeys = [...selectedStats];
 
@@ -322,6 +341,17 @@ export default function ScoutingTool() {
                 </div>
               </div>
             </div>
+
+            {group && group !== "GK" && (
+              <PositionPicker
+                value={activeSpec}
+                onChange={setSpecPositions}
+                includeOther={includeOther}
+                onIncludeOtherChange={setIncludeOther}
+                options={positionOptions}
+                hint="(když nějakou zvolíš, hráči se vyberou podle ní místo skupiny)"
+              />
+            )}
 
             {group && (
               <div className="field" style={{ marginBottom: 0 }}>

@@ -44,7 +44,8 @@ scouting tool, tvorbu reportů a osobní shortlist (seznam sledovaných hráčů
 - `aktualizovat_databazi.bat` – poloautomat: git pull → import CSV ze Stažených
   → build_db.py → potvrzení → push db.xlsx.
 - `data/tm_data.json` – údaje z Transfermarktu (pozice, tržní hodnota, smlouva,
-  noha). Generuje ho `python/transfermarkt.py` (spouští se lokálně přes
+  noha, vedlejší pozice `otherPositions` z profilu – v appce `tm_other_positions`,
+  filtr konkrétních pozic je v `lib/positions.js` a `components/PositionPicker.jsx`). Generuje ho `python/transfermarkt.py` (spouští se lokálně přes
   `aktualizovat_transfermarkt.bat`, ne na GitHubu – Transfermarkt scraping
   nepovoluje, je to Petrovo osobní použití). Čte soupisky klubů (kód soutěže
   `tm_kod` v `python/ligy.csv`, ruční ID klubů v `python/tm_kluby.csv`,

@@ -11958,7 +11958,12 @@
     "position": "Centre-Forward",
     "contractUntil": "30/06/2031",
     "marketValue": "€1.50m",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772",
+    "otherPositions": [
+      "Right Winger",
+      "Left Winger"
+    ],
+    "positionsChecked": "2026-11-08T17:12:22.015573"
   },
   "aboubacar traore::banik ostrava": {
     "tmUrl": "https://www.transfermarkt.com/aboubacar-traore/profil/spieler/1071300",
@@ -12041,14 +12046,16 @@
     "foot": "right",
     "contractUntil": "30/06/2028",
     "marketValue": "€275k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "adam zadrazil::hradec kralove": {
     "tmUrl": "https://www.transfermarkt.com/adam-zadrazil/profil/spieler/517126",
     "position": "Goalkeeper",
     "contractUntil": "30/06/2031",
     "marketValue": "€2.50m",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772",
+    "otherPositions": [],
+    "positionsChecked": "2026-11-08T17:12:29.175939"
   },
   "ahmad ghali::sigma olomouc": {
     "tmUrl": "https://www.transfermarkt.com/ahmad-ghali/profil/spieler/698812",
@@ -12331,7 +12338,11 @@
     "position": "Left-Back",
     "contractUntil": "30/06/2028",
     "marketValue": "€800k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772",
+    "otherPositions": [
+      "Left Midfield"
+    ],
+    "positionsChecked": "2026-11-08T17:12:35.654263"
   },
   "daniel langhamer::mlada boleslav": {
     "tmUrl": "https://www.transfermarkt.com/daniel-langhamer/profil/spieler/710409",
@@ -12394,7 +12405,12 @@
     "position": "Attacking Midfield",
     "contractUntil": "30/06/2029",
     "marketValue": "€400k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772",
+    "otherPositions": [
+      "Left Midfield",
+      "Central Midfield"
+    ],
+    "positionsChecked": "2026-11-08T17:12:42.995392"
   },
   "daniel vasulin::zbrojovka brno": {
     "tmUrl": "https://www.transfermarkt.com/daniel-vasulin/profil/spieler/558473",
@@ -12488,7 +12504,12 @@
     "tmUrl": "https://www.transfermarkt.com/david-ludvicek/profil/spieler/728583",
     "position": "Right Midfield",
     "marketValue": "€350k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772",
+    "otherPositions": [
+      "Left-Back",
+      "Right-Back"
+    ],
+    "positionsChecked": "2026-11-08T17:12:48.163533"
   },
   "david machalik::zlin": {
     "tmUrl": "https://www.transfermarkt.com/david-machalik/profil/spieler/397992",
@@ -12740,7 +12761,7 @@
     "position": "Central Midfield",
     "foot": "both",
     "marketValue": "€275k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "emmanuel ayaosi::slavia praha": {
     "tmUrl": "https://www.transfermarkt.com/emmanuel-ayaosi/profil/spieler/985844",
@@ -12801,7 +12822,7 @@
     "foot": "right",
     "contractUntil": "30/06/2027",
     "marketValue": "€800k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "filip dornak::zlin": {
     "tmUrl": "https://www.transfermarkt.com/filip-dornak/profil/spieler/1126044",
@@ -12840,7 +12861,7 @@
     "position": "Centre-Back",
     "foot": "right",
     "marketValue": "€1.00m",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "filip novak::jablonec": {
     "tmUrl": "https://www.transfermarkt.com/filip-novak/profil/spieler/107665",
@@ -12916,7 +12937,7 @@
     "position": "Centre-Back",
     "foot": "right",
     "marketValue": "€550k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "garang kuol::jablonec": {
     "tmUrl": "https://www.transfermarkt.com/garang-kuol/profil/spieler/967948",
@@ -13095,7 +13116,7 @@
     "foot": "right",
     "contractUntil": "30/06/2027",
     "marketValue": "€400k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "jakub markovic::slavia praha": {
     "tmUrl": "https://www.transfermarkt.com/jakub-markovic/profil/spieler/486605",
@@ -13123,7 +13144,7 @@
     "position": "Centre-Back",
     "contractUntil": "30/06/2030",
     "marketValue": "€650k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "jan boril::slovan liberec": {
     "tmUrl": "https://www.transfermarkt.com/jan-boril/profil/spieler/129655",
@@ -13461,7 +13482,7 @@
     "position": "Right-Back",
     "foot": "right",
     "marketValue": "€150k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "kahuan vinicius guimaraes da silva::pardubice": {
     "tmUrl": "https://www.transfermarkt.com/kahuan-vinicius/profil/spieler/1043547",
@@ -13947,7 +13968,7 @@
     "tmUrl": "https://www.transfermarkt.com/matej-valenta/profil/spieler/572240",
     "position": "Central Midfield",
     "marketValue": "€1.30m",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "matej vydra::viktoria plzen": {
     "tmUrl": "https://www.transfermarkt.com/matej-vydra/profil/spieler/101500",
@@ -14040,7 +14061,7 @@
     "foot": "left",
     "contractUntil": "30/06/2028",
     "marketValue": "€100k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "matyas vojta::sparta praha": {
     "tmUrl": "https://www.transfermarkt.com/matyas-vojta/profil/spieler/836196",
@@ -14161,7 +14182,7 @@
     "position": "Centre-Forward",
     "foot": "right",
     "marketValue": "€175k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "mikulas konecny::slavia praha": {
     "tmUrl": "https://www.transfermarkt.com/mikulas-konecny/profil/spieler/765094",
@@ -14338,7 +14359,7 @@
     "foot": "right",
     "contractUntil": "30/06/2029",
     "marketValue": "€500k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "ondrej prodelal::zbrojovka brno": {
     "tmUrl": "https://www.transfermarkt.com/ondrej-prodelal/profil/spieler/993841",
@@ -14396,7 +14417,7 @@
     "position": "Goalkeeper",
     "foot": "right",
     "marketValue": "€25k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "patrik vydra::sparta praha": {
     "tmUrl": "https://www.transfermarkt.com/patrik-vydra/profil/spieler/655300",
@@ -14589,7 +14610,7 @@
     "position": "Left-Back",
     "foot": "left",
     "marketValue": "€200k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "roman horak::jablonec": {
     "tmUrl": "https://www.transfermarkt.com/roman-horak/profil/spieler/740558",
@@ -14655,7 +14676,7 @@
     "position": "Central Midfield",
     "contractUntil": "30/06/2027",
     "marketValue": "€400k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "samuel grygar::mlada boleslav": {
     "tmUrl": "https://www.transfermarkt.com/samuel-grygar/profil/spieler/671547",
@@ -14825,7 +14846,7 @@
   "stepan ponikelsky::hradec kralove": {
     "tmUrl": "https://www.transfermarkt.com/stepan-ponikelsky/profil/spieler/1140173",
     "position": "Central Midfield",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "stephane aris noumbissie::sigma olomouc": {
     "tmUrl": "https://www.transfermarkt.com/stephane-noumbissie/profil/spieler/1133943",
@@ -14885,7 +14906,7 @@
     "position": "Attacking Midfield",
     "foot": "right",
     "marketValue": "€1.80m",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "tomas brecka::zbrojovka brno": {
     "tmUrl": "https://www.transfermarkt.com/tomas-brecka/profil/spieler/265879",
@@ -14909,7 +14930,7 @@
     "foot": "right",
     "contractUntil": "30/06/2027",
     "marketValue": "€2.00m",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "tomas fojtu::zlin": {
     "tmUrl": "https://www.transfermarkt.com/tomas-fojtu/profil/spieler/748201",
@@ -14976,7 +14997,7 @@
     "foot": "right",
     "contractUntil": "30/06/2027",
     "marketValue": "€100k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "tomas poznar::zlin": {
     "tmUrl": "https://www.transfermarkt.com/tomas-poznar/profil/spieler/81979",
@@ -15014,7 +15035,7 @@
     "tmUrl": "https://www.transfermarkt.com/tomas-wiesner/profil/spieler/334807",
     "position": "Right Midfield",
     "foot": "right",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "tomas zlatohlavek::teplice": {
     "tmUrl": "https://www.transfermarkt.com/tomas-zlatohlavek/profil/spieler/424237",
@@ -15135,7 +15156,7 @@
     "foot": "right",
     "contractUntil": "30/06/2028",
     "marketValue": "€375k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "vladimir neuman::pardubice": {
     "tmUrl": "https://www.transfermarkt.com/vladimir-neuman/profil/spieler/668311",
@@ -78311,7 +78332,7 @@
     "position": "Defensive Midfield",
     "foot": "right",
     "marketValue": "€100k",
-    "lastUpdated": "2026-11-08T10:52:49.616922"
+    "lastUpdated": "2026-11-08T17:12:57.819772"
   },
   "morten knudsen::hvidovre": {
     "tmUrl": "https://www.transfermarkt.com/morten-knudsen/profil/spieler/204139",

@@ -9,7 +9,7 @@
 //
 // If data/tm_data.json exists (produced by the local Transfermarkt scraper —
 // see its header comment), it's merged in as four extra columns: tm_position,
-// market_value, contract_until, foot.
+// market_value, contract_until, foot (+ tm_other_positions = vedlejší pozice).
 //
 // If data/form-map.json exists (produced by scripts/fetch-media.mjs, phase 4),
 // it's merged in as two extra columns: form_ratings (array of the last few
@@ -157,7 +157,9 @@ if (fs.existsSync(TM_DATA_FILE)) {
   const nameIdx = columns.indexOf("player_name");
   const clubIdx = columns.indexOf("Current Club");
 
-  columns.push("tm_position", "market_value", "contract_until", "foot");
+  // tm_other_positions = vedlejší pozice z profilu hráče (pole názvů, např.
+  // ["Right Winger"]); null = ještě nezjištěno, [] = hráč žádné vedlejší nemá.
+  columns.push("tm_position", "market_value", "contract_until", "foot", "tm_other_positions");
   let hits = 0;
   rows = rows.map((row) => {
     const club = clubIdx >= 0 ? row[clubIdx] : null;
@@ -169,6 +171,7 @@ if (fs.existsSync(TM_DATA_FILE)) {
       entry?.marketValue || null,
       entry?.contractUntil || null,
       entry?.foot || null,
+      Array.isArray(entry?.otherPositions) ? entry.otherPositions : null,
     ];
   });
   tmStats = { hits, total: rows.length };
