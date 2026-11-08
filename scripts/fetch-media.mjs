@@ -344,6 +344,20 @@ function matchInLeagueTeams(clubName, teams) {
     return ourTokens.every((tok) => apiTokens.includes(tok));
   });
   if (containing.length === 1) return { item: containing[0], score: 0.9 };
+  // I obráceně: všechna slova názvu v API jsou v našem názvu
+  // ("Partizani" -> "Partizani Tirana").
+  const contained = containing.length ? [] : teams.filter((t) => {
+    const apiTokens = normalizeClubName(t.team.name).split(" ").filter(Boolean);
+    return apiTokens.length && apiTokens.every((tok) => ourTokens.includes(tok));
+  });
+  if (contained.length === 1) return { item: contained[0], score: 0.85 };
+  // Víc kandidátů ("Partizani" i "Tirana" pro "Partizani Tirana"): vezmeme
+  // nejpodobnější, ale jen když je jasně lepší než druhý (jinak raději nic).
+  const several = containing.length > 1 ? containing : contained;
+  if (several.length > 1) {
+    const r = rankCandidates(ourTokens.join(" "), several, (c) => normalizeClubName(c.team.name));
+    if (r[0].score - r[1].score >= 0.15) return { item: r[0].item, score: 0.8 };
+  }
   const ranked = rankCandidates(ourTokens.join(" "), teams, (c) => normalizeClubName(c.team.name));
   if (ranked[0] && ranked[0].score >= CLUB_MATCH_THRESHOLD) return ranked[0];
   return null;
@@ -387,13 +401,35 @@ async function resolveClubs(clubInfo, clubToLeagueId = new Map()) {
     const ranked = rankCandidates(ourNorm, candidates, (c) => normalizeClubName(c.team.name));
     const best = ranked[0]?.item;
     const bestScore = ranked[0]?.score || 0;
+    const leagueId = clubToLeagueId.get(clubName);
+
     if (best && (bestScore >= CLUB_MATCH_THRESHOLD || clubAliases[clubName])) {
-      matches[clubName] = { id: best.team.id, name: best.team.name, country: best.team.country, logo: best.team.logo, score: Number(bestScore.toFixed(2)), via: clubAliases[clubName] ? "alias" : "jméno" };
+      const match = { id: best.team.id, name: best.team.name, country: best.team.country, logo: best.team.logo, score: Number(bestScore.toFixed(2)), via: clubAliases[clubName] ? "alias" : "jméno" };
+
+      // Kontrola shody podle jména: hraje nalezený tým opravdu v lize našeho
+      // klubu? Hledání podle jména často trefí ženský tým ("Valur W"),
+      // rezervu ("Žalgiris II") nebo stejnojmenný klub z jiné země. Ruční
+      // výjimky (alias) se nekontrolují, ty platí vždy.
+      if (!clubAliases[clubName] && leagueId) {
+        const teams = await getLeagueTeams(leagueId);
+        const inLeague = teams.some((t) => t.team.id === best.team.id);
+        if (teams.length && !inLeague) {
+          const fix = matchInLeagueTeams(clubName, teams);
+          if (fix) {
+            const t = fix.item.team;
+            console.log(`  ↻ ${clubName}: "${best.team.name}" (id ${best.team.id}) v lize nehraje -> "${t.name}" (id ${t.id}) [soupiska ligy]`);
+            matches[clubName] = { id: t.id, name: t.name, country: t.country, logo: t.logo, score: Number(fix.score.toFixed(2)), via: "soupiska ligy", replaced: { name: best.team.name, id: best.team.id } };
+            continue;
+          }
+          // Náhrada se nenašla: necháme původní shodu, ale označíme ji v reportu.
+          match.via = "jméno – tým v lize nehraje, zkontroluj";
+        }
+      }
+      matches[clubName] = match;
       continue;
     }
 
     // Záložní párování přes seznam týmů ligy (jen když známe ID ligy).
-    const leagueId = clubToLeagueId.get(clubName);
     const fallback = leagueId ? matchInLeagueTeams(clubName, await getLeagueTeams(leagueId)) : null;
     if (fallback) {
       const t = fallback.item.team;
@@ -681,6 +717,8 @@ async function main() {
     apiCountry: m.country || null,
     score: m.score,
     via: m.via,
+    // Když kontrola soupisky ligy nahradila původní shodu podle jména:
+    replaced: m.replaced || null,
   }));
   fs.writeFileSync(REPORT_FILE, JSON.stringify({ matchedLeagues, unmatchedLeagues, matchedClubs, unmatchedClubs, unmatchedPlayers }, null, 2));
 
