@@ -56,6 +56,13 @@ export const leagueAliases = {
   "Sweden Superettan": 114,
   "Swiss Super League": 207,
   "Ukraine Premier League": 333,
+  // Nové ligy (listopad 2026) – ID vybrána ze seznamu soutěží dané země v API-Football.
+  "Albanian Superliga": 310,
+  "Armenian Premier League": 342,
+  "Faroe Islands Premier League": 367,
+  "Iceland Besta deild": 164,
+  "Lithuanian A Lyga": 362,
+  "Montenegrin First League": 355,
 };
 
 // Value: the club's numeric API-Football team ID (fastest/most reliable —
@@ -149,4 +156,6 @@ export const clubAliases = {
   "Salzburg": 571, // opraveno — auto-shoda podle jména byla špatná
   "Gorica": 1068, // opraveno — trefilo se do slovinského klubu se stejným názvem
   "Osijek": 616, // opraveno — auto-shoda podle jména byla špatná
+  "B36": 678, // B36 Tórshavn (Faerské ostrovy)
+  "FK Jezero Plav": 3748, // Jezero (Černá Hora)
 };

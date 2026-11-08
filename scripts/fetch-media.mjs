@@ -313,7 +313,43 @@ async function resolveLeagues(leagueInfo, codeByOurCountry) {
 /* 3. Resolve clubs (search by name, scoped to country when known)     */
 /* ------------------------------------------------------------------ */
 
-async function resolveClubs(clubInfo) {
+// Záložní párování: seznam A-týmů dané ligy a sezóny z API-Football
+// (/teams?league=ID&season=SEASON). Používá se JEN pro kluby, které se
+// nespárovaly hledáním podle jména (typicky krátké názvy jako "HB", "FH",
+// "KR"), takže na už spárované kluby nemá vliv.
+const leagueTeamsMemo = new Map();
+async function getLeagueTeams(leagueId) {
+  if (leagueTeamsMemo.has(leagueId)) return leagueTeamsMemo.get(leagueId);
+  const cacheName = `league-teams-${leagueId}-${SEASON}.json`;
+  let teams = readCache(cacheName);
+  if (!teams) {
+    console.log(`  GET /teams?league=${leagueId}&season=${SEASON} (záložní párování přes soupisku ligy)`);
+    const json = await apiGet("/teams", { league: leagueId, season: SEASON });
+    teams = json.response || [];
+    writeCache(cacheName, teams);
+  }
+  leagueTeamsMemo.set(leagueId, teams);
+  return teams;
+}
+
+// Najde náš klub v seznamu týmů ligy. Protože je seznam malý (10–20 týmů
+// jedné soutěže), stačí, když název týmu v API obsahuje všechna slova
+// našeho názvu ("HB" -> "HB Torshavn"). Když to sedí na víc týmů, nebo na
+// žádný, zkusí se podobnost jmen.
+function matchInLeagueTeams(clubName, teams) {
+  const ourTokens = normalizeClubName(clubName).split(" ").filter(Boolean);
+  if (!ourTokens.length || !teams.length) return null;
+  const containing = teams.filter((t) => {
+    const apiTokens = normalizeClubName(t.team.name).split(" ");
+    return ourTokens.every((tok) => apiTokens.includes(tok));
+  });
+  if (containing.length === 1) return { item: containing[0], score: 0.9 };
+  const ranked = rankCandidates(ourTokens.join(" "), teams, (c) => normalizeClubName(c.team.name));
+  if (ranked[0] && ranked[0].score >= CLUB_MATCH_THRESHOLD) return ranked[0];
+  return null;
+}
+
+async function resolveClubs(clubInfo, clubToLeagueId = new Map()) {
   // clubInfo: Map(clubName -> { country })
   console.log(`\n[fetch-media] Fáze 2/4: kluby (${clubInfo.size} klubů)…`);
   const matches = {};
@@ -352,7 +388,17 @@ async function resolveClubs(clubInfo) {
     const best = ranked[0]?.item;
     const bestScore = ranked[0]?.score || 0;
     if (best && (bestScore >= CLUB_MATCH_THRESHOLD || clubAliases[clubName])) {
-      matches[clubName] = { id: best.team.id, name: best.team.name, logo: best.team.logo, score: Number(bestScore.toFixed(2)) };
+      matches[clubName] = { id: best.team.id, name: best.team.name, country: best.team.country, logo: best.team.logo, score: Number(bestScore.toFixed(2)), via: clubAliases[clubName] ? "alias" : "jméno" };
+      continue;
+    }
+
+    // Záložní párování přes seznam týmů ligy (jen když známe ID ligy).
+    const leagueId = clubToLeagueId.get(clubName);
+    const fallback = leagueId ? matchInLeagueTeams(clubName, await getLeagueTeams(leagueId)) : null;
+    if (fallback) {
+      const t = fallback.item.team;
+      matches[clubName] = { id: t.id, name: t.name, country: t.country, logo: t.logo, score: Number(fallback.score.toFixed(2)), via: "soupiska ligy" };
+      console.log(`  ✓ ${clubName} -> "${t.name}" (id ${t.id}) [soupiska ligy]`);
     } else {
       unmatched.push({
         clubName,
@@ -575,7 +621,13 @@ async function main() {
   const codeByOurCountry = await resolveCountries(uniqueCountries);
 
   const { matches: leagueMatches, unmatched: unmatchedLeagues } = await resolveLeagues(leagueInfo, codeByOurCountry);
-  const { matches: clubMatches, unmatched: unmatchedClubs } = await resolveClubs(clubInfo);
+  // ID ligy ke každému klubu (pro záložní párování klubů i pro formu).
+  const clubToLeagueId = new Map();
+  for (const [club, leagueName] of clubToLeagueName) {
+    const leagueId = leagueMatches[leagueName]?.id;
+    if (leagueId) clubToLeagueId.set(club, leagueId);
+  }
+  const { matches: clubMatches, unmatched: unmatchedClubs } = await resolveClubs(clubInfo, clubToLeagueId);
 
   let playerPhotos = {};
   let unmatchedPlayers = [];
@@ -589,11 +641,6 @@ async function main() {
 
   let formMap = {};
   if (!SKIP_FORM && !interrupted) {
-    const clubToLeagueId = new Map();
-    for (const [club, leagueName] of clubToLeagueName) {
-      const leagueId = leagueMatches[leagueName]?.id;
-      if (leagueId) clubToLeagueId.set(club, leagueId);
-    }
     formMap = await fetchForm(clubMatches, rosterByClub, clubToLeagueId);
   } else if (SKIP_FORM && !SKIP_SQUADS) {
     console.log(`\n[fetch-media] --skip-form: přeskakuji fázi 4 (forma z posledních zápasů).`);
@@ -624,7 +671,18 @@ async function main() {
     apiName: m.name,
     apiId: m.id,
   }));
-  fs.writeFileSync(REPORT_FILE, JSON.stringify({ matchedLeagues, unmatchedLeagues, unmatchedClubs, unmatchedPlayers }, null, 2));
+  // Přehled spárovaných klubů (náš název -> tým v API), ať jde snadno najít
+  // špatné shody (ženské týmy, rezervy, stejně pojmenované kluby z jiné země).
+  const matchedClubs = Object.entries(clubMatches).map(([ourName, m]) => ({
+    clubName: ourName,
+    league: clubToLeagueName.get(ourName) || null,
+    apiName: m.name,
+    apiId: m.id,
+    apiCountry: m.country || null,
+    score: m.score,
+    via: m.via,
+  }));
+  fs.writeFileSync(REPORT_FILE, JSON.stringify({ matchedLeagues, unmatchedLeagues, matchedClubs, unmatchedClubs, unmatchedPlayers }, null, 2));
 
   console.log(`\n[fetch-media] Hotovo. Použito requestů: ${requestCount}.`);
   console.log(`  Ligy:  ${mediaMap.stats.leaguesMatched}/${mediaMap.stats.leaguesTotal}`);
