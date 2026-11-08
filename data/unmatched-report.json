@@ -131,146 +131,3808 @@
       "apiId": 333
     },
     {
+      "ourLeagueName": "Albanian Superliga",
+      "apiName": "Superliga",
+      "apiId": 310
+    },
+    {
       "ourLeagueName": "Armenian Premier League",
       "apiName": "Premier League",
       "apiId": 342
-    }
-  ],
-  "unmatchedLeagues": [
-    {
-      "ourLeagueName": "Albanian Superliga",
-      "country": "Albania",
-      "candidates": [
-        {
-          "name": "Superliga",
-          "id": 310,
-          "score": 0.5
-        },
-        {
-          "name": "Super Cup",
-          "id": 708,
-          "score": 0.28
-        },
-        {
-          "name": "1st Division",
-          "id": 311,
-          "score": 0.17
-        },
-        {
-          "name": "2nd Division - Group A",
-          "id": 512,
-          "score": 0.15
-        },
-        {
-          "name": "2nd Division - Play-offs",
-          "id": 978,
-          "score": 0.14
-        }
-      ]
     },
     {
       "ourLeagueName": "Faroe Islands Premier League",
-      "country": "Faroe Islands",
-      "candidates": [
-        {
-          "name": "Meistaradeildin",
-          "id": 367,
-          "score": 0.25
-        },
-        {
-          "name": "Super Cup",
-          "id": 1177,
-          "score": 0.21
-        },
-        {
-          "name": "1. Deild",
-          "id": 366,
-          "score": 0.18
-        },
-        {
-          "name": "Løgmanssteypid",
-          "id": 491,
-          "score": 0.18
-        }
-      ]
+      "apiName": "Meistaradeildin",
+      "apiId": 367
     },
     {
       "ourLeagueName": "Iceland Besta deild",
-      "country": "Iceland",
-      "candidates": [
-        {
-          "name": "Úrvalsdeild",
-          "id": 164,
-          "score": 0.37
-        },
-        {
-          "name": "1. Deild",
-          "id": 165,
-          "score": 0.32
-        },
-        {
-          "name": "2. Deild",
-          "id": 166,
-          "score": 0.32
-        },
-        {
-          "name": "League Cup",
-          "id": 168,
-          "score": 0.21
-        },
-        {
-          "name": "Úrvalsdeild Women",
-          "id": 671,
-          "score": 0.16
-        }
-      ]
+      "apiName": "Úrvalsdeild",
+      "apiId": 164
     },
     {
       "ourLeagueName": "Lithuanian A Lyga",
-      "country": "Lithuania",
-      "candidates": [
-        {
-          "name": "A Lyga",
-          "id": 362,
-          "score": 0.35
-        },
-        {
-          "name": "1 Lyga",
-          "id": 361,
-          "score": 0.29
-        },
-        {
-          "name": "Super Cup",
-          "id": 839,
-          "score": 0.12
-        },
-        {
-          "name": "Cup",
-          "id": 661,
-          "score": 0.06
-        }
-      ]
+      "apiName": "A Lyga",
+      "apiId": 362
     },
     {
       "ourLeagueName": "Montenegrin First League",
-      "country": "Montenegro",
-      "candidates": [
-        {
-          "name": "First League",
-          "id": 355,
-          "score": 0.5
-        },
-        {
-          "name": "Second League",
-          "id": 356,
-          "score": 0.38
-        },
-        {
-          "name": "Cup",
-          "id": 723,
-          "score": 0.04
-        }
-      ]
+      "apiName": "First League",
+      "apiId": 355
+    }
+  ],
+  "unmatchedLeagues": [],
+  "matchedClubs": [
+    {
+      "clubName": "Wolfsberger AC",
+      "league": "Austrian Bundesliga",
+      "apiName": "Wolfsberger AC",
+      "apiId": 1025,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Austria Wien",
+      "league": "Austrian Bundesliga",
+      "apiName": "Austria Vienna",
+      "apiId": 601,
+      "apiCountry": "Austria",
+      "score": 0.79,
+      "via": "alias"
+    },
+    {
+      "clubName": "Salzburg",
+      "league": "Austrian Bundesliga",
+      "apiName": "Red Bull Salzburg",
+      "apiId": 571,
+      "apiCountry": "Austria",
+      "score": 0.47,
+      "via": "alias"
+    },
+    {
+      "clubName": "Sturm Graz",
+      "league": "Austrian Bundesliga",
+      "apiName": "Sturm Graz",
+      "apiId": 637,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Wattens",
+      "league": "Austrian Bundesliga",
+      "apiName": "WSG Wattens",
+      "apiId": 1398,
+      "apiCountry": "Austria",
+      "score": 0.64,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Rheindorf Altach",
+      "league": "Austrian Bundesliga",
+      "apiName": "SCR Altach",
+      "apiId": 618,
+      "apiCountry": "Austria",
+      "score": 0.5,
+      "via": "alias"
+    },
+    {
+      "clubName": "Hartberg",
+      "league": "Austrian Bundesliga",
+      "apiName": "TSV Hartberg",
+      "apiId": 1072,
+      "apiCountry": "Austria",
+      "score": 0.67,
+      "via": "alias"
+    },
+    {
+      "clubName": "Austria Lustenau",
+      "league": "Austrian Bundesliga",
+      "apiName": "Austria Lustenau",
+      "apiId": 1399,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ried",
+      "league": "Austrian Bundesliga",
+      "apiName": "Ried",
+      "apiId": 1028,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "LASK Linz",
+      "league": "Austrian Bundesliga",
+      "apiName": "Lask Linz",
+      "apiId": 1026,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Grazer AK",
+      "league": "Austrian Bundesliga",
+      "apiName": "Grazer AK",
+      "apiId": 4256,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Rapid Wien",
+      "league": "Austrian Bundesliga",
+      "apiName": "Rapid Vienna",
+      "apiId": 781,
+      "apiCountry": "Austria",
+      "score": 0.75,
+      "via": "alias"
+    },
+    {
+      "clubName": "Blau-Weiß Linz",
+      "league": "Austrian 2. Liga",
+      "apiName": "FC BW Linz",
+      "apiId": 1394,
+      "apiCountry": "Austria",
+      "score": 0.47,
+      "via": "alias"
+    },
+    {
+      "clubName": "Austria Wien II",
+      "league": "Austrian 2. Liga",
+      "apiName": "Austria Vienna (Am)",
+      "apiId": 2860,
+      "apiCountry": "Austria",
+      "score": 0.71,
+      "via": "alias"
+    },
+    {
+      "clubName": "Kapfenberger SV",
+      "league": "Austrian 2. Liga",
+      "apiName": "SV Kapfenberg",
+      "apiId": 1401,
+      "apiCountry": "Austria",
+      "score": 0.47,
+      "via": "alias"
+    },
+    {
+      "clubName": "Rapid Wien II",
+      "league": "Austrian 2. Liga",
+      "apiName": "Rapid Wien II",
+      "apiId": 8247,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Wacker Innsbruck",
+      "league": "Austrian 2. Liga",
+      "apiName": "Wacker Innsbruck",
+      "apiId": 1073,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Admira",
+      "league": "Austrian 2. Liga",
+      "apiName": "Admira Wacker",
+      "apiId": 1023,
+      "apiCountry": "Austria",
+      "score": 0.46,
+      "via": "alias"
+    },
+    {
+      "clubName": "St. Pölten",
+      "league": "Austrian 2. Liga",
+      "apiName": "SKN ST. Polten",
+      "apiId": 1027,
+      "apiCountry": "Austria",
+      "score": 0.69,
+      "via": "alias"
+    },
+    {
+      "clubName": "Floridsdorfer AC",
+      "league": "Austrian 2. Liga",
+      "apiName": "Floridsdorfer AC",
+      "apiId": 1395,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Voitsberg",
+      "league": "Austrian 2. Liga",
+      "apiName": "Voitsberg",
+      "apiId": 8332,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Schwarz-Weiß Bregenz",
+      "league": "Austrian 2. Liga",
+      "apiName": "Schwarz-Weiß Bregenz",
+      "apiId": 8259,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Amstetten",
+      "league": "Austrian 2. Liga",
+      "apiName": "SKU Amstetten",
+      "apiId": 1404,
+      "apiCountry": "Austria",
+      "score": 0.69,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sturm Graz II",
+      "league": "Austrian 2. Liga",
+      "apiName": "Sturm Graz II",
+      "apiId": 8251,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Liefering",
+      "league": "Austrian 2. Liga",
+      "apiName": "FC Liefering",
+      "apiId": 1400,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "First Vienna",
+      "league": "Austrian 2. Liga",
+      "apiName": "First Vienna",
+      "apiId": 4990,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Austria Salzburg",
+      "league": "Austrian 2. Liga",
+      "apiName": "Austria Salzburg",
+      "apiId": 5000,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "WSPG Wels",
+      "league": "Austrian 2. Liga",
+      "apiName": "WSPG Wels",
+      "apiId": 22213,
+      "apiCountry": "Austria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Velež",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Velež",
+      "apiId": 3381,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Borac Banja Luka",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Borac Banja Luka",
+      "apiId": 3364,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Čelik",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Čelik",
+      "apiId": 3363,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Zrinjski",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Zrinjski",
+      "apiId": 588,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Željezničar",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Zeljeznicar Sarajevo",
+      "apiId": 654,
+      "apiCountry": "Bosnia",
+      "score": 0.55,
+      "via": "alias"
+    },
+    {
+      "clubName": "Sarajevo",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "FK Sarajevo",
+      "apiId": 679,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sloga Doboj",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Sloga Doboj",
+      "apiId": 8504,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "BSK Banja Luka",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "BSK Banja Luka",
+      "apiId": 21736,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Radnik Bijeljina",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Radnik Bijeljina",
+      "apiId": 3359,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Široki Brijeg",
+      "league": "Bosnian WWIN Liga BiH",
+      "apiName": "Siroki Brijeg",
+      "apiId": 642,
+      "apiCountry": "Bosnia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Botev Vratsa",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Botev Vratsa",
+      "apiId": 859,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Arda",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Arda Kardzhali",
+      "apiId": 1430,
+      "apiCountry": "Bulgaria",
+      "score": 0.29,
+      "via": "alias"
+    },
+    {
+      "clubName": "Lokomotiv Sofia 1929",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Lokomotiv Sofia",
+      "apiId": 1416,
+      "apiCountry": "Bulgaria",
+      "score": 0.75,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lokomotiv Plovdiv",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Lokomotiv Plovdiv",
+      "apiId": 858,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Levski Sofia",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Levski Sofia",
+      "apiId": 646,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ludogorets",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Ludogorets",
+      "apiId": 566,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Spartak Varna",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Spartak Varna",
+      "apiId": 4660,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Botev Plovdiv",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Botev Plovdiv",
+      "apiId": 634,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "CSKA Sofia",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "CSKA Sofia",
+      "apiId": 853,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "CSKA 1948 Sofia",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "CSKA 1948",
+      "apiId": 1426,
+      "apiCountry": "Bulgaria",
+      "score": 0.6,
+      "via": "alias"
+    },
+    {
+      "clubName": "Septemvri Sofia",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Septemvri Sofia",
+      "apiId": 856,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dunav 2010",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Dunav Ruse",
+      "apiId": 683,
+      "apiCountry": "Bulgaria",
+      "score": 0.6,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Cherno More",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Cherno More Varna",
+      "apiId": 851,
+      "apiCountry": "Bulgaria",
+      "score": 0.65,
+      "via": "alias"
+    },
+    {
+      "clubName": "Slavia Sofia",
+      "league": "Bulgarian Parva Liga",
+      "apiName": "Slavia Sofia",
+      "apiId": 854,
+      "apiCountry": "Bulgaria",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hajduk Split",
+      "league": "Croatian HNL",
+      "apiName": "HNK Hajduk Split",
+      "apiId": 608,
+      "apiCountry": "Croatia",
+      "score": 0.75,
+      "via": "alias"
+    },
+    {
+      "clubName": "Slaven Koprivnica",
+      "league": "Croatian HNL",
+      "apiName": "NK Slaven Belupo",
+      "apiId": 1018,
+      "apiCountry": "Croatia",
+      "score": 0.24,
+      "via": "alias"
+    },
+    {
+      "clubName": "Osijek",
+      "league": "Croatian HNL",
+      "apiName": "NK Osijek",
+      "apiId": 616,
+      "apiCountry": "Croatia",
+      "score": 0.67,
+      "via": "alias"
+    },
+    {
+      "clubName": "Istra 1961",
+      "league": "Croatian HNL",
+      "apiName": "Istra 1961",
+      "apiId": 1016,
+      "apiCountry": "Croatia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dinamo Zagreb",
+      "league": "Croatian HNL",
+      "apiName": "Dinamo Zagreb",
+      "apiId": 620,
+      "apiCountry": "Croatia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Varaždin",
+      "league": "Croatian HNL",
+      "apiName": "NK Varazdin",
+      "apiId": 1483,
+      "apiCountry": "Croatia",
+      "score": 0.73,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Rijeka",
+      "league": "Croatian HNL",
+      "apiName": "HNK Rijeka",
+      "apiId": 561,
+      "apiCountry": "Croatia",
+      "score": 0.6,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Gorica",
+      "league": "Croatian HNL",
+      "apiName": "HNK Gorica",
+      "apiId": 1068,
+      "apiCountry": "Croatia",
+      "score": 0.6,
+      "via": "alias"
+    },
+    {
+      "clubName": "Rudeš",
+      "league": "Croatian HNL",
+      "apiName": "Rudes",
+      "apiId": 1019,
+      "apiCountry": "Croatia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lokomotiva Zagreb",
+      "league": "Croatian HNL",
+      "apiName": "NK Lokomotiva Zagreb",
+      "apiId": 1017,
+      "apiCountry": "Croatia",
+      "score": 0.85,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Baník Ostrava",
+      "league": "Czech Chance Liga",
+      "apiName": "Baník Ostrava",
+      "apiId": 3713,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sigma Olomouc",
+      "league": "Czech Chance Liga",
+      "apiName": "Sigma Olomouc",
+      "apiId": 2250,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Pardubice",
+      "league": "Czech Chance Liga",
+      "apiName": "Pardubice",
+      "apiId": 3724,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Teplice",
+      "league": "Czech Chance Liga",
+      "apiName": "Teplice",
+      "apiId": 3720,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hradec Králové",
+      "league": "Czech Chance Liga",
+      "apiName": "Hradec Králové",
+      "apiId": 3723,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Líšeň",
+      "league": "Czech Chance Liga",
+      "apiName": "Artis",
+      "apiId": 4257,
+      "apiCountry": "Czech-Republic",
+      "score": 0,
+      "via": "alias"
+    },
+    {
+      "clubName": "Slovan Liberec",
+      "league": "Czech Chance Liga",
+      "apiName": "Slovan Liberec",
+      "apiId": 782,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Viktoria Plzeň",
+      "league": "Czech Chance Liga",
+      "apiName": "Plzen",
+      "apiId": 567,
+      "apiCountry": "Czech-Republic",
+      "score": 0.36,
+      "via": "alias"
+    },
+    {
+      "clubName": "Zlín",
+      "league": "Czech Chance Liga",
+      "apiName": "Zlin",
+      "apiId": 603,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Zbrojovka Brno",
+      "league": "Czech Chance Liga",
+      "apiName": "Zbrojovka Brno",
+      "apiId": 3733,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Mladá Boleslav",
+      "league": "Czech Chance Liga",
+      "apiName": "Mlada Boleslav",
+      "apiId": 640,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sparta Praha",
+      "league": "Czech Chance Liga",
+      "apiName": "Sparta Praha",
+      "apiId": 628,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Slovácko",
+      "league": "Czech Chance Liga",
+      "apiName": "Slovácko",
+      "apiId": 3719,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Slavia Praha",
+      "league": "Czech Chance Liga",
+      "apiName": "Slavia Praha",
+      "apiId": 560,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bohemians 1905",
+      "league": "Czech Chance Liga",
+      "apiName": "Bohemians 1905",
+      "apiId": 3714,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Jablonec",
+      "league": "Czech Chance Liga",
+      "apiName": "FK Jablonec",
+      "apiId": 1122,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Baník Ostrava U21",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Baník Ostrava II",
+      "apiId": 8621,
+      "apiCountry": "Czech-Republic",
+      "score": 0.82,
+      "via": "alias"
+    },
+    {
+      "clubName": "Příbram",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Příbram",
+      "apiId": 3718,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Slavia Praha U21",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Slavia Praha II",
+      "apiId": 8618,
+      "apiCountry": "Czech-Republic",
+      "score": 0.81,
+      "via": "alias"
+    },
+    {
+      "clubName": "Prostějov",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Prostějov",
+      "apiId": 3725,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Opava",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Opava",
+      "apiId": 3717,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Karviná",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Karviná",
+      "apiId": 3716,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dukla Praha",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Dukla Praha",
+      "apiId": 3715,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hanácká",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Hanácká",
+      "apiId": 7291,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Arsenal Ceska Lipa",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Arsenal Česká Lípa",
+      "apiId": 7270,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Táborsko",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Táborsko",
+      "apiId": 3726,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Viktoria Žižkov",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Viktoria Žižkov",
+      "apiId": 3729,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vysočina Jihlava",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Vysočina Jihlava",
+      "apiId": 3731,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ústí nad Labem",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Ústí nad Labem",
+      "apiId": 3735,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kladno",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Kladno",
+      "apiId": 7307,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Třinec",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Třinec",
+      "apiId": 3727,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vlašim",
+      "league": "Czech Chance Národní Liga",
+      "apiName": "Vlašim",
+      "apiId": 3730,
+      "apiCountry": "Czech-Republic",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Midtjylland",
+      "league": "Danish Superliga",
+      "apiName": "FC Midtjylland",
+      "apiId": 397,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Horsens",
+      "league": "Danish Superliga",
+      "apiName": "AC Horsens",
+      "apiId": 404,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "OB",
+      "league": "Danish Superliga",
+      "apiName": "Odense",
+      "apiId": 405,
+      "apiCountry": "Denmark",
+      "score": 0.17,
+      "via": "alias"
+    },
+    {
+      "clubName": "Viborg",
+      "league": "Danish Superliga",
+      "apiName": "Viborg",
+      "apiId": 2070,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "København",
+      "league": "Danish Superliga",
+      "apiName": "FC Copenhagen",
+      "apiId": 400,
+      "apiCountry": "Denmark",
+      "score": 0.6,
+      "via": "alias"
+    },
+    {
+      "clubName": "SønderjyskE",
+      "league": "Danish Superliga",
+      "apiName": "Sonderjyske",
+      "apiId": 396,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Silkeborg",
+      "league": "Danish Superliga",
+      "apiName": "Silkeborg",
+      "apiId": 2073,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Nordsjælland",
+      "league": "Danish Superliga",
+      "apiName": "FC Nordsjaelland",
+      "apiId": 398,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Randers",
+      "league": "Danish Superliga",
+      "apiName": "Randers FC",
+      "apiId": 401,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lyngby",
+      "league": "Danish Superliga",
+      "apiName": "Lyngby",
+      "apiId": 625,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Brøndby",
+      "league": "Danish Superliga",
+      "apiName": "Brondby",
+      "apiId": 407,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "AGF",
+      "league": "Danish Superliga",
+      "apiName": "Aarhus",
+      "apiId": 406,
+      "apiCountry": "Denmark",
+      "score": 0.17,
+      "via": "alias"
+    },
+    {
+      "clubName": "Vejle",
+      "league": "Danish Betinia Liga",
+      "apiName": "Vejle",
+      "apiId": 395,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hvidovre",
+      "league": "Danish Betinia Liga",
+      "apiName": "Hvidovre",
+      "apiId": 2072,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hillerød",
+      "league": "Danish Betinia Liga",
+      "apiName": "Hillerød",
+      "apiId": 6026,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Kolding IF",
+      "league": "Danish Betinia Liga",
+      "apiName": "Kolding IF",
+      "apiId": 4676,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Esbjerg",
+      "league": "Danish Betinia Liga",
+      "apiName": "Esbjerg",
+      "apiId": 403,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Fredericia",
+      "league": "Danish Betinia Liga",
+      "apiName": "FC Fredericia",
+      "apiId": 2061,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "AB",
+      "league": "Danish Betinia Liga",
+      "apiName": "AB Copenhagen",
+      "apiId": 2060,
+      "apiCountry": "Denmark",
+      "score": 0.15,
+      "via": "alias"
+    },
+    {
+      "clubName": "AaB",
+      "league": "Danish Betinia Liga",
+      "apiName": "Aalborg",
+      "apiId": 402,
+      "apiCountry": "Denmark",
+      "score": 0.43,
+      "via": "alias"
+    },
+    {
+      "clubName": "Aarhus Fremad",
+      "league": "Danish Betinia Liga",
+      "apiName": "Aarhus Fremad",
+      "apiId": 6004,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hobro",
+      "league": "Danish Betinia Liga",
+      "apiName": "Hobro",
+      "apiId": 408,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vendsyssel",
+      "league": "Danish Betinia Liga",
+      "apiName": "Vendsyssel FF",
+      "apiId": 399,
+      "apiCountry": "Denmark",
+      "score": 0.77,
+      "via": "jméno"
+    },
+    {
+      "clubName": "HB Køge",
+      "league": "Danish Betinia Liga",
+      "apiName": "HB Koge",
+      "apiId": 2063,
+      "apiCountry": "Denmark",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Paide",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Paide",
+      "apiId": 3528,
+      "apiCountry": "Estonia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Harju Jalgpallikool",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Laagri",
+      "apiId": 18657,
+      "apiCountry": "Estonia",
+      "score": 0.21,
+      "via": "alias"
+    },
+    {
+      "clubName": "Tallinna FC Levadia",
+      "league": "Estonian Premium Liiga",
+      "apiName": "FC Levadia Tallinn",
+      "apiId": 2273,
+      "apiCountry": "Estonia",
+      "score": 0.13,
+      "via": "alias"
+    },
+    {
+      "clubName": "Nõmme United",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Nõmme United",
+      "apiId": 10059,
+      "apiCountry": "Estonia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Trans",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Trans Narva",
+      "apiId": 2274,
+      "apiCountry": "Estonia",
+      "score": 0.45,
+      "via": "alias"
+    },
+    {
+      "clubName": "Tallinna FC Flora",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Flora Tallinn",
+      "apiId": 687,
+      "apiCountry": "Estonia",
+      "score": 0.14,
+      "via": "alias"
+    },
+    {
+      "clubName": "Vaprus",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Vaprus",
+      "apiId": 3525,
+      "apiCountry": "Estonia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Nõmme Kalju",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Kalju Nomme",
+      "apiId": 662,
+      "apiCountry": "Estonia",
+      "score": 0.09,
+      "via": "alias"
+    },
+    {
+      "clubName": "Kuressaare",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Kuressaare",
+      "apiId": 3526,
+      "apiCountry": "Estonia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Tammeka",
+      "league": "Estonian Premium Liiga",
+      "apiName": "Tammeka",
+      "apiId": 3530,
+      "apiCountry": "Estonia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "SJK",
+      "league": "Finland Veikkausliiga",
+      "apiName": "SJK",
+      "apiId": 689,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Mariehamn",
+      "league": "Finland Veikkausliiga",
+      "apiName": "Mariehamn",
+      "apiId": 587,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "KuPS",
+      "league": "Finland Veikkausliiga",
+      "apiName": "KuPS",
+      "apiId": 1165,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lahti",
+      "league": "Finland Veikkausliiga",
+      "apiName": "Lahti",
+      "apiId": 1166,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Jaro",
+      "league": "Finland Veikkausliiga",
+      "apiName": "FF Jaro",
+      "apiId": 2075,
+      "apiCountry": "Finland",
+      "score": 0.57,
+      "via": "alias"
+    },
+    {
+      "clubName": "Oulu",
+      "league": "Finland Veikkausliiga",
+      "apiName": "AC Oulu",
+      "apiId": 2077,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "TPS",
+      "league": "Finland Veikkausliiga",
+      "apiName": "Turku PS",
+      "apiId": 1168,
+      "apiCountry": "Finland",
+      "score": 0.38,
+      "via": "alias"
+    },
+    {
+      "clubName": "Gnistan",
+      "league": "Finland Veikkausliiga",
+      "apiName": "Gnistan",
+      "apiId": 2082,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "VPS",
+      "league": "Finland Veikkausliiga",
+      "apiName": "VPS",
+      "apiId": 650,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Inter Turku",
+      "league": "Finland Veikkausliiga",
+      "apiName": "Inter Turku",
+      "apiId": 1164,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "HJK",
+      "league": "Finland Veikkausliiga",
+      "apiName": "HJK Helsinki",
+      "apiId": 649,
+      "apiCountry": "Finland",
+      "score": 0.25,
+      "via": "alias"
+    },
+    {
+      "clubName": "Ilves",
+      "league": "Finland Veikkausliiga",
+      "apiName": "Ilves",
+      "apiId": 1163,
+      "apiCountry": "Finland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Radomiak Radom",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Radomiak Radom",
+      "apiId": 4248,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Raków Częstochowa",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Raków Częstochowa",
+      "apiId": 3491,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Wisła Płock",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Wisla Plock",
+      "apiId": 341,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "GKS Katowice",
+      "league": "Polish Ekstraklasa",
+      "apiName": "GKS Katowice",
+      "apiId": 3484,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Śląsk Wrocław",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Slask Wroclaw",
+      "apiId": 337,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Cracovia Kraków",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Cracovia Krakow",
+      "apiId": 350,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Wisła Kraków",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Wisla Krakow",
+      "apiId": 338,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Zagłębie Lubin",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Zaglebie Lubin",
+      "apiId": 345,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Jagiellonia Białystok",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Jagiellonia",
+      "apiId": 336,
+      "apiCountry": "Poland",
+      "score": 0.52,
+      "via": "alias"
+    },
+    {
+      "clubName": "Wieczysta Kraków",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Wieczysta Kraków",
+      "apiId": 17115,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Pogoń Szczecin",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Pogon Szczecin",
+      "apiId": 348,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Motor Lublin",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Motor Lublin",
+      "apiId": 14562,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lech Poznań",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Lech Poznan",
+      "apiId": 347,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Piast Gliwice",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Piast Gliwice",
+      "apiId": 349,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Widzew Łódź",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Widzew Łódź",
+      "apiId": 6962,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Legia Warszawa",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Legia Warszawa",
+      "apiId": 339,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Korona Kielce",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Korona Kielce",
+      "apiId": 346,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Górnik Zabrze",
+      "league": "Polish Ekstraklasa",
+      "apiName": "Gornik Zabrze",
+      "apiId": 340,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ruch Chorzów",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Ruch Chorzów",
+      "apiId": 6953,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Miedź Legnica",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Miedz Legnica",
+      "apiId": 335,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Chrobry Głogów",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Chrobry Głogów",
+      "apiId": 3483,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Nieciecza",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Nieciecza",
+      "apiId": 3487,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Odra Opole",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Odra Opole",
+      "apiId": 3488,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Polonia Bytom",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Polonia Bytom",
+      "apiId": 12835,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Puszcza Niepołomice",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Puszcza Niepołomice",
+      "apiId": 3490,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Polonia Warszawa",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Polonia Warszawa",
+      "apiId": 16239,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Warta Poznań",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Warta Poznań",
+      "apiId": 3496,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "ŁKS Łódź",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "ŁKS Łódź",
+      "apiId": 3498,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Arka Gdynia",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Arka Gdynia",
+      "apiId": 344,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Pogoń Grod. Mazowiecki",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Pogoń Grod. Mazowiecki",
+      "apiId": 14750,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Stal Rzeszów",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Stal Rzeszów",
+      "apiId": 6957,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Podbeskidzie",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Podbeskidzie",
+      "apiId": 3489,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Unia Skierniewice",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Unia Skierniewice",
+      "apiId": 6961,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lechia Gdańsk",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Lechia Gdansk",
+      "apiId": 343,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Stal Mielec",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Stal Mielec",
+      "apiId": 3493,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Pogoń Siedlce",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Pogoń Siedlce",
+      "apiId": 6947,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Újpest",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Ujpest",
+      "apiId": 2255,
+      "apiCountry": "Hungary",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "ETO",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Gyori ETO FC",
+      "apiId": 2402,
+      "apiCountry": "Hungary",
+      "score": 0.33,
+      "via": "alias"
+    },
+    {
+      "clubName": "Ferencváros",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Ferencvarosi TC",
+      "apiId": 651,
+      "apiCountry": "Hungary",
+      "score": 0.73,
+      "via": "alias"
+    },
+    {
+      "clubName": "Honvéd",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Budapest Honved",
+      "apiId": 576,
+      "apiCountry": "Hungary",
+      "score": 0.4,
+      "via": "alias"
+    },
+    {
+      "clubName": "Paksi SE",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Paks",
+      "apiId": 2390,
+      "apiCountry": "Hungary",
+      "score": 0.5,
+      "via": "alias"
+    },
+    {
+      "clubName": "Debrecen",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Debreceni VSC",
+      "apiId": 2392,
+      "apiCountry": "Hungary",
+      "score": 0.62,
+      "via": "alias"
+    },
+    {
+      "clubName": "MTK",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "MTK Budapest",
+      "apiId": 2396,
+      "apiCountry": "Hungary",
+      "score": 0.25,
+      "via": "alias"
+    },
+    {
+      "clubName": "Zalaegerszegi TE",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Zalaegerszegi TE",
+      "apiId": 2414,
+      "apiCountry": "Hungary",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Várda SE",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Kisvarda FC",
+      "apiId": 2394,
+      "apiCountry": "Hungary",
+      "score": 0.25,
+      "via": "alias"
+    },
+    {
+      "clubName": "Puskás",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Puskas Academy",
+      "apiId": 2391,
+      "apiCountry": "Hungary",
+      "score": 0.43,
+      "via": "alias"
+    },
+    {
+      "clubName": "Vasas",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Vasas",
+      "apiId": 675,
+      "apiCountry": "Hungary",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Nyíregyháza Spartacus",
+      "league": "Hungarian Fizz Liga",
+      "apiName": "Nyiregyhaza",
+      "apiId": 2403,
+      "apiCountry": "Hungary",
+      "score": 0.52,
+      "via": "alias"
+    },
+    {
+      "clubName": "BFC Daugavpils",
+      "league": "Latvian Virsliga",
+      "apiName": "BFC Daugavpils",
+      "apiId": 4149,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Riga",
+      "league": "Latvian Virsliga",
+      "apiName": "Riga",
+      "apiId": 10124,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Liepāja",
+      "league": "Latvian Virsliga",
+      "apiName": "FK Liepaja",
+      "apiId": 661,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "FS Jelgava",
+      "league": "Latvian Virsliga",
+      "apiName": "FS Jelgava",
+      "apiId": 18834,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Super Nova",
+      "league": "Latvian Virsliga",
+      "apiName": "Super Nova",
+      "apiId": 4143,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Rīgas FS",
+      "league": "Latvian Virsliga",
+      "apiName": "Rīgas FS",
+      "apiId": 4160,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Grobiņa",
+      "league": "Latvian Virsliga",
+      "apiName": "Grobiņa",
+      "apiId": 4138,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ogre United",
+      "league": "Latvian Virsliga",
+      "apiName": "Ogre United",
+      "apiId": 18936,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Tukums",
+      "league": "Latvian Virsliga",
+      "apiName": "Tukums",
+      "apiId": 4144,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Auda",
+      "league": "Latvian Virsliga",
+      "apiName": "Auda",
+      "apiId": 4135,
+      "apiCountry": "Latvia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vålerenga",
+      "league": "Eliteserien",
+      "apiName": "Valerenga",
+      "apiId": 326,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Tromsø",
+      "league": "Eliteserien",
+      "apiName": "Tromso",
+      "apiId": 325,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kristiansund",
+      "league": "Eliteserien",
+      "apiName": "Kristiansund BK",
+      "apiId": 320,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Rosenborg",
+      "league": "Eliteserien",
+      "apiName": "Rosenborg",
+      "apiId": 331,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sarpsborg 08",
+      "league": "Eliteserien",
+      "apiName": "Sarpsborg 08 FF",
+      "apiId": 333,
+      "apiCountry": "Norway",
+      "score": 0.8,
+      "via": "jméno"
+    },
+    {
+      "clubName": "HamKam",
+      "league": "Eliteserien",
+      "apiName": "Ham-Kam",
+      "apiId": 2159,
+      "apiCountry": "Norway",
+      "score": 0.86,
+      "via": "alias"
+    },
+    {
+      "clubName": "Molde",
+      "league": "Eliteserien",
+      "apiName": "Molde",
+      "apiId": 329,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Aalesund",
+      "league": "Eliteserien",
+      "apiName": "Aalesund",
+      "apiId": 757,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sandefjord",
+      "league": "Eliteserien",
+      "apiName": "Sandefjord",
+      "apiId": 332,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Start",
+      "league": "Eliteserien",
+      "apiName": "Start",
+      "apiId": 334,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Viking",
+      "league": "Eliteserien",
+      "apiName": "Viking",
+      "apiId": 759,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "KFUM",
+      "league": "Eliteserien",
+      "apiName": "KFUM Oslo",
+      "apiId": 2143,
+      "apiCountry": "Norway",
+      "score": 0.44,
+      "via": "alias"
+    },
+    {
+      "clubName": "FK Bodo - Glimt",
+      "league": "Eliteserien",
+      "apiName": "Bodo/Glimt",
+      "apiId": 327,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Brann",
+      "league": "Eliteserien",
+      "apiName": "Brann",
+      "apiId": 319,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lillestrøm",
+      "league": "Eliteserien",
+      "apiName": "Lillestrom",
+      "apiId": 321,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Fredrikstad",
+      "league": "Eliteserien",
+      "apiName": "Fredrikstad",
+      "apiId": 2149,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Raufoss",
+      "league": "Norway First Division",
+      "apiName": "Raufoss",
+      "apiId": 2153,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Odd",
+      "league": "Norway First Division",
+      "apiName": "ODD Ballklubb",
+      "apiId": 330,
+      "apiCountry": "Norway",
+      "score": 0.23,
+      "via": "alias"
+    },
+    {
+      "clubName": "Sandnes Ulf",
+      "league": "Norway First Division",
+      "apiName": "Sandnes ULF",
+      "apiId": 2146,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lyn",
+      "league": "Norway First Division",
+      "apiName": "Lyn",
+      "apiId": 7006,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kongsvinger",
+      "league": "Norway First Division",
+      "apiName": "Kongsvinger",
+      "apiId": 2144,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Strømmen",
+      "league": "Norway First Division",
+      "apiName": "Strommen",
+      "apiId": 2147,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bryne",
+      "league": "Norway First Division",
+      "apiName": "Bryne",
+      "apiId": 2142,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Moss",
+      "league": "Norway First Division",
+      "apiName": "Moss",
+      "apiId": 7012,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hødd",
+      "league": "Norway First Division",
+      "apiName": "hodd",
+      "apiId": 2150,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Stabæk",
+      "league": "Norway First Division",
+      "apiName": "Stabaek",
+      "apiId": 323,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Egersund",
+      "league": "Norway First Division",
+      "apiName": "Egersund",
+      "apiId": 6976,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Haugesund",
+      "league": "Norway First Division",
+      "apiName": "Haugesund",
+      "apiId": 328,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Åsane",
+      "league": "Norway First Division",
+      "apiName": "Asane",
+      "apiId": 2148,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Strømsgodset",
+      "league": "Norway First Division",
+      "apiName": "Stromsgodset",
+      "apiId": 324,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ranheim",
+      "league": "Norway First Division",
+      "apiName": "Ranheim",
+      "apiId": 322,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sogndal",
+      "league": "Norway First Division",
+      "apiName": "Sogndal",
+      "apiId": 758,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "CFR Cluj",
+      "league": "Romanian SuperLiga",
+      "apiName": "CFR 1907 Cluj",
+      "apiId": 2246,
+      "apiCountry": "Romania",
+      "score": 0.62,
+      "via": "alias"
+    },
+    {
+      "clubName": "Sepsi",
+      "league": "Romanian SuperLiga",
+      "apiName": "Sepsi OSK Sfantu Gheorghe",
+      "apiId": 2585,
+      "apiCountry": "Romania",
+      "score": 0.2,
+      "via": "alias"
+    },
+    {
+      "clubName": "Csikszereda",
+      "league": "Romanian SuperLiga",
+      "apiName": "Csikszereda",
+      "apiId": 6230,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Petrolul 52",
+      "league": "Romanian SuperLiga",
+      "apiName": "Petrolul Ploiesti",
+      "apiId": 2598,
+      "apiCountry": "Romania",
+      "score": 0.53,
+      "via": "alias"
+    },
+    {
+      "clubName": "Universitatea Cluj",
+      "league": "Romanian SuperLiga",
+      "apiName": "Universitatea Cluj",
+      "apiId": 2599,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Corvinul Hunedoara",
+      "league": "Romanian SuperLiga",
+      "apiName": "Corvinul Hunedoara",
+      "apiId": 20034,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dinamo Bucureşti",
+      "league": "Romanian SuperLiga",
+      "apiName": "Dinamo Bucuresti",
+      "apiId": 635,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "CS U Craiova",
+      "league": "Romanian SuperLiga",
+      "apiName": "Universitatea Craiova",
+      "apiId": 632,
+      "apiCountry": "Romania",
+      "score": 0.43,
+      "via": "alias"
+    },
+    {
+      "clubName": "SSC Farul",
+      "league": "Romanian SuperLiga",
+      "apiName": "Farul Constanta",
+      "apiId": 2596,
+      "apiCountry": "Romania",
+      "score": 0.13,
+      "via": "alias"
+    },
+    {
+      "clubName": "Rapid Bucureşti",
+      "league": "Romanian SuperLiga",
+      "apiName": "Rapid",
+      "apiId": 6231,
+      "apiCountry": "Romania",
+      "score": 0.33,
+      "via": "alias"
+    },
+    {
+      "clubName": "UTA Arad",
+      "league": "Romanian SuperLiga",
+      "apiName": "Uta Arad",
+      "apiId": 2589,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Voluntari",
+      "league": "Romanian SuperLiga",
+      "apiName": "FC Voluntari",
+      "apiId": 2578,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "FCSB",
+      "league": "Romanian SuperLiga",
+      "apiName": "FCSB",
+      "apiId": 559,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Botoşani",
+      "league": "Romanian SuperLiga",
+      "apiName": "FC Botosani",
+      "apiId": 2581,
+      "apiCountry": "Romania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Oţelul Galaţi",
+      "league": "Romanian SuperLiga",
+      "apiName": "Oţelul",
+      "apiId": 6886,
+      "apiCountry": "Romania",
+      "score": 0.46,
+      "via": "alias"
+    },
+    {
+      "clubName": "Argeș",
+      "league": "Romanian SuperLiga",
+      "apiName": "Arges Pitesti",
+      "apiId": 2592,
+      "apiCountry": "Romania",
+      "score": 0.38,
+      "via": "alias"
+    },
+    {
+      "clubName": "Železničar Pančevo",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Železničar Pančevo",
+      "apiId": 12360,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Mačva Šabac",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Macva",
+      "apiId": 2637,
+      "apiCountry": "Serbia",
+      "score": 0.45,
+      "via": "alias"
+    },
+    {
+      "clubName": "Čukarički",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Cukaricki",
+      "apiId": 2656,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Novi Pazar",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Novi Pazar",
+      "apiId": 2643,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Partizan",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "FK Partizan",
+      "apiId": 573,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "OFK Beograd",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "OFK Beograd",
+      "apiId": 2633,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Radnički Kragujevac",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Radnicki 1923",
+      "apiId": 2644,
+      "apiCountry": "Serbia",
+      "score": 0.47,
+      "via": "alias"
+    },
+    {
+      "clubName": "LFK Mladost Lučani",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Mladost Lucani",
+      "apiId": 699,
+      "apiCountry": "Serbia",
+      "score": 0.78,
+      "via": "jméno"
+    },
+    {
+      "clubName": "IMT Novi Beograd",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "IMT Novi Beograd",
+      "apiId": 12316,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vojvodina",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Vojvodina",
+      "apiId": 702,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Zemun",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Zemun",
+      "apiId": 2642,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Red Star Belgrade",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "FK Crvena Zvezda",
+      "apiId": 598,
+      "apiCountry": "Serbia",
+      "score": 0.18,
+      "via": "alias"
+    },
+    {
+      "clubName": "Radnik Surdulica",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Radnik Surdulica",
+      "apiId": 2657,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Radnički Niš",
+      "league": "Serbian Mozzart Bet Superliga",
+      "apiName": "Radnicki NIS",
+      "apiId": 2254,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Voždovac",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "FK Vozdovac",
+      "apiId": 2658,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Semendrija 1924",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Semendrija 1924",
+      "apiId": 4254,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Teleoptik",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Teleoptik",
+      "apiId": 2645,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Loznica",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Loznica",
+      "apiId": 12323,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Napredak",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Napredak",
+      "apiId": 2655,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dubočica",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Dubočica",
+      "apiId": 12312,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "OFK Vršac",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "OFK Vršac",
+      "apiId": 12329,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Javor Ivanjica",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Javor",
+      "apiId": 2653,
+      "apiCountry": "Serbia",
+      "score": 0.36,
+      "via": "alias"
+    },
+    {
+      "clubName": "Spartak Subotica",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "FK Spartak Zdrepceva KRV",
+      "apiId": 2251,
+      "apiCountry": "Serbia",
+      "score": 0.43,
+      "via": "alias"
+    },
+    {
+      "clubName": "Borac Čačak",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Borac Cacak",
+      "apiId": 2649,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bačka Topola",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "TSC Backa Topola",
+      "apiId": 2646,
+      "apiCountry": "Serbia",
+      "score": 0.75,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bor",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "OFK Bor 1919",
+      "apiId": 26409,
+      "apiCountry": "Serbia",
+      "score": 0.25,
+      "via": "alias"
+    },
+    {
+      "clubName": "Jedinstvo Ub",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Jedinstvo Ub",
+      "apiId": 12319,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "alias"
+    },
+    {
+      "clubName": "Metalac GM",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Metalac GM",
+      "apiId": 2647,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Grafičar",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Grafičar",
+      "apiId": 4252,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Naftagas",
+      "league": "Serbian Mozzart Bet Prva Liga",
+      "apiName": "Naftagas",
+      "apiId": 19839,
+      "apiCountry": "Serbia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Skalica",
+      "league": "Slovak Niké Liga",
+      "apiName": "Skalica",
+      "apiId": 10542,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "DAC",
+      "league": "Slovak Niké Liga",
+      "apiName": "Dunajska Streda",
+      "apiId": 2257,
+      "apiCountry": "Slovakia",
+      "score": 0.13,
+      "via": "alias"
+    },
+    {
+      "clubName": "Zemplín Michalovce",
+      "league": "Slovak Niké Liga",
+      "apiName": "Zemplín Michalovce",
+      "apiId": 3552,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Slovan Bratislava",
+      "league": "Slovak Niké Liga",
+      "apiName": "Slovan Bratislava",
+      "apiId": 656,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dukla Banská Bystrica",
+      "league": "Slovak Niké Liga",
+      "apiName": "Dukla Banská Bystrica",
+      "apiId": 10533,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Komárno",
+      "league": "Slovak Niké Liga",
+      "apiName": "Komárno",
+      "apiId": 10535,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ružomberok",
+      "league": "Slovak Niké Liga",
+      "apiName": "Ružomberok",
+      "apiId": 3549,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "FK Košice",
+      "league": "Slovak Niké Liga",
+      "apiName": "FK Košice",
+      "apiId": 10534,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Podbrezová",
+      "league": "Slovak Niké Liga",
+      "apiName": "Podbrezová",
+      "apiId": 3548,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Žilina",
+      "league": "Slovak Niké Liga",
+      "apiName": "Žilina",
+      "apiId": 3554,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Trenčín",
+      "league": "Slovak Niké Liga",
+      "apiName": "AS Trencin",
+      "apiId": 655,
+      "apiCountry": "Slovakia",
+      "score": 0.7,
+      "via": "alias"
+    },
+    {
+      "clubName": "Spartak Trnava",
+      "league": "Slovak Niké Liga",
+      "apiName": "Spartak Trnava",
+      "apiId": 1120,
+      "apiCountry": "Slovakia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Nafta",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Nafta",
+      "apiId": 4376,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Olimpija",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Olimpija Ljubljana",
+      "apiId": 677,
+      "apiCountry": "Slovenia",
+      "score": 0.44,
+      "via": "alias"
+    },
+    {
+      "clubName": "Mura",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Mura",
+      "apiId": 4197,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Aluminij",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Aluminij",
+      "apiId": 4358,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bravo",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Bravo",
+      "apiId": 4359,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Brinje-Grosuplje",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Brinje-Grosuplje",
+      "apiId": 12744,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Radomlje",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Radomlje",
+      "apiId": 4378,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Koper",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Koper",
+      "apiId": 4374,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Maribor",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Maribor",
+      "apiId": 552,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Celje",
+      "league": "Slovenian PrvaLiga",
+      "apiName": "Celje",
+      "apiId": 4360,
+      "apiCountry": "Slovenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Västerås SK",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Vasteras SK FK",
+      "apiId": 2241,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kalmar",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Kalmar FF",
+      "apiId": 374,
+      "apiCountry": "Sweden",
+      "score": 0.67,
+      "via": "alias"
+    },
+    {
+      "clubName": "AIK",
+      "league": "Sweden Allsvenskan",
+      "apiName": "AIK Stockholm",
+      "apiId": 377,
+      "apiCountry": "Sweden",
+      "score": 0.23,
+      "via": "alias"
+    },
+    {
+      "clubName": "Häcken",
+      "league": "Sweden Allsvenskan",
+      "apiName": "BK Hacken",
+      "apiId": 367,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Mjällby",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Mjallby AIF",
+      "apiId": 2240,
+      "apiCountry": "Sweden",
+      "score": 0.64,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Djurgården",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Djurgardens IF",
+      "apiId": 364,
+      "apiCountry": "Sweden",
+      "score": 0.91,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Örgryte",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Orgryte IS",
+      "apiId": 2166,
+      "apiCountry": "Sweden",
+      "score": 0.7,
+      "via": "alias"
+    },
+    {
+      "clubName": "IFK Göteborg",
+      "league": "Sweden Allsvenskan",
+      "apiName": "IFK Goteborg",
+      "apiId": 366,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sirius",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Sirius",
+      "apiId": 370,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Halmstad",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Halmstad",
+      "apiId": 766,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "GAIS",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Gais",
+      "apiId": 2170,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Malmö FF",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Malmo FF",
+      "apiId": 375,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Degerfors",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Degerfors IF",
+      "apiId": 2172,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Brommapojkarna",
+      "league": "Sweden Allsvenskan",
+      "apiName": "IF Brommapojkarna",
+      "apiId": 371,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Elfsborg",
+      "league": "Sweden Allsvenskan",
+      "apiName": "IF Elfsborg",
+      "apiId": 372,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hammarby",
+      "league": "Sweden Allsvenskan",
+      "apiName": "Hammarby FF",
+      "apiId": 363,
+      "apiCountry": "Sweden",
+      "score": 0.73,
+      "via": "alias"
+    },
+    {
+      "clubName": "Öster",
+      "league": "Sweden Superettan",
+      "apiName": "Osters IF",
+      "apiId": 2174,
+      "apiCountry": "Sweden",
+      "score": 0.83,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Falkenberg",
+      "league": "Sweden Superettan",
+      "apiName": "Falkenbergs FF",
+      "apiId": 812,
+      "apiCountry": "Sweden",
+      "score": 0.71,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Norrköping",
+      "league": "Sweden Superettan",
+      "apiName": "IFK Norrkoping",
+      "apiId": 378,
+      "apiCountry": "Sweden",
+      "score": 0.71,
+      "via": "alias"
+    },
+    {
+      "clubName": "GIF Sundsvall",
+      "league": "Sweden Superettan",
+      "apiName": "GIF Sundsvall",
+      "apiId": 373,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Östersunds FK",
+      "league": "Sweden Superettan",
+      "apiName": "Ostersunds FK",
+      "apiId": 376,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Landskrona",
+      "league": "Sweden Superettan",
+      "apiName": "Landskrona BoIS",
+      "apiId": 2176,
+      "apiCountry": "Sweden",
+      "score": 0.67,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Oddevold",
+      "league": "Sweden Superettan",
+      "apiName": "Oddevold",
+      "apiId": 11674,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Helsingborg",
+      "league": "Sweden Superettan",
+      "apiName": "Helsingborg",
+      "apiId": 811,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "United Nordic",
+      "league": "Sweden Superettan",
+      "apiName": "United Nordic",
+      "apiId": 16601,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Brage",
+      "league": "Sweden Superettan",
+      "apiName": "IK brage",
+      "apiId": 2175,
+      "apiCountry": "Sweden",
+      "score": 0.63,
+      "via": "alias"
+    },
+    {
+      "clubName": "Sandviken",
+      "league": "Sweden Superettan",
+      "apiName": "Sandviken",
+      "apiId": 6697,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Örebro",
+      "league": "Sweden Superettan",
+      "apiName": "Orebro SK",
+      "apiId": 365,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ljungskile",
+      "league": "Sweden Superettan",
+      "apiName": "Ljungskile SK",
+      "apiId": 2165,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Varberg",
+      "league": "Sweden Superettan",
+      "apiName": "Varbergs BoIS FC",
+      "apiId": 2171,
+      "apiCountry": "Sweden",
+      "score": 0.54,
+      "via": "alias"
+    },
+    {
+      "clubName": "Norrby",
+      "league": "Sweden Superettan",
+      "apiName": "Norrby IF",
+      "apiId": 2173,
+      "apiCountry": "Sweden",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Värnamo",
+      "league": "Sweden Superettan",
+      "apiName": "IFK Varnamo",
+      "apiId": 2163,
+      "apiCountry": "Sweden",
+      "score": 0.64,
+      "via": "alias"
+    },
+    {
+      "clubName": "Basel",
+      "league": "Swiss Super League",
+      "apiName": "FC Basel 1893",
+      "apiId": 551,
+      "apiCountry": "Switzerland",
+      "score": 0.5,
+      "via": "alias"
+    },
+    {
+      "clubName": "Lausanne Sport",
+      "league": "Swiss Super League",
+      "apiName": "Lausanne",
+      "apiId": 1014,
+      "apiCountry": "Switzerland",
+      "score": 0.57,
+      "via": "alias"
+    },
+    {
+      "clubName": "Grasshopper",
+      "league": "Swiss Super League",
+      "apiName": "Grasshoppers",
+      "apiId": 1013,
+      "apiCountry": "Switzerland",
+      "score": 0.92,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Thun",
+      "league": "Swiss Super League",
+      "apiName": "FC Thun",
+      "apiId": 1012,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Luzern",
+      "league": "Swiss Super League",
+      "apiName": "FC Luzern",
+      "apiId": 644,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sion",
+      "league": "Swiss Super League",
+      "apiName": "FC Sion",
+      "apiId": 630,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Lugano",
+      "league": "Swiss Super League",
+      "apiName": "FC Lugano",
+      "apiId": 606,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Young Boys",
+      "league": "Swiss Super League",
+      "apiName": "BSC Young Boys",
+      "apiId": 565,
+      "apiCountry": "Switzerland",
+      "score": 0.71,
+      "via": "alias"
+    },
+    {
+      "clubName": "Zürich",
+      "league": "Swiss Super League",
+      "apiName": "FC Zurich",
+      "apiId": 783,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "St. Gallen",
+      "league": "Swiss Super League",
+      "apiName": "FC ST. Gallen",
+      "apiId": 1011,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Servette",
+      "league": "Swiss Super League",
+      "apiName": "Servette FC",
+      "apiId": 2184,
+      "apiCountry": "Switzerland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vaduz",
+      "league": "Swiss Super League",
+      "apiName": "FC Vaduz",
+      "apiId": 660,
+      "apiCountry": "Liechtenstein",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hirnyk",
+      "league": "Ukraine Premier League",
+      "apiName": "Kryvbas KR",
+      "apiId": 6489,
+      "apiCountry": "Ukraine",
+      "score": 0.1,
+      "via": "alias"
+    },
+    {
+      "clubName": "LNZ Cherkasy",
+      "league": "Ukraine Premier League",
+      "apiName": "LNZ Cherkasy",
+      "apiId": 17161,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Shakhtar Donetsk",
+      "league": "Ukraine Premier League",
+      "apiName": "Shakhtar Donetsk",
+      "apiId": 550,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Veres",
+      "league": "Ukraine Premier League",
+      "apiName": "Veres Rivne",
+      "apiId": 6501,
+      "apiCountry": "Ukraine",
+      "score": 0.45,
+      "via": "alias"
+    },
+    {
+      "clubName": "Dynamo Kyiv",
+      "league": "Ukraine Premier League",
+      "apiName": "Dynamo Kyiv",
+      "apiId": 572,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Karpaty",
+      "league": "Ukraine Premier League",
+      "apiName": "Karpaty",
+      "apiId": 3617,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Zorya",
+      "league": "Ukraine Premier League",
+      "apiName": "Zorya Luhansk",
+      "apiId": 599,
+      "apiCountry": "Ukraine",
+      "score": 0.38,
+      "via": "alias"
+    },
+    {
+      "clubName": "Epitsentr Dunayivtsi",
+      "league": "Ukraine Premier League",
+      "apiName": "Epitsentr Dunayivtsi",
+      "apiId": 14434,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Metalist 1925 Kharkiv",
+      "league": "Ukraine Premier League",
+      "apiName": "Metalist",
+      "apiId": 10697,
+      "apiCountry": "Ukraine",
+      "score": 0.38,
+      "via": "alias"
+    },
+    {
+      "clubName": "Obolon-Brovar",
+      "league": "Ukraine Premier League",
+      "apiName": "Obolon'-Brovar",
+      "apiId": 3630,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Chornomorets",
+      "league": "Ukraine Premier League",
+      "apiName": "Chornomorets",
+      "apiId": 3615,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kolos Kovalivka",
+      "league": "Ukraine Premier League",
+      "apiName": "Kolos Kovalivka",
+      "apiId": 3627,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Livyi Bereh",
+      "league": "Ukraine Premier League",
+      "apiName": "Livyi Bereh",
+      "apiId": 17162,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Polessya",
+      "league": "Ukraine Premier League",
+      "apiName": "Polessya",
+      "apiId": 6496,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bukovyna",
+      "league": "Ukraine Premier League",
+      "apiName": "Bukovyna",
+      "apiId": 6486,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kudrivka",
+      "league": "Ukraine Premier League",
+      "apiName": "Kudrivka",
+      "apiId": 21953,
+      "apiCountry": "Ukraine",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "AF Elbasani",
+      "league": "Albanian Superliga",
+      "apiName": "AF Elbasani",
+      "apiId": 20406,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Teuta Durrës",
+      "league": "Albanian Superliga",
+      "apiName": "Teuta Durrës",
+      "apiId": 3320,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dinamo Tirana",
+      "league": "Albanian Superliga",
+      "apiName": "Dinamo Tirana",
+      "apiId": 3326,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vllaznia Shkodër",
+      "league": "Albanian Superliga",
+      "apiName": "Vllaznia Shkodër",
+      "apiId": 3339,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Tirana",
+      "league": "Albanian Superliga",
+      "apiName": "Tirana",
+      "apiId": 694,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Egnatia Rrogozhinë",
+      "league": "Albanian Superliga",
+      "apiName": "Egnatia Rrogozhinë",
+      "apiId": 3327,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Partizani Tirana",
+      "league": "Albanian Superliga",
+      "apiName": "Partizani Tirana II",
+      "apiId": 10721,
+      "apiCountry": "Albania",
+      "score": 0.84,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Laçi",
+      "league": "Albanian Superliga",
+      "apiName": "Laci",
+      "apiId": 2256,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Skënderbeu Korçë",
+      "league": "Albanian Superliga",
+      "apiName": "Skenderbeu Korce",
+      "apiId": 605,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Vora",
+      "league": "Albanian Superliga",
+      "apiName": "Vora",
+      "apiId": 3340,
+      "apiCountry": "Albania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Pyunik",
+      "league": "Armenian Premier League",
+      "apiName": "Pyunik W",
+      "apiId": 24208,
+      "apiCountry": "Armenia",
+      "score": 0.75,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Ararat",
+      "league": "Armenian Premier League",
+      "apiName": "Ararat",
+      "apiId": 3682,
+      "apiCountry": "Armenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Van",
+      "league": "Armenian Premier League",
+      "apiName": "Van",
+      "apiId": 6286,
+      "apiCountry": "Armenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "BKMA",
+      "league": "Armenian Premier League",
+      "apiName": "BKMA",
+      "apiId": 6279,
+      "apiCountry": "Armenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Banants",
+      "league": "Armenian Premier League",
+      "apiName": "Banants II",
+      "apiId": 3690,
+      "apiCountry": "Armenia",
+      "score": 0.7,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Gandzasar",
+      "league": "Armenian Premier League",
+      "apiName": "Gandzasar",
+      "apiId": 688,
+      "apiCountry": "Armenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "FC Avan Academy",
+      "league": "Armenian Premier League",
+      "apiName": "Avion Academy",
+      "apiId": 5399,
+      "apiCountry": "Cameroon",
+      "score": 0.85,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Shirak",
+      "league": "Armenian Premier League",
+      "apiName": "Shirak FC",
+      "apiId": 710,
+      "apiCountry": null,
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sardarapat",
+      "league": "Armenian Premier League",
+      "apiName": "Sardarapat",
+      "apiId": 26198,
+      "apiCountry": "Armenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Alashkert",
+      "league": "Armenian Premier League",
+      "apiName": "Alashkert",
+      "apiId": 582,
+      "apiCountry": "Armenia",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "EB - Streymur",
+      "league": "Faroe Islands Premier League",
+      "apiName": "EB / Streymur",
+      "apiId": 4177,
+      "apiCountry": "Faroe-Islands",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "NSÍ",
+      "league": "Faroe Islands Premier League",
+      "apiName": "NSÍ W",
+      "apiId": 26161,
+      "apiCountry": "Faroe-Islands",
+      "score": 0.6,
+      "via": "jméno"
+    },
+    {
+      "clubName": "HB",
+      "league": "Faroe Islands Premier League",
+      "apiName": "HB Torshavn",
+      "apiId": 4133,
+      "apiCountry": "Faroe-Islands",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "B68",
+      "league": "Faroe Islands Premier League",
+      "apiName": "B68",
+      "apiId": 4186,
+      "apiCountry": "Faroe-Islands",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Skála",
+      "league": "Faroe Islands Premier League",
+      "apiName": "Skála",
+      "apiId": 4191,
+      "apiCountry": "Faroe-Islands",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "07 Vestur",
+      "league": "Faroe Islands Premier League",
+      "apiName": "07 Vestur",
+      "apiId": 4174,
+      "apiCountry": "Faroe-Islands",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Víkingur",
+      "league": "Faroe Islands Premier League",
+      "apiName": "Víkingur II",
+      "apiId": 4183,
+      "apiCountry": "Faroe-Islands",
+      "score": 0.73,
+      "via": "jméno"
+    },
+    {
+      "clubName": "KÍ",
+      "league": "Faroe Islands Premier League",
+      "apiName": "KI Klaksvik",
+      "apiId": 701,
+      "apiCountry": "Faroe-Islands",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "B36",
+      "league": "Faroe Islands Premier League",
+      "apiName": "B36 Torshavn",
+      "apiId": 678,
+      "apiCountry": "Faroe-Islands",
+      "score": 0.25,
+      "via": "alias"
+    },
+    {
+      "clubName": "KA",
+      "league": "Iceland Besta deild",
+      "apiName": "KA Akureyri",
+      "apiId": 272,
+      "apiCountry": "Iceland",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "FH",
+      "league": "Iceland Besta deild",
+      "apiName": "FH hafnarfjordur",
+      "apiId": 270,
+      "apiCountry": "Iceland",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "Thór",
+      "league": "Iceland Besta deild",
+      "apiName": "Thor Akureyri",
+      "apiId": 2116,
+      "apiCountry": "Iceland",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "Breidablik",
+      "league": "Iceland Besta deild",
+      "apiName": "Breidablik",
+      "apiId": 276,
+      "apiCountry": "Iceland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Valur",
+      "league": "Iceland Besta deild",
+      "apiName": "Valur W",
+      "apiId": 14851,
+      "apiCountry": "Iceland",
+      "score": 0.71,
+      "via": "jméno"
+    },
+    {
+      "clubName": "ÍBV",
+      "league": "Iceland Besta deild",
+      "apiName": "ÍBV W",
+      "apiId": 14852,
+      "apiCountry": "Iceland",
+      "score": 0.6,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Stjarnan",
+      "league": "Iceland Besta deild",
+      "apiName": "Stjarnan",
+      "apiId": 275,
+      "apiCountry": "Iceland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "KR",
+      "league": "Iceland Besta deild",
+      "apiName": "KR Reykjavik",
+      "apiId": 271,
+      "apiCountry": "Iceland",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "Keflavík",
+      "league": "Iceland Besta deild",
+      "apiName": "Keflavik",
+      "apiId": 269,
+      "apiCountry": "Iceland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Víkingur Reykjavík",
+      "league": "Iceland Besta deild",
+      "apiName": "Vikingur Reykjavik",
+      "apiId": 278,
+      "apiCountry": "Iceland",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Fram",
+      "league": "Iceland Besta deild",
+      "apiName": "Fram",
+      "apiId": 6986,
+      "apiCountry": "Norway",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "ÍA",
+      "league": "Iceland Besta deild",
+      "apiName": "IA Akranes",
+      "apiId": 827,
+      "apiCountry": "Iceland",
+      "score": 0.9,
+      "via": "soupiska ligy"
+    },
+    {
+      "clubName": "Banga",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Banga",
+      "apiId": 3858,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Hegelmann Litauen",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Hegelmann Litauen",
+      "apiId": 3861,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Trakai",
+      "league": "Lithuanian A Lyga",
+      "apiName": "FK Trakai",
+      "apiId": 638,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Kauno Žalgiris",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Kauno Žalgiris",
+      "apiId": 3872,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sūduva",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Sūduva II",
+      "apiId": 16523,
+      "apiCountry": "Lithuania",
+      "score": 0.67,
+      "via": "jméno"
+    },
+    {
+      "clubName": "TransINVEST Vilnius",
+      "league": "Lithuanian A Lyga",
+      "apiName": "TransINVEST Vilnius",
+      "apiId": 18878,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Džiugas Telšiai",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Džiugas Telšiai",
+      "apiId": 3860,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Panevėžys",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Panevėžys",
+      "apiId": 3874,
+      "apiCountry": "Lithuania",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "FA Šiauliai",
+      "league": "Lithuanian A Lyga",
+      "apiName": "FA Šiauliai II",
+      "apiId": 18840,
+      "apiCountry": "Lithuania",
+      "score": 0.79,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Žalgiris",
+      "league": "Lithuanian A Lyga",
+      "apiName": "Žalgiris II",
+      "apiId": 3871,
+      "apiCountry": "Lithuania",
+      "score": 0.73,
+      "via": "jméno"
+    },
+    {
+      "clubName": "FK Jezero Plav",
+      "league": "Montenegrin First League",
+      "apiName": "Jezero",
+      "apiId": 3748,
+      "apiCountry": "Montenegro",
+      "score": 0.55,
+      "via": "alias"
+    },
+    {
+      "clubName": "Mornar",
+      "league": "Montenegrin First League",
+      "apiName": "Mornar",
+      "apiId": 3740,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Arsenal Tivat",
+      "league": "Montenegrin First League",
+      "apiName": "Arsenal Tivat",
+      "apiId": 3742,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Budućnost",
+      "league": "Montenegrin First League",
+      "apiName": "Budućnost W",
+      "apiId": 26160,
+      "apiCountry": "Montenegro",
+      "score": 0.82,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Otrant-Olympic",
+      "league": "Montenegrin First League",
+      "apiName": "Otrant-Olympic",
+      "apiId": 3751,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Dečić",
+      "league": "Montenegrin First League",
+      "apiName": "Dečić",
+      "apiId": 3745,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Sutjeska",
+      "league": "Montenegrin First League",
+      "apiName": "Sutjeska",
+      "apiId": 673,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Petrovac",
+      "league": "Montenegrin First League",
+      "apiName": "Petrovac",
+      "apiId": 3741,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Bokelj",
+      "league": "Montenegrin First League",
+      "apiName": "Bokelj",
+      "apiId": 3744,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
+    },
+    {
+      "clubName": "Mladost DG",
+      "league": "Montenegrin First League",
+      "apiName": "Mladost DG",
+      "apiId": 16749,
+      "apiCountry": "Montenegro",
+      "score": 1,
+      "via": "jméno"
     }
   ],
   "unmatchedClubs": [
@@ -289,108 +3951,6 @@
           "id": 19579,
           "country": "Armenia",
           "score": 0.37
-        }
-      ]
-    },
-    {
-      "clubName": "HB",
-      "country": "Faroe Islands",
-      "candidates": []
-    },
-    {
-      "clubName": "KÍ",
-      "country": "Faroe Islands",
-      "candidates": []
-    },
-    {
-      "clubName": "B36",
-      "country": "Faroe Islands",
-      "candidates": [
-        {
-          "name": "B36 II",
-          "id": 4185,
-          "country": "Faroe-Islands",
-          "score": 0.5
-        },
-        {
-          "name": "B36 Torshavn",
-          "id": 678,
-          "country": "Faroe-Islands",
-          "score": 0.25
-        }
-      ]
-    },
-    {
-      "clubName": "KA",
-      "country": "Iceland",
-      "candidates": []
-    },
-    {
-      "clubName": "FH",
-      "country": "Iceland",
-      "candidates": []
-    },
-    {
-      "clubName": "Thór",
-      "country": "Iceland",
-      "candidates": [
-        {
-          "name": "Rothorn",
-          "id": 6639,
-          "country": "Switzerland",
-          "score": 0.57
-        },
-        {
-          "name": "Thornaby",
-          "id": 8970,
-          "country": "England",
-          "score": 0.5
-        },
-        {
-          "name": "Thór / KA W",
-          "id": 14850,
-          "country": "Iceland",
-          "score": 0.44
-        },
-        {
-          "name": "Thorlákur",
-          "id": 22959,
-          "country": "Iceland",
-          "score": 0.44
-        },
-        {
-          "name": "Scunthorpe",
-          "id": 1340,
-          "country": "England",
-          "score": 0.4
-        }
-      ]
-    },
-    {
-      "clubName": "KR",
-      "country": "Iceland",
-      "candidates": []
-    },
-    {
-      "clubName": "ÍA",
-      "country": "Iceland",
-      "candidates": []
-    },
-    {
-      "clubName": "FK Jezero Plav",
-      "country": "Montenegro",
-      "candidates": [
-        {
-          "name": "Jezero Medvode",
-          "id": 20146,
-          "country": "Slovenia",
-          "score": 0.57
-        },
-        {
-          "name": "Jezero",
-          "id": 3748,
-          "country": "Montenegro",
-          "score": 0.55
         }
       ]
     }
@@ -1471,6 +5031,42 @@
       "bestScore": 0.75
     },
     {
+      "club": "KÍ",
+      "ourPlayer": "Jóhan Josephsen",
+      "bestApiCandidate": "R. Josephsen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "KÍ",
+      "ourPlayer": "Patrik Johannesen",
+      "bestApiCandidate": "J. Johannessen",
+      "bestScore": 0.68
+    },
+    {
+      "club": "B36",
+      "ourPlayer": "Jóhann Hansson Joensen",
+      "bestApiCandidate": "M. Joensen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "KA",
+      "ourPlayer": "Breki Hólm Baldursson",
+      "bestApiCandidate": "B. Baldvinsson",
+      "bestScore": 0.8
+    },
+    {
+      "club": "FH",
+      "ourPlayer": "Benjamín Þórsson",
+      "bestApiCandidate": "B. Jónsson",
+      "bestScore": 0.72
+    },
+    {
+      "club": "FH",
+      "ourPlayer": "Kári Kristjánsson",
+      "bestApiCandidate": "K. Frostason",
+      "bestScore": 0.69
+    },
+    {
       "club": "Breidablik",
       "ourPlayer": "Ágúst Þorsteinsson",
       "bestApiCandidate": "B. Þorsteinsson",
@@ -1531,6 +5127,18 @@
       "bestScore": 1
     },
     {
+      "club": "KR",
+      "ourPlayer": "Alexander Rafn Pálmason",
+      "bestApiCandidate": "F. Pálmason",
+      "bestScore": 0.75
+    },
+    {
+      "club": "KR",
+      "ourPlayer": "Aron Sigurdarson",
+      "bestApiCandidate": "A. Sigurðarson",
+      "bestScore": 1
+    },
+    {
       "club": "Keflavík",
       "ourPlayer": "Alpha Conteh",
       "bestApiCandidate": "A. Conteh",
@@ -1540,6 +5148,18 @@
       "club": "Keflavík",
       "ourPlayer": "Davíd Helgi Aronsson",
       "bestApiCandidate": "D. Valsson",
+      "bestScore": 0.63
+    },
+    {
+      "club": "ÍA",
+      "ourPlayer": "Gabríel Snær Gunnarsson",
+      "bestApiCandidate": "G. Unnarsson",
+      "bestScore": 0.93
+    },
+    {
+      "club": "ÍA",
+      "ourPlayer": "Jon Solvi Simonarson",
+      "bestApiCandidate": "J. Gíslason",
       "bestScore": 0.63
     },
     {
