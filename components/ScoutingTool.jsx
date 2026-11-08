@@ -9,7 +9,7 @@ import {
   SCOUTING_OUTFIELD_STATS, GK_STATS, rankPlayersByStats, parseMarketValue,
   buildLeagueMinMinutes, minMinutesFor,
 } from "../lib/pizzaShared";
-import { SPECIFIC_POSITIONS, matchesSpecificPositions } from "../lib/positions";
+import { SPECIFIC_POSITIONS, matchesSpecificPositions, positionLabel, otherPositions } from "../lib/positions";
 import PositionPicker from "./PositionPicker";
 
 const GROUP_ORDER = ["GK", "CB", "FB", "CM", "CAM", "WING", "FW"];
@@ -419,6 +419,7 @@ export default function ScoutingTool() {
                         <th>#</th>
                         <th>Hráč</th>
                         <th className="scout-th-sortable" onClick={() => toggleSort("age")}>Věk{sortArrow("age")}</th>
+                        <th>Pozice</th>
                         <th>Liga</th>
                         <th className="scout-th-sortable" onClick={() => toggleSort("market_value")}>Tržní hodnota{sortArrow("market_value")}</th>
                         {statKeys.map((key) => (
@@ -446,6 +447,15 @@ export default function ScoutingTool() {
                             </Link>
                           </td>
                           <td>{p.age ?? "–"}</td>
+                          {/* Přesná pozice z Transfermarktu, pod ní vedlejší pozice (když je známe) */}
+                          <td>
+                            {p.tm_position ? positionLabel(p.tm_position) : "–"}
+                            {otherPositions(p).length > 0 && (
+                              <div className="scout-player-club">
+                                vedl.: {otherPositions(p).map(positionLabel).join(", ")}
+                              </div>
+                            )}
+                          </td>
                           <td>{p.league_name || "–"}</td>
                           <td>{p.market_value || "–"}</td>
                           {statKeys.map((key) => (
