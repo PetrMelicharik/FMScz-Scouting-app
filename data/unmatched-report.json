@@ -129,10 +129,272 @@
       "ourLeagueName": "Ukraine Premier League",
       "apiName": "Premier League",
       "apiId": 333
+    },
+    {
+      "ourLeagueName": "Armenian Premier League",
+      "apiName": "Premier League",
+      "apiId": 342
     }
   ],
-  "unmatchedLeagues": [],
-  "unmatchedClubs": [],
+  "unmatchedLeagues": [
+    {
+      "ourLeagueName": "Albanian Superliga",
+      "country": "Albania",
+      "candidates": [
+        {
+          "name": "Superliga",
+          "id": 310,
+          "score": 0.5
+        },
+        {
+          "name": "Super Cup",
+          "id": 708,
+          "score": 0.28
+        },
+        {
+          "name": "1st Division",
+          "id": 311,
+          "score": 0.17
+        },
+        {
+          "name": "2nd Division - Group A",
+          "id": 512,
+          "score": 0.15
+        },
+        {
+          "name": "2nd Division - Play-offs",
+          "id": 978,
+          "score": 0.14
+        }
+      ]
+    },
+    {
+      "ourLeagueName": "Faroe Islands Premier League",
+      "country": "Faroe Islands",
+      "candidates": [
+        {
+          "name": "Meistaradeildin",
+          "id": 367,
+          "score": 0.25
+        },
+        {
+          "name": "Super Cup",
+          "id": 1177,
+          "score": 0.21
+        },
+        {
+          "name": "1. Deild",
+          "id": 366,
+          "score": 0.18
+        },
+        {
+          "name": "Løgmanssteypid",
+          "id": 491,
+          "score": 0.18
+        }
+      ]
+    },
+    {
+      "ourLeagueName": "Iceland Besta deild",
+      "country": "Iceland",
+      "candidates": [
+        {
+          "name": "Úrvalsdeild",
+          "id": 164,
+          "score": 0.37
+        },
+        {
+          "name": "1. Deild",
+          "id": 165,
+          "score": 0.32
+        },
+        {
+          "name": "2. Deild",
+          "id": 166,
+          "score": 0.32
+        },
+        {
+          "name": "League Cup",
+          "id": 168,
+          "score": 0.21
+        },
+        {
+          "name": "Úrvalsdeild Women",
+          "id": 671,
+          "score": 0.16
+        }
+      ]
+    },
+    {
+      "ourLeagueName": "Lithuanian A Lyga",
+      "country": "Lithuania",
+      "candidates": [
+        {
+          "name": "A Lyga",
+          "id": 362,
+          "score": 0.35
+        },
+        {
+          "name": "1 Lyga",
+          "id": 361,
+          "score": 0.29
+        },
+        {
+          "name": "Super Cup",
+          "id": 839,
+          "score": 0.12
+        },
+        {
+          "name": "Cup",
+          "id": 661,
+          "score": 0.06
+        }
+      ]
+    },
+    {
+      "ourLeagueName": "Montenegrin First League",
+      "country": "Montenegro",
+      "candidates": [
+        {
+          "name": "First League",
+          "id": 355,
+          "score": 0.5
+        },
+        {
+          "name": "Second League",
+          "id": 356,
+          "score": 0.38
+        },
+        {
+          "name": "Cup",
+          "id": 723,
+          "score": 0.04
+        }
+      ]
+    }
+  ],
+  "unmatchedClubs": [
+    {
+      "clubName": "Artsakh",
+      "country": "Armenia",
+      "candidates": [
+        {
+          "name": "Lernayin Artsakh",
+          "id": 6281,
+          "country": "Armenia",
+          "score": 0.44
+        },
+        {
+          "name": "Lernayin Artsakh II",
+          "id": 19579,
+          "country": "Armenia",
+          "score": 0.37
+        }
+      ]
+    },
+    {
+      "clubName": "HB",
+      "country": "Faroe Islands",
+      "candidates": []
+    },
+    {
+      "clubName": "KÍ",
+      "country": "Faroe Islands",
+      "candidates": []
+    },
+    {
+      "clubName": "B36",
+      "country": "Faroe Islands",
+      "candidates": [
+        {
+          "name": "B36 II",
+          "id": 4185,
+          "country": "Faroe-Islands",
+          "score": 0.5
+        },
+        {
+          "name": "B36 Torshavn",
+          "id": 678,
+          "country": "Faroe-Islands",
+          "score": 0.25
+        }
+      ]
+    },
+    {
+      "clubName": "KA",
+      "country": "Iceland",
+      "candidates": []
+    },
+    {
+      "clubName": "FH",
+      "country": "Iceland",
+      "candidates": []
+    },
+    {
+      "clubName": "Thór",
+      "country": "Iceland",
+      "candidates": [
+        {
+          "name": "Rothorn",
+          "id": 6639,
+          "country": "Switzerland",
+          "score": 0.57
+        },
+        {
+          "name": "Thornaby",
+          "id": 8970,
+          "country": "England",
+          "score": 0.5
+        },
+        {
+          "name": "Thór / KA W",
+          "id": 14850,
+          "country": "Iceland",
+          "score": 0.44
+        },
+        {
+          "name": "Thorlákur",
+          "id": 22959,
+          "country": "Iceland",
+          "score": 0.44
+        },
+        {
+          "name": "Scunthorpe",
+          "id": 1340,
+          "country": "England",
+          "score": 0.4
+        }
+      ]
+    },
+    {
+      "clubName": "KR",
+      "country": "Iceland",
+      "candidates": []
+    },
+    {
+      "clubName": "ÍA",
+      "country": "Iceland",
+      "candidates": []
+    },
+    {
+      "clubName": "FK Jezero Plav",
+      "country": "Montenegro",
+      "candidates": [
+        {
+          "name": "Jezero Medvode",
+          "id": 20146,
+          "country": "Slovenia",
+          "score": 0.57
+        },
+        {
+          "name": "Jezero",
+          "id": 3748,
+          "country": "Montenegro",
+          "score": 0.55
+        }
+      ]
+    }
+  ],
   "unmatchedPlayers": [
     {
       "club": "Hartberg",
@@ -397,6 +659,18 @@
       "ourPlayer": "Gustav Madsen",
       "bestApiCandidate": "M. Maden",
       "bestScore": 0.63
+    },
+    {
+      "club": "AB",
+      "ourPlayer": "Silas Rasmussen",
+      "bestApiCandidate": "M. Rasmussen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "AB",
+      "ourPlayer": "Tóki Næss Rasmussen",
+      "bestApiCandidate": "M. Rasmussen",
+      "bestScore": 0.75
     },
     {
       "club": "AaB",
@@ -991,6 +1265,342 @@
       "ourPlayer": "Diego Henrique Souza da Silva",
       "bestApiCandidate": "Sidney Silva Santos",
       "bestScore": 0.79
+    },
+    {
+      "club": "AF Elbasani",
+      "ourPlayer": "Samir Gjeli",
+      "bestApiCandidate": "B. Gjeli",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Vllaznia Shkodër",
+      "ourPlayer": "Sokol Uldedaj",
+      "bestApiCandidate": "S. Uldedaj",
+      "bestScore": 1
+    },
+    {
+      "club": "Tirana",
+      "ourPlayer": "Klajdi Hasanaj",
+      "bestApiCandidate": "Klajdi Hasani",
+      "bestScore": 0.79
+    },
+    {
+      "club": "Egnatia Rrogozhinë",
+      "ourPlayer": "Amer Duka",
+      "bestApiCandidate": "B. Duka",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Pyunik",
+      "ourPlayer": "Andranik Hakobyan",
+      "bestApiCandidate": "A. Ghukasyan",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Pyunik",
+      "ourPlayer": "Aram Aharonyan",
+      "bestApiCandidate": "A. Avanesyan",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Pyunik",
+      "ourPlayer": "Edmond Hayrapetyan",
+      "bestApiCandidate": "A. Karapetyan",
+      "bestScore": 0.61
+    },
+    {
+      "club": "Pyunik",
+      "ourPlayer": "Samson Hakobyan",
+      "bestApiCandidate": "S. Badalyan",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Pyunik",
+      "ourPlayer": "Vyacheslav Afyan",
+      "bestApiCandidate": "V. Asatryan",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Van",
+      "ourPlayer": "Hovhannes Gevorgyan",
+      "bestApiCandidate": "T. Gevorgyan",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Van",
+      "ourPlayer": "Inusa Aminu Ajanda",
+      "bestApiCandidate": "I. Viana",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Van",
+      "ourPlayer": "Kone Kleyba Boukari",
+      "bestApiCandidate": "K. Boukari",
+      "bestScore": 1
+    },
+    {
+      "club": "Van",
+      "ourPlayer": "Vahe Muradyan",
+      "bestApiCandidate": "V. Minasyan",
+      "bestScore": 0.72
+    },
+    {
+      "club": "BKMA",
+      "ourPlayer": "Arshak Poghosyan",
+      "bestApiCandidate": "A. Petrosyan",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Banants",
+      "ourPlayer": "Khariton Ayvazyan",
+      "bestApiCandidate": "K. Davtyan",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Gandzasar",
+      "ourPlayer": "Alen Karapetyan",
+      "bestApiCandidate": "A. Avanesyan",
+      "bestScore": 0.7
+    },
+    {
+      "club": "Gandzasar",
+      "ourPlayer": "Armen Hovhannisyan",
+      "bestApiCandidate": "A. Avanesyan",
+      "bestScore": 0.69
+    },
+    {
+      "club": "Gandzasar",
+      "ourPlayer": "Erik Soghomonyan",
+      "bestApiCandidate": "E. Ghevondyan",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Gandzasar",
+      "ourPlayer": "Gagik Gevorgyan",
+      "bestApiCandidate": "Hovhannes Gevorgyan",
+      "bestScore": 0.78
+    },
+    {
+      "club": "Alashkert",
+      "ourPlayer": "Yaroslav Matyukhin",
+      "bestApiCandidate": "I. Matiukhin",
+      "bestScore": 0.67
+    },
+    {
+      "club": "EB - Streymur",
+      "ourPlayer": "Isakur Olsen",
+      "bestApiCandidate": "A. Olsen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "NSÍ",
+      "ourPlayer": "Petur Knudsen",
+      "bestApiCandidate": "E. Knudsen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Skála",
+      "ourPlayer": "Dávid Johansen",
+      "bestApiCandidate": "K. Johansen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Skála",
+      "ourPlayer": "Hanus Mikkelsen",
+      "bestApiCandidate": "O. Mikkelsen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Skála",
+      "ourPlayer": "Oli Mikkelsen",
+      "bestApiCandidate": "O. Mikkelsen",
+      "bestScore": 1
+    },
+    {
+      "club": "Skála",
+      "ourPlayer": "Sebastian Schmidt Larsen",
+      "bestApiCandidate": "Sebastian Larsen",
+      "bestScore": 1
+    },
+    {
+      "club": "Skála",
+      "ourPlayer": "Simon Girke Jørgensen",
+      "bestApiCandidate": "S. Johannessen",
+      "bestScore": 0.66
+    },
+    {
+      "club": "07 Vestur",
+      "ourPlayer": "Oddur Petersen",
+      "bestApiCandidate": "E. Petersen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "07 Vestur",
+      "ourPlayer": "Rói Heðinsson Olsen",
+      "bestApiCandidate": "R. Helgason",
+      "bestScore": 0.67
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Aron Jarnskor Ellingsgaard",
+      "bestApiCandidate": "F. Jarnskor",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Jákup Johansen",
+      "bestApiCandidate": "J. Olsen",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Jörgin Nielsen",
+      "bestApiCandidate": "J. Olsen",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Mikkel Hyllegaard",
+      "bestApiCandidate": "M. Hojgaard",
+      "bestScore": 0.7
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Óla Kristian Skála Jacobsen",
+      "bestApiCandidate": "K. Jacobsen",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Breidablik",
+      "ourPlayer": "Ágúst Þorsteinsson",
+      "bestApiCandidate": "B. Þorsteinsson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Breidablik",
+      "ourPlayer": "Arnór Jónsson",
+      "bestApiCandidate": "K. Jónsson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Breidablik",
+      "ourPlayer": "Bjartur Orri Jónsson",
+      "bestApiCandidate": "K. Jónsson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Breidablik",
+      "ourPlayer": "Gylfi Berg Snaehólm",
+      "bestApiCandidate": "Gylfi Berg SnÃ¦hólm",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Breidablik",
+      "ourPlayer": "Willum Þór Willumsson",
+      "bestApiCandidate": "T. Willumsson",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Valur",
+      "ourPlayer": "Kristjan Oddur Bergmann Haagensen Kristjánsson",
+      "bestApiCandidate": "K. Kristinsdottir",
+      "bestScore": 0.63
+    },
+    {
+      "club": "ÍBV",
+      "ourPlayer": "Halldór Jón Sigurdur Thórdarson",
+      "bestApiCandidate": "H. Thomas",
+      "bestScore": 0.63
+    },
+    {
+      "club": "ÍBV",
+      "ourPlayer": "Hermann Þór Ragnarsson",
+      "bestApiCandidate": "H. Thomas",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Stjarnan",
+      "ourPlayer": "Bjarki Hrafn Garðarsson",
+      "bestApiCandidate": "B. Hauksson",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Stjarnan",
+      "ourPlayer": "Guðmundur Baldvin Nökkvason",
+      "bestApiCandidate": "Guðmundur Nökkvason",
+      "bestScore": 1
+    },
+    {
+      "club": "Keflavík",
+      "ourPlayer": "Alpha Conteh",
+      "bestApiCandidate": "A. Conteh",
+      "bestScore": 1
+    },
+    {
+      "club": "Keflavík",
+      "ourPlayer": "Davíd Helgi Aronsson",
+      "bestApiCandidate": "D. Valsson",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Banga",
+      "ourPlayer": "Armandas Razvadauskas",
+      "bestApiCandidate": "A. Vitkauskas",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Hegelmann Litauen",
+      "ourPlayer": "Wesley Junio Fagundes Silva",
+      "bestApiCandidate": "Nathan Silva",
+      "bestScore": 0.75
+    },
+    {
+      "club": "TransINVEST Vilnius",
+      "ourPlayer": "Deividas Česnauskis",
+      "bestApiCandidate": "D. Barauskas",
+      "bestScore": 0.63
+    },
+    {
+      "club": "FA Šiauliai",
+      "ourPlayer": "Gustas Baliutavičius",
+      "bestApiCandidate": "G. Micevicius",
+      "bestScore": 0.65
+    },
+    {
+      "club": "Žalgiris",
+      "ourPlayer": "Bryan Silva Teixera",
+      "bestApiCandidate": "B. Weibert",
+      "bestScore": 0.68
+    },
+    {
+      "club": "Žalgiris",
+      "ourPlayer": "Giedrius Matulevičius",
+      "bestApiCandidate": "G. Jarusevičius",
+      "bestScore": 0.81
+    },
+    {
+      "club": "Arsenal Tivat",
+      "ourPlayer": "Petar Soskic",
+      "bestApiCandidate": "P. Soskic",
+      "bestScore": 1
+    },
+    {
+      "club": "Arsenal Tivat",
+      "ourPlayer": "Santigie Yusuf Sesay",
+      "bestApiCandidate": "Y. S. Sesay",
+      "bestScore": 0.75
+    },
+    {
+      "club": "Arsenal Tivat",
+      "ourPlayer": "Vladimir Kašćelan",
+      "bestApiCandidate": "V. Kašćelan",
+      "bestScore": 1
+    },
+    {
+      "club": "Bokelj",
+      "ourPlayer": "Andrej Kumburovic",
+      "bestApiCandidate": "A. Kumburovic",
+      "bestScore": 1
     }
   ]
 }
