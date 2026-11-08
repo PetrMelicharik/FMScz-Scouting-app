@@ -7,13 +7,25 @@ převede na data, která aplikace zobrazuje.
 ## Jak to funguje
 
 1. `data/db.xlsx` — Excel databáze hráčů (vygenerovaná tvým Python skriptem).
-2. `scripts/build-data.mjs` — při každém `npm run build` (tedy i při každém
-   nasazení na Vercelu) přečte `data/db.xlsx` a vygeneruje
-   `public/data/players.json`.
-3. Aplikace má dvě stránky:
-   - **Home** (`app/page.jsx`) — úvodní stránka s přehledem (počet hráčů, lig, sezóna).
-   - **Databáze** (`app/databaze/page.jsx` + `components/DatabaseView.jsx`) —
-     filtry a tabulka hráčů, data se načítají z vygenerovaného JSON.
+2. Doplňková data (nepovinná, když chybí, aplikace funguje dál, jen bez nich):
+   - `data/tm_data.json` — pozice, tržní hodnota, smlouva a noha z lokálního
+     Transfermarkt scraperu,
+   - `data/media-map.json` a `data/form-map.json` — fotky, loga a forma hráčů
+     z API-Football (viz sekce níže).
+3. `scripts/build-data.mjs` — při každém `npm run build` (tedy i při každém
+   nasazení na Vercelu) přečte `data/db.xlsx`, přimíchá k němu doplňková data
+   a vygeneruje `public/data/players.json`.
+4. Stránky aplikace (složka `app/`, obsah stránek je v `components/`):
+   - **Home** (`/`) — úvodní stránka s přehledem (počet hráčů, lig, sezóna).
+   - **Databáze** (`/databaze`, `DatabaseView.jsx`) — filtry a tabulka hráčů.
+   - **Detail hráče** (`/databaze/[id]`) — profil hráče, podobní hráči
+     a tvorba reportu (`ReportBuilder.jsx`).
+   - **Grafy** (`/grafy`, `GrafyView.jsx`) — grafy a vizualizace statistik.
+   - **Tým týdne** (`/tym-tydne`, `TymTydneView.jsx`) — nejlepší sestava.
+   - **Porovnání hráčů** (`/porovnani`, `ComparePlayersView.jsx`).
+   - **Scouting tool** (`/scouting-tool`, `ScoutingTool.jsx`).
+   - **Shortlist** (`/shortlist`, `ShortlistView.jsx`) — osobní seznam
+     sledovaných hráčů, vyžaduje přihlášení.
 
 ## Lokální spuštění
 
@@ -25,6 +37,11 @@ npm run dev
 Aplikace poběží na http://localhost:3000.
 
 ## Nasazení na Vercel (propojené s GitHubem)
+
+Aplikace už je nasazená z repozitáře
+https://github.com/PetrMelicharik/FMScz-Scouting-app — každý push do větve
+`main` automaticky spustí nové nasazení. Postup níže je jen pro případ, že
+bys ji zakládal znovu od nuly.
 
 1. **Vytvoř GitHub repozitář** a nahraj do něj celý obsah této složky
    (včetně `data/db.xlsx`).
@@ -79,9 +96,20 @@ Actions log běhu — vypisuje, kolik lig/klubů/hráčů se napárovalo. Chybě
 páry lze doplnit ručně do `config/media-aliases.mjs` (commitni jako
 běžnou změnu) — příští běh workflow je použije.
 
+## Přihlášení a shortlist (Supabase)
+
+Přihlašování uživatelů a ukládání shortlistu zajišťuje
+[Supabase](https://supabase.com) (databáze v cloudu).
+- Připojení je v `lib/supabaseClient.js`. Je tam jen veřejný "anon" klíč,
+  který být v kódu smí. Admin klíč (`service_role`) tam nikdy nepatří.
+- Tabulky a pravidla přístupu jsou ve složce `supabase/` (`shortlist.sql`,
+  `shortlist-v2.sql`). Pravidla (Row Level Security) zajišťují, že každý
+  uživatel vidí jen svůj vlastní shortlist.
+
 ## Poznámka ke sdílení s týmem
 
-Aplikace je čistě statická/read-only — všichni, kdo mají odkaz na
-nasazenou verzi, vidí stejná data. Pokud chceš přístup omezit jen na
+Databáze hráčů je pro všechny stejná — všichni, kdo mají odkaz na
+nasazenou verzi, vidí stejná data. Liší se jen osobní shortlist
+přihlášeného uživatele. Pokud chceš přístup omezit jen na
 tým, dá se na Vercelu zapnout ochranu heslem nebo přihlášením
 (Vercel → Project Settings → Deployment Protection).
