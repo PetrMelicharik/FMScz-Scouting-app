@@ -407,10 +407,18 @@ def parsuj_profil(html):
     # jinak by se rozbitá stránka zapsala jako "žádné vedlejší pozice".
     if "Main position:" in html:
         jine = re.search(r"Other position:</dt>(.*?)</dl>", html, re.S)
-        vysledek["otherPositions"] = (
+        nalezene = (
             [text(p) for p in re.findall(r'<dd class="detail-position__position">(.*?)</dd>', jine.group(1), re.S)]
             if jine else []
         )
+        # Transfermarkt někdy uvádí stejnou pozici dvakrát nebo mezi vedlejšími
+        # zopakuje hlavní pozici – takové vyřadíme (pořadí zůstává)
+        hlavni = vysledek.get("position")
+        cista = []
+        for p in nalezene:
+            if p and p != hlavni and p not in cista:
+                cista.append(p)
+        vysledek["otherPositions"] = cista
     return vysledek
 
 def id_hrace(url):

@@ -171,7 +171,11 @@ if (fs.existsSync(TM_DATA_FILE)) {
       entry?.marketValue || null,
       entry?.contractUntil || null,
       entry?.foot || null,
-      Array.isArray(entry?.otherPositions) ? entry.otherPositions : null,
+      // Vedlejší pozice bez duplicit a bez hlavní pozice (Transfermarkt je
+      // u některých hráčů uvádí dvakrát / zopakuje hlavní pozici)
+      Array.isArray(entry?.otherPositions)
+        ? entry.otherPositions.filter((p, i, arr) => p && p !== entry.position && arr.indexOf(p) === i)
+        : null,
     ];
   });
   tmStats = { hits, total: rows.length };
