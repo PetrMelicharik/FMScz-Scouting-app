@@ -140,8 +140,10 @@ if (fs.existsSync(MEDIA_MAP_FILE)) {
   rows = rows.map((row) => {
     const club = clubIdx >= 0 ? row[clubIdx] : null;
     const photo = nameIdx >= 0 && club ? media.players?.[playerClubKey(row[nameIdx], club)] : null;
-    const clubLogo = club ? media.clubs?.[club] : null;
     const league = leagueIdx >= 0 ? row[leagueIdx] : null;
+    // Logo klubu: nejdřív podle "klub|liga" (kluby se stejným jménem ve více
+    // ligách, např. AB), jinak podle samotného jména klubu
+    const clubLogo = club ? (media.clubs?.[`${club}|${league}`] ?? media.clubs?.[club]) : null;
     const leagueLogo = league ? media.leagues?.[league] : null;
     if (photo) photoHits++;
     if (clubLogo) clubHits++;

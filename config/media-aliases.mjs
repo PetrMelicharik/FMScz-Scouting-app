@@ -109,7 +109,10 @@ export const clubAliases = {
   "Veres": 6501,
   "Zorya": 599,
   "Hirnyk": 6489, // opraveno
-  "AB": 2060, // opraveno — 24213 bylo špatně, dohledáno přes /teams?league=120&season=2026
+  // "AB" je v databázi dvakrát (Dánsko a Faerské ostrovy). Kluby se stejným
+  // jménem ve více ligách se zapisují jako "jméno klubu|název ligy".
+  "AB|Danish Betinia Liga": 2060, // opraveno — 24213 bylo špatně, dohledáno přes /teams?league=120&season=2026
+  "AB|Faroe Islands Premier League": 4184, // Argja Bóltfelag (Faerské ostrovy)
   "HamKam": 2159, // opraveno
   "KFUM": 2143, // opraveno
   "Nõmme Kalju": 662, // opraveno
@@ -158,4 +161,6 @@ export const clubAliases = {
   "Osijek": 616, // opraveno — auto-shoda podle jména byla špatná
   "B36": 678, // B36 Tórshavn (Faerské ostrovy)
   "FK Jezero Plav": 3748, // Jezero (Černá Hora)
+  "Artsakh": 6281, // Lernayin Artsakh (Arménie) — dohledáno ručně
+  "FC Avan Academy": 3683, // dohledáno ručně (logo v API-Football je Ararat-Armenia)
 };

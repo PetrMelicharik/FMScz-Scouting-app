@@ -167,6 +167,19 @@ function safeFileName(s) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
 }
 
+// Klíč klubu: obvykle jen jméno ("Slavia Praha"). Když je stejné jméno ve
+// více ligách (např. "AB" v Dánsku i na Faerských ostrovech), klíč je
+// "jméno|liga", aby každý klub dostal vlastní tým z API-Football.
+function plainClubName(clubKey) {
+  return clubKey.split("|")[0];
+}
+
+// Ruční ID klubu: nejdřív přesně podle klíče ("AB|Faroe Islands Premier League"),
+// pak podle samotného jména.
+function clubAliasFor(clubKey) {
+  return clubAliases[clubKey] ?? clubAliases[plainClubName(clubKey)];
+}
+
 let interrupted = false;
 process.on("SIGINT", async () => {
   console.log("\n[fetch-media] Přerušeno — ukládám dosavadní postup…");
@@ -375,15 +388,17 @@ async function resolveClubs(clubInfo, clubToLeagueId = new Map()) {
     if (interrupted) break;
     const cacheName = `team-${safeFileName(clubName)}.json`;
     let candidates = readCache(cacheName);
+    const alias = clubAliasFor(clubName); // ruční ID klubu (nebo undefined)
+    const plainName = plainClubName(clubName); // jméno bez "|liga" (pro hledání)
 
-    if (clubAliases[clubName] && typeof clubAliases[clubName] === "number") {
+    if (alias && typeof alias === "number") {
       if (!candidates) {
-        const json = await apiGet("/teams", { id: clubAliases[clubName] });
+        const json = await apiGet("/teams", { id: alias });
         candidates = json.response || [];
         writeCache(cacheName, candidates);
       }
     } else if (!candidates) {
-      const searchTerm = stripDiacritics(clubName).replace(/[^a-zA-Z0-9\s.]/g, " ").replace(/\s+/g, " ").trim();
+      const searchTerm = stripDiacritics(plainName).replace(/[^a-zA-Z0-9\s.]/g, " ").replace(/\s+/g, " ").trim();
       console.log(`  [${i}/${clubInfo.size}] GET /teams?search=${searchTerm}`);
       const json = await apiGet("/teams", { search: searchTerm });
       candidates = json.response || [];
@@ -397,24 +412,24 @@ async function resolveClubs(clubInfo, clubToLeagueId = new Map()) {
       writeCache(cacheName, candidates);
     }
 
-    const ourNorm = normalizeClubName(clubName);
+    const ourNorm = normalizeClubName(plainName);
     const ranked = rankCandidates(ourNorm, candidates, (c) => normalizeClubName(c.team.name));
     const best = ranked[0]?.item;
     const bestScore = ranked[0]?.score || 0;
     const leagueId = clubToLeagueId.get(clubName);
 
-    if (best && (bestScore >= CLUB_MATCH_THRESHOLD || clubAliases[clubName])) {
-      const match = { id: best.team.id, name: best.team.name, country: best.team.country, logo: best.team.logo, score: Number(bestScore.toFixed(2)), via: clubAliases[clubName] ? "alias" : "jméno" };
+    if (best && (bestScore >= CLUB_MATCH_THRESHOLD || alias)) {
+      const match = { id: best.team.id, name: best.team.name, country: best.team.country, logo: best.team.logo, score: Number(bestScore.toFixed(2)), via: alias ? "alias" : "jméno" };
 
       // Kontrola shody podle jména: hraje nalezený tým opravdu v lize našeho
       // klubu? Hledání podle jména často trefí ženský tým ("Valur W"),
       // rezervu ("Žalgiris II") nebo stejnojmenný klub z jiné země. Ruční
       // výjimky (alias) se nekontrolují, ty platí vždy.
-      if (!clubAliases[clubName] && leagueId) {
+      if (!alias && leagueId) {
         const teams = await getLeagueTeams(leagueId);
         const inLeague = teams.some((t) => t.team.id === best.team.id);
         if (teams.length && !inLeague) {
-          const fix = matchInLeagueTeams(clubName, teams);
+          const fix = matchInLeagueTeams(plainName, teams);
           if (fix) {
             const t = fix.item.team;
             console.log(`  ↻ ${clubName}: "${best.team.name}" (id ${best.team.id}) v lize nehraje -> "${t.name}" (id ${t.id}) [soupiska ligy]`);
@@ -430,7 +445,7 @@ async function resolveClubs(clubInfo, clubToLeagueId = new Map()) {
     }
 
     // Záložní párování přes seznam týmů ligy (jen když známe ID ligy).
-    const fallback = leagueId ? matchInLeagueTeams(clubName, await getLeagueTeams(leagueId)) : null;
+    const fallback = leagueId ? matchInLeagueTeams(plainName, await getLeagueTeams(leagueId)) : null;
     if (fallback) {
       const t = fallback.item.team;
       matches[clubName] = { id: t.id, name: t.name, country: t.country, logo: t.logo, score: Number(fallback.score.toFixed(2)), via: "soupiska ligy" };
@@ -495,7 +510,8 @@ async function fetchSquads(clubMatches, rosterByClub) {
     const usedApiPlayers = new Set();
     for (const { ourName, sp, score } of pairs) {
       if (usedOurNames.has(ourName) || usedApiPlayers.has(sp)) continue;
-      playerPhotos[playerClubKey(ourName, ourClubName)] = sp.photo;
+      // Klíč hráče je vždy podle samotného jména klubu (stejně jako v appce)
+      playerPhotos[playerClubKey(ourName, plainClubName(ourClubName))] = sp.photo;
       usedOurNames.add(ourName);
       usedApiPlayers.add(sp);
     }
@@ -614,7 +630,7 @@ async function fetchForm(clubMatches, rosterByClub, clubToLeagueId) {
     for (const [ourName, ratings] of perPlayer) {
       const capped = ratings.slice(0, FORM_LAST_N);
       const avg = capped.reduce((a, b) => a + b.rating, 0) / capped.length;
-      formMap[playerClubKey(ourName, ourClubName)] = {
+      formMap[playerClubKey(ourName, plainClubName(ourClubName))] = {
         ratings: capped,
         avg: Number(avg.toFixed(2)),
       };
@@ -638,10 +654,21 @@ async function main() {
   const rosterByClub = new Map();
   const clubToLeagueName = new Map();
 
+  // Jména klubů, která jsou ve více ligách (např. "AB") – ta dostanou klíč "jméno|liga".
+  const leaguesByClub = new Map();
+  for (const row of rows) {
+    const c = row[idx["Current Club"]];
+    const l = row[idx.league_name];
+    if (!c || !l) continue;
+    if (!leaguesByClub.has(c)) leaguesByClub.set(c, new Set());
+    leaguesByClub.get(c).add(l);
+  }
+
   for (const row of rows) {
     const leagueName = row[idx.league_name];
     const leagueCountry = row[idx.league_nationality];
-    const club = row[idx["Current Club"]];
+    const clubRaw = row[idx["Current Club"]];
+    const club = clubRaw && leagueName && leaguesByClub.get(clubRaw)?.size > 1 ? `${clubRaw}|${leagueName}` : clubRaw;
     const playerName = row[idx.player_name];
 
     if (leagueName && !leagueInfo.has(leagueName)) leagueInfo.set(leagueName, { country: leagueCountry });
