@@ -170,7 +170,8 @@
       "apiId": 1025,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Austria Wien",
@@ -179,7 +180,8 @@
       "apiId": 601,
       "apiCountry": "Austria",
       "score": 0.79,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Salzburg",
@@ -188,7 +190,8 @@
       "apiId": 571,
       "apiCountry": "Austria",
       "score": 0.47,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Sturm Graz",
@@ -197,7 +200,8 @@
       "apiId": 637,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Wattens",
@@ -206,7 +210,8 @@
       "apiId": 1398,
       "apiCountry": "Austria",
       "score": 0.64,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Rheindorf Altach",
@@ -215,7 +220,8 @@
       "apiId": 618,
       "apiCountry": "Austria",
       "score": 0.5,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Hartberg",
@@ -224,7 +230,8 @@
       "apiId": 1072,
       "apiCountry": "Austria",
       "score": 0.67,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Austria Lustenau",
@@ -233,7 +240,8 @@
       "apiId": 1399,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ried",
@@ -242,7 +250,8 @@
       "apiId": 1028,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "LASK Linz",
@@ -251,7 +260,8 @@
       "apiId": 1026,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Grazer AK",
@@ -260,7 +270,8 @@
       "apiId": 4256,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Rapid Wien",
@@ -269,7 +280,8 @@
       "apiId": 781,
       "apiCountry": "Austria",
       "score": 0.75,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Blau-Weiß Linz",
@@ -278,7 +290,8 @@
       "apiId": 1394,
       "apiCountry": "Austria",
       "score": 0.47,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Austria Wien II",
@@ -287,7 +300,8 @@
       "apiId": 2860,
       "apiCountry": "Austria",
       "score": 0.71,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Kapfenberger SV",
@@ -296,7 +310,8 @@
       "apiId": 1401,
       "apiCountry": "Austria",
       "score": 0.47,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Rapid Wien II",
@@ -305,7 +320,8 @@
       "apiId": 8247,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Wacker Innsbruck",
@@ -314,7 +330,8 @@
       "apiId": 1073,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Admira",
@@ -323,7 +340,8 @@
       "apiId": 1023,
       "apiCountry": "Austria",
       "score": 0.46,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "St. Pölten",
@@ -332,7 +350,8 @@
       "apiId": 1027,
       "apiCountry": "Austria",
       "score": 0.69,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Floridsdorfer AC",
@@ -341,7 +360,8 @@
       "apiId": 1395,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Voitsberg",
@@ -350,7 +370,8 @@
       "apiId": 8332,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Schwarz-Weiß Bregenz",
@@ -359,7 +380,8 @@
       "apiId": 8259,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Amstetten",
@@ -368,7 +390,8 @@
       "apiId": 1404,
       "apiCountry": "Austria",
       "score": 0.69,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sturm Graz II",
@@ -377,7 +400,8 @@
       "apiId": 8251,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Liefering",
@@ -386,7 +410,8 @@
       "apiId": 1400,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "First Vienna",
@@ -395,7 +420,8 @@
       "apiId": 4990,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Austria Salzburg",
@@ -404,7 +430,8 @@
       "apiId": 5000,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "WSPG Wels",
@@ -413,7 +440,8 @@
       "apiId": 22213,
       "apiCountry": "Austria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Velež",
@@ -422,7 +450,8 @@
       "apiId": 3381,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Borac Banja Luka",
@@ -431,7 +460,8 @@
       "apiId": 3364,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Čelik",
@@ -440,7 +470,8 @@
       "apiId": 3363,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Zrinjski",
@@ -449,7 +480,8 @@
       "apiId": 588,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Željezničar",
@@ -458,7 +490,8 @@
       "apiId": 654,
       "apiCountry": "Bosnia",
       "score": 0.55,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Sarajevo",
@@ -467,7 +500,8 @@
       "apiId": 679,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sloga Doboj",
@@ -476,7 +510,8 @@
       "apiId": 8504,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "BSK Banja Luka",
@@ -485,7 +520,8 @@
       "apiId": 21736,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Radnik Bijeljina",
@@ -494,7 +530,8 @@
       "apiId": 3359,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Široki Brijeg",
@@ -503,7 +540,8 @@
       "apiId": 642,
       "apiCountry": "Bosnia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Botev Vratsa",
@@ -512,7 +550,8 @@
       "apiId": 859,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Arda",
@@ -521,7 +560,8 @@
       "apiId": 1430,
       "apiCountry": "Bulgaria",
       "score": 0.29,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Lokomotiv Sofia 1929",
@@ -530,7 +570,8 @@
       "apiId": 1416,
       "apiCountry": "Bulgaria",
       "score": 0.75,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lokomotiv Plovdiv",
@@ -539,7 +580,8 @@
       "apiId": 858,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Levski Sofia",
@@ -548,7 +590,8 @@
       "apiId": 646,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ludogorets",
@@ -557,7 +600,8 @@
       "apiId": 566,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Spartak Varna",
@@ -566,7 +610,8 @@
       "apiId": 4660,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Botev Plovdiv",
@@ -575,7 +620,8 @@
       "apiId": 634,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "CSKA Sofia",
@@ -584,7 +630,8 @@
       "apiId": 853,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "CSKA 1948 Sofia",
@@ -593,7 +640,8 @@
       "apiId": 1426,
       "apiCountry": "Bulgaria",
       "score": 0.6,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Septemvri Sofia",
@@ -602,7 +650,8 @@
       "apiId": 856,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dunav 2010",
@@ -611,7 +660,8 @@
       "apiId": 683,
       "apiCountry": "Bulgaria",
       "score": 0.6,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Cherno More",
@@ -620,7 +670,8 @@
       "apiId": 851,
       "apiCountry": "Bulgaria",
       "score": 0.65,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Slavia Sofia",
@@ -629,7 +680,8 @@
       "apiId": 854,
       "apiCountry": "Bulgaria",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hajduk Split",
@@ -638,7 +690,8 @@
       "apiId": 608,
       "apiCountry": "Croatia",
       "score": 0.75,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Slaven Koprivnica",
@@ -647,7 +700,8 @@
       "apiId": 1018,
       "apiCountry": "Croatia",
       "score": 0.24,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Osijek",
@@ -656,7 +710,8 @@
       "apiId": 616,
       "apiCountry": "Croatia",
       "score": 0.67,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Istra 1961",
@@ -665,7 +720,8 @@
       "apiId": 1016,
       "apiCountry": "Croatia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dinamo Zagreb",
@@ -674,7 +730,8 @@
       "apiId": 620,
       "apiCountry": "Croatia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Varaždin",
@@ -683,7 +740,8 @@
       "apiId": 1483,
       "apiCountry": "Croatia",
       "score": 0.73,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Rijeka",
@@ -692,7 +750,8 @@
       "apiId": 561,
       "apiCountry": "Croatia",
       "score": 0.6,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Gorica",
@@ -701,7 +760,8 @@
       "apiId": 1068,
       "apiCountry": "Croatia",
       "score": 0.6,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Rudeš",
@@ -710,7 +770,8 @@
       "apiId": 1019,
       "apiCountry": "Croatia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lokomotiva Zagreb",
@@ -719,7 +780,8 @@
       "apiId": 1017,
       "apiCountry": "Croatia",
       "score": 0.85,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Baník Ostrava",
@@ -728,7 +790,8 @@
       "apiId": 3713,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sigma Olomouc",
@@ -737,7 +800,8 @@
       "apiId": 2250,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Pardubice",
@@ -746,7 +810,8 @@
       "apiId": 3724,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Teplice",
@@ -755,7 +820,8 @@
       "apiId": 3720,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hradec Králové",
@@ -764,7 +830,8 @@
       "apiId": 3723,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Líšeň",
@@ -773,7 +840,8 @@
       "apiId": 4257,
       "apiCountry": "Czech-Republic",
       "score": 0,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Slovan Liberec",
@@ -782,7 +850,8 @@
       "apiId": 782,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Viktoria Plzeň",
@@ -791,7 +860,8 @@
       "apiId": 567,
       "apiCountry": "Czech-Republic",
       "score": 0.36,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Zlín",
@@ -800,7 +870,8 @@
       "apiId": 603,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Zbrojovka Brno",
@@ -809,7 +880,8 @@
       "apiId": 3733,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Mladá Boleslav",
@@ -818,7 +890,8 @@
       "apiId": 640,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sparta Praha",
@@ -827,7 +900,8 @@
       "apiId": 628,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Slovácko",
@@ -836,7 +910,8 @@
       "apiId": 3719,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Slavia Praha",
@@ -845,7 +920,8 @@
       "apiId": 560,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bohemians 1905",
@@ -854,7 +930,8 @@
       "apiId": 3714,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Jablonec",
@@ -863,7 +940,8 @@
       "apiId": 1122,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Baník Ostrava U21",
@@ -872,7 +950,8 @@
       "apiId": 8621,
       "apiCountry": "Czech-Republic",
       "score": 0.82,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Příbram",
@@ -881,7 +960,8 @@
       "apiId": 3718,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Slavia Praha U21",
@@ -890,7 +970,8 @@
       "apiId": 8618,
       "apiCountry": "Czech-Republic",
       "score": 0.81,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Prostějov",
@@ -899,7 +980,8 @@
       "apiId": 3725,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Opava",
@@ -908,7 +990,8 @@
       "apiId": 3717,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Karviná",
@@ -917,7 +1000,8 @@
       "apiId": 3716,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dukla Praha",
@@ -926,7 +1010,8 @@
       "apiId": 3715,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hanácká",
@@ -935,7 +1020,8 @@
       "apiId": 7291,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Arsenal Ceska Lipa",
@@ -944,7 +1030,8 @@
       "apiId": 7270,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Táborsko",
@@ -953,7 +1040,8 @@
       "apiId": 3726,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Viktoria Žižkov",
@@ -962,7 +1050,8 @@
       "apiId": 3729,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vysočina Jihlava",
@@ -971,7 +1060,8 @@
       "apiId": 3731,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ústí nad Labem",
@@ -980,7 +1070,8 @@
       "apiId": 3735,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kladno",
@@ -989,7 +1080,8 @@
       "apiId": 7307,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Třinec",
@@ -998,7 +1090,8 @@
       "apiId": 3727,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vlašim",
@@ -1007,7 +1100,8 @@
       "apiId": 3730,
       "apiCountry": "Czech-Republic",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Midtjylland",
@@ -1016,7 +1110,8 @@
       "apiId": 397,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Horsens",
@@ -1025,7 +1120,8 @@
       "apiId": 404,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "OB",
@@ -1034,7 +1130,8 @@
       "apiId": 405,
       "apiCountry": "Denmark",
       "score": 0.17,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Viborg",
@@ -1043,7 +1140,8 @@
       "apiId": 2070,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "København",
@@ -1052,7 +1150,8 @@
       "apiId": 400,
       "apiCountry": "Denmark",
       "score": 0.6,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "SønderjyskE",
@@ -1061,7 +1160,8 @@
       "apiId": 396,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Silkeborg",
@@ -1070,7 +1170,8 @@
       "apiId": 2073,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Nordsjælland",
@@ -1079,7 +1180,8 @@
       "apiId": 398,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Randers",
@@ -1088,7 +1190,8 @@
       "apiId": 401,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lyngby",
@@ -1097,7 +1200,8 @@
       "apiId": 625,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Brøndby",
@@ -1106,7 +1210,8 @@
       "apiId": 407,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "AGF",
@@ -1115,7 +1220,8 @@
       "apiId": 406,
       "apiCountry": "Denmark",
       "score": 0.17,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Vejle",
@@ -1124,7 +1230,8 @@
       "apiId": 395,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hvidovre",
@@ -1133,7 +1240,8 @@
       "apiId": 2072,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hillerød",
@@ -1142,7 +1250,8 @@
       "apiId": 6026,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Kolding IF",
@@ -1151,7 +1260,8 @@
       "apiId": 4676,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Esbjerg",
@@ -1160,7 +1270,8 @@
       "apiId": 403,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Fredericia",
@@ -1169,7 +1280,8 @@
       "apiId": 2061,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "AB",
@@ -1178,7 +1290,8 @@
       "apiId": 2060,
       "apiCountry": "Denmark",
       "score": 0.15,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "AaB",
@@ -1187,7 +1300,8 @@
       "apiId": 402,
       "apiCountry": "Denmark",
       "score": 0.43,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Aarhus Fremad",
@@ -1196,7 +1310,8 @@
       "apiId": 6004,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hobro",
@@ -1205,7 +1320,8 @@
       "apiId": 408,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vendsyssel",
@@ -1214,7 +1330,8 @@
       "apiId": 399,
       "apiCountry": "Denmark",
       "score": 0.77,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "HB Køge",
@@ -1223,7 +1340,8 @@
       "apiId": 2063,
       "apiCountry": "Denmark",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Paide",
@@ -1232,7 +1350,8 @@
       "apiId": 3528,
       "apiCountry": "Estonia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Harju Jalgpallikool",
@@ -1241,7 +1360,8 @@
       "apiId": 18657,
       "apiCountry": "Estonia",
       "score": 0.21,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Tallinna FC Levadia",
@@ -1250,7 +1370,8 @@
       "apiId": 2273,
       "apiCountry": "Estonia",
       "score": 0.13,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Nõmme United",
@@ -1259,7 +1380,8 @@
       "apiId": 10059,
       "apiCountry": "Estonia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Trans",
@@ -1268,7 +1390,8 @@
       "apiId": 2274,
       "apiCountry": "Estonia",
       "score": 0.45,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Tallinna FC Flora",
@@ -1277,7 +1400,8 @@
       "apiId": 687,
       "apiCountry": "Estonia",
       "score": 0.14,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Vaprus",
@@ -1286,7 +1410,8 @@
       "apiId": 3525,
       "apiCountry": "Estonia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Nõmme Kalju",
@@ -1295,7 +1420,8 @@
       "apiId": 662,
       "apiCountry": "Estonia",
       "score": 0.09,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Kuressaare",
@@ -1304,7 +1430,8 @@
       "apiId": 3526,
       "apiCountry": "Estonia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Tammeka",
@@ -1313,7 +1440,8 @@
       "apiId": 3530,
       "apiCountry": "Estonia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "SJK",
@@ -1322,7 +1450,8 @@
       "apiId": 689,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Mariehamn",
@@ -1331,7 +1460,8 @@
       "apiId": 587,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "KuPS",
@@ -1340,7 +1470,8 @@
       "apiId": 1165,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lahti",
@@ -1349,7 +1480,8 @@
       "apiId": 1166,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Jaro",
@@ -1358,7 +1490,8 @@
       "apiId": 2075,
       "apiCountry": "Finland",
       "score": 0.57,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Oulu",
@@ -1367,7 +1500,8 @@
       "apiId": 2077,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "TPS",
@@ -1376,7 +1510,8 @@
       "apiId": 1168,
       "apiCountry": "Finland",
       "score": 0.38,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Gnistan",
@@ -1385,7 +1520,8 @@
       "apiId": 2082,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "VPS",
@@ -1394,7 +1530,8 @@
       "apiId": 650,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Inter Turku",
@@ -1403,7 +1540,8 @@
       "apiId": 1164,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "HJK",
@@ -1412,7 +1550,8 @@
       "apiId": 649,
       "apiCountry": "Finland",
       "score": 0.25,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Ilves",
@@ -1421,7 +1560,8 @@
       "apiId": 1163,
       "apiCountry": "Finland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Radomiak Radom",
@@ -1430,7 +1570,8 @@
       "apiId": 4248,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Raków Częstochowa",
@@ -1439,7 +1580,8 @@
       "apiId": 3491,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Wisła Płock",
@@ -1448,7 +1590,8 @@
       "apiId": 341,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "GKS Katowice",
@@ -1457,7 +1600,8 @@
       "apiId": 3484,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Śląsk Wrocław",
@@ -1466,7 +1610,8 @@
       "apiId": 337,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Cracovia Kraków",
@@ -1475,7 +1620,8 @@
       "apiId": 350,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Wisła Kraków",
@@ -1484,7 +1630,8 @@
       "apiId": 338,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Zagłębie Lubin",
@@ -1493,7 +1640,8 @@
       "apiId": 345,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Jagiellonia Białystok",
@@ -1502,7 +1650,8 @@
       "apiId": 336,
       "apiCountry": "Poland",
       "score": 0.52,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Wieczysta Kraków",
@@ -1511,7 +1660,8 @@
       "apiId": 17115,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Pogoń Szczecin",
@@ -1520,7 +1670,8 @@
       "apiId": 348,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Motor Lublin",
@@ -1529,7 +1680,8 @@
       "apiId": 14562,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lech Poznań",
@@ -1538,7 +1690,8 @@
       "apiId": 347,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Piast Gliwice",
@@ -1547,7 +1700,8 @@
       "apiId": 349,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Widzew Łódź",
@@ -1556,7 +1710,8 @@
       "apiId": 6962,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Legia Warszawa",
@@ -1565,7 +1720,8 @@
       "apiId": 339,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Korona Kielce",
@@ -1574,7 +1730,8 @@
       "apiId": 346,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Górnik Zabrze",
@@ -1583,7 +1740,8 @@
       "apiId": 340,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ruch Chorzów",
@@ -1592,7 +1750,8 @@
       "apiId": 6953,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Miedź Legnica",
@@ -1601,7 +1760,8 @@
       "apiId": 335,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Chrobry Głogów",
@@ -1610,7 +1770,8 @@
       "apiId": 3483,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Nieciecza",
@@ -1619,7 +1780,8 @@
       "apiId": 3487,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Odra Opole",
@@ -1628,7 +1790,8 @@
       "apiId": 3488,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Polonia Bytom",
@@ -1637,7 +1800,8 @@
       "apiId": 12835,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Puszcza Niepołomice",
@@ -1646,7 +1810,8 @@
       "apiId": 3490,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Polonia Warszawa",
@@ -1655,7 +1820,8 @@
       "apiId": 16239,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Warta Poznań",
@@ -1664,7 +1830,8 @@
       "apiId": 3496,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "ŁKS Łódź",
@@ -1673,7 +1840,8 @@
       "apiId": 3498,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Arka Gdynia",
@@ -1682,7 +1850,8 @@
       "apiId": 344,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Pogoń Grod. Mazowiecki",
@@ -1691,7 +1860,8 @@
       "apiId": 14750,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Stal Rzeszów",
@@ -1700,7 +1870,8 @@
       "apiId": 6957,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Podbeskidzie",
@@ -1709,7 +1880,8 @@
       "apiId": 3489,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Unia Skierniewice",
@@ -1718,7 +1890,8 @@
       "apiId": 6961,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lechia Gdańsk",
@@ -1727,7 +1900,8 @@
       "apiId": 343,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Stal Mielec",
@@ -1736,7 +1910,8 @@
       "apiId": 3493,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Pogoń Siedlce",
@@ -1745,7 +1920,8 @@
       "apiId": 6947,
       "apiCountry": "Poland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Újpest",
@@ -1754,7 +1930,8 @@
       "apiId": 2255,
       "apiCountry": "Hungary",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "ETO",
@@ -1763,7 +1940,8 @@
       "apiId": 2402,
       "apiCountry": "Hungary",
       "score": 0.33,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Ferencváros",
@@ -1772,7 +1950,8 @@
       "apiId": 651,
       "apiCountry": "Hungary",
       "score": 0.73,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Honvéd",
@@ -1781,7 +1960,8 @@
       "apiId": 576,
       "apiCountry": "Hungary",
       "score": 0.4,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Paksi SE",
@@ -1790,7 +1970,8 @@
       "apiId": 2390,
       "apiCountry": "Hungary",
       "score": 0.5,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Debrecen",
@@ -1799,7 +1980,8 @@
       "apiId": 2392,
       "apiCountry": "Hungary",
       "score": 0.62,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "MTK",
@@ -1808,7 +1990,8 @@
       "apiId": 2396,
       "apiCountry": "Hungary",
       "score": 0.25,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Zalaegerszegi TE",
@@ -1817,7 +2000,8 @@
       "apiId": 2414,
       "apiCountry": "Hungary",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Várda SE",
@@ -1826,7 +2010,8 @@
       "apiId": 2394,
       "apiCountry": "Hungary",
       "score": 0.25,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Puskás",
@@ -1835,7 +2020,8 @@
       "apiId": 2391,
       "apiCountry": "Hungary",
       "score": 0.43,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Vasas",
@@ -1844,7 +2030,8 @@
       "apiId": 675,
       "apiCountry": "Hungary",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Nyíregyháza Spartacus",
@@ -1853,7 +2040,8 @@
       "apiId": 2403,
       "apiCountry": "Hungary",
       "score": 0.52,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "BFC Daugavpils",
@@ -1862,7 +2050,8 @@
       "apiId": 4149,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Riga",
@@ -1871,7 +2060,8 @@
       "apiId": 10124,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Liepāja",
@@ -1880,7 +2070,8 @@
       "apiId": 661,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "FS Jelgava",
@@ -1889,7 +2080,8 @@
       "apiId": 18834,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Super Nova",
@@ -1898,7 +2090,8 @@
       "apiId": 4143,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Rīgas FS",
@@ -1907,7 +2100,8 @@
       "apiId": 4160,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Grobiņa",
@@ -1916,7 +2110,8 @@
       "apiId": 4138,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ogre United",
@@ -1925,7 +2120,8 @@
       "apiId": 18936,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Tukums",
@@ -1934,7 +2130,8 @@
       "apiId": 4144,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Auda",
@@ -1943,7 +2140,8 @@
       "apiId": 4135,
       "apiCountry": "Latvia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vålerenga",
@@ -1952,7 +2150,8 @@
       "apiId": 326,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Tromsø",
@@ -1961,7 +2160,8 @@
       "apiId": 325,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kristiansund",
@@ -1970,7 +2170,8 @@
       "apiId": 320,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Rosenborg",
@@ -1979,7 +2180,8 @@
       "apiId": 331,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sarpsborg 08",
@@ -1988,7 +2190,8 @@
       "apiId": 333,
       "apiCountry": "Norway",
       "score": 0.8,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "HamKam",
@@ -1997,7 +2200,8 @@
       "apiId": 2159,
       "apiCountry": "Norway",
       "score": 0.86,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Molde",
@@ -2006,7 +2210,8 @@
       "apiId": 329,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Aalesund",
@@ -2015,7 +2220,8 @@
       "apiId": 757,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sandefjord",
@@ -2024,7 +2230,8 @@
       "apiId": 332,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Start",
@@ -2033,7 +2240,8 @@
       "apiId": 334,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Viking",
@@ -2042,7 +2250,8 @@
       "apiId": 759,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "KFUM",
@@ -2051,7 +2260,8 @@
       "apiId": 2143,
       "apiCountry": "Norway",
       "score": 0.44,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "FK Bodo - Glimt",
@@ -2060,7 +2270,8 @@
       "apiId": 327,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Brann",
@@ -2069,7 +2280,8 @@
       "apiId": 319,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lillestrøm",
@@ -2078,7 +2290,8 @@
       "apiId": 321,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Fredrikstad",
@@ -2087,7 +2300,8 @@
       "apiId": 2149,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Raufoss",
@@ -2096,7 +2310,8 @@
       "apiId": 2153,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Odd",
@@ -2105,7 +2320,8 @@
       "apiId": 330,
       "apiCountry": "Norway",
       "score": 0.23,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Sandnes Ulf",
@@ -2114,7 +2330,8 @@
       "apiId": 2146,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lyn",
@@ -2123,7 +2340,8 @@
       "apiId": 7006,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kongsvinger",
@@ -2132,7 +2350,8 @@
       "apiId": 2144,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Strømmen",
@@ -2141,7 +2360,8 @@
       "apiId": 2147,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bryne",
@@ -2150,7 +2370,8 @@
       "apiId": 2142,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Moss",
@@ -2159,7 +2380,8 @@
       "apiId": 7012,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hødd",
@@ -2168,7 +2390,8 @@
       "apiId": 2150,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Stabæk",
@@ -2177,7 +2400,8 @@
       "apiId": 323,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Egersund",
@@ -2186,7 +2410,8 @@
       "apiId": 6976,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Haugesund",
@@ -2195,7 +2420,8 @@
       "apiId": 328,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Åsane",
@@ -2204,7 +2430,8 @@
       "apiId": 2148,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Strømsgodset",
@@ -2213,7 +2440,8 @@
       "apiId": 324,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ranheim",
@@ -2222,7 +2450,8 @@
       "apiId": 322,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sogndal",
@@ -2231,7 +2460,8 @@
       "apiId": 758,
       "apiCountry": "Norway",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "CFR Cluj",
@@ -2240,7 +2470,8 @@
       "apiId": 2246,
       "apiCountry": "Romania",
       "score": 0.62,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Sepsi",
@@ -2249,7 +2480,8 @@
       "apiId": 2585,
       "apiCountry": "Romania",
       "score": 0.2,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Csikszereda",
@@ -2258,7 +2490,8 @@
       "apiId": 6230,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Petrolul 52",
@@ -2267,7 +2500,8 @@
       "apiId": 2598,
       "apiCountry": "Romania",
       "score": 0.53,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Universitatea Cluj",
@@ -2276,7 +2510,8 @@
       "apiId": 2599,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Corvinul Hunedoara",
@@ -2285,7 +2520,8 @@
       "apiId": 20034,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dinamo Bucureşti",
@@ -2294,7 +2530,8 @@
       "apiId": 635,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "CS U Craiova",
@@ -2303,7 +2540,8 @@
       "apiId": 632,
       "apiCountry": "Romania",
       "score": 0.43,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "SSC Farul",
@@ -2312,7 +2550,8 @@
       "apiId": 2596,
       "apiCountry": "Romania",
       "score": 0.13,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Rapid Bucureşti",
@@ -2321,7 +2560,8 @@
       "apiId": 6231,
       "apiCountry": "Romania",
       "score": 0.33,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "UTA Arad",
@@ -2330,7 +2570,8 @@
       "apiId": 2589,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Voluntari",
@@ -2339,7 +2580,8 @@
       "apiId": 2578,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "FCSB",
@@ -2348,7 +2590,8 @@
       "apiId": 559,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Botoşani",
@@ -2357,7 +2600,8 @@
       "apiId": 2581,
       "apiCountry": "Romania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Oţelul Galaţi",
@@ -2366,7 +2610,8 @@
       "apiId": 6886,
       "apiCountry": "Romania",
       "score": 0.46,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Argeș",
@@ -2375,7 +2620,8 @@
       "apiId": 2592,
       "apiCountry": "Romania",
       "score": 0.38,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Železničar Pančevo",
@@ -2384,7 +2630,8 @@
       "apiId": 12360,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Mačva Šabac",
@@ -2393,7 +2640,8 @@
       "apiId": 2637,
       "apiCountry": "Serbia",
       "score": 0.45,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Čukarički",
@@ -2402,7 +2650,8 @@
       "apiId": 2656,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Novi Pazar",
@@ -2411,7 +2660,8 @@
       "apiId": 2643,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Partizan",
@@ -2420,7 +2670,8 @@
       "apiId": 573,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "OFK Beograd",
@@ -2429,7 +2680,8 @@
       "apiId": 2633,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Radnički Kragujevac",
@@ -2438,7 +2690,8 @@
       "apiId": 2644,
       "apiCountry": "Serbia",
       "score": 0.47,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "LFK Mladost Lučani",
@@ -2447,7 +2700,8 @@
       "apiId": 699,
       "apiCountry": "Serbia",
       "score": 0.78,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "IMT Novi Beograd",
@@ -2456,7 +2710,8 @@
       "apiId": 12316,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vojvodina",
@@ -2465,7 +2720,8 @@
       "apiId": 702,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Zemun",
@@ -2474,7 +2730,8 @@
       "apiId": 2642,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Red Star Belgrade",
@@ -2483,7 +2740,8 @@
       "apiId": 598,
       "apiCountry": "Serbia",
       "score": 0.18,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Radnik Surdulica",
@@ -2492,7 +2750,8 @@
       "apiId": 2657,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Radnički Niš",
@@ -2501,7 +2760,8 @@
       "apiId": 2254,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Voždovac",
@@ -2510,7 +2770,8 @@
       "apiId": 2658,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Semendrija 1924",
@@ -2519,7 +2780,8 @@
       "apiId": 4254,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Teleoptik",
@@ -2528,7 +2790,8 @@
       "apiId": 2645,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Loznica",
@@ -2537,7 +2800,8 @@
       "apiId": 12323,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Napredak",
@@ -2546,7 +2810,8 @@
       "apiId": 2655,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dubočica",
@@ -2555,7 +2820,8 @@
       "apiId": 12312,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "OFK Vršac",
@@ -2564,7 +2830,8 @@
       "apiId": 12329,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Javor Ivanjica",
@@ -2573,7 +2840,8 @@
       "apiId": 2653,
       "apiCountry": "Serbia",
       "score": 0.36,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Spartak Subotica",
@@ -2582,7 +2850,8 @@
       "apiId": 2251,
       "apiCountry": "Serbia",
       "score": 0.43,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Borac Čačak",
@@ -2591,7 +2860,8 @@
       "apiId": 2649,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bačka Topola",
@@ -2600,7 +2870,8 @@
       "apiId": 2646,
       "apiCountry": "Serbia",
       "score": 0.75,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bor",
@@ -2609,7 +2880,8 @@
       "apiId": 26409,
       "apiCountry": "Serbia",
       "score": 0.25,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Jedinstvo Ub",
@@ -2618,7 +2890,8 @@
       "apiId": 12319,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Metalac GM",
@@ -2627,7 +2900,8 @@
       "apiId": 2647,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Grafičar",
@@ -2636,7 +2910,8 @@
       "apiId": 4252,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Naftagas",
@@ -2645,7 +2920,8 @@
       "apiId": 19839,
       "apiCountry": "Serbia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Skalica",
@@ -2654,7 +2930,8 @@
       "apiId": 10542,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "DAC",
@@ -2663,7 +2940,8 @@
       "apiId": 2257,
       "apiCountry": "Slovakia",
       "score": 0.13,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Zemplín Michalovce",
@@ -2672,7 +2950,8 @@
       "apiId": 3552,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Slovan Bratislava",
@@ -2681,7 +2960,8 @@
       "apiId": 656,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dukla Banská Bystrica",
@@ -2690,7 +2970,8 @@
       "apiId": 10533,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Komárno",
@@ -2699,7 +2980,8 @@
       "apiId": 10535,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ružomberok",
@@ -2708,7 +2990,8 @@
       "apiId": 3549,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "FK Košice",
@@ -2717,7 +3000,8 @@
       "apiId": 10534,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Podbrezová",
@@ -2726,7 +3010,8 @@
       "apiId": 3548,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Žilina",
@@ -2735,7 +3020,8 @@
       "apiId": 3554,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Trenčín",
@@ -2744,7 +3030,8 @@
       "apiId": 655,
       "apiCountry": "Slovakia",
       "score": 0.7,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Spartak Trnava",
@@ -2753,7 +3040,8 @@
       "apiId": 1120,
       "apiCountry": "Slovakia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Nafta",
@@ -2762,7 +3050,8 @@
       "apiId": 4376,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Olimpija",
@@ -2771,7 +3060,8 @@
       "apiId": 677,
       "apiCountry": "Slovenia",
       "score": 0.44,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Mura",
@@ -2780,7 +3070,8 @@
       "apiId": 4197,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Aluminij",
@@ -2789,7 +3080,8 @@
       "apiId": 4358,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bravo",
@@ -2798,7 +3090,8 @@
       "apiId": 4359,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Brinje-Grosuplje",
@@ -2807,7 +3100,8 @@
       "apiId": 12744,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Radomlje",
@@ -2816,7 +3110,8 @@
       "apiId": 4378,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Koper",
@@ -2825,7 +3120,8 @@
       "apiId": 4374,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Maribor",
@@ -2834,7 +3130,8 @@
       "apiId": 552,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Celje",
@@ -2843,7 +3140,8 @@
       "apiId": 4360,
       "apiCountry": "Slovenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Västerås SK",
@@ -2852,7 +3150,8 @@
       "apiId": 2241,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kalmar",
@@ -2861,7 +3160,8 @@
       "apiId": 374,
       "apiCountry": "Sweden",
       "score": 0.67,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "AIK",
@@ -2870,7 +3170,8 @@
       "apiId": 377,
       "apiCountry": "Sweden",
       "score": 0.23,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Häcken",
@@ -2879,7 +3180,8 @@
       "apiId": 367,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Mjällby",
@@ -2888,7 +3190,8 @@
       "apiId": 2240,
       "apiCountry": "Sweden",
       "score": 0.64,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Djurgården",
@@ -2897,7 +3200,8 @@
       "apiId": 364,
       "apiCountry": "Sweden",
       "score": 0.91,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Örgryte",
@@ -2906,7 +3210,8 @@
       "apiId": 2166,
       "apiCountry": "Sweden",
       "score": 0.7,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "IFK Göteborg",
@@ -2915,7 +3220,8 @@
       "apiId": 366,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sirius",
@@ -2924,7 +3230,8 @@
       "apiId": 370,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Halmstad",
@@ -2933,7 +3240,8 @@
       "apiId": 766,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "GAIS",
@@ -2942,7 +3250,8 @@
       "apiId": 2170,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Malmö FF",
@@ -2951,7 +3260,8 @@
       "apiId": 375,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Degerfors",
@@ -2960,7 +3270,8 @@
       "apiId": 2172,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Brommapojkarna",
@@ -2969,7 +3280,8 @@
       "apiId": 371,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Elfsborg",
@@ -2978,7 +3290,8 @@
       "apiId": 372,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hammarby",
@@ -2987,7 +3300,8 @@
       "apiId": 363,
       "apiCountry": "Sweden",
       "score": 0.73,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Öster",
@@ -2996,7 +3310,8 @@
       "apiId": 2174,
       "apiCountry": "Sweden",
       "score": 0.83,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Falkenberg",
@@ -3005,7 +3320,8 @@
       "apiId": 812,
       "apiCountry": "Sweden",
       "score": 0.71,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Norrköping",
@@ -3014,7 +3330,8 @@
       "apiId": 378,
       "apiCountry": "Sweden",
       "score": 0.71,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "GIF Sundsvall",
@@ -3023,7 +3340,8 @@
       "apiId": 373,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Östersunds FK",
@@ -3032,7 +3350,8 @@
       "apiId": 376,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Landskrona",
@@ -3041,7 +3360,8 @@
       "apiId": 2176,
       "apiCountry": "Sweden",
       "score": 0.67,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Oddevold",
@@ -3050,7 +3370,8 @@
       "apiId": 11674,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Helsingborg",
@@ -3059,7 +3380,8 @@
       "apiId": 811,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "United Nordic",
@@ -3068,7 +3390,8 @@
       "apiId": 16601,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Brage",
@@ -3077,7 +3400,8 @@
       "apiId": 2175,
       "apiCountry": "Sweden",
       "score": 0.63,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Sandviken",
@@ -3086,7 +3410,8 @@
       "apiId": 6697,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Örebro",
@@ -3095,7 +3420,8 @@
       "apiId": 365,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Ljungskile",
@@ -3104,7 +3430,8 @@
       "apiId": 2165,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Varberg",
@@ -3113,7 +3440,8 @@
       "apiId": 2171,
       "apiCountry": "Sweden",
       "score": 0.54,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Norrby",
@@ -3122,7 +3450,8 @@
       "apiId": 2173,
       "apiCountry": "Sweden",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Värnamo",
@@ -3131,7 +3460,8 @@
       "apiId": 2163,
       "apiCountry": "Sweden",
       "score": 0.64,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Basel",
@@ -3140,7 +3470,8 @@
       "apiId": 551,
       "apiCountry": "Switzerland",
       "score": 0.5,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Lausanne Sport",
@@ -3149,7 +3480,8 @@
       "apiId": 1014,
       "apiCountry": "Switzerland",
       "score": 0.57,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Grasshopper",
@@ -3158,7 +3490,8 @@
       "apiId": 1013,
       "apiCountry": "Switzerland",
       "score": 0.92,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Thun",
@@ -3167,7 +3500,8 @@
       "apiId": 1012,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Luzern",
@@ -3176,7 +3510,8 @@
       "apiId": 644,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sion",
@@ -3185,7 +3520,8 @@
       "apiId": 630,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Lugano",
@@ -3194,7 +3530,8 @@
       "apiId": 606,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Young Boys",
@@ -3203,7 +3540,8 @@
       "apiId": 565,
       "apiCountry": "Switzerland",
       "score": 0.71,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Zürich",
@@ -3212,7 +3550,8 @@
       "apiId": 783,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "St. Gallen",
@@ -3221,7 +3560,8 @@
       "apiId": 1011,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Servette",
@@ -3230,7 +3570,8 @@
       "apiId": 2184,
       "apiCountry": "Switzerland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vaduz",
@@ -3239,7 +3580,8 @@
       "apiId": 660,
       "apiCountry": "Liechtenstein",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hirnyk",
@@ -3248,7 +3590,8 @@
       "apiId": 6489,
       "apiCountry": "Ukraine",
       "score": 0.1,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "LNZ Cherkasy",
@@ -3257,7 +3600,8 @@
       "apiId": 17161,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Shakhtar Donetsk",
@@ -3266,7 +3610,8 @@
       "apiId": 550,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Veres",
@@ -3275,7 +3620,8 @@
       "apiId": 6501,
       "apiCountry": "Ukraine",
       "score": 0.45,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Dynamo Kyiv",
@@ -3284,7 +3630,8 @@
       "apiId": 572,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Karpaty",
@@ -3293,7 +3640,8 @@
       "apiId": 3617,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Zorya",
@@ -3302,7 +3650,8 @@
       "apiId": 599,
       "apiCountry": "Ukraine",
       "score": 0.38,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Epitsentr Dunayivtsi",
@@ -3311,7 +3660,8 @@
       "apiId": 14434,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Metalist 1925 Kharkiv",
@@ -3320,7 +3670,8 @@
       "apiId": 10697,
       "apiCountry": "Ukraine",
       "score": 0.38,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Obolon-Brovar",
@@ -3329,7 +3680,8 @@
       "apiId": 3630,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Chornomorets",
@@ -3338,7 +3690,8 @@
       "apiId": 3615,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kolos Kovalivka",
@@ -3347,7 +3700,8 @@
       "apiId": 3627,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Livyi Bereh",
@@ -3356,7 +3710,8 @@
       "apiId": 17162,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Polessya",
@@ -3365,7 +3720,8 @@
       "apiId": 6496,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bukovyna",
@@ -3374,7 +3730,8 @@
       "apiId": 6486,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kudrivka",
@@ -3383,7 +3740,8 @@
       "apiId": 21953,
       "apiCountry": "Ukraine",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "AF Elbasani",
@@ -3392,7 +3750,8 @@
       "apiId": 20406,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Teuta Durrës",
@@ -3401,7 +3760,8 @@
       "apiId": 3320,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dinamo Tirana",
@@ -3410,7 +3770,8 @@
       "apiId": 3326,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vllaznia Shkodër",
@@ -3419,7 +3780,8 @@
       "apiId": 3339,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Tirana",
@@ -3428,7 +3790,8 @@
       "apiId": 694,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Egnatia Rrogozhinë",
@@ -3437,16 +3800,21 @@
       "apiId": 3327,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Partizani Tirana",
       "league": "Albanian Superliga",
-      "apiName": "Partizani Tirana II",
-      "apiId": 10721,
+      "apiName": "Partizani",
+      "apiId": 708,
       "apiCountry": "Albania",
-      "score": 0.84,
-      "via": "jméno"
+      "score": 0.8,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Partizani Tirana II",
+        "id": 10721
+      }
     },
     {
       "clubName": "Laçi",
@@ -3455,7 +3823,8 @@
       "apiId": 2256,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Skënderbeu Korçë",
@@ -3464,7 +3833,8 @@
       "apiId": 605,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Vora",
@@ -3473,16 +3843,21 @@
       "apiId": 3340,
       "apiCountry": "Albania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Pyunik",
       "league": "Armenian Premier League",
-      "apiName": "Pyunik W",
-      "apiId": 24208,
+      "apiName": "Pyunik Yerevan",
+      "apiId": 709,
       "apiCountry": "Armenia",
-      "score": 0.75,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Pyunik W",
+        "id": 24208
+      }
     },
     {
       "clubName": "Ararat",
@@ -3491,7 +3866,8 @@
       "apiId": 3682,
       "apiCountry": "Armenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Van",
@@ -3500,7 +3876,8 @@
       "apiId": 6286,
       "apiCountry": "Armenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "BKMA",
@@ -3509,7 +3886,8 @@
       "apiId": 6279,
       "apiCountry": "Armenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Banants",
@@ -3518,7 +3896,8 @@
       "apiId": 3690,
       "apiCountry": "Armenia",
       "score": 0.7,
-      "via": "jméno"
+      "via": "jméno – tým v lize nehraje, zkontroluj",
+      "replaced": null
     },
     {
       "clubName": "Gandzasar",
@@ -3527,7 +3906,8 @@
       "apiId": 688,
       "apiCountry": "Armenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "FC Avan Academy",
@@ -3536,16 +3916,21 @@
       "apiId": 5399,
       "apiCountry": "Cameroon",
       "score": 0.85,
-      "via": "jméno"
+      "via": "jméno – tým v lize nehraje, zkontroluj",
+      "replaced": null
     },
     {
       "clubName": "Shirak",
       "league": "Armenian Premier League",
-      "apiName": "Shirak FC",
-      "apiId": 710,
-      "apiCountry": null,
-      "score": 1,
-      "via": "jméno"
+      "apiName": "Shirak",
+      "apiId": 3686,
+      "apiCountry": "Armenia",
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Shirak FC",
+        "id": 710
+      }
     },
     {
       "clubName": "Sardarapat",
@@ -3554,7 +3939,8 @@
       "apiId": 26198,
       "apiCountry": "Armenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Alashkert",
@@ -3563,7 +3949,8 @@
       "apiId": 582,
       "apiCountry": "Armenia",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "EB - Streymur",
@@ -3572,16 +3959,21 @@
       "apiId": 4177,
       "apiCountry": "Faroe-Islands",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "NSÍ",
       "league": "Faroe Islands Premier League",
-      "apiName": "NSÍ W",
-      "apiId": 26161,
+      "apiName": "NSI Runavik",
+      "apiId": 682,
       "apiCountry": "Faroe-Islands",
-      "score": 0.6,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "NSÍ W",
+        "id": 26161
+      }
     },
     {
       "clubName": "HB",
@@ -3590,7 +3982,8 @@
       "apiId": 4133,
       "apiCountry": "Faroe-Islands",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "B68",
@@ -3599,7 +3992,8 @@
       "apiId": 4186,
       "apiCountry": "Faroe-Islands",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Skála",
@@ -3608,7 +4002,8 @@
       "apiId": 4191,
       "apiCountry": "Faroe-Islands",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "07 Vestur",
@@ -3617,16 +4012,21 @@
       "apiId": 4174,
       "apiCountry": "Faroe-Islands",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Víkingur",
       "league": "Faroe Islands Premier League",
-      "apiName": "Víkingur II",
-      "apiId": 4183,
+      "apiName": "Vikingur Gota",
+      "apiId": 580,
       "apiCountry": "Faroe-Islands",
-      "score": 0.73,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Víkingur II",
+        "id": 4183
+      }
     },
     {
       "clubName": "KÍ",
@@ -3635,7 +4035,8 @@
       "apiId": 701,
       "apiCountry": "Faroe-Islands",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "B36",
@@ -3644,7 +4045,8 @@
       "apiId": 678,
       "apiCountry": "Faroe-Islands",
       "score": 0.25,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "KA",
@@ -3653,7 +4055,8 @@
       "apiId": 272,
       "apiCountry": "Iceland",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "FH",
@@ -3662,7 +4065,8 @@
       "apiId": 270,
       "apiCountry": "Iceland",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "Thór",
@@ -3671,7 +4075,8 @@
       "apiId": 2116,
       "apiCountry": "Iceland",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "Breidablik",
@@ -3680,25 +4085,34 @@
       "apiId": 276,
       "apiCountry": "Iceland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Valur",
       "league": "Iceland Besta deild",
-      "apiName": "Valur W",
-      "apiId": 14851,
+      "apiName": "Valur Reykjavik",
+      "apiId": 274,
       "apiCountry": "Iceland",
-      "score": 0.71,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Valur W",
+        "id": 14851
+      }
     },
     {
       "clubName": "ÍBV",
       "league": "Iceland Besta deild",
-      "apiName": "ÍBV W",
-      "apiId": 14852,
+      "apiName": "IBV Vestmannaeyjar",
+      "apiId": 268,
       "apiCountry": "Iceland",
-      "score": 0.6,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "ÍBV W",
+        "id": 14852
+      }
     },
     {
       "clubName": "Stjarnan",
@@ -3707,7 +4121,8 @@
       "apiId": 275,
       "apiCountry": "Iceland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "KR",
@@ -3716,7 +4131,8 @@
       "apiId": 271,
       "apiCountry": "Iceland",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "Keflavík",
@@ -3725,7 +4141,8 @@
       "apiId": 269,
       "apiCountry": "Iceland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Víkingur Reykjavík",
@@ -3734,16 +4151,21 @@
       "apiId": 278,
       "apiCountry": "Iceland",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Fram",
       "league": "Iceland Besta deild",
-      "apiName": "Fram",
-      "apiId": 6986,
-      "apiCountry": "Norway",
-      "score": 1,
-      "via": "jméno"
+      "apiName": "Fram Reykjavik",
+      "apiId": 2117,
+      "apiCountry": "Iceland",
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Fram",
+        "id": 6986
+      }
     },
     {
       "clubName": "ÍA",
@@ -3752,7 +4174,8 @@
       "apiId": 827,
       "apiCountry": "Iceland",
       "score": 0.9,
-      "via": "soupiska ligy"
+      "via": "soupiska ligy",
+      "replaced": null
     },
     {
       "clubName": "Banga",
@@ -3761,7 +4184,8 @@
       "apiId": 3858,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Hegelmann Litauen",
@@ -3770,7 +4194,8 @@
       "apiId": 3861,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Trakai",
@@ -3779,7 +4204,8 @@
       "apiId": 638,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Kauno Žalgiris",
@@ -3788,16 +4214,21 @@
       "apiId": 3872,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sūduva",
       "league": "Lithuanian A Lyga",
-      "apiName": "Sūduva II",
-      "apiId": 16523,
+      "apiName": "Suduva Marijampole",
+      "apiId": 612,
       "apiCountry": "Lithuania",
-      "score": 0.67,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Sūduva II",
+        "id": 16523
+      }
     },
     {
       "clubName": "TransINVEST Vilnius",
@@ -3806,7 +4237,8 @@
       "apiId": 18878,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Džiugas Telšiai",
@@ -3815,7 +4247,8 @@
       "apiId": 3860,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Panevėžys",
@@ -3824,16 +4257,21 @@
       "apiId": 3874,
       "apiCountry": "Lithuania",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "FA Šiauliai",
       "league": "Lithuanian A Lyga",
-      "apiName": "FA Šiauliai II",
-      "apiId": 18840,
+      "apiName": "Šiauliai",
+      "apiId": 3870,
       "apiCountry": "Lithuania",
-      "score": 0.79,
-      "via": "jméno"
+      "score": 0.85,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "FA Šiauliai II",
+        "id": 18840
+      }
     },
     {
       "clubName": "Žalgiris",
@@ -3842,7 +4280,8 @@
       "apiId": 3871,
       "apiCountry": "Lithuania",
       "score": 0.73,
-      "via": "jméno"
+      "via": "jméno – tým v lize nehraje, zkontroluj",
+      "replaced": null
     },
     {
       "clubName": "FK Jezero Plav",
@@ -3851,7 +4290,8 @@
       "apiId": 3748,
       "apiCountry": "Montenegro",
       "score": 0.55,
-      "via": "alias"
+      "via": "alias",
+      "replaced": null
     },
     {
       "clubName": "Mornar",
@@ -3860,7 +4300,8 @@
       "apiId": 3740,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Arsenal Tivat",
@@ -3869,16 +4310,21 @@
       "apiId": 3742,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Budućnost",
       "league": "Montenegrin First League",
-      "apiName": "Budućnost W",
-      "apiId": 26160,
+      "apiName": "Buducnost Podgorica",
+      "apiId": 579,
       "apiCountry": "Montenegro",
-      "score": 0.82,
-      "via": "jméno"
+      "score": 0.9,
+      "via": "soupiska ligy",
+      "replaced": {
+        "name": "Budućnost W",
+        "id": 26160
+      }
     },
     {
       "clubName": "Otrant-Olympic",
@@ -3887,7 +4333,8 @@
       "apiId": 3751,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Dečić",
@@ -3896,7 +4343,8 @@
       "apiId": 3745,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Sutjeska",
@@ -3905,7 +4353,8 @@
       "apiId": 673,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Petrovac",
@@ -3914,7 +4363,8 @@
       "apiId": 3741,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Bokelj",
@@ -3923,7 +4373,8 @@
       "apiId": 3744,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     },
     {
       "clubName": "Mladost DG",
@@ -3932,7 +4383,8 @@
       "apiId": 16749,
       "apiCountry": "Montenegro",
       "score": 1,
-      "via": "jméno"
+      "via": "jméno",
+      "replaced": null
     }
   ],
   "unmatchedClubs": [
@@ -4853,32 +5305,8 @@
     {
       "club": "Pyunik",
       "ourPlayer": "Andranik Hakobyan",
-      "bestApiCandidate": "A. Ghukasyan",
-      "bestScore": 0.67
-    },
-    {
-      "club": "Pyunik",
-      "ourPlayer": "Aram Aharonyan",
-      "bestApiCandidate": "A. Avanesyan",
-      "bestScore": 0.67
-    },
-    {
-      "club": "Pyunik",
-      "ourPlayer": "Edmond Hayrapetyan",
-      "bestApiCandidate": "A. Karapetyan",
-      "bestScore": 0.61
-    },
-    {
-      "club": "Pyunik",
-      "ourPlayer": "Samson Hakobyan",
-      "bestApiCandidate": "S. Badalyan",
-      "bestScore": 0.63
-    },
-    {
-      "club": "Pyunik",
-      "ourPlayer": "Vyacheslav Afyan",
-      "bestApiCandidate": "V. Asatryan",
-      "bestScore": 0.63
+      "bestApiCandidate": "S. Hakobyan",
+      "bestScore": 0.75
     },
     {
       "club": "Van",
@@ -4953,12 +5381,6 @@
       "bestScore": 0.75
     },
     {
-      "club": "NSÍ",
-      "ourPlayer": "Petur Knudsen",
-      "bestApiCandidate": "E. Knudsen",
-      "bestScore": 0.75
-    },
-    {
       "club": "Skála",
       "ourPlayer": "Dávid Johansen",
       "bestApiCandidate": "K. Johansen",
@@ -5002,33 +5424,15 @@
     },
     {
       "club": "Víkingur",
-      "ourPlayer": "Aron Jarnskor Ellingsgaard",
-      "bestApiCandidate": "F. Jarnskor",
-      "bestScore": 0.75
-    },
-    {
-      "club": "Víkingur",
-      "ourPlayer": "Jákup Johansen",
-      "bestApiCandidate": "J. Olsen",
-      "bestScore": 0.63
-    },
-    {
-      "club": "Víkingur",
-      "ourPlayer": "Jörgin Nielsen",
-      "bestApiCandidate": "J. Olsen",
-      "bestScore": 0.68
-    },
-    {
-      "club": "Víkingur",
-      "ourPlayer": "Mikkel Hyllegaard",
-      "bestApiCandidate": "M. Hojgaard",
-      "bestScore": 0.7
-    },
-    {
-      "club": "Víkingur",
       "ourPlayer": "Óla Kristian Skála Jacobsen",
       "bestApiCandidate": "K. Jacobsen",
       "bestScore": 0.75
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Philip Djordjevic",
+      "bestApiCandidate": "F. Đorđević",
+      "bestScore": 0.6
     },
     {
       "club": "KÍ",
@@ -5098,21 +5502,15 @@
     },
     {
       "club": "Valur",
-      "ourPlayer": "Kristjan Oddur Bergmann Haagensen Kristjánsson",
-      "bestApiCandidate": "K. Kristinsdottir",
-      "bestScore": 0.63
+      "ourPlayer": "Loki Kristjánsson",
+      "bestApiCandidate": "K. Kristjánsson",
+      "bestScore": 0.75
     },
     {
       "club": "ÍBV",
-      "ourPlayer": "Halldór Jón Sigurdur Thórdarson",
-      "bestApiCandidate": "H. Thomas",
-      "bestScore": 0.63
-    },
-    {
-      "club": "ÍBV",
-      "ourPlayer": "Hermann Þór Ragnarsson",
-      "bestApiCandidate": "H. Thomas",
-      "bestScore": 0.63
+      "ourPlayer": "Arnar Breki Gunnarsson",
+      "bestApiCandidate": "B. Gunnarsson",
+      "bestScore": 0.75
     },
     {
       "club": "Stjarnan",
@@ -5151,6 +5549,24 @@
       "bestScore": 0.63
     },
     {
+      "club": "Fram",
+      "ourPlayer": "Magnus Thordarson",
+      "bestApiCandidate": "Sigurjon Hardarson",
+      "bestScore": 0.63
+    },
+    {
+      "club": "Fram",
+      "ourPlayer": "Sigurjón Daði Hafthorsson",
+      "bestApiCandidate": "Sigurjon Hardarson",
+      "bestScore": 0.66
+    },
+    {
+      "club": "Fram",
+      "ourPlayer": "Viktor Freyr Sigurdsson",
+      "bestApiCandidate": "F. Sigurdsson",
+      "bestScore": 0.75
+    },
+    {
       "club": "ÍA",
       "ourPlayer": "Gabríel Snær Gunnarsson",
       "bestApiCandidate": "G. Unnarsson",
@@ -5175,16 +5591,16 @@
       "bestScore": 0.75
     },
     {
+      "club": "Sūduva",
+      "ourPlayer": "Simas Venckevičius",
+      "bestApiCandidate": "G. Zenkevičius",
+      "bestScore": 0.63
+    },
+    {
       "club": "TransINVEST Vilnius",
       "ourPlayer": "Deividas Česnauskis",
       "bestApiCandidate": "D. Barauskas",
       "bestScore": 0.63
-    },
-    {
-      "club": "FA Šiauliai",
-      "ourPlayer": "Gustas Baliutavičius",
-      "bestApiCandidate": "G. Micevicius",
-      "bestScore": 0.65
     },
     {
       "club": "Žalgiris",
