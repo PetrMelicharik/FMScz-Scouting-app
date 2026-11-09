@@ -246,7 +246,8 @@ export default function RadarView() {
           <p className="chart-note">
             Skóre = průměrný percentil ze statistik pizza grafu (0–100), ve srovnání s hráči stejné skupiny pozic
             ve stejné lize, kteří odehráli aspoň 40 % minut odehratelných v lize (nejméně 300). Skóre se proto
-            dá porovnávat jen v rámci ligy. Hráči bez známé smlouvy nebo tržní hodnoty se v radaru nezobrazují.
+            dá porovnávat jen v rámci ligy. Statistiky, které liga nesleduje (aspoň 90 % hráčů má 0), se nepočítají;
+            hráč musí mít aspoň 12 statistik se skutečnými daty (brankář 5). Hráči bez známé smlouvy nebo tržní hodnoty se v radaru nezobrazují.
             Silné stránky = 3 statistiky s nejvyšším percentilem.
           </p>
         </>
