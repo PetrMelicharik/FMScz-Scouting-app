@@ -1284,7 +1284,7 @@
       "replaced": null
     },
     {
-      "clubName": "AB",
+      "clubName": "AB|Danish Betinia Liga",
       "league": "Danish Betinia Liga",
       "apiName": "AB Copenhagen",
       "apiId": 2060,
@@ -1884,6 +1884,16 @@
       "replaced": null
     },
     {
+      "clubName": "Stal Mielec",
+      "league": "Polish Betclic 1. Liga",
+      "apiName": "Stal Mielec",
+      "apiId": 3493,
+      "apiCountry": "Poland",
+      "score": 1,
+      "via": "jméno",
+      "replaced": null
+    },
+    {
       "clubName": "Unia Skierniewice",
       "league": "Polish Betclic 1. Liga",
       "apiName": "Unia Skierniewice",
@@ -1898,16 +1908,6 @@
       "league": "Polish Betclic 1. Liga",
       "apiName": "Lechia Gdansk",
       "apiId": 343,
-      "apiCountry": "Poland",
-      "score": 1,
-      "via": "jméno",
-      "replaced": null
-    },
-    {
-      "clubName": "Stal Mielec",
-      "league": "Polish Betclic 1. Liga",
-      "apiName": "Stal Mielec",
-      "apiId": 3493,
       "apiCountry": "Poland",
       "score": 1,
       "via": "jméno",
@@ -3880,6 +3880,16 @@
       "replaced": null
     },
     {
+      "clubName": "Artsakh",
+      "league": "Armenian Premier League",
+      "apiName": "Lernayin Artsakh",
+      "apiId": 6281,
+      "apiCountry": "Armenia",
+      "score": 0.44,
+      "via": "alias",
+      "replaced": null
+    },
+    {
       "clubName": "BKMA",
       "league": "Armenian Premier League",
       "apiName": "BKMA",
@@ -3912,11 +3922,11 @@
     {
       "clubName": "FC Avan Academy",
       "league": "Armenian Premier League",
-      "apiName": "Avion Academy",
-      "apiId": 5399,
-      "apiCountry": "Cameroon",
-      "score": 0.85,
-      "via": "jméno – tým v lize nehraje, zkontroluj",
+      "apiName": "Ararat-Armenia",
+      "apiId": 3683,
+      "apiCountry": "Armenia",
+      "score": 0.29,
+      "via": "alias",
       "replaced": null
     },
     {
@@ -4036,6 +4046,16 @@
       "apiCountry": "Faroe-Islands",
       "score": 0.9,
       "via": "soupiska ligy",
+      "replaced": null
+    },
+    {
+      "clubName": "AB|Faroe Islands Premier League",
+      "league": "Faroe Islands Premier League",
+      "apiName": "AB",
+      "apiId": 4184,
+      "apiCountry": "Faroe-Islands",
+      "score": 1,
+      "via": "alias",
       "replaced": null
     },
     {
@@ -4198,20 +4218,20 @@
       "replaced": null
     },
     {
-      "clubName": "Trakai",
+      "clubName": "Kauno Žalgiris",
       "league": "Lithuanian A Lyga",
-      "apiName": "FK Trakai",
-      "apiId": 638,
+      "apiName": "Kauno Žalgiris",
+      "apiId": 3872,
       "apiCountry": "Lithuania",
       "score": 1,
       "via": "jméno",
       "replaced": null
     },
     {
-      "clubName": "Kauno Žalgiris",
+      "clubName": "Trakai",
       "league": "Lithuanian A Lyga",
-      "apiName": "Kauno Žalgiris",
-      "apiId": 3872,
+      "apiName": "FK Trakai",
+      "apiId": 638,
       "apiCountry": "Lithuania",
       "score": 1,
       "via": "jméno",
@@ -4387,26 +4407,7 @@
       "replaced": null
     }
   ],
-  "unmatchedClubs": [
-    {
-      "clubName": "Artsakh",
-      "country": "Armenia",
-      "candidates": [
-        {
-          "name": "Lernayin Artsakh",
-          "id": 6281,
-          "country": "Armenia",
-          "score": 0.44
-        },
-        {
-          "name": "Lernayin Artsakh II",
-          "id": 19579,
-          "country": "Armenia",
-          "score": 0.37
-        }
-      ]
-    }
-  ],
+  "unmatchedClubs": [],
   "unmatchedPlayers": [
     {
       "club": "Hartberg",
@@ -4673,18 +4674,6 @@
       "bestScore": 0.63
     },
     {
-      "club": "AB",
-      "ourPlayer": "Silas Rasmussen",
-      "bestApiCandidate": "M. Rasmussen",
-      "bestScore": 0.75
-    },
-    {
-      "club": "AB",
-      "ourPlayer": "Tóki Næss Rasmussen",
-      "bestApiCandidate": "M. Rasmussen",
-      "bestScore": 0.75
-    },
-    {
       "club": "AaB",
       "ourPlayer": "Andreas Maarup Hansen",
       "bestApiCandidate": "B. Hansen",
@@ -4925,12 +4914,6 @@
       "bestScore": 1
     },
     {
-      "club": "CS U Craiova",
-      "ourPlayer": "Alexandru Maxim",
-      "bestApiCandidate": "A. Maxim",
-      "bestScore": 1
-    },
-    {
       "club": "FCSB",
       "ourPlayer": "Octavian Popescu",
       "bestApiCandidate": "M. Popescu",
@@ -5001,12 +4984,6 @@
       "ourPlayer": "Danilo Miladinović",
       "bestApiCandidate": "Đ. Jovanović",
       "bestScore": 0.66
-    },
-    {
-      "club": "Red Star Belgrade",
-      "ourPlayer": "Luka Zarić",
-      "bestApiCandidate": "D. Saric",
-      "bestScore": 0.6
     },
     {
       "club": "Red Star Belgrade",
@@ -5333,6 +5310,12 @@
       "bestScore": 0.72
     },
     {
+      "club": "Artsakh",
+      "ourPlayer": "Aram Khamoyan",
+      "bestApiCandidate": "Aram Geghamyan",
+      "bestScore": 0.67
+    },
+    {
       "club": "BKMA",
       "ourPlayer": "Arshak Poghosyan",
       "bestApiCandidate": "A. Petrosyan",
@@ -5366,6 +5349,18 @@
       "club": "Gandzasar",
       "ourPlayer": "Gagik Gevorgyan",
       "bestApiCandidate": "Hovhannes Gevorgyan",
+      "bestScore": 0.78
+    },
+    {
+      "club": "FC Avan Academy",
+      "ourPlayer": "Armen Asatryan",
+      "bestApiCandidate": "A. Ambartsumyan",
+      "bestScore": 0.63
+    },
+    {
+      "club": "FC Avan Academy",
+      "ourPlayer": "Bernardo Oliveira Dias",
+      "bestApiCandidate": "Hugo Oliveira",
       "bestScore": 0.78
     },
     {
@@ -5445,6 +5440,24 @@
       "ourPlayer": "Patrik Johannesen",
       "bestApiCandidate": "J. Johannessen",
       "bestScore": 0.68
+    },
+    {
+      "club": "AB|Faroe Islands Premier League",
+      "ourPlayer": "Bardur Enni Danielsen",
+      "bestApiCandidate": "B. Nielsen",
+      "bestScore": 0.83
+    },
+    {
+      "club": "AB|Faroe Islands Premier League",
+      "ourPlayer": "Rógvi Skála",
+      "bestApiCandidate": "Ragnar Skála",
+      "bestScore": 0.83
+    },
+    {
+      "club": "AB|Faroe Islands Premier League",
+      "ourPlayer": "Tóki Næss Rasmussen",
+      "bestApiCandidate": "Silas Rasmussen",
+      "bestScore": 0.75
     },
     {
       "club": "B36",
