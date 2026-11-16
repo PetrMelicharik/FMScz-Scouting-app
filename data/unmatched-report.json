@@ -4422,12 +4422,6 @@
       "bestScore": 0.63
     },
     {
-      "club": "Austria Wien II",
-      "ourPlayer": "Noah Vinko Botić",
-      "bestApiCandidate": "Tomy Baotic",
-      "bestScore": 0.69
-    },
-    {
       "club": "Schwarz-Weiß Bregenz",
       "ourPlayer": "Lucas Soares Dantas",
       "bestApiCandidate": "L. Sealey",
@@ -4602,6 +4596,12 @@
       "bestScore": 1
     },
     {
+      "club": "Slavia Praha U21",
+      "ourPlayer": "Damián Kotrba",
+      "bestApiCandidate": "M. Kotrba",
+      "bestScore": 0.75
+    },
+    {
       "club": "Prostějov",
       "ourPlayer": "Martin Vaňák",
       "bestApiCandidate": "M. Černák",
@@ -4702,6 +4702,12 @@
       "ourPlayer": "Luis Montiel Rodriguez",
       "bestApiCandidate": "Tòfol Montiel",
       "bestScore": 0.75
+    },
+    {
+      "club": "Jaro",
+      "ourPlayer": "Luca Weckström",
+      "bestApiCandidate": "L. Zetterström",
+      "bestScore": 0.66
     },
     {
       "club": "Jaro",
@@ -5353,12 +5359,6 @@
     },
     {
       "club": "FC Avan Academy",
-      "ourPlayer": "Armen Asatryan",
-      "bestApiCandidate": "A. Ambartsumyan",
-      "bestScore": 0.63
-    },
-    {
-      "club": "FC Avan Academy",
       "ourPlayer": "Bernardo Oliveira Dias",
       "bestApiCandidate": "Hugo Oliveira",
       "bestScore": 0.78
@@ -5416,6 +5416,12 @@
       "ourPlayer": "Rói Heðinsson Olsen",
       "bestApiCandidate": "R. Helgason",
       "bestScore": 0.67
+    },
+    {
+      "club": "Víkingur",
+      "ourPlayer": "Jens Eiler Samson",
+      "bestApiCandidate": "J. Ólavsson",
+      "bestScore": 0.63
     },
     {
       "club": "Víkingur",
@@ -5509,6 +5515,12 @@
     },
     {
       "club": "Breidablik",
+      "ourPlayer": "Valgeir Valgeirsson",
+      "bestApiCandidate": "V. Margeirsson",
+      "bestScore": 0.86
+    },
+    {
+      "club": "Breidablik",
       "ourPlayer": "Willum Þór Willumsson",
       "bestApiCandidate": "T. Willumsson",
       "bestScore": 0.75
@@ -5560,6 +5572,12 @@
       "ourPlayer": "Davíd Helgi Aronsson",
       "bestApiCandidate": "D. Valsson",
       "bestScore": 0.63
+    },
+    {
+      "club": "Víkingur Reykjavík",
+      "ourPlayer": "Ingvar Jónsson",
+      "bestApiCandidate": "Daði Berg Jónsson",
+      "bestScore": 0.75
     },
     {
       "club": "Fram",
@@ -5626,6 +5644,12 @@
       "ourPlayer": "Giedrius Matulevičius",
       "bestApiCandidate": "G. Jarusevičius",
       "bestScore": 0.81
+    },
+    {
+      "club": "Mornar",
+      "ourPlayer": "Nikola Vujnović",
+      "bestApiCandidate": "N. Stijepović",
+      "bestScore": 0.63
     },
     {
       "club": "Arsenal Tivat",
