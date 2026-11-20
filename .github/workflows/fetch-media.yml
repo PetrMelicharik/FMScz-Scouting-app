@@ -2,11 +2,14 @@ name: Aktualizace fotek a log hráčů
 
 on:
   workflow_dispatch: {}          # ruční spuštění tlačítkem v záložce Actions
-  schedule:
-    - cron: "0 3 * * 1"          # každé pondělí 03:00 UTC
-  push:
-    paths:
-      - "data/db.xlsx"              # automaticky i po nahrání nové databáze
+  # VYPNUTO (11/2026) – předplatné API-Football skončilo. Data, která už jsou
+  # v data/media-map.json a data/form-map.json, zůstávají. Pro opětovné
+  # zapnutí stačí odstranit "# " na začátku pěti řádků níže.
+  # schedule:
+  #   - cron: "0 3 * * 1"        # každé pondělí 03:00 UTC
+  # push:
+  #   paths:
+  #     - "data/db.xlsx"         # automaticky i po nahrání nové databáze
 
 permissions:
   contents: write
